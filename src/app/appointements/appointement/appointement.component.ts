@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
 export class AppointementComponent implements OnInit {
 
   constructor() {
-
   }
   ngOnInit() {
   }
