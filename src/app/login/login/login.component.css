@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
+.container h2 {
+  color: #4b4276;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 30px;
+}
