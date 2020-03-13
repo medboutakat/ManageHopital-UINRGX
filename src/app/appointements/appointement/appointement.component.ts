@@ -12,6 +12,5 @@ export class AppointementComponent implements OnInit {
   constructor() {
   }
   ngOnInit() {
-
   }
 }
