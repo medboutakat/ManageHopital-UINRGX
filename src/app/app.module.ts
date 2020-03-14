@@ -13,6 +13,9 @@ import { SidebarComponent } from './page-section/sidebar/sidebar.component';
 import { HopitalComponent } from './hopitals/hopital/hopital.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
+import { CommonModule } from '@angular/common';
+import { DoctorComponent } from './doctors/doctor/doctor.component';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +27,7 @@ import { HomeComponent } from './home/home.component';
     SidebarComponent,
     HopitalComponent,
     HomeComponent,
-
+    DoctorComponent
   ],
   imports: [
     BrowserModule,
@@ -35,4 +38,5 @@ import { HomeComponent } from './home/home.component';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

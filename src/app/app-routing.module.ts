@@ -6,12 +6,14 @@ import { SidebarComponent } from './page-section/sidebar/sidebar.component';
 import { HopitalComponent } from './hopitals/hopital/hopital.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './page-section/navbar/navbar.component';
+import { DoctorComponent } from './doctors/doctor/doctor.component';
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'appointement', component: AppointementComponent },
   { path: 'hospitals', component: HopitalComponent },
+  { path: 'doctors', component: DoctorComponent },
   { path: 'home', component: HomeComponent },
   { path: '', component: NavbarComponent, pathMatch: 'full' }
 ];
