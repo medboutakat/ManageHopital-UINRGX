@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './page-section/navbar/navbar.component';
@@ -16,6 +19,11 @@ import { HomeComponent } from './home/home.component';
 import { CommonModule } from '@angular/common';
 import { DoctorComponent } from './doctors/doctor/doctor.component';
 
+import {
+  StoreRouterConnectingModule,
+  routerReducer,
+  RouterStateSerializer
+} from "@ngrx/router-store";
 
 @NgModule({
   declarations: [
@@ -31,6 +39,12 @@ import { DoctorComponent } from './doctors/doctor/doctor.component';
   ],
   imports: [
     BrowserModule,
+    StoreModule.forRoot({
+      router: routerReducer
+    }),
+    StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([]),
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule
