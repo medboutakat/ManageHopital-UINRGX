@@ -6,7 +6,7 @@ import { Doctor } from './doctor.model';
   providedIn: 'root'
 })
 export class DoctorService {
-  ROOT_URL = "http://144.91.76.98:5000/api/CustomerDoctor/"
+  ROOT_URL = "http://144.91.76.98:5002/api/doctor/"
   constructor(private http:HttpClient){}
   //get
   getDoctors(){
