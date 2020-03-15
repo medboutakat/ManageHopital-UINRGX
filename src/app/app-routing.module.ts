@@ -6,12 +6,12 @@ import { SidebarComponent } from './page-section/sidebar/sidebar.component';
 import { HopitalComponent } from './hopitals/hopital/hopital.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './page-section/navbar/navbar.component';
-<<<<<<< HEAD
+
 import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-cat.component';
 
-=======
+
 import { DoctorComponent } from './doctors/doctor/doctor.component';
->>>>>>> b7f0baa1b3086e8343a7f92540728fdb4bb26eee
+
 
 
 const routes: Routes = [
