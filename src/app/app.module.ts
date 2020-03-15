@@ -16,14 +16,18 @@ import { SidebarComponent } from './page-section/sidebar/sidebar.component';
 import { HopitalComponent } from './hopitals/hopital/hopital.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
+
+import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-cat.component';
+import { HospitalCatEffect } from './HospitalCategorie/Store/Effect';
+import { HospitalCatReducer } from './HospitalCategorie/Store/reducer';
+import { SelectComponent } from './select/select.component';
+
 import { CommonModule } from '@angular/common';
 import { DoctorComponent } from './doctors/doctor/doctor.component';
 
-import {
-  StoreRouterConnectingModule,
-  routerReducer,
-  RouterStateSerializer
-} from "@ngrx/router-store";
+import {StoreRouterConnectingModule,routerReducer,RouterStateSerializer,} from "@ngrx/router-store";
+import { MaterialModule } from './material/material.module';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +39,13 @@ import {
     SidebarComponent,
     HopitalComponent,
     HomeComponent,
+
+    HospitalCatComponent,
+    SelectComponent,
+
+
     DoctorComponent
+
   ],
   imports: [
     BrowserModule,
@@ -47,7 +57,12 @@ import {
     EffectsModule.forRoot([]),
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreModule.forRoot({}), 
+    StoreModule.forFeature("HospitalCat",HospitalCatReducer),
+    EffectsModule.forRoot([HospitalCatEffect]),
+    MaterialModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
