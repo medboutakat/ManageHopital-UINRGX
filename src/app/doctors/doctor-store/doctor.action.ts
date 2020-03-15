@@ -15,7 +15,7 @@ export enum DoctorActionTypes{
 //get
 export class getDoctor implements Action{
     readonly type= DoctorActionTypes.GET_DOCTORS
-    constructor(public payload:number){}
+    constructor(){}
 }
 export class getDoctorSeccess implements Action{
     readonly type= DoctorActionTypes.GET_DOCTORS_SECCESS

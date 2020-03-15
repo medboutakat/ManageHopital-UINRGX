@@ -11,6 +11,10 @@ export interface doctorState extends EntityState<Doctor> {
     error:string
 }
 
+export interface AppState extends fromRoot.AppState {
+    doctors: doctorState;
+  }
+
 export const doctorAdapter:EntityAdapter<Doctor> = createEntityAdapter<Doctor>();
 
 export const defaultDoctor: doctorState ={
@@ -35,7 +39,7 @@ export interface AppSate extends fromRoot.AppState{
                 ...state,
                 getting: true,
                 loadSeccess:true,
-                customers:action.payload
+                Doctors:action.payload
             })
         }
         case doctorActions.DoctorActionTypes.GET_DOCTORS_FAIL:{
@@ -61,3 +65,37 @@ export interface AppSate extends fromRoot.AppState{
         }
     }
 }
+
+const getDoctorFeatureState = createFeatureSelector<doctorState>(
+    "doctors"
+  );
+  
+  export const getDoctors = createSelector(
+    getDoctorFeatureState,
+    doctorAdapter.getSelectors().selectAll
+  );
+  
+  export const getDoctorsLoading = createSelector(
+    getDoctorFeatureState,
+    (state: doctorState) => state.getting
+  );
+  
+  export const getDoctorsLoaded = createSelector(
+    getDoctorFeatureState,
+    (state: doctorState) => state.loadSeccess
+  );
+  
+  export const getError = createSelector(
+    getDoctorFeatureState,
+    (state: doctorState) => state.error
+  );
+  
+  export const getCurrentDoctorId = createSelector(
+    getDoctorFeatureState,
+    (state: doctorState) => state.selectdoctorId
+  );
+  export const getCurrentDoctor = createSelector(
+    getDoctorFeatureState,
+    getCurrentDoctorId,
+    state => state.entities[state.selectdoctorId]
+  );
