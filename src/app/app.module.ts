@@ -13,6 +13,9 @@ import { SidebarComponent } from './page-section/sidebar/sidebar.component';
 import { HopitalComponent } from './hopitals/hopital/hopital.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
+import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-cat.component';
+import { HospitalCatEffect } from './HospitalCategorie/Store/Effect';
+import { HospitalCatReducer } from './HospitalCategorie/Store/reducer';
 
 @NgModule({
   declarations: [
@@ -24,13 +27,17 @@ import { HomeComponent } from './home/home.component';
     SidebarComponent,
     HopitalComponent,
     HomeComponent,
+    HospitalCatComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreModule.forRoot({}), 
+    StoreModule.forFeature("HospitalCat",HospitalCatReducer),
+    EffectsModule.forRoot([HospitalCatEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]

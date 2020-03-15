@@ -1,0 +1,25 @@
+
+<table class="table ">
+  <thead>
+      
+    <tr class="table-primary">
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+      <th scope="col">Remarque</th>
+    
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of listhopitalCat ">
+        <th scope="row">{{item.id}}</th>
+        <td>{{item.name}}</td>
+        <td>{{item.remark}}</td>
+      <!-- <th>
+        <a (click)=editCustomer(customer)>edit</a>
+        <br>
+        <a (click)=deleteCustomer(customer)>delete</a>
+      </th> -->
+    </tr>
+  </tbody>
+</table>
