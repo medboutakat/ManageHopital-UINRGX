@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-cat.component';
 import { HospitalCatEffect } from './HospitalCategorie/Store/Effect';
 import { HospitalCatReducer } from './HospitalCategorie/Store/reducer';
+import { SelectComponent } from './select/select.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HospitalCatReducer } from './HospitalCategorie/Store/reducer';
     HopitalComponent,
     HomeComponent,
     HospitalCatComponent,
+    SelectComponent,
 
   ],
   imports: [
