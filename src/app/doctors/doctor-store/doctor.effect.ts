@@ -8,42 +8,73 @@ import { map, mergeMap, catchError } from "rxjs/operators";
 import { Action } from '@ngrx/store';
 
 @Injectable()
-export class DoctorEffect {
-  constructor(
-    private actions$: Actions,
-    private doctorService: DoctorService
+ export class DoctorEffect {
+
+  constructor
+  (
+     private locationServ:DoctorService,
+     private actions$:Actions
   ) {}
 
   @Effect()
-  getDoctors$: Observable<Action> = this.actions$.pipe(
-    ofType<doctorActions.getDoctor>(
-      doctorActions.DoctorActionTypes.GET_DOCTORS
-    ),
-    mergeMap((action: doctorActions.getDoctor) =>
-      this.doctorService.getDoctors().pipe(
-        map(
-          (doctors: Doctor[]) =>
-            new doctorActions.getDoctorSeccess(doctors)
-        ),
-        catchError(err => of(new doctorActions.getDoctorFail(err)))
+  loadDoctors: Observable<Action> = this.actions$.pipe(
+      ofType<doctorActions.getDoctor>(
+          doctorActions.DoctorActionTypes.GET_DOCTORS
+      ),
+      mergeMap((actions:doctorActions.getDoctor)=>
+          this.locationServ.getDoctors().pipe(
+              map((locations:Doctor[])=>
+                  new doctorActions.getDoctorSeccess(locations)
+              ),
+              catchError(err => of(new doctorActions.getDoctorFail(err)))
+          )
       )
-    )
-  );
+  )
 
-  @Effect()
-  getDoctor$: Observable<Action> = this.actions$.pipe(
-    ofType<doctorActions.getOneDoctor>(
-      doctorActions.DoctorActionTypes.GET_DOCTOR
-    ),
-    mergeMap((action: doctorActions.getOneDoctor) =>
-      this.doctorService.getDoctorById(action.payload).pipe(
-        map(
-          (doctor: Doctor) =>
-            new doctorActions.getOneDoctorSeccess(doctor)
-        ),
-        catchError(err => of(new doctorActions.getOneDoctorFail(err)))
-      )
-    )
-  );
+ 
+
+
+
+
+
+
+
+
+//   constructor(
+//     private actions$: Actions,
+//     private doctorService: DoctorService
+//   ) {}
+
+//   @Effect()
+//   getDoctors$: Observable<Action> = this.actions$.pipe(
+//     ofType<doctorActions.getDoctor>(
+//       doctorActions.DoctorActionTypes.GET_DOCTORS
+//     ),
+//     mergeMap((action: doctorActions.getDoctor) =>
+//       this.doctorService.getDoctors().pipe(
+//         map(
+//           (doctors: Doctor[]) =>
+//             new doctorActions.getDoctorSeccess(doctors)
+//         ),
+//         catchError(err => of(new doctorActions.getDoctorFail(err)))
+//       )
+//     )
+//   );
+
+//   @Effect()
+//   getDoctor$: Observable<Action> = this.actions$.pipe(
+//     ofType<doctorActions.getOneDoctor>(
+//       doctorActions.DoctorActionTypes.GET_DOCTOR
+//     ),
+//     mergeMap((action: doctorActions.getOneDoctor) =>
+//       this.doctorService.getDoctorById(action.payload).pipe(
+//         map(
+//           (doctor: Doctor) =>
+//             new doctorActions.getOneDoctorSeccess(doctor)
+//         ),
+//         catchError(err => of(new doctorActions.getOneDoctorFail(err)))
+//       )
+//     )
+//   );
 
 }

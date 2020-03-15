@@ -14,16 +14,20 @@ import { Doctor } from '../doctor.model';
 })
 export class DoctorComponent implements OnInit {
 
-  doctors$: Observable<Doctor[]>;
+  doctors: Doctor[];
   error$: Observable<String>;
 
-  constructor(private store: Store<fromDoctorReducer.AppState>) { }
+  constructor(private store: Store<fromDoctorReducer.AppSate>) { }
 
   ngOnInit() {
-    this.store.dispatch(new doctorActions.getDoctor());
-    this.doctors$ = this.store.pipe(select(fromDoctorReducer.getDoctors));
-    // this.error$ = this.store.pipe(select(fromDoctorReducer.getError));
-    console.log(this.doctors$)
+    this.store.dispatch( new doctorActions.getDoctor());
+  
+    this.store.subscribe(data =>{
+      this.doctors = data.doctors.doctors
+      // console.log(data.todos)
+      console.log("list ; ",this.doctors)
+    })
+    console.log(this.doctors)
   }
 
 }

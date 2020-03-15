@@ -25,8 +25,9 @@ import { SelectComponent } from './select/select.component';
 import { CommonModule } from '@angular/common';
 import { DoctorComponent } from './doctors/doctor/doctor.component';
 
-import {StoreRouterConnectingModule,routerReducer,RouterStateSerializer,} from "@ngrx/router-store";
 import { MaterialModule } from './material/material.module';
+import { doctorReducer } from './doctors/doctor-store/doctor.reducer';
+import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
 
 
 @NgModule({
@@ -39,20 +40,12 @@ import { MaterialModule } from './material/material.module';
     SidebarComponent,
     HopitalComponent,
     HomeComponent,
-
     HospitalCatComponent,
     SelectComponent,
-
-
     DoctorComponent
-
   ],
   imports: [
     BrowserModule,
-    StoreModule.forRoot({
-      router: routerReducer
-    }),
-    StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([]),
     AppRoutingModule,
@@ -61,8 +54,11 @@ import { MaterialModule } from './material/material.module';
     StoreModule.forRoot({}), 
     StoreModule.forFeature("HospitalCat",HospitalCatReducer),
     EffectsModule.forRoot([HospitalCatEffect]),
+    //for doctor
+    StoreModule.forRoot({}),
+    StoreModule.forFeature("doctors", doctorReducer),
+    EffectsModule.forRoot([DoctorEffect]),
     MaterialModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]
