@@ -22,8 +22,10 @@ import { HomeComponent } from './home/home.component';
 import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-cat.component';
 import { SelectComponent } from './select/select.component';
 import { DoctorComponent } from './doctors/doctor/doctor.component';
-// import { FooterComponent } from './shared/components/footer/footer.component';
-// import { HeaderComponent } from './shared/components/header/header.component';
+
+import { doctorReducer } from './doctors/doctor-store/doctor.reducer';
+import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
+
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { DoctorComponent } from './doctors/doctor/doctor.component';
   ],
   imports: [
     BrowserModule,
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([]),
     AppRoutingModule,
     BrowserAnimationsModule,
     DefaultModule,
@@ -55,6 +59,9 @@ import { DoctorComponent } from './doctors/doctor/doctor.component';
     StoreModule.forFeature("HospitalCat",HospitalCatReducer),        
     MaterialModule,
       
+    //for doctor
+    StoreModule.forFeature("doctors", doctorReducer),
+    EffectsModule.forRoot([DoctorEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]
