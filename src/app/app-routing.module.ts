@@ -14,23 +14,21 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
  
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'appointement', component: AppointementComponent },
-  { path: 'hospitals', component: HopitalComponent },
-  { path: 'doctors', component: DoctorComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' },
-  { path : 'hospitalcat' , component:HospitalCatComponent , pathMatch:'full'}, 
+
   {
     path: '',
     component: DefaultComponent,
-    children: [{
-      path: '',
-      component: DashboardComponent
-    }, {
-      path: 'posts',
-      component: PostsComponent
-    }]
+    children: [
+      {path: '',component: DashboardComponent},
+      {path: 'posts',component: PostsComponent},
+      { path: 'login', component: LoginComponent },
+      { path: 'appointement', component: AppointementComponent },
+      { path: 'hospitals', component: HopitalComponent },
+      { path: 'doctors', component: DoctorComponent },
+      { path: 'home', component: HomeComponent },
+      { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' },
+      { path : 'hospitalcat' , component:HospitalCatComponent , pathMatch:'full'}, 
+   ]
   }
 ];
 @NgModule({
