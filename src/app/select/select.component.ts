@@ -10,10 +10,18 @@ export class SelectComponent implements OnInit {
   @Input() txt: string; 
   @Input() display: string;
   @Input() listObjects: any[];
+   keys:any;
 
-  constructor() { }
+  constructor() { 
+ 
+    this.keys = Object.keys(this.listObjects)
+
+    console.log("listObject keys: ",this.keys);
+  }
 
   ngOnInit() {
+
+    console.log("listObject select: ",this.listObjects);
   }
 
 }
