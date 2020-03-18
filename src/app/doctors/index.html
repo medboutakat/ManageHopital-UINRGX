@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        #panel {
+            padding: 50px;
+            display: none;
+            width: 300px;
+            height: 200px;
+            background-color: aqua;
+            float: right;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="panel"></div>
+    <button style="float: right;" id="flip" class="btn btn-success">Toggle</button>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#flip").click(function () {
+                $("#panel").toggle("slow");
+            });
+        });
+    </script>
+
+</body>
+
+</html>
