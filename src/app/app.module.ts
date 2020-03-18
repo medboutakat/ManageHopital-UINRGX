@@ -53,15 +53,14 @@ import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
     StoreModule.forRoot({}), 
     StoreModule.forRoot({router: routerReducer}), 
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
-    StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([HospitalCatEffect]),      
+    StoreDevtoolsModule.instrument(), 
     EffectsModule.forRoot([]), 
     StoreModule.forFeature("HospitalCat",HospitalCatReducer),        
     MaterialModule,
       
     //for doctor
     StoreModule.forFeature("doctors", doctorReducer),
-    EffectsModule.forRoot([DoctorEffect]),
+    EffectsModule.forRoot([DoctorEffect,HospitalCatEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]
