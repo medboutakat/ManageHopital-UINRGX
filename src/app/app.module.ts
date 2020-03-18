@@ -56,8 +56,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     StoreModule.forRoot({}), 
     StoreModule.forRoot({router: routerReducer}), 
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
-    StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([HospitalCatEffect]),      
+    StoreDevtoolsModule.instrument(), 
     EffectsModule.forRoot([]), 
     StoreModule.forFeature("HospitalCat",HospitalCatReducer),        
     MaterialModule,
@@ -65,7 +64,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule,
     //for doctor
     StoreModule.forFeature("doctors", doctorReducer),
-    EffectsModule.forRoot([DoctorEffect]),
+    EffectsModule.forRoot([DoctorEffect,HospitalCatEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]
