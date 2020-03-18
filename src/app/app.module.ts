@@ -25,6 +25,9 @@ import { DoctorComponent } from './doctors/doctor/doctor.component';
 
 import { doctorReducer } from './doctors/doctor-store/doctor.reducer';
 import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
+import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
+import { ContactComponent } from './contacts/contact/contact.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -38,7 +41,7 @@ import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
     NavbarComponent,
     HospitalCatComponent,
     SelectComponent, 
-    DoctorComponent, 
+    DoctorComponent, DoctorEditComponent, ContactComponent, 
     // FooterComponent, 
     // HeaderComponent
   ],
@@ -58,7 +61,8 @@ import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
     EffectsModule.forRoot([]), 
     StoreModule.forFeature("HospitalCat",HospitalCatReducer),        
     MaterialModule,
-      
+    ReactiveFormsModule,
+    FormsModule,
     //for doctor
     StoreModule.forFeature("doctors", doctorReducer),
     EffectsModule.forRoot([DoctorEffect]),

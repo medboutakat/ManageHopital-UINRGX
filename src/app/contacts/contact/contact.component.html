@@ -1,0 +1,25 @@
+<div style="width: 500px;">
+    <h3 class="border-bottom border-gray pb-2 mb-0">Contact infos</h3>
+    <form class="example-form">
+        <p>
+            <label>Phone :</label><input type="tel"> 2 <input type="tel"> <br>
+            <label>Adress :</label><input type="text"> 2 <input type="text"> <br>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                        placeholder="Ex. pat@example.com">
+                <mat-hint>Errors appear instantly!</mat-hint>
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                Email is <strong>required</strong>
+                </mat-error>
+            </mat-form-field><br>
+            
+            <label>fax :</label><input type="tel"> <br>
+            <label>phone1 :</label><input type="tel"> <br>
+        </p>
+    </form>
+</div>

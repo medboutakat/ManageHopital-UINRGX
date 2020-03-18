@@ -1,0 +1,25 @@
+.flottingbtn{
+    font-size: xxx-large;
+    text-decoration: none;
+    background-color: cadetblue;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 70px;
+    right: 15px;
+    cursor: pointer;
+}
+
+#panel {
+    padding: 50px;
+    display: none;
+    width: 300px;
+    height: 200px;
+    background-color: red;
+    float: right;
+
+}

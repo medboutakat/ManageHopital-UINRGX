@@ -1,0 +1,31 @@
+<p>doctor-edit works!</p>
+<div >
+    <h3>Add</h3>
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+            <mat-label>Lastname</mat-label>
+            <input matInput [errorStateMatcher]="matcher"
+                            placeholder="@firstname">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Firstname</mat-label>
+            <input matInput  [errorStateMatcher]="matcher" placeholder="@lastname">
+        </mat-form-field> 
+        
+        <br>
+        <mat-form-field style="width: 100%;">
+            <mat-label>Select your gender</mat-label>
+            <mat-select [(ngModel)]="selectedValue" name="food">
+              <mat-option *ngFor="let sexe of genders" [value]="sexe.value">
+                {{sexe.viewValue}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div>
+        <app-contact></app-contact>
+        </div>
+        
+    </form>
+</div>
+
