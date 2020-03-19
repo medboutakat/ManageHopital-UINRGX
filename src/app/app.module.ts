@@ -28,6 +28,9 @@ import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 import { ContactComponent } from './contacts/contact/contact.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
+import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
+import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
 
 
 @NgModule({
@@ -41,7 +44,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     NavbarComponent,
     HospitalCatComponent,
     SelectComponent, 
-    DoctorComponent, DoctorEditComponent, ContactComponent, 
+    DoctorComponent, DoctorEditComponent, ContactComponent, DoctorCatComponent, 
     // FooterComponent, 
     // HeaderComponent
   ],
@@ -58,13 +61,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
     StoreDevtoolsModule.instrument(), 
     EffectsModule.forRoot([]), 
-    StoreModule.forFeature("HospitalCat",HospitalCatReducer),        
+    StoreModule.forFeature("HospitalCat",HospitalCatReducer),   
+    StoreModule.forFeature("DoctorCat",DoctorCatReducer),        
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
     //for doctor
     StoreModule.forFeature("doctors", doctorReducer),
-    EffectsModule.forRoot([DoctorEffect,HospitalCatEffect]),
+    EffectsModule.forRoot([DoctorEffect,HospitalCatEffect,DoctorCatEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]

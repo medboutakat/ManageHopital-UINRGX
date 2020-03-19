@@ -1,0 +1,37 @@
+<div>
+
+    <div style="margin-left: 250px;" class="my-3 p-3 bg-white rounded shadow-sm">
+      <h6 class="border-bottom border-gray pb-2 mb-0">Doctor Category</h6>
+      <div class="media text-muted pt-3">
+  
+        <!-- function select  -->
+        <div class="form-group">
+            <div class="col-sm-8">
+            <app-select label="Select user" display="name" [listObjects]="listDoctorCat" placeholder="DoctorCategory"></app-select>
+            </div>
+        </div>
+        <!-- ************************************************ -->
+
+          
+        <div class="col-md-4 col-lg-2">
+            <button type="button" class="btn btn-warning" aria-label="Left Align">
+              <i class="material-icons">
+                done
+                </i>
+            </button>
+  
+              <button style="margin: 10px;" type="button" class="btn btn-warning" aria-label="Left Align">
+                <i class="material-icons">
+                  autorenew
+                  </i>
+              </button>
+              <button style="margin:5px;" type="button" class="btn btn-danger" aria-label="Left Align">
+                <i class="material-icons">
+                  delete
+                  </i>
+              </button>
+          </div>
+      </div>
+    </div>
+  
+  </div>
