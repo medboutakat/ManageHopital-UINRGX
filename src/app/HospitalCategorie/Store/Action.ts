@@ -15,9 +15,7 @@ export class LoadHospitalCat implements Action{
 export class LoadHospitalCatSuccess implements Action{
     readonly type = HospitalCatActionType.LOAD_HospitalCat_SUCCESS;
 
- constructor(public payload: HospitalCat[]){
-
- }
+ constructor(public payload: HospitalCat[]){ }
 
 }
 export class LoadHospitalCatFail implements Action{

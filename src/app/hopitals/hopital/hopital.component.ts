@@ -10,16 +10,14 @@ import { HospitalCat } from 'src/app/HospitalCategorie/hospitalCat.model';
   styleUrls: ['./hopital.component.css']
 })
 export class HopitalComponent implements OnInit {
-  listhopitalCat: any;
-
+  
+  listhopitalCatValues: any; 
   constructor(private store : Store<any>) {
     this.store.dispatch( new ActionsFile.LoadHospitalCat());
   
-    this.store.subscribe(data =>{ 
-
-      this.listhopitalCat =  data.HospitalCat.entities;
-
-      console.log("list ; ",this.listhopitalCat)
+    this.store.subscribe(data =>{  
+      this.listhopitalCatValues = Object.values(data.HospitalCat.entities)  
+      console.log(" this.listhopitalCatValues=> ",this.listhopitalCatValues) 
     
     }
     )
@@ -27,6 +25,6 @@ export class HopitalComponent implements OnInit {
   ngOnInit() {
   }
   get hospitalcat(){
-     return this.listhopitalCat;
+     return this.listhopitalCatValues;
   }
 }

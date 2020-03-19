@@ -44,6 +44,7 @@ export function HospitalCatReducer(state = initialState, action : ActionsFile.Ho
 
       }); 
       }
+      
     case ActionsFile.HospitalCatActionType.LOAD_HospitalCat_FAIL :{
              return {
                  ... state,
