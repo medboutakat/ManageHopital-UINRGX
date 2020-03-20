@@ -22,8 +22,7 @@ export class HospitalCatComponent implements OnInit {
     this.store.dispatch( new ActionsFile.LoadHospitalCat());
   
     this.store.subscribe(data =>{
-      this.listhopitalCat = data.HospitalCat.HospitalCats
-      // console.log(data.todos)
+      this.listhopitalCat = data.HospitalCat.entities
       console.log("list ; ",this.listhopitalCat)
     
     }
