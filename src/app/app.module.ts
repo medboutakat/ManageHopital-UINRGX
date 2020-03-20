@@ -28,9 +28,14 @@ import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 import { ContactComponent } from './contacts/contact/contact.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+import { MatBottomSheetRef, MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatBottomSheetModule, MatTooltipModule } from '@angular/material'
+
 import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
 import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
 import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
+
 
 
 @NgModule({
@@ -44,7 +49,10 @@ import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
     NavbarComponent,
     HospitalCatComponent,
     SelectComponent, 
-    DoctorComponent, DoctorEditComponent, ContactComponent, DoctorCatComponent, 
+    
+    DoctorComponent,
+    DoctorEditComponent,
+    ContactComponent
     // FooterComponent, 
     // HeaderComponent
   ],
@@ -66,6 +74,8 @@ import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
+    MatBottomSheetModule,
+    MatTooltipModule,
     //for doctor
     StoreModule.forFeature("doctors", doctorReducer),
     EffectsModule.forRoot([DoctorEffect,HospitalCatEffect,DoctorCatEffect]),

@@ -28,9 +28,14 @@
               "src/assets"
             ],
             "styles": [
+<<<<<<< HEAD
               "./node_modules/bootstrap/dist/css/bootstrap.min.css"
              
 
+=======
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss"
+>>>>>>> 7a5183a47d2a1f3e0d93963dfb4ee96d5c34e520
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",

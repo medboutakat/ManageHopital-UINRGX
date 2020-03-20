@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MyErrorStateMatcher } from 'src/app/contacts/contact/contact.component';
+import { MatBottomSheetRef } from '@angular/material';
+import { DoctorComponent } from '../doctor/doctor.component';
 
 interface Sexe {
   value: string;
@@ -21,10 +23,13 @@ export class DoctorEditComponent implements OnInit {
     {value: 'other-2', viewValue: 'Other'}
   ];
 
-  constructor() { }
+  constructor(private _bottomSheetRef: MatBottomSheetRef<DoctorComponent>) { }
 
-  ngOnInit() {
-    
+  ngOnInit() {}
+
+  openLink(event: MouseEvent): void {
+    this._bottomSheetRef.dismiss();
+    event.preventDefault();
   }
 
 }
