@@ -1,6 +1,5 @@
 
 <div>
-  <div id="panel"></div>
     <div class="my-3 p-3 bg-white rounded shadow-sm">
       <h6 class="border-bottom border-gray pb-2 mb-0">DOCTORS</h6>
       <div class="media text-muted pt-3" *ngFor="let item of doctors; let i = index">
@@ -25,12 +24,6 @@
   
       </div>
     </div>
-    <a id="flip" class="flottingbtn" style="color: white;">+</a>
+    <a (click)="openBottomSheet()" matTooltip="Click for add a new doctor" [matTooltipPosition]="'left'"
+       class="flotting-btn btn-success" style="color: white;">+</a>
   </div>
-<script>
-    $(document).ready(function () {
-        $("#flip").click(function () {
-            $("#panel").slideToggle("slow");
-        });
-    });
-</script>
