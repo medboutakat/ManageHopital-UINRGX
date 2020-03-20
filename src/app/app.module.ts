@@ -21,8 +21,6 @@ import { LoginComponent } from './login/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-cat.component';
 import { SelectComponent } from './select/select.component';
-import { DoctorComponent } from './doctors/doctor/doctor.component';
-
 import { doctorReducer } from './doctors/doctor-store/doctor.reducer';
 import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
@@ -35,6 +33,9 @@ import { MatBottomSheetModule, MatTooltipModule } from '@angular/material'
 import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
 import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
 import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { DoctorComponent } from './doctors/doctor/doctor.component';
+import { HeaderComponent } from './shared/components/header/header.component';
 
 
 
@@ -49,12 +50,11 @@ import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
     NavbarComponent,
     HospitalCatComponent,
     SelectComponent, 
-    
-    DoctorComponent,
     DoctorEditComponent,
-    ContactComponent
-    // FooterComponent, 
-    // HeaderComponent
+    ContactComponent,
+  //    FooterComponent, 
+  //  HeaderComponent,
+    DoctorComponent
   ],
   imports: [
     BrowserModule,
