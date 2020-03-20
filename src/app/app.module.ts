@@ -33,6 +33,8 @@ import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
 import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
 import { AppointementReducer } from './appointements/store/appointement.reducer';
 import { AppointementEffect } from './appointements/store/appointement.effect';
+import { DialogComponent } from './appointements/dialog/dialog.component';
+
 
 
 @NgModule({
@@ -46,10 +48,11 @@ import { AppointementEffect } from './appointements/store/appointement.effect';
     NavbarComponent,
     HospitalCatComponent,
     SelectComponent,
-    DoctorComponent, DoctorEditComponent, ContactComponent, DoctorCatComponent,
+    DoctorComponent, DoctorEditComponent, ContactComponent, DoctorCatComponent, DialogComponent,
     // FooterComponent, 
     // HeaderComponent
   ],
+  entryComponents: [DialogComponent],
   imports: [
     BrowserModule,
     StoreDevtoolsModule.instrument(),

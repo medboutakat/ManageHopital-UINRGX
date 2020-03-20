@@ -51,6 +51,16 @@ export function AppointementReducer(state = initialState, action: AppsActions.Ac
                 error: action.playload
             }
         }
+        /*******************************delete Appointement***************************************************** */
+        case AppsActions.AppointementActionTypes.DELETE_APPOINTEMENT_SUCCESS: {
+            return appsAdapter.removeOne(action.payload, state);
+        }
+        case AppsActions.AppointementActionTypes.DELETE_APPOINTEMENT_FAIL: {
+            return {
+                ...state,
+                error: action.payload
+            };
+        }
         default: {
             return state
         }

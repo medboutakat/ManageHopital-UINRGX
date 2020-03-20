@@ -31,4 +31,20 @@ export class AppointementEffect {
             )
         )
     )
+    /*****************************Delete appointement******************************************** */
+    @Effect()
+    DeleteAppointement$: Observable<Action> = this.actions$.pipe(
+        ofType<appsActions.DeleteAppointement>(
+            appsActions.AppointementActionTypes.DELETE_APPOINTEMENT
+        ),
+        map((action: appsActions.DeleteAppointement) => action.payload),
+        mergeMap((id) =>
+            this.service.deleteAppointement(id).pipe(
+                map(() =>
+                    new appsActions.DeleteAppointementSuccess(id)
+                ),
+                catchError(err => of(new appsActions.DeleteAppointementFail(err)))
+            )
+        )
+    )
 }
