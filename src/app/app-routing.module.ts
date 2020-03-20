@@ -12,6 +12,7 @@ import { AppointementComponent } from './appointements/appointement/appointement
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { ContactComponent } from './contacts/contact/contact.component';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
+import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
  
  
 
@@ -32,7 +33,8 @@ const routes: Routes = [
       { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' },
       { path : 'hospitalcat' , component:HospitalCatComponent , pathMatch:'full'},
       { path: 'contacts', component: ContactComponent },
-
+      { path: 'doctorCategory', component: DoctorCatComponent , pathMatch :'full'},
+      
    ]
   }
 ];
