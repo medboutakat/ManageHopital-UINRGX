@@ -1,11 +1,26 @@
 <div>
     <h6 class="border-bottom border-gray pb-2 mb-0">Contact infos :</h6>
-    <form class="example-form">
+    <form [formGroup]="contactFormControl" (ngSubmit)="Onclick()" class="example-form">
         <p>
-            <label>Phone :</label><input type="tel"> 2 <input type="tel"> <br>
-            <label>Adress :</label><input type="text"> 2 <input type="text"> <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Phone</mat-label>
+                <input matInput formControlName="phone1" [errorStateMatcher]="matcher" placeholder="Ex: +212 643666895">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Phone 2</mat-label>
+                <input matInput formControlName="phone2" [errorStateMatcher]="matcher" placeholder="Ex: +212 643666895">
+            </mat-form-field> <br>
 
             <mat-form-field class="example-full-width">
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="adress1" [errorStateMatcher]="matcher" placeholder="Ex: bloc 10 n° 12 Morocco">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Address 2</mat-label>
+                <input matInput formControlName="adress2" [errorStateMatcher]="matcher" placeholder="Ex: bloc 10 n° 12 Morocco">
+            </mat-form-field> <br>
+
+            <mat-form-field class="example-full-width" style="width: 41%;">
                 <mat-label>Email</mat-label>
                 <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
                         placeholder="Ex. pat@example.com">
@@ -18,9 +33,16 @@
                 </mat-error>
             </mat-form-field><br>
             
-            <label>fax :</label><input type="tel"> <br>
-            <label>phone1 :</label><input type="tel"> <br>
+            <mat-form-field class="example-full-width" style="margin-top: 20px;">
+                <mat-label>Fax</mat-label>
+                <input matInput formControlName="fax" [errorStateMatcher]="matcher" placeholder="@fax">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>City</mat-label>
+                <input matInput formControlName="cityId" [errorStateMatcher]="matcher" placeholder="@City">
+            </mat-form-field> <br>
+            
         </p>
-        <button class="btn btn-primary">Abdelwahed</button>
+        <button>save contact</button>
     </form>
 </div>
