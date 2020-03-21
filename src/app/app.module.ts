@@ -52,6 +52,7 @@ import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
     
     DoctorComponent,
     DoctorEditComponent,
+    DoctorCatComponent,
     ContactComponent
     // FooterComponent, 
     // HeaderComponent
