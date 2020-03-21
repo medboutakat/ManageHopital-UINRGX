@@ -1,28 +1,31 @@
 <div style="height:100%;">
     <h3>New doctor</h3>
-    <form class="example-form mat-bottom-sheet-container-large">
+    <form [formGroup]="doctorForm" (ngSubmit)="addDoctor()" class="example-form mat-bottom-sheet-container-large">
         <mat-form-field class="example-full-width">
             <mat-label>Lastname</mat-label>
             <input matInput [errorStateMatcher]="matcher"
-                            placeholder="@firstname">
+                formControlName="firstName"  placeholder="@firstname">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>Firstname</mat-label>
-            <input matInput  [errorStateMatcher]="matcher" placeholder="@lastname">
+            <input matInput  [errorStateMatcher]="matcher" placeholder="@lastname"
+                formControlName="firstName">
         </mat-form-field> 
         
         <br>
         <mat-form-field style="width: 100%;">
             <mat-label>Select your gender</mat-label>
-            <mat-select [(ngModel)]="selectedValue" name="food">
+            <mat-select [(ngModel)]="selectedValue" name="food" formControlName="sexe">
               <mat-option *ngFor="let sexe of genders" [value]="sexe.value">
                 {{sexe.viewValue}}
               </mat-option>
             </mat-select>
         </mat-form-field>
         <div>
-        <app-doctor-cat></app-doctor-cat>
+            <div class="col-sm-8">
+                <app-select label="Select user" display="name" [listObjects]="listDoctorCat" (valueSelected)="getvalue($event)" placeholder="DoctorCategory"></app-select>
+            </div>
         <app-contact (getOutputForm)="getContact($event)"></app-contact>
         </div>
         <button class="btn btn-primary">Abdelwahed</button>

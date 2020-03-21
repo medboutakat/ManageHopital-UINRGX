@@ -11,7 +11,7 @@
    -->
   
 
-   <select>
+   <select #customSelect (change)="onSelectValue(customSelect.value)">
     <option  *ngFor="let val of listObjects" [value]="val.id" >
       {{ val.name }}   
     </option>
