@@ -52,12 +52,16 @@ import { HeaderComponent } from './shared/components/header/header.component';
     SelectComponent, 
     DoctorEditComponent,
     ContactComponent,
+    DoctorCatComponent,
   //    FooterComponent, 
   //  HeaderComponent,
-    DoctorComponent
+    DoctorComponent,
+    DoctorEditComponent
+
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([]),
     AppRoutingModule,
