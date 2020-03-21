@@ -18,18 +18,24 @@ export class DoctorEditComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   genders:Sexe[] = [
-    {value: 'men-0', viewValue: 'Men'},
-    {value: 'women-1', viewValue: 'Women'},
-    {value: 'other-2', viewValue: 'Other'}
+    {value: 'men', viewValue: 'Men'},
+    {value: 'women', viewValue: 'Women'},
+    {value: 'other', viewValue: 'Other'}
   ];
 
   constructor(private _bottomSheetRef: MatBottomSheetRef<DoctorComponent>) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   openLink(event: MouseEvent): void {
     this._bottomSheetRef.dismiss();
     event.preventDefault();
+  }
+
+  getContact(contact){
+    console.log('Contact : ',contact);
   }
 
 }

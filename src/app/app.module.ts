@@ -76,8 +76,8 @@ import { HeaderComponent } from './shared/components/header/header.component';
     StoreModule.forFeature("HospitalCat",HospitalCatReducer),   
     StoreModule.forFeature("DoctorCat",DoctorCatReducer),        
     MaterialModule,
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
     MatBottomSheetModule,
     MatTooltipModule,
     //for doctor
