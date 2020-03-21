@@ -64,8 +64,8 @@ import { MatBottomSheetModule, MatTooltipModule } from '@angular/material'
     EffectsModule.forRoot([]), 
     StoreModule.forFeature("HospitalCat",HospitalCatReducer),        
     MaterialModule,
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
     MatBottomSheetModule,
     MatTooltipModule,
     //for doctor

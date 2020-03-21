@@ -1,15 +1,18 @@
 form{
-    //background-color: #DFE6F0;
-    width: 100%;
+    background-color: #DFE6F0;
     padding: 5px;
+    //padding-left: 10%;
     border-radius: 5pt;
-    align-items: center;
+    align-content: center;
+    text-align: center;
 }
 label{
     padding-left: 5%;
     padding-right: 5%;
 }
 
-input{
+.example-full-width{
     height: 15px;
+    margin-left: 2%;
+    margin-top: 5px;
 }
