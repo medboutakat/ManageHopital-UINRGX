@@ -28,8 +28,14 @@ import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 import { ContactComponent } from './contacts/contact/contact.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 import { MatBottomSheetRef, MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatBottomSheetModule, MatTooltipModule } from '@angular/material'
+
+import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
+import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
+import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
+
 
 
 @NgModule({
@@ -43,6 +49,7 @@ import { MatBottomSheetModule, MatTooltipModule } from '@angular/material'
     NavbarComponent,
     HospitalCatComponent,
     SelectComponent, 
+    
     DoctorComponent,
     DoctorEditComponent,
     ContactComponent
@@ -62,7 +69,8 @@ import { MatBottomSheetModule, MatTooltipModule } from '@angular/material'
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
     StoreDevtoolsModule.instrument(), 
     EffectsModule.forRoot([]), 
-    StoreModule.forFeature("HospitalCat",HospitalCatReducer),        
+    StoreModule.forFeature("HospitalCat",HospitalCatReducer),   
+    StoreModule.forFeature("DoctorCat",DoctorCatReducer),        
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
@@ -70,7 +78,7 @@ import { MatBottomSheetModule, MatTooltipModule } from '@angular/material'
     MatTooltipModule,
     //for doctor
     StoreModule.forFeature("doctors", doctorReducer),
-    EffectsModule.forRoot([DoctorEffect,HospitalCatEffect]),
+    EffectsModule.forRoot([DoctorEffect,HospitalCatEffect,DoctorCatEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]
