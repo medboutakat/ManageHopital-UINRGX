@@ -36,6 +36,7 @@ import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { DoctorComponent } from './doctors/doctor/doctor.component';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { CategoryComponent } from './category/category.component';
 
 
 
@@ -56,7 +57,8 @@ import { HeaderComponent } from './shared/components/header/header.component';
   //    FooterComponent, 
   //  HeaderComponent,
     DoctorComponent,
-    DoctorEditComponent
+    DoctorEditComponent,
+    CategoryComponent
 
   ],
   imports: [
