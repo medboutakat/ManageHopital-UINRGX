@@ -49,7 +49,7 @@ import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
     NavbarComponent,
     HospitalCatComponent,
     SelectComponent, 
-    
+    DoctorCatComponent,
     DoctorComponent,
     DoctorEditComponent,
     ContactComponent
