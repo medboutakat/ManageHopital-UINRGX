@@ -10,10 +10,13 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { MatGridListModule } from '@angular/material/grid-list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule, MatCellDef } from '@angular/material/table';
+
 
 const Materiallist = [
   MatButtonModule,
@@ -29,23 +32,28 @@ const Materiallist = [
   MatProgressBarModule,
   MatCardModule,
   MatIconModule,
-  MatDialogModule
 
+  MatDialogModule,
 
+  MatTableModule,
 ]
 
 @NgModule({
-  declarations: [],
+  declarations: [
+
+  ],
   imports: [
     Materiallist,
     MatToolbarModule,
-
-    MatIconModule
+    MatIconModule,
+    MatTableModule,
+    MatIconModule,
 
   ],
   exports: [
     Materiallist,
     MatToolbarModule,
+    MatTableModule,
 
 
   ]
