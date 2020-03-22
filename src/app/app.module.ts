@@ -53,11 +53,9 @@ import { CategoryComponent } from './category/category.component';
     SelectComponent, 
     DoctorEditComponent,
     ContactComponent,
-    DoctorCatComponent,
-  //    FooterComponent, 
-  //  HeaderComponent,
+    DoctorCatComponent, 
     DoctorComponent,
-    CategoryComponent
+    CategoryComponent,
     ContactComponent
     // FooterComponent, 
     // HeaderComponent
