@@ -57,9 +57,10 @@ import { CategoryComponent } from './category/category.component';
   //    FooterComponent, 
   //  HeaderComponent,
     DoctorComponent,
-    DoctorEditComponent,
     CategoryComponent
-
+    ContactComponent
+    // FooterComponent, 
+    // HeaderComponent
   ],
   imports: [
     BrowserModule,
