@@ -27,13 +27,20 @@ import { doctorReducer } from './doctors/doctor-store/doctor.reducer';
 import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 import { ContactComponent } from './contacts/contact/contact.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
+import { MatBottomSheetRef, MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatBottomSheetModule, MatTooltipModule } from '@angular/material'
+
 import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
 import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
 import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
 import { AppointementReducer } from './appointements/store/appointement.reducer';
 import { AppointementEffect } from './appointements/store/appointement.effect';
 import { DialogComponent } from './appointements/dialog/dialog.component';
+
 
 
 
@@ -47,8 +54,17 @@ import { DialogComponent } from './appointements/dialog/dialog.component';
     HomeComponent,
     NavbarComponent,
     HospitalCatComponent,
+
     SelectComponent,
     DoctorComponent, DoctorEditComponent, ContactComponent, DoctorCatComponent, DialogComponent,
+
+    SelectComponent,
+
+    DoctorComponent,
+    DoctorEditComponent,
+    DoctorCatComponent,
+    ContactComponent
+
     // FooterComponent, 
     // HeaderComponent
   ],
@@ -70,8 +86,10 @@ import { DialogComponent } from './appointements/dialog/dialog.component';
     StoreModule.forFeature("DoctorCat", DoctorCatReducer),
     StoreModule.forRoot({ "appointements": AppointementReducer }),
     MaterialModule,
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
+    MatBottomSheetModule,
+    MatTooltipModule,
     //for doctor
     StoreModule.forFeature("doctors", doctorReducer),
     EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect]),

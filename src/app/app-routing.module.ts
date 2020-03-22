@@ -33,7 +33,9 @@ const routes: Routes = [
       { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' },
       { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full' },
       { path: 'contacts', component: ContactComponent },
+
       { path: 'doctorCategory', component: DoctorCatComponent, pathMatch: 'full' },
+
 
     ]
   }
