@@ -28,7 +28,7 @@ import { ContactComponent } from './contacts/contact/contact.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { MatBottomSheetRef, MatBottomSheet } from '@angular/material/bottom-sheet';
-import { MatBottomSheetModule, MatTooltipModule } from '@angular/material'
+import { MatBottomSheetModule, MatTooltipModule, MatCellDef } from '@angular/material'
 
 import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
 import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
@@ -85,6 +85,8 @@ import { CategoryComponent } from './category/category.component';
     //for doctor
     StoreModule.forFeature("doctors", doctorReducer),
     EffectsModule.forRoot([DoctorEffect,HospitalCatEffect,DoctorCatEffect]),
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

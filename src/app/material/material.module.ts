@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCardModule} from '@angular/material/card';
+import {MatTableModule, MatCellDef} from '@angular/material/table';
 
 const Materiallist=[
   MatButtonModule,
@@ -28,24 +29,27 @@ const Materiallist=[
   MatProgressBarModule,
   MatCardModule,
   MatIconModule,
-
+  MatTableModule,
   
 ]
 
 @NgModule({
-  declarations: [],
+  declarations: [
+
+  ],
   imports: [
     Materiallist,
     MatToolbarModule,
-   
-    MatIconModule
+    MatTableModule,
+    MatIconModule,
+
     
   ],
   exports:[
     Materiallist,
     MatToolbarModule,
-    
-    
+    MatTableModule,
+
   ]
 })
 export class MaterialModule { }
