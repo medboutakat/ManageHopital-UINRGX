@@ -21,8 +21,6 @@ import { LoginComponent } from './login/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-cat.component';
 import { SelectComponent } from './select/select.component';
-import { DoctorComponent } from './doctors/doctor/doctor.component';
-
 import { doctorReducer } from './doctors/doctor-store/doctor.reducer';
 import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
@@ -30,11 +28,15 @@ import { ContactComponent } from './contacts/contact/contact.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { MatBottomSheetRef, MatBottomSheet } from '@angular/material/bottom-sheet';
-import { MatBottomSheetModule, MatTooltipModule } from '@angular/material'
+import { MatBottomSheetModule, MatTooltipModule, MatCellDef } from '@angular/material'
 
 import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
 import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
 import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { DoctorComponent } from './doctors/doctor/doctor.component';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { CategoryComponent } from './category/category.component';
 
 
 
@@ -49,16 +51,20 @@ import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
     NavbarComponent,
     HospitalCatComponent,
     SelectComponent, 
-    
-    DoctorComponent,
     DoctorEditComponent,
+    ContactComponent,
     DoctorCatComponent,
+  //    FooterComponent, 
+  //  HeaderComponent,
+    DoctorComponent,
+    CategoryComponent
     ContactComponent
     // FooterComponent, 
     // HeaderComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([]),
     AppRoutingModule,
@@ -80,6 +86,8 @@ import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
     //for doctor
     StoreModule.forFeature("doctors", doctorReducer),
     EffectsModule.forRoot([DoctorEffect,HospitalCatEffect,DoctorCatEffect]),
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
