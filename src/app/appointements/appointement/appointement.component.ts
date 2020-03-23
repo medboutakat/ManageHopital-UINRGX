@@ -18,7 +18,7 @@ export class AppointementComponent implements OnInit {
     this.store.dispatch(new actionApps.LoadAppointements());
     this.store.subscribe(data => {
       this.apps = data.appointements.appointements;
-      console.log("state", this.apps)
+      console.log("state appointement", this.apps)
     })
 
   }

@@ -106,8 +106,6 @@ import { CategoryComponent } from './category/category.component';
     StoreModule.forFeature("doctors", doctorReducer),
 
     EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect]),
-
-    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]

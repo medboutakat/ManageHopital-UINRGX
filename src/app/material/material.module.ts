@@ -54,8 +54,6 @@ const Materiallist = [
     Materiallist,
     MatToolbarModule,
     MatTableModule,
-
-
   ]
 })
 export class MaterialModule { }
