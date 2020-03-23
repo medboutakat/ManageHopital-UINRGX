@@ -13,8 +13,8 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { ContactComponent } from './contacts/contact/contact.component';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
- 
- 
+
+
 
 const routes: Routes = [
 
@@ -22,8 +22,8 @@ const routes: Routes = [
     path: '',
     component: DefaultComponent,
     children: [
-      {path: '',component: DashboardComponent},
-      {path: 'posts',component: PostsComponent},
+      { path: '', component: DashboardComponent },
+      { path: 'posts', component: PostsComponent },
       { path: 'login', component: LoginComponent },
       { path: 'appointement', component: AppointementComponent },
       { path: 'hospitals', component: HopitalComponent },
@@ -31,11 +31,13 @@ const routes: Routes = [
       { path: 'doctoredit', component: DoctorEditComponent },
       { path: 'home', component: HomeComponent },
       { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' },
-      { path : 'hospitalcat' , component:HospitalCatComponent , pathMatch:'full'},
+      { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full' },
       { path: 'contacts', component: ContactComponent },
-      { path: 'doctorcat', component: DoctorCatComponent , pathMatch :'full'},
-      
-   ]
+
+      { path: 'doctorCategory', component: DoctorCatComponent, pathMatch: 'full' },
+
+
+    ]
   }
 ];
 @NgModule({

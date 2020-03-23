@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import * as actionApps from '../store/appointement.actions'
+import * as fromReducer from '../store/appointement.reducer'
+import { MatDialog } from '@angular/material'
+import { DialogComponent } from '../dialog/dialog.component';
+
 
 @Component({
   selector: 'app-appointement',
@@ -9,8 +14,18 @@ import { Observable } from 'rxjs';
 })
 export class AppointementComponent implements OnInit {
 
-  constructor() {
+  constructor(private store: Store<any>, public dialog: MatDialog) {
+    this.store.dispatch(new actionApps.LoadAppointements());
+    this.store.subscribe(data => {
+      this.apps = data.appointements.appointements;
+      console.log("state appointement", this.apps)
+    })
+
   }
+  apps;
   ngOnInit() {
+  }
+  openDialog(data) {
+    this.dialog.open(DialogComponent, { data })
   }
 }
