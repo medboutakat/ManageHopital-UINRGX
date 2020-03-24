@@ -12,7 +12,7 @@ import { StoreRouterConnectingModule, routerReducer, RouterStateSerializer, } fr
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { HospitalCatEffect } from './HospitalCategorie/Store/Effect';
 import { AppointementComponent } from './appointements/appointement/appointement.component';
-import { HopitalComponent } from './hopitals/hopital/hopital.component';
+import { HopitalComponent } from './hospital/hopital/hopital.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HospitalCatReducer } from './HospitalCategorie/Store/reducer';
 import { MaterialModule } from './material/material.module';
@@ -25,26 +25,22 @@ import { doctorReducer } from './doctors/doctor-store/doctor.reducer';
 import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 import { ContactComponent } from './contacts/contact/contact.component';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
 import { MatBottomSheetRef, MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatBottomSheetModule, MatTooltipModule, MatCellDef } from '@angular/material'
-
 import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
 import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
 import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
-
 import { AppointementReducer } from './appointements/store/appointement.reducer';
 import { AppointementEffect } from './appointements/store/appointement.effect';
 import { DialogComponent } from './appointements/dialog/dialog.component';
-
-
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { DoctorComponent } from './doctors/doctor/doctor.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { CategoryComponent } from './category/category.component';
+import { HospitalEffect } from './hospital/store/Effect';
+import { HospitalReducer } from './hospital/store/Reducer';
+import { HospitalEditComponent } from './hospital/hospital-edit/hospital-edit.component';
 
 
 
@@ -74,12 +70,15 @@ import { CategoryComponent } from './category/category.component';
     DoctorCatComponent,
     DoctorComponent,
     CategoryComponent,
-    ContactComponent
+    ContactComponent,
+    HospitalEditComponent
 
     // FooterComponent, 
     // HeaderComponent
   ],
-  entryComponents: [DialogComponent],
+  entryComponents: [DialogComponent,
+    HospitalEditComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -97,6 +96,8 @@ import { CategoryComponent } from './category/category.component';
     StoreModule.forFeature("HospitalCat", HospitalCatReducer),
     StoreModule.forFeature("DoctorCat", DoctorCatReducer),
     StoreModule.forRoot({ "appointements": AppointementReducer }),
+    StoreModule.forRoot({ "Hospital": HospitalReducer }),
+
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
@@ -105,7 +106,7 @@ import { CategoryComponent } from './category/category.component';
     //for doctor
     StoreModule.forFeature("doctors", doctorReducer),
 
-    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect]),
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect,HospitalEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]
