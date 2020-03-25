@@ -37,7 +37,8 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { DoctorComponent } from './doctors/doctor/doctor.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { CategoryComponent } from './category/category.component';
-import { SigninComponent } from './connexion/signin/signin.component'
+import { SigninComponent } from './connexion/signin/signin.component';
+import { SignupComponent } from './connexion/signup/signup.component'
 
 
 
@@ -66,7 +67,8 @@ import { SigninComponent } from './connexion/signin/signin.component'
     DoctorComponent,
     CategoryComponent,
     ContactComponent,
-    SigninComponent
+    SigninComponent,
+    SignupComponent
 
     // FooterComponent, 
     // HeaderComponent
