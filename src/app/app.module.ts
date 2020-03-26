@@ -105,7 +105,6 @@ import { HospitalEditComponent } from './hospital/hospital-edit/hospital-edit.co
     MatTooltipModule,
     //for doctor
     StoreModule.forFeature("doctors", doctorReducer),
-
     EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect,HospitalEffect]),
   ],
   providers: [],
