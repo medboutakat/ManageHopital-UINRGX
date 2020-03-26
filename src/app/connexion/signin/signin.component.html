@@ -1,0 +1,35 @@
+<div class="container"><br><br><br><br>
+  <div style="margin-left: 30%;">
+    <div style="width: 30rem;" class="card text-center">
+      <div class="card-body">
+        <h4 class="card-title">Connexion</h4>
+        <p style="font-weight: lighter;color: gray;font-size: 13px;" class="card-text">Enter your Username & your
+          password
+          to access the
+          plateforme.</p><br>
+        <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+          <div class="form-group">
+            <input style="text-align: center;font-size: 14px;" type="text" class="form-control" placeholder="Username"
+              name="username" formControlName="username">
+          </div>
+          <div class="form-group">
+            <input style="text-align: center;font-size: 14px;" type="password" class="form-control"
+              placeholder="Password" name="password" formControlName="password">
+          </div>
+          <div style="float: left;" class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <label style="color: gray;font-weight: lighter;font-size: 13px;" class="form-check-label"
+              for="defaultCheck1">
+              Remember Me
+            </label>
+          </div><br><br>
+          <button type="submit" class="btn btn-info     btn-block">Connexion</button><br>
+          <p style="color: gray;font-weight: lighter;font-size: 13px;">Don't have an acount yet ? <a href="#">SignUp</a>
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+</div>

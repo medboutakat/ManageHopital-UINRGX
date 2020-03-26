@@ -4,8 +4,12 @@ import { DefaultComponent } from './layouts/default/default.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { PostsComponent } from './modules/posts/posts.component';
 import { DoctorComponent } from './doctors/doctor/doctor.component';
+<<<<<<< HEAD
 import { HopitalComponent } from './hospital/hopital/hopital.component';
 import { LoginComponent } from './login/login/login.component';
+=======
+import { HopitalComponent } from './hopitals/hopital/hopital.component';
+>>>>>>> 536b5c9ff5df60bebc9921ae8020048be2bdc547
 import { HomeComponent } from './home/home.component';
 import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-cat.component';
 import { AppointementComponent } from './appointements/appointement/appointement.component';
@@ -13,6 +17,7 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { ContactComponent } from './contacts/contact/contact.component';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
+import { SigninComponent } from './connexion/signin/signin.component';
 
 
 
@@ -24,7 +29,6 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'posts', component: PostsComponent },
-      { path: 'login', component: LoginComponent },
       { path: 'appointement', component: AppointementComponent },
       { path: 'hospitals', component: HopitalComponent },
       { path: 'doctors', component: DoctorComponent },
@@ -37,7 +41,8 @@ const routes: Routes = [
 
 
     ]
-  }
+  },
+  { path: 'signin', component: SigninComponent }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

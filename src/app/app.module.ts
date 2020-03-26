@@ -17,7 +17,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { HospitalCatReducer } from './HospitalCategorie/Store/reducer';
 import { MaterialModule } from './material/material.module';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { LoginComponent } from './login/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-cat.component';
 import { SelectComponent } from './select/select.component';
@@ -38,10 +37,15 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { DoctorComponent } from './doctors/doctor/doctor.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { CategoryComponent } from './category/category.component';
+<<<<<<< HEAD
 import { HospitalEffect } from './hospital/store/Effect';
 import { HospitalReducer } from './hospital/store/Reducer';
 import { HospitalEditComponent } from './hospital/hospital-edit/hospital-edit.component';
 
+=======
+import { SigninComponent } from './connexion/signin/signin.component';
+import { SignupComponent } from './connexion/signup/signup.component'
+>>>>>>> 536b5c9ff5df60bebc9921ae8020048be2bdc547
 
 
 
@@ -50,7 +54,6 @@ import { HospitalEditComponent } from './hospital/hospital-edit/hospital-edit.co
     AppComponent,
     NavbarComponent,
     AppointementComponent,
-    LoginComponent,
     HopitalComponent,
     HomeComponent,
     NavbarComponent,
@@ -71,7 +74,12 @@ import { HospitalEditComponent } from './hospital/hospital-edit/hospital-edit.co
     DoctorComponent,
     CategoryComponent,
     ContactComponent,
+<<<<<<< HEAD
     HospitalEditComponent
+=======
+    SigninComponent,
+    SignupComponent
+>>>>>>> 536b5c9ff5df60bebc9921ae8020048be2bdc547
 
     // FooterComponent, 
     // HeaderComponent
