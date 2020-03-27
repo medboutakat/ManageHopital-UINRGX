@@ -10,14 +10,17 @@ import { Hospital } from './hospital.model';
 })
 
 export class HospitalService{
-    private ReponseUrl = "http://144.91.76.98:5002/api/Hospital"
+    private HospitalUrl = "http://144.91.76.98:5002/api/Hospital"
   RepByDm: Hospital[];
     constructor( private  http : HttpClient ){}
     getHospitalCats(): Observable<Hospital[]>{
-        return this.http.get<Hospital[]>(this.ReponseUrl);
+        return this.http.get<Hospital[]>(this.HospitalUrl);
     }
     getHospitalCatById(payload : number):Observable<Hospital>{
-        return this.http.get<Hospital>(`${this.ReponseUrl}/${payload}`)
+        return this.http.get<Hospital>(`${this.HospitalUrl}/${payload}`)
     }
+    deleteHospital(payload) {
+        return this.http.delete(`${this.HospitalUrl}/${payload}`);
+      }
 
 }

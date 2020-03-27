@@ -4,12 +4,7 @@ import { DefaultComponent } from './layouts/default/default.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { PostsComponent } from './modules/posts/posts.component';
 import { DoctorComponent } from './doctors/doctor/doctor.component';
-<<<<<<< HEAD
 import { HopitalComponent } from './hospital/hopital/hopital.component';
-import { LoginComponent } from './login/login/login.component';
-=======
-import { HopitalComponent } from './hopitals/hopital/hopital.component';
->>>>>>> 536b5c9ff5df60bebc9921ae8020048be2bdc547
 import { HomeComponent } from './home/home.component';
 import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-cat.component';
 import { AppointementComponent } from './appointements/appointement/appointement.component';

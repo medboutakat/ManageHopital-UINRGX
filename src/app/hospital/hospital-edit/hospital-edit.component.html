@@ -21,14 +21,7 @@
             <input matInput  [errorStateMatcher]="matcher" placeholder="@history">
         </mat-form-field> 
         <br>
-        <mat-form-field style="width: 100%;">
-            <mat-label>Select your gender</mat-label>
-            <mat-select [(ngModel)]="selectedValue" name="food">
-              <mat-option *ngFor="let sexe of genders" [value]="sexe.value">
-                {{sexe.viewValue}}
-              </mat-option>
-            </mat-select>
-        </mat-form-field>
+     
          <div class="form-group">
               <div class="col-sm-8"> 
                 <app-select label="Select user" display="name" [listObjects]="listhopitalCatValues"></app-select>

@@ -4,8 +4,9 @@ import * as ActionsFile from 'src/app/HospitalCategorie/Store/Action'
 import { Observable } from 'rxjs';
 import { HospitalCat } from 'src/app/HospitalCategorie/hospitalCat.model';
 import * as ActionsFiles from 'src/app/hospital/store/Action'
-import { MatBottomSheet } from '@angular/material';
+import { MatBottomSheet, MatDialog } from '@angular/material';
 import { HospitalEditComponent } from '../hospital-edit/hospital-edit.component';
+import { DialogComponent } from 'src/app/appointements/dialog/dialog.component';
 
 @Component({
   selector: 'app-hopital',
@@ -18,7 +19,8 @@ export class HopitalComponent implements OnInit {
   listHopital: any;
   error$: Observable<String>;
 
-  constructor(private store : Store<any>, private _bottomSheet: MatBottomSheet) {
+
+  constructor(private store : Store<any>, private _bottomSheet: MatBottomSheet,public dialog: MatDialog) {
     this.store.dispatch( new ActionsFile.LoadHospitalCat());
     this.store.subscribe(data =>{  
       this.listhopitalCatValues = Object.values(data.HospitalCat.entities)  
@@ -41,5 +43,8 @@ export class HopitalComponent implements OnInit {
   openBottomSheet(): void {
     this._bottomSheet.open(HospitalEditComponent);
     console.log('show bottom sheet ...')
+  }
+  openDialog(data) {
+    this.dialog.open(DialogComponent, { data })
   }
 }
