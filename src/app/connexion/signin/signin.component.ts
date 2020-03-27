@@ -26,7 +26,8 @@ export class SigninComponent implements OnInit {
   login(formData: NgForm) {
     return this.auth.login(formData).subscribe(
       (user) => {
-        console.log(user);
+        console.log("user", user);
+        console.log("user2", formData);
         console.log("connecter")
         this.router.navigate(['/home']);
       });
