@@ -8,9 +8,9 @@ import { DefaultModule } from './layouts/default/default.module';
 import { StoreModule } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects';
 
-import {StoreRouterConnectingModule,routerReducer,RouterStateSerializer,} from "@ngrx/router-store";
-import {StoreDevtoolsModule } from "@ngrx/store-devtools";
-import { HospitalCatEffect } from './HospitalCategorie/Store/Effect'; 
+import { StoreRouterConnectingModule, routerReducer, RouterStateSerializer, } from "@ngrx/router-store";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { HospitalCatEffect } from './HospitalCategorie/Store/Effect';
 import { AppointementComponent } from './appointements/appointement/appointement.component';
 import { HopitalComponent } from './hopitals/hopital/hopital.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,56 +21,74 @@ import { LoginComponent } from './login/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-cat.component';
 import { SelectComponent } from './select/select.component';
-import { DoctorComponent } from './doctors/doctor/doctor.component';
-
 import { doctorReducer } from './doctors/doctor-store/doctor.reducer';
 import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 import { ContactComponent } from './contacts/contact/contact.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import { MatBottomSheetRef, MatBottomSheet } from '@angular/material/bottom-sheet';
-import { MatBottomSheetModule, MatTooltipModule } from '@angular/material'
+import { MatBottomSheetModule, MatTooltipModule, MatCellDef } from '@angular/material'
 
 import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
 import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
 import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
 
+import { AppointementReducer } from './appointements/store/appointement.reducer';
+import { AppointementEffect } from './appointements/store/appointement.effect';
+import { DialogComponent } from './appointements/dialog/dialog.component';
+
+
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { DoctorComponent } from './doctors/doctor/doctor.component';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { CategoryComponent } from './category/category.component';
+
+
 
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    NavbarComponent, 
+    AppComponent,
+    NavbarComponent,
     AppointementComponent,
-    LoginComponent, 
+    LoginComponent,
     HopitalComponent,
     HomeComponent,
     NavbarComponent,
     HospitalCatComponent,
-    SelectComponent, 
-    DoctorCatComponent,
     DoctorComponent,
+    DialogComponent,
+    SelectComponent,
     DoctorEditComponent,
+    ContactComponent,
+    DoctorCatComponent,
+    CategoryComponent,
     ContactComponent
+
     // FooterComponent, 
     // HeaderComponent
   ],
+  entryComponents: [DialogComponent],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([]),
     AppRoutingModule,
     BrowserAnimationsModule,
     DefaultModule,
     HttpClientModule,
-    StoreModule.forRoot({}), 
-    StoreModule.forRoot({router: routerReducer}), 
+    StoreModule.forRoot({}),
+    StoreModule.forRoot({ router: routerReducer }),
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
-    StoreDevtoolsModule.instrument(), 
-    EffectsModule.forRoot([]), 
-    StoreModule.forFeature("HospitalCat",HospitalCatReducer),   
-    StoreModule.forFeature("DoctorCat",DoctorCatReducer),        
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([]),
+    StoreModule.forFeature("HospitalCat", HospitalCatReducer),
+    StoreModule.forFeature("DoctorCat", DoctorCatReducer),
+    StoreModule.forRoot({ "appointements": AppointementReducer }),
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
@@ -78,7 +96,8 @@ import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
     MatTooltipModule,
     //for doctor
     StoreModule.forFeature("doctors", doctorReducer),
-    EffectsModule.forRoot([DoctorEffect,HospitalCatEffect,DoctorCatEffect]),
+
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
-export class Appointement{
-    id: number;
+export class Appointement {
+    id: string;
     identityNo: string;
     assurance: string;
     callTimeStamp: string;

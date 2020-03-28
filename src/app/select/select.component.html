@@ -1,4 +1,4 @@
- 
+
 
 
   <!-- <mat-form-field style="width: 400px;">
@@ -12,15 +12,19 @@
   
 
    <select #customSelect (change)="onSelectValue(customSelect.value)">
+   <!-- <select>
     <option  *ngFor="let val of listObjects" [value]="val.id" >
       {{ val.name }}   
     </option>
-  </select>  
+  </select>   -->
 
+  <mat-form-field style="width: 400px;">
+    <mat-label>Category</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let val of listObjects" [value]="val.id" >
+        {{ val.remark }}   
 
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-  <!-- <mat-select  name="orders" id="orders" >
-    <mat-option  *ngFor="let val of listObjects" [value]="val.id">  
-         {{ val.name }}   
-    </mat-option>
-  </mat-select> -->
