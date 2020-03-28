@@ -44,4 +44,11 @@ export class HospitalCatComponent implements OnInit {
     this.HospitalCatForm.reset();
     
 }
+
+deleteCustomer(hospital: HospitalCat) {
+  if (confirm("Are You Sure You want to Delete the User?")) {
+    this.store.dispatch(new ActionsFile.DeleteHospitalCat(hospital.id));
+  }
+}
+
 }
