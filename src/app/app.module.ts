@@ -51,20 +51,12 @@ import { SignupComponent } from './connexion/signup/signup.component'
     HomeComponent,
     NavbarComponent,
     HospitalCatComponent,
-
-    SelectComponent,
-    DoctorComponent, DoctorEditComponent, ContactComponent, DoctorCatComponent, DialogComponent,
-
-    SelectComponent,
-
     DoctorComponent,
-
+    DialogComponent,
     SelectComponent,
-
     DoctorEditComponent,
     ContactComponent,
     DoctorCatComponent,
-    DoctorComponent,
     CategoryComponent,
     ContactComponent,
     SigninComponent,

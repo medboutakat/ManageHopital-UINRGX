@@ -1,6 +1,6 @@
 <div>
     <h6 class="border-bottom border-gray pb-2 mb-0">Contact infos :</h6>
-    <form [formGroup]="contactFormControl" (ngSubmit)="Onclick()" class="example-form">
+    <form [formGroup]="contactFormControl" (ngSubmit)="Onclick()" *ngIf="showSave" class="example-form">
         <p>
             <mat-form-field class="example-full-width">
                 <mat-label>Phone</mat-label>
@@ -43,6 +43,8 @@
             </mat-form-field> <br>
             
         </p>
-        <button>save contact</button>
+        
+        <button class="btn btn-success">save contact</button>
     </form>
+    <div id="saveIsDoneDiv" *ngIf="!showSave">contact is saved</div>
 </div>
