@@ -15,21 +15,29 @@ export class SigninComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) { }
-
+  username1 = localStorage.getItem("username");
+  password1 = localStorage.getItem("password");
   loginForm: FormGroup;
   ngOnInit() {
     this.loginForm = this.fb.group({
-      'username': [null, [Validators.required]],
-      'password': [null, Validators.required],
+      'username': [this.username1, [Validators.required]],
+      'password': [this.password1, Validators.required],
     });
   }
+  test: boolean = false;
   login(formData: NgForm) {
     return this.auth.login(formData).subscribe(
       (user) => {
-        console.log("user", user);
-        console.log("user2", formData);
-        console.log("connecter")
-        this.router.navigate(['/home']);
+        if (user.id != null) {
+          console.log("user", user);
+          localStorage.setItem("user", user.username);
+          this.router.navigate(['/home']);
+        } else {
+          console.log("erreur");
+          this.test = true
+        }
+
+
       });
   }
 
