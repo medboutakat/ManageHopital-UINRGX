@@ -35,17 +35,12 @@ import { AppstoreModule } from './appstore/appstore.module';
     HomeComponent,
     NavbarComponent,
     HospitalCatComponent,
-<<<<<<< HEAD
     SigninComponent,
     SignupComponent,
     SelectComponent,
     DoctorComponent, DoctorEditComponent, ContactComponent, DoctorCatComponent, DialogComponent,
     SelectComponent,
     DoctorComponent,
-=======
-    DoctorComponent,
-    DialogComponent,
->>>>>>> dfecb0e088e6e7890c557f7707536c41ee7ebaae
     SelectComponent,
     DoctorEditComponent,
     ContactComponent,
