@@ -18,7 +18,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class ContactComponent implements OnInit {
   fb:FormBuilder;
-  newContact : Contact;
+  showSave:boolean;
   contactFormControl:FormGroup = new FormGroup({
     id: new FormControl(''),
     phone1 : new FormControl(''),
@@ -43,12 +43,13 @@ export class ContactComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
+    this.showSave = true;
   }
 
   Onclick(){
      this.contactFormControl.addControl('email', new FormControl(this.emailFormControl.value))
     this.getOutputForm.emit(this.contactFormControl.value);
+    this.showSave = false;
   }
 
 }
