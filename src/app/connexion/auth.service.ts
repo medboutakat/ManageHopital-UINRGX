@@ -25,15 +25,6 @@ export class AuthService {
   }
 
   constructor(private http: HttpClient, private router: Router) { }
-
-  // signup(formData: FormGroup) {
-  //   return this.http.post<any>(`${this.url2}`, formData).pipe(
-  //     tap(user => {
-  //       console.log(user);
-  //     }),
-  //     catchError(this.handleError('signup', []))
-  //   );
-  // }
   register(user: Register) {
     const headers = new HttpHeaders().set('content-type', 'application/json');
     var body = {

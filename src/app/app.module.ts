@@ -38,7 +38,11 @@ import { DoctorComponent } from './doctors/doctor/doctor.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { CategoryComponent } from './category/category.component';
 import { SigninComponent } from './connexion/signin/signin.component';
-import { SignupComponent } from './connexion/signup/signup.component'
+import { SignupComponent } from './connexion/signup/signup.component';
+import { AddAppointementComponent } from './appointements/add-appointement/add-appointement.component';
+import { HospitalReducer } from './appointements/store/hospital.reducer';
+import { HospitalEffect } from './appointements/store/hospital.effect';
+
 
 
 
@@ -60,12 +64,13 @@ import { SignupComponent } from './connexion/signup/signup.component'
     CategoryComponent,
     ContactComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    AddAppointementComponent,
 
     // FooterComponent, 
     // HeaderComponent
   ],
-  entryComponents: [DialogComponent],
+  entryComponents: [DialogComponent, AddAppointementComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -83,6 +88,7 @@ import { SignupComponent } from './connexion/signup/signup.component'
     StoreModule.forFeature("HospitalCat", HospitalCatReducer),
     StoreModule.forFeature("DoctorCat", DoctorCatReducer),
     StoreModule.forRoot({ "appointements": AppointementReducer }),
+    StoreModule.forFeature("hospitals", HospitalReducer),
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
@@ -91,7 +97,7 @@ import { SignupComponent } from './connexion/signup/signup.component'
     //for doctor
     StoreModule.forFeature("doctors", doctorReducer),
 
-    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect]),
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]

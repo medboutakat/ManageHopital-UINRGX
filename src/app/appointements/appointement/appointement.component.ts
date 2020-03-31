@@ -5,6 +5,7 @@ import * as actionApps from '../store/appointement.actions'
 import * as fromReducer from '../store/appointement.reducer'
 import { MatDialog } from '@angular/material'
 import { DialogComponent } from '../dialog/dialog.component';
+import { AddAppointementComponent } from '../add-appointement/add-appointement.component';
 
 
 @Component({
@@ -27,5 +28,9 @@ export class AppointementComponent implements OnInit {
   }
   openDialog(data) {
     this.dialog.open(DialogComponent, { data })
+  }
+  add() {
+    console.log("hello");
+    this.dialog.open(AddAppointementComponent);
   }
 }
