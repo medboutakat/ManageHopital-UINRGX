@@ -42,6 +42,7 @@ import { SignupComponent } from './connexion/signup/signup.component';
 import { AddAppointementComponent } from './appointements/add-appointement/add-appointement.component';
 import { HospitalReducer } from './appointements/store/hospital.reducer';
 import { HospitalEffect } from './appointements/store/hospital.effect';
+import { SavePdfComponent } from './appointements/save-pdf/save-pdf.component';
 
 
 
@@ -66,11 +67,12 @@ import { HospitalEffect } from './appointements/store/hospital.effect';
     SigninComponent,
     SignupComponent,
     AddAppointementComponent,
+    SavePdfComponent,
 
     // FooterComponent, 
     // HeaderComponent
   ],
-  entryComponents: [DialogComponent, AddAppointementComponent],
+  entryComponents: [DialogComponent, AddAppointementComponent, SavePdfComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
