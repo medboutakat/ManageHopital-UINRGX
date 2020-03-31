@@ -1,0 +1,56 @@
+*{
+    transition: all .5s;
+}
+
+.product-div{
+    border: 1pt solid grey;
+    border-radius: 5px;
+    height: 67px;
+    margin-bottom: 5px;
+    background-color: #ECECEC;
+}
+
+.div-detail{
+    height: 55px;
+    padding: 0;
+    background-color: white;
+}
+
+#divinfos{
+    height: 50%;
+    width: 100%;
+    border-bottom: .5pt #ECECEC dashed;
+}
+.q{
+    text-align: right;
+    border-left: .5pt gray solid;
+}
+
+textarea{
+    border-color: transparent;
+}
+
+nav{
+    height: 40px;
+    background-color: rgb(135,206,250,0.5);
+    border: .5pt solid #1E90FF;
+    border-radius: 5px;
+    color: #1E90FF;
+    padding: 6px;
+    padding-left: 10%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+form{
+    background-color: rgb(135,206,250,0.5);
+    border: .5pt solid #1E90FF;
+    border-radius: 5px;
+    padding: 6px;
+}
+
+input{
+    margin: 5px;
+    padding: 2px;
+    border-radius: 2px;
+    border:none;
+}

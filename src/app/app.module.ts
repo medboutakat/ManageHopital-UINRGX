@@ -39,6 +39,8 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { CategoryComponent } from './category/category.component';
 import { SigninComponent } from './connexion/signin/signin.component';
 import { SignupComponent } from './connexion/signup/signup.component'
+import { InvoiceComponent } from './invoices/invoice/invoice.component';
+import { DetailsComponent } from './invoices/details/details.component';
 
 
 
@@ -60,7 +62,9 @@ import { SignupComponent } from './connexion/signup/signup.component'
     CategoryComponent,
     ContactComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    InvoiceComponent,
+    DetailsComponent
 
     // FooterComponent, 
     // HeaderComponent
