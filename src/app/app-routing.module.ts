@@ -12,8 +12,11 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { ContactComponent } from './contacts/contact/contact.component';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
-import { SigninComponent } from './connexion/signin/signin.component'; 
-import { CategoryComponent } from './category/category.component'; 
+import { SignupComponent } from './connexion/signup/signup.component';
+import { OperationComponent } from './operations/operation/operation.component';
+import { SigninComponent } from './connexion/signin/signin.component';
+import { CategoryComponent } from './category/category.component';
+
 
 
 const routes: Routes = [
@@ -33,7 +36,11 @@ const routes: Routes = [
       { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full' },
       { path: 'contacts', component: ContactComponent },
       { path: 'doctorCategory', component: DoctorCatComponent, pathMatch: 'full' },
+
+      { path: 'operation', component: OperationComponent, pathMatch: 'full' },
+
       { path: 'Category', component: CategoryComponent, pathMatch: 'full' },
+
 
 
     ]

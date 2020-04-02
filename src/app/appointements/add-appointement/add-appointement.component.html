@@ -23,10 +23,9 @@
         placeholder="Subject">
     </div>
     <div class="input-group form-group ">
-      <select formControlName="hospitalId" *ngFor="let item of apps" placeholder="choose hospitals" placeholder="sexe"
-        class="custom-select">
-        <option style="text-align: center;font-size: 14px;" selected>Choose hospital...</option>
-        <option style="text-align: center;font-size: 14px;" value="{{item.id}}">{{item.name}}</option>
+      <select formControlName="hospitalId" placeholder="choose hospitals" placeholder="sexe" class="custom-select">
+        <option *ngFor="let item of apps" style="text-align: center;font-size: 14px;" value="{{item.id}}">{{item.name}}
+        </option>
       </select>
     </div>
     <button type="submit" class="btn btn-success btn-block" (click)="reserve()">Reserve</button><br>

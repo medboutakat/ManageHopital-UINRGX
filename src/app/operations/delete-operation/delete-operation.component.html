@@ -1,0 +1,10 @@
+<div class="container" width="200px">
+  <img mat-dialog-title style="width:100px;margin-left: 20%;" src="assets/img/exclamation-512.png" />
+  <p style="font-weight:bold;color:black;font-size: 15px;font-family: 'Times New Roman', Times, serif;">
+    Are you sure , you want delete </p>
+  <p style="font-weight: normal;font-size: 14px;margin-left: 20%;color:gray;">Date :{{data.date}} </p>
+  <mat-dialog-actions>
+    <button (click)="delete()" style="outline: none;" mat-raised-button color="warn">Delete</button>
+    <button style="outline: none;" mat-raised-button mat-dialog-close>Cancel</button>
+  </mat-dialog-actions><br>
+</div>

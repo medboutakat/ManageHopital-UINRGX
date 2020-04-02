@@ -1,0 +1,28 @@
+<div class="container">
+  <p style="font-weight: lighter;color: gray;font-size: 14px;" class="card-text">to reserve, please fill this
+    informations</p>
+  <form [formGroup]="addForm">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="date"
+          placeholder="choose Date">
+      </div>
+      <div class="form-group col-md-6">
+        <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="price"
+          placeholder="price">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input style="text-align: center;font-size: 14px;" type="text" class="form-control"
+        formControlName="totalStayNight" placeholder="totalStayNight">
+    </div>
+    <div class="input-group form-group ">
+      <select formControlName="operationCategoryId" placeholder="choose Category" class="custom-select">
+        <option *ngFor="let item of oppCate" style="text-align: center;font-size: 14px;" value="{{item.id}}">
+          {{item.name}}</option>
+      </select>
+    </div>
+    <button (click)="add()" type="submit" class="btn btn-success btn-block">Reserve</button><br>
+  </form>
+</div>
