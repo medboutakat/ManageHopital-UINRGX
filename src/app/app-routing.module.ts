@@ -13,6 +13,7 @@ import { ContactComponent } from './contacts/contact/contact.component';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
 import { SigninComponent } from './connexion/signin/signin.component';
+import { CategoryComponent } from './category/category.component';
 
 
 
@@ -33,6 +34,7 @@ const routes: Routes = [
       { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full' },
       { path: 'contacts', component: ContactComponent },
       { path: 'doctorCategory', component: DoctorCatComponent, pathMatch: 'full' },
+      { path: 'Category', component: CategoryComponent, pathMatch: 'full' },
 
 
     ]
