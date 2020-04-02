@@ -23,7 +23,14 @@ import { CategoryComponent } from './category/category.component';
 import { HospitalEditComponent } from './hospital/hospital-edit/hospital-edit.component';
 import { SignupComponent } from './connexion/signup/signup.component';
 import { SigninComponent } from './connexion/signin/signin.component';
+
 import { AppstoreModule } from './appstore/appstore.module';
+
+import { AddAppointementComponent } from './appointements/add-appointement/add-appointement.component';
+import { HospitalReducer } from './appointements/store/hospital.reducer';
+import { HospitalEffect } from './appointements/store/hospital.effect';
+import { SavePdfComponent } from './appointements/save-pdf/save-pdf.component';
+
 
 
 @NgModule({
@@ -47,21 +54,28 @@ import { AppstoreModule } from './appstore/appstore.module';
     DoctorCatComponent,
     CategoryComponent,
     ContactComponent,
+
     HospitalEditComponent,
     // FooterComponent, 
     // HeaderComponent
   ],
   entryComponents: [
     DialogComponent,
-    HospitalEditComponent
+    HospitalEditComponent,
+    AddAppointementComponent,
+    SavePdfComponent
   ],
+
+ 
   imports: [
     BrowserModule,
     AppRoutingModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     DefaultModule,
+
     AppstoreModule,
+
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,

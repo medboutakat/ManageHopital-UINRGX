@@ -61,6 +61,16 @@ export function AppointementReducer(state = initialState, action: AppsActions.Ac
                 error: action.payload
             };
         }
+        /**********************************create appointement********************************************************************* */
+        case AppsActions.AppointementActionTypes.CREATE_APPOINTEMENT_SUCCESS: {
+            return appsAdapter.addOne(action.payload, state);
+        }
+        case AppsActions.AppointementActionTypes.CREATE_APPOINTEMENT_FAIL: {
+            return {
+                ...state,
+                error: action.payload
+            };
+        }
         default: {
             return state
         }

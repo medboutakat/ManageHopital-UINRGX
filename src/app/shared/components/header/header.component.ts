@@ -21,5 +21,8 @@ export class HeaderComponent implements OnInit {
       );
     }, 300);
   }
+  logout() {
+    localStorage.removeItem("user");
+  }
 
 }

@@ -1,0 +1,34 @@
+<div class="container">
+  <p style="font-weight: lighter;color: gray;font-size: 14px;" class="card-text">to reserve, please fill this
+    informations</p>
+  <form [formGroup]="addForm">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="identityNo"
+          placeholder="CIN">
+      </div>
+      <div class="form-group col-md-6">
+        <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="assurance"
+          placeholder="Assurance">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input style="text-align: center;font-size: 14px;" type="text" class="form-control"
+        formControlName="reservationTimeStamp" placeholder="choose time">
+    </div>
+
+    <div class="form-group">
+      <input style="text-align: center;font-size: 14px;" formControlName="subject" type="text" class="form-control"
+        placeholder="Subject">
+    </div>
+    <div class="input-group form-group ">
+      <select formControlName="hospitalId" *ngFor="let item of apps" placeholder="choose hospitals" placeholder="sexe"
+        class="custom-select">
+        <option style="text-align: center;font-size: 14px;" selected>Choose hospital...</option>
+        <option style="text-align: center;font-size: 14px;" value="{{item.id}}">{{item.name}}</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-success btn-block" (click)="reserve()">Reserve</button><br>
+  </form>
+</div>
