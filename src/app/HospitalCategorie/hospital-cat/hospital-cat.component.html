@@ -1,55 +1,56 @@
 <div>
-    <div style="margin-left: 250px;" class="my-3 p-3 bg-white rounded shadow-sm">
-      <h6 class="border-bottom border-gray pb-2 mb-0">Hospital Category</h6>
-      <div class="media text-muted pt-3">
-        <!-- function select  -->
-        <!-- <div class="form-group">
+  <div style="margin-left: 250px;" class="my-3 p-3 bg-white rounded shadow-sm">
+    <h6 class="border-bottom border-gray pb-2 mb-0">Hospital Category</h6>
+    <div class="media text-muted pt-3">
+      <!-- function select  -->
+      <!-- <div class="form-group">
           <div class="col-sm-8"> 
             <app-select  [listObjects]="listhopitalCatValues"></app-select>
           </div>
         </div>    -->
 
-        <mat-card class="container" >
-          <div class="row">
-         <div class="col">
-          <form class="example-form" [formGroup]="HospitalCatForm" (submit)="creHospitalCat()">
-            <mat-form-field class="example-full-width"> 
-              <input matInput placeholder="name" formControlName="name" >
-            </mat-form-field  >
-             <mat-form-field class="example-full-width">
-               <input matInput placeholder="remark" formControlName="remark"> 
+      <mat-card class="container">
+        <div class="row">
+          <div class="col">
+            <form class="example-form" [formGroup]="HospitalCatForm" (submit)="creHospitalCat()">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="name" formControlName="name">
               </mat-form-field>
-              <button type="submit" class="btn btn-warning" aria-label="Left Align" >
-                <i class="material-icons" >
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="remark" formControlName="remark">
+              </mat-form-field>
+              <button type="submit" class="btn btn-warning" aria-label="Left Align">
+                <i class="material-icons">
                   done
-                  </i>
+                </i>
               </button>
-        </form>
-        
+            </form>
 
-         </div>
-            <div class="col" style="margin-left: -50px;">
-              <h6 class="border-bottom border-gray pb-2 mb-0">Recents Appointements</h6>
-              <div *ngFor="let item of listhopitalCatValues" class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                  <strong class="d-block text-gray-dark">{{item.name}}</strong>
-                  {{item.remark}}
-                </p>
-                <div class="col-md-5">
-                  <button style="margin: 10px;" type="button" class="btn btn-warning" aria-label="Left Align">
-                    <i class="material-icons">
-                      autorenew
-                      </i>
+
+          </div>
+          <div class="col" style="margin-left: -50px;">
+            <h6 class="border-bottom border-gray pb-2 mb-0">Recents Appointements</h6>
+            <div *ngFor="let item of listhopitalCatValues" class="media text-muted pt-3">
+              <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-gray-dark">{{item.name}}</strong>
+                {{item.remark}}
+              </p>
+              <div class="col-md-5">
+                <button style="margin: 10px;" type="button" class="btn btn-warning" aria-label="Left Align">
+                  <i class="material-icons">
+                    autorenew
+                  </i>
                 </button>
-                <button (click)="deleteCustomer(item)" style="margin:5px;" type="button" class="btn btn-danger" aria-label="Left Align">
-                <i class="material-icons">delete</i>
+                <button (click)="deleteCustomer(item)" style="margin:5px;" type="button" class="btn btn-danger"
+                  aria-label="Left Align">
+                  <i class="material-icons">delete</i>
                 </button>
-                </div>
               </div>
-         
             </div>
-              </div>
+
+          </div>
+        </div>
       </mat-card>
     </div>
-</div>
   </div>
+</div>
