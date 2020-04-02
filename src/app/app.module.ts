@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultModule } from './layouts/default/default.module';
 import { StoreModule } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects';
-
 import { StoreRouterConnectingModule, routerReducer, RouterStateSerializer, } from "@ngrx/router-store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { HospitalCatEffect } from './HospitalCategorie/Store/Effect';
@@ -43,6 +42,13 @@ import { AddAppointementComponent } from './appointements/add-appointement/add-a
 import { HospitalReducer } from './appointements/store/hospital.reducer';
 import { HospitalEffect } from './appointements/store/hospital.effect';
 import { SavePdfComponent } from './appointements/save-pdf/save-pdf.component';
+import { OperationComponent } from './operations/operation/operation.component';
+import { AddOperationComponent } from './operations/add-operation/add-operation.component';
+import { DeleteOperationComponent } from './operations/delete-operation/delete-operation.component';
+import { OperationReducer } from './operations/store/operations.reducer';
+import { OpEffect } from './operations/store/operation.effect';
+import { OperationCategoryReducer } from './operations/store/category.reducer';
+import { OpCatEffect } from './operations/store/category.effects';
 
 
 
@@ -68,11 +74,11 @@ import { SavePdfComponent } from './appointements/save-pdf/save-pdf.component';
     SignupComponent,
     AddAppointementComponent,
     SavePdfComponent,
-
-    // FooterComponent, 
-    // HeaderComponent
+    OperationComponent,
+    AddOperationComponent,
+    DeleteOperationComponent,
   ],
-  entryComponents: [DialogComponent, AddAppointementComponent, SavePdfComponent],
+  entryComponents: [DialogComponent, AddAppointementComponent, SavePdfComponent, AddOperationComponent, DeleteOperationComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -91,6 +97,8 @@ import { SavePdfComponent } from './appointements/save-pdf/save-pdf.component';
     StoreModule.forFeature("DoctorCat", DoctorCatReducer),
     StoreModule.forRoot({ "appointements": AppointementReducer }),
     StoreModule.forFeature("hospitals", HospitalReducer),
+    StoreModule.forFeature("operations", OperationReducer),
+    StoreModule.forFeature("operationsCat", OperationCategoryReducer),
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
@@ -99,7 +107,7 @@ import { SavePdfComponent } from './appointements/save-pdf/save-pdf.component';
     //for doctor
     StoreModule.forFeature("doctors", doctorReducer),
 
-    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect]),
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, OpCatEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]
