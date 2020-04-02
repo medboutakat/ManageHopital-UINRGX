@@ -12,9 +12,8 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { ContactComponent } from './contacts/contact/contact.component';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
-import { SigninComponent } from './connexion/signin/signin.component';
-import { CategoryComponent } from './category/category.component';
-
+import { SigninComponent } from './connexion/signin/signin.component'; 
+import { CategoryComponent } from './category/category.component'; 
 
 
 const routes: Routes = [
@@ -39,7 +38,8 @@ const routes: Routes = [
 
     ]
   },
-  { path: 'signin', component: SigninComponent }
+  { path: 'signin', component: SigninComponent },
+  { path: 'signup', component: SignupComponent }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

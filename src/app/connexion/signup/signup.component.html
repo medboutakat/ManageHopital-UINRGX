@@ -1,26 +1,39 @@
 <div class="container"><br><br><br><br>
-  <div style="margin-left: 30%;">
-    <div style="width: 30rem;" class="card text-center">
+  <div style="margin-left: 20%;">
+    <div style="width: 40rem;" class="card text-center">
       <div class="card-body">
-        <h4 class="card-title">Sign Up</h4>
+        <h4 class="card-title">SignUp</h4>
         <p style="font-weight: lighter;color: gray;font-size: 13px;" class="card-text">Create your own compte to access
-          the plateforme.</p><br>
-        <form>
+          the platforme.</p><br>
+        <form [formGroup]="signupForm">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <input style="text-align: center;font-size: 14px;" type="text" class="form-control"
+                placeholder="First Name" name="firstname" formControlName="firstName">
+            </div>
+            <div class="form-group col-md-6">
+              <input style="text-align: center;font-size: 14px;" type="text" class="form-control"
+                placeholder="Last Name" name="lastname" formControlName="lastName">
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <select formControlName="sexe" placeholder="sexe" class="custom-select" id="inputGroupSelect02">
+              <option style="text-align: center;font-size: 14px;" selected>Choose...</option>
+              <option style="text-align: center;font-size: 14px;" value="Female">Female</option>
+              <option style="text-align: center;font-size: 14px;" value="Male">Male</option>
+            </select>
+          </div>
           <div class="form-group">
-            <input style="text-align: center;font-size: 14px;" type="text" class="form-control" placeholder="Username">
+            <input style="text-align: center;font-size: 14px;" type="text" class="form-control" placeholder="Username"
+              name="username" formControlName="username">
           </div>
           <div class="form-group">
             <input style="text-align: center;font-size: 14px;" type="password" class="form-control"
-              placeholder="Password">
+              placeholder="Password" name="password" formControlName="password">
           </div>
-          <div style="float: left;" class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-            <label style="color: gray;font-weight: lighter;font-size: 13px;" class="form-check-label"
-              for="defaultCheck1">
-              Remember Me
-            </label>
-          </div><br><br>
-          <button type="button" class="btn btn-info     btn-block">Connexion</button>
+          <button type="submit" class="btn btn-info btn-block" (click)="Register()">Create</button><br>
+          <p style="color: gray;font-weight: lighter;font-size: 13px;">connexion <a href="/signin">SignIn</a>
+          </p>
         </form>
       </div>
 
