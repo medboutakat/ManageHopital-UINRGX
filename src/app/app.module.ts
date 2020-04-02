@@ -22,8 +22,12 @@ import { DoctorComponent } from './doctors/doctor/doctor.component';
 import { CategoryComponent } from './category/category.component';
 import { HospitalEditComponent } from './hospital/hospital-edit/hospital-edit.component';
 import { SignupComponent } from './connexion/signup/signup.component';
-import { SigninComponent } from './connexion/signin/signin.component';
-import { AppstoreModule } from './appstore/appstore.module';
+import { SigninComponent } from './connexion/signin/signin.component'; 
+import { AddAppointementComponent } from './appointements/add-appointement/add-appointement.component';
+import { HospitalReducer } from './appointements/store/hospital.reducer';
+import { HospitalEffect } from './appointements/store/hospital.effect';
+import { SavePdfComponent } from './appointements/save-pdf/save-pdf.component'; 
+import { AppstoreModule } from './appstore/appstore.module'; 
 
 
 @NgModule({
@@ -34,8 +38,7 @@ import { AppstoreModule } from './appstore/appstore.module';
     HopitalComponent,
     HomeComponent,
     NavbarComponent,
-    HospitalCatComponent,
-    SigninComponent,
+    HospitalCatComponent, 
     SignupComponent,
     SelectComponent,
     DoctorComponent, DoctorEditComponent, ContactComponent, DoctorCatComponent, DialogComponent,
@@ -46,27 +49,43 @@ import { AppstoreModule } from './appstore/appstore.module';
     ContactComponent,
     DoctorCatComponent,
     CategoryComponent,
-    ContactComponent,
-    HospitalEditComponent,
+    ContactComponent, 
+    SigninComponent,
+    SignupComponent,
+    AddAppointementComponent,
+    SavePdfComponent,
+
     // FooterComponent, 
     // HeaderComponent
   ],
-  entryComponents: [
-    DialogComponent,
-    HospitalEditComponent
-  ],
+  entryComponents: [DialogComponent,HospitalEditComponent, AddAppointementComponent, SavePdfComponent],
+ 
   imports: [
     BrowserModule,
     AppRoutingModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    DefaultModule,
-    AppstoreModule,
+    DefaultModule, 
+    HttpClientModule,
+    StoreModule.forRoot({}),
+    StoreModule.forRoot({ router: routerReducer }),
+    StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([]),
+    StoreModule.forFeature("HospitalCat", HospitalCatReducer),
+    StoreModule.forFeature("DoctorCat", DoctorCatReducer),
+    StoreModule.forRoot({ "appointements": AppointementReducer }),
+    StoreModule.forFeature("hospitals", HospitalReducer), 
+    StoreModule.forFeature("doctors", doctorReducer),
+    AppstoreModule, 
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     MatBottomSheetModule,
     MatTooltipModule,
+    //for doctor
+
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect]), 
   ],
   providers: [],
   bootstrap: [AppComponent]

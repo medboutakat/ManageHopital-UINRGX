@@ -1,0 +1,11 @@
+<div class="container" #content id="content">
+  <p style="font-weight: normal;color: black;font-size: 25px;text-align: center;">Convocation</p>
+  <p style="font-weight: normal;color: gray;font-size: 15px;">this Convocation is obligatory to attend the session you
+    have to bring it with you , with you identity card </p>
+  <p style="font-weight: lighter;color: gray;font-size: 14px;text-align: center;">CIN : {{data.identityNo}}</p>
+  <p style="font-weight: lighter;color: gray;font-size: 14px;text-align: center;">Time : {{data.reservationTimeStamp}}
+  </p>
+  <p style="font-weight: lighter;color: gray;font-size: 14px;text-align: center;">Subject : {{data.subject}}
+  </p>
+</div>
+<button style="float: right;" class="btn btn-primary" (click)="download()"><i class="fa fa-download"></i></button>

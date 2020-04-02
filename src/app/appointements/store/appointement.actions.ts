@@ -8,6 +8,10 @@ export enum AppointementActionTypes {
     DELETE_APPOINTEMENT = "[appointement] Delete Appointements",
     DELETE_APPOINTEMENT_SUCCESS = "[appointement] Delete Appointements Success",
     DELETE_APPOINTEMENT_FAIL = "[appointement] Delete Appointements Fail",
+    CREATE_APPOINTEMENT = "[appointement] Create Appointements",
+    CREATE_APPOINTEMENT_SUCCESS = "[appointement] Create Appointements Success",
+    CREATE_APPOINTEMENT_FAIL = "[appointement] Create Appointements Fail",
+
 }
 export class LoadAppointements implements Action {
     readonly type = AppointementActionTypes.LOAD_APPOINTEMENTS
@@ -22,6 +26,7 @@ export class LoadAppointementsFailed implements Action {
     readonly type = AppointementActionTypes.LOAD_APPOINTEMENTS_FAILED
     constructor(public playload: string) { }
 }
+
 export class DeleteAppointement implements Action {
     readonly type = AppointementActionTypes.DELETE_APPOINTEMENT;
 
@@ -39,6 +44,23 @@ export class DeleteAppointementFail implements Action {
 
     constructor(public payload: string) { }
 }
+export class CreateAppointement implements Action {
+    readonly type = AppointementActionTypes.CREATE_APPOINTEMENT;
+
+    constructor(public payload: Appointement) { }
+}
+
+export class CreateAppointementSuccess implements Action {
+    readonly type = AppointementActionTypes.CREATE_APPOINTEMENT_SUCCESS;
+
+    constructor(public payload: Appointement) { }
+}
+
+export class CreateAppointementFail implements Action {
+    readonly type = AppointementActionTypes.CREATE_APPOINTEMENT_FAIL;
+
+    constructor(public payload: string) { }
+}
 export type Action =
     LoadAppointements
     | LoadAppointementsSuccess
@@ -46,3 +68,6 @@ export type Action =
     | DeleteAppointement
     | DeleteAppointementSuccess
     | DeleteAppointementFail
+    | CreateAppointement
+    | CreateAppointementSuccess
+    | CreateAppointementFail

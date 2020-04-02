@@ -47,4 +47,21 @@ export class AppointementEffect {
             )
         )
     )
+    /***************************create appointement***************************************************** */
+    @Effect()
+    createAppointement$: Observable<Action> = this.actions$.pipe(
+        ofType<appsActions.CreateAppointement>(
+            appsActions.AppointementActionTypes.CREATE_APPOINTEMENT
+        ),
+        map((action: appsActions.CreateAppointement) => action.payload),
+        mergeMap((apps: Appointement) =>
+            this.service.addApps(apps).pipe(
+                map(
+                    (newApp: Appointement) =>
+                        new appsActions.CreateAppointementSuccess(newApp)
+                ),
+                catchError(err => of(new appsActions.CreateAppointementFail(err)))
+            )
+        )
+    );
 }

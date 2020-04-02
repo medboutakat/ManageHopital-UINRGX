@@ -9,11 +9,11 @@
      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
        <strong class="d-block text-gray-dark">{{item.reservationTimeStamp}}</strong>
        {{item.subject}}
-
      </p>
      <div class="col-md-2">
-       <button style="line-height: 15px;margin: 10px;" type="button" class="btn btn-warning" aria-label="Left Align">
-         <i class="fa fa-pencil"></i>
+       <button (click)="save(item)" style="line-height: 15px;margin: 10px;" type="button" class="btn btn-warning"
+         aria-label="Left Align">
+         <i class="fa fa-download"></i>
        </button>
        <button (click)="openDialog(item)" style="line-height: 15px;" type="button" class="btn btn-danger"
          aria-label="Left Align">
@@ -22,3 +22,5 @@
      </div>
    </div>
  </div>
+ <a (click)="add()" matTooltip="Click for add a new Appointement" [matTooltipPosition]="'left'"
+   class="flotting-btn btn-success" style="color: white;">+</a>
