@@ -1,19 +1,24 @@
-<form class="example-form">
-    <mat-form-field class="example-full-width"> <input matInput placeholder="name" ></mat-form-field  >
-     <mat-form-field class="example-full-width"><input matInput placeholder="remark" ></mat-form-field>
-</form>
+<!-- 
+    <mat-form-field class="example-full-width">
+         <input matInput placeholder="name" [(ngModel)]='objemp.name' #name="ngModel">
+        </mat-form-field>
+        <span class="help-bpx" *ngIf="name.touched && !name.valid ">Required</span>
 
-<button type="button" class="btn btn-warning" aria-label="Left Align">
-    <i class="material-icons">
-      done
-      </i>
-</button>
+     <mat-form-field class="example-full-width">
+         <input matInput placeholder="remark" [(ngModel)]='objemp.remark'>
+        </mat-form-field> -->
 
-<button style="margin: 10px;" type="button" class="btn btn-warning" aria-label="Left Align">
-      <i class="material-icons">
-        autorenew
-        </i>
-</button>
-<button style="margin:5px;" type="button" class="btn btn-danger" aria-label="Left Align">
-  <i class="material-icons">delete</i>
-</button>
+        <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <button type="button" class="btn btn-primary" (click)="loadAddnew()" data-toggle="modal" data-target="#myModal">New</button>      
+      </li>
+      <li class="breadcrumb-item">
+        <button [disabled]="!IsRowSelected || IsMultple" type="button" class="btn btn-warning" (click)="edit()"  data-toggle="modal" data-target="#myModal">Edit</button>
+      </li>
+      <li class="breadcrumb-item">
+        <button [disabled]="!IsRowSelected" type="button" class="btn btn-danger" (click)="delete()" data-toggle="modal" >Delete</button>
+      </li>
+    </ol>
+  </nav>
+
