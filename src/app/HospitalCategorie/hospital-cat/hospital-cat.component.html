@@ -9,33 +9,47 @@
           </div>
         </div>    -->
 
-        <mat-card class="container">
+        <mat-card class="container" >
           <div class="row">
          <div class="col">
-<app-category></app-category>
+          <form class="example-form" [formGroup]="HospitalCatForm" (submit)="creHospitalCat()">
+            <mat-form-field class="example-full-width"> 
+              <input matInput placeholder="name" formControlName="name" >
+            </mat-form-field  >
+             <mat-form-field class="example-full-width">
+               <input matInput placeholder="remark" formControlName="remark"> 
+              </mat-form-field>
+              <button type="submit" class="btn btn-warning" aria-label="Left Align" >
+                <i class="material-icons" >
+                  done
+                  </i>
+              </button>
+        </form>
         
+
          </div>
-            <div class="col">
-              <div class="table-responsive">
-              <table class="table" >
-                <thead>
-                  <tr>
-                    <th scope="col">name</th>
-                    <th scope="col">remark</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of listhopitalCatValues">
-                    <th scope="row">{{item.name}}</th>
-                    <td>{{item.remark}}</td> 
-                  </tr>        
-                </tbody>
-              </table>
+            <div class="col" style="margin-left: -50px;">
+              <h6 class="border-bottom border-gray pb-2 mb-0">Recents Appointements</h6>
+              <div *ngFor="let item of listhopitalCatValues" class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <strong class="d-block text-gray-dark">{{item.name}}</strong>
+                  {{item.remark}}
+                </p>
+                <div class="col-md-5">
+                  <button style="margin: 10px;" type="button" class="btn btn-warning" aria-label="Left Align">
+                    <i class="material-icons">
+                      autorenew
+                      </i>
+                </button>
+                <button (click)="deleteCustomer(item)" style="margin:5px;" type="button" class="btn btn-danger" aria-label="Left Align">
+                <i class="material-icons">delete</i>
+                </button>
+                </div>
+              </div>
+         
             </div>
               </div>
-            </div>
       </mat-card>
-      </div>
     </div>
-  
+</div>
   </div>
