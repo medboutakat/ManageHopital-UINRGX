@@ -48,6 +48,8 @@ import { doctorReducer } from './doctors/doctor-store/doctor.reducer';
 import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
 import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
 import { AppointementEffect } from './appointements/store/appointement.effect';
+import { AppointementReducer } from './appointements/store/appointement.reducer';
+
 
 
 
@@ -80,7 +82,7 @@ import { AppointementEffect } from './appointements/store/appointement.effect';
     DeleteOperationComponent,
   ],
 
-  entryComponents: [DialogComponent, AddAppointementComponent, SavePdfComponent, AddOperationComponent, DeleteOperationComponent],
+  entryComponents: [DialogComponent, AddAppointementComponent, SavePdfComponent, AddOperationComponent, DeleteOperationComponent, SavePdfComponent],
 
 
   imports: [
@@ -98,7 +100,7 @@ import { AppointementEffect } from './appointements/store/appointement.effect';
     EffectsModule.forRoot([]),
     StoreModule.forFeature("HospitalCat", HospitalCatReducer),
     StoreModule.forFeature("DoctorCat", DoctorCatReducer),
-
+    StoreModule.forFeature("appointements", AppointementReducer),
     StoreModule.forFeature("hospitals", HospitalReducer),
     StoreModule.forFeature("operations", OperationReducer),
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
