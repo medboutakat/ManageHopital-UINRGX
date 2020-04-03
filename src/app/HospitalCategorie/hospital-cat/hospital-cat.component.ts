@@ -40,7 +40,8 @@ export class HospitalCatComponent implements OnInit {
 
    creHospitalCat() {
     var a =this.HospitalCatForm.value as HospitalCat
-   this.store.dispatch(new ActionsFile.CreateHospitalCat(a));
+    this.store.dispatch(new ActionsFile.CreateHospitalCat(a));
+    this.store.dispatch( new ActionsFile.LoadHospitalCat());
     this.HospitalCatForm.reset();
     
 }
@@ -48,6 +49,7 @@ export class HospitalCatComponent implements OnInit {
 deleteCustomer(hospital: HospitalCat) {
   if (confirm("Are You Sure You want to Delete the User?")) {
     this.store.dispatch(new ActionsFile.DeleteHospitalCat(hospital.id));
+    this.store.dispatch( new ActionsFile.LoadHospitalCat());
   }
 }
 
