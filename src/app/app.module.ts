@@ -4,6 +4,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultModule } from './layouts/default/default.module';
+import { StoreModule } from '@ngrx/store'
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule, routerReducer, RouterStateSerializer, } from "@ngrx/router-store";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { HospitalCatEffect } from './HospitalCategorie/Store/Effect';
 import { AppointementComponent } from './appointements/appointement/appointement.component';
 import { HopitalComponent } from './hospital/hopital/hopital.component';
 import { MaterialModule } from './material/material.module';
@@ -24,17 +29,37 @@ import { HospitalEditComponent } from './hospital/hospital-edit/hospital-edit.co
 import { SignupComponent } from './connexion/signup/signup.component';
 import { SigninComponent } from './connexion/signin/signin.component';
 
+
 import { AppstoreModule } from './appstore/appstore.module';
 
 import { AddAppointementComponent } from './appointements/add-appointement/add-appointement.component';
 import { HospitalReducer } from './appointements/store/hospital.reducer';
 import { HospitalEffect } from './appointements/store/hospital.effect';
+import { OperationComponent } from './operations/operation/operation.component';
+import { AddOperationComponent } from './operations/add-operation/add-operation.component';
+import { DeleteOperationComponent } from './operations/delete-operation/delete-operation.component';
+import { OperationReducer } from './operations/store/operations.reducer';
+import { OpEffect } from './operations/store/operation.effect';
+import { OperationCategoryReducer } from './operations/store/category.reducer';
+import { OpCatEffect } from './operations/store/category.effects';
+
 import { SavePdfComponent } from './appointements/save-pdf/save-pdf.component';
+
 import { DialogHospComponent } from './hospital/dialog-hosp/dialog-hosp.component';
 import { HospitalCatAddComponent } from './HospitalCategorie/hospital-cat-add/hospital-cat-add.component';
 
 import {MatDialogModule} from '@angular/material/dialog';
 import { MenuComponent } from './menu/menu.component';
+
+import { HttpClientModule } from '@angular/common/http';
+import { HospitalCatReducer } from './HospitalCategorie/Store/reducer';
+import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
+import { doctorReducer } from './doctors/doctor-store/doctor.reducer';
+import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
+import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
+import { AppointementEffect } from './appointements/store/appointement.effect';
+import { AppointementReducer } from './appointements/store/appointement.reducer';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +70,6 @@ import { MenuComponent } from './menu/menu.component';
     HomeComponent,
     NavbarComponent,
     HospitalCatComponent,
-    SigninComponent,
     SignupComponent,
     SelectComponent,
     DoctorComponent, DoctorEditComponent, ContactComponent, DoctorCatComponent, DialogComponent,
@@ -57,6 +81,7 @@ import { MenuComponent } from './menu/menu.component';
     DoctorCatComponent,
     CategoryComponent,
     ContactComponent,
+
     AddAppointementComponent,
     SavePdfComponent,
     HospitalEditComponent,
@@ -75,20 +100,44 @@ import { MenuComponent } from './menu/menu.component';
     HospitalCatAddComponent
   ],
 
- 
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     DefaultModule,
+
     [MatDialogModule],
     AppstoreModule,
+
+    AppstoreModule,
+    HttpClientModule,
+    StoreModule.forRoot({}),
+    StoreModule.forRoot({ router: routerReducer }),
+    StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([]),
+    StoreModule.forFeature("HospitalCat", HospitalCatReducer),
+    StoreModule.forFeature("DoctorCat", DoctorCatReducer),
+    StoreModule.forFeature("appointements", AppointementReducer),
+    StoreModule.forFeature("hospitals", HospitalReducer),
+    StoreModule.forFeature("operations", OperationReducer),
+    StoreModule.forFeature("operationsCat", OperationCategoryReducer),
+    StoreModule.forFeature("hospitals", HospitalReducer),
+    StoreModule.forFeature("doctors", doctorReducer),
+
+
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     MatBottomSheetModule,
     MatTooltipModule,
+
+    //for doctor
+
+
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, OpCatEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]
