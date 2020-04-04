@@ -11,7 +11,7 @@
    -->
   
 
-   <select #customSelect (change)="onSelectValue(customSelect.value)">
+   <!-- <select #customSelect (change)="onSelectValue(customSelect.value)"> -->
    <!-- <select>
     <option  *ngFor="let val of listObjects" [value]="val.id" >
       {{ val.name }}   
@@ -23,7 +23,6 @@
     <mat-select>
       <mat-option *ngFor="let val of listObjects" [value]="val.id" >
         {{ val.remark }}   
-
       </mat-option>
     </mat-select>
   </mat-form-field>

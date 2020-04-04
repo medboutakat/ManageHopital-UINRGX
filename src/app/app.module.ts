@@ -30,8 +30,11 @@ import { AddAppointementComponent } from './appointements/add-appointement/add-a
 import { HospitalReducer } from './appointements/store/hospital.reducer';
 import { HospitalEffect } from './appointements/store/hospital.effect';
 import { SavePdfComponent } from './appointements/save-pdf/save-pdf.component';
+import { DialogHospComponent } from './hospital/dialog-hosp/dialog-hosp.component';
+import { HospitalCatAddComponent } from './HospitalCategorie/hospital-cat-add/hospital-cat-add.component';
 
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -54,8 +57,12 @@ import { SavePdfComponent } from './appointements/save-pdf/save-pdf.component';
     DoctorCatComponent,
     CategoryComponent,
     ContactComponent,
-
+    AddAppointementComponent,
+    SavePdfComponent,
     HospitalEditComponent,
+    DialogHospComponent,
+    HospitalCatAddComponent,
+    MenuComponent,
     // FooterComponent, 
     // HeaderComponent
   ],
@@ -63,7 +70,9 @@ import { SavePdfComponent } from './appointements/save-pdf/save-pdf.component';
     DialogComponent,
     HospitalEditComponent,
     AddAppointementComponent,
-    SavePdfComponent
+    SavePdfComponent,
+    DialogHospComponent,
+    HospitalCatAddComponent
   ],
 
  
@@ -73,9 +82,8 @@ import { SavePdfComponent } from './appointements/save-pdf/save-pdf.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     DefaultModule,
-
+    [MatDialogModule],
     AppstoreModule,
-
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,

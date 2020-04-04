@@ -1,0 +1,25 @@
+<div class="container" width="400px">
+    <mat-dialog-actions>
+      <!-- <button style="color: crimson;" mat-raised-button mat-dialog-close>
+        <span class="material-icons">
+        clear
+        </span>
+      </button> -->
+        <form class="example-form" [formGroup]="HospitalCatForm" (submit)="creHospitalCat()">
+            <mat-form-field class="example-full-width"> 
+              <input matInput placeholder="name" formControlName="name" >
+            </mat-form-field  >
+            <br>
+             <mat-form-field class="example-full-width">
+               <input matInput placeholder="remark" formControlName="remark"> 
+              </mat-form-field>
+              <br>
+              <button type="submit" class="btn btn-warning" aria-label="Left Align" >
+                <i class="material-icons" >
+                  done
+                  </i>
+              </button>
+        </form>
+      
+    </mat-dialog-actions>
+  </div>

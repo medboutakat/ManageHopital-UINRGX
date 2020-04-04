@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as ActionsFile from 'src/app/HospitalCategorie/Store/Action'
 import { DialogComponent } from 'src/app/appointements/dialog/dialog.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatBottomSheetRef, MatBottomSheet } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as fromHospitalCat from "src/app/HospitalCategorie/Store/reducer";
 import { HospitalCat } from '../hospitalCat.model';
+import { HospitalCatAddComponent } from '../hospital-cat-add/hospital-cat-add.component';
 
 @Component({
   selector: 'app-hospital-cat',
@@ -28,22 +29,11 @@ export class HospitalCatComponent implements OnInit {
   } 
   
   ngOnInit() {
-    this.HospitalCatForm = this.fb.group({
-      name: ["", Validators.required],
-      remark: ["", Validators.required],
-    });
- 
+   
   }
   openDialog(data) {
     this.dialog.open(DialogComponent, { data })
   }
-
-   creHospitalCat() {
-    var a =this.HospitalCatForm.value as HospitalCat
-   this.store.dispatch(new ActionsFile.CreateHospitalCat(a));
-    this.HospitalCatForm.reset();
-    
-}
 
 deleteCustomer(hospital: HospitalCat) {
   if (confirm("Are You Sure You want to Delete the User?")) {
@@ -51,4 +41,8 @@ deleteCustomer(hospital: HospitalCat) {
   }
 }
 
+add() {
+  console.log("hello");
+  this.dialog.open(HospitalCatAddComponent);
+}
 }

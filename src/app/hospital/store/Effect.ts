@@ -31,4 +31,61 @@ export class HospitalEffect {
       )
   )
 
-}
+   //Create Hospital Category
+
+   @Effect()
+   CreateHospital$: Observable<Action> = this.actions$.pipe(
+       ofType<ActionsFile.CreateHospital>(
+           ActionsFile.HospitalActionType.CREATE_Hospital
+       ),
+       map((Actions : ActionsFile.CreateHospital)=>Actions.payload),
+       mergeMap((HospitalCateg : Hospital )=>
+       this.HospitalServ.createHospital(HospitalCateg ).pipe(
+           map(
+               (NewHospitalCats : Hospital)=>
+               new ActionsFile.CreateHospitalSuccess(NewHospitalCats)
+           ),
+           catchError(err =>of(new ActionsFile.CreateHospitalFail(err)))
+       )
+       )
+   );
+ 
+   //Update HospitalCategory
+ 
+//    @Effect()
+//    UpdateHospital$: Observable<Action> = this.actions$.pipe(
+//        ofType<ActionsFile.UpdateHospital>(
+//            ActionsFile.HospitalActionType.UPDATE_Hospital
+//        ),
+//        map((Actions : ActionsFile.UpdateHospital)=>Actions.payload),
+//        mergeMap((HospitalCateg : Hospital )=>
+//        this.HospitalServ. updateHospital(HospitalCateg ).pipe(
+//            map(
+//                (updateHospitalCats : Hospital)=>
+//                new ActionsFile.CreateHospitalSuccess({
+//                    id:updateHospitalCats.id,
+//                    name:updateHospitalCats.name,
+//                    remark:updateHospitalCats.remark,
+//                }),
+//            catchError(err =>of(new ActionsFile.UpdateHospitalCatFail(err)))
+//        )
+//        )
+//    ));
+ 
+    //Delete Hospital Category
+ 
+    @Effect()
+    DeleteHospital$: Observable<Action> = this.actions$.pipe(
+        ofType<ActionsFile.DeleteHospital>(
+            ActionsFile.HospitalActionType.DELETE_Hospital
+        ),
+        map((Actions : ActionsFile.DeleteHospital)=>Actions.payload),
+        mergeMap((id:string)=>
+        this.HospitalServ.deleteHospital(id).pipe(
+            map(()=>new ActionsFile.DeleteHospitalSuccess()),
+            catchError(err =>of(new ActionsFile.DeleteHospitalFail(err)))
+        )
+        )
+    );
+ }
+ 
