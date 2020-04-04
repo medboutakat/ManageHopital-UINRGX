@@ -19,4 +19,7 @@ export class DoctorCatService{
         return this.http.get<doctorCat>(`${this.DoctorCatUrl}/${payload}`)
     }
 
+    deleteDoctorCat(payload: string) {
+        return this.http.delete(`${this.DoctorCatUrl}/${payload}`);
+      }
 }

@@ -35,17 +35,6 @@ export class HospitalCatComponent implements OnInit {
     this.dialog.open(DialogComponent, { data })
   }
 
-<<<<<<< HEAD
-=======
-   creHospitalCat() {
-    var a =this.HospitalCatForm.value as HospitalCat
-    this.store.dispatch(new ActionsFile.CreateHospitalCat(a));
-    this.store.dispatch( new ActionsFile.LoadHospitalCat());
-    this.HospitalCatForm.reset();
-    
-}
-
->>>>>>> 86a53aed2b4834e329884e73d3796dcd81eb8a76
 deleteCustomer(hospital: HospitalCat) {
   if (confirm("Are You Sure You want to Delete the User?")) {
     this.store.dispatch(new ActionsFile.DeleteHospitalCat(hospital.id));

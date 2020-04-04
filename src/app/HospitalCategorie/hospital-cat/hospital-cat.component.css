@@ -180,16 +180,18 @@ mat-form-field{
   }
 
   .column1 {
-    width: 33%;
-    padding-left: 40px;
+    width: 30%;
+    padding-left: 30px;
   }
 
   .column2 {
-    width: 13%;
+    width: 40%;
+    padding-left: 40px;
+
   }
 
   .column3 {
-    width: 22%;
+    width: 19%;
   }
 
   .column4 {

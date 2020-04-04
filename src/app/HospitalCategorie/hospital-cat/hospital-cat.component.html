@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!-- <div>
     <div style="margin-left: 250px;" class="my-3 p-3 bg-white rounded shadow-sm">
       <h6 class="border-bottom border-gray pb-2 mb-0">Hospital Category</h6>
@@ -19,27 +18,6 @@
             </mat-form-field  >
              <mat-form-field class="example-full-width">
                <input matInput placeholder="remark" formControlName="remark"> 
-=======
-<div>
-  <div style="margin-left: 250px;" class="my-3 p-3 bg-white rounded shadow-sm">
-    <h6 class="border-bottom border-gray pb-2 mb-0">Hospital Category</h6>
-    <div class="media text-muted pt-3">
-      <!-- function select  -->
-      <!-- <div class="form-group">
-          <div class="col-sm-8"> 
-            <app-select  [listObjects]="listhopitalCatValues"></app-select>
-          </div>
-        </div>    -->
-      <mat-card class="container">
-        <div class="row">
-          <div class="col">
-            <form class="example-form" [formGroup]="HospitalCatForm" (submit)="creHospitalCat()">
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="name" formControlName="name">
-              </mat-form-field>
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="remark" formControlName="remark">
->>>>>>> 86a53aed2b4834e329884e73d3796dcd81eb8a76
               </mat-form-field>
               <button type="submit" class="btn btn-warning" aria-label="Left Align">
                 <i class="material-icons">
@@ -74,28 +52,9 @@
         </div>
       </mat-card>
     </div>
-<<<<<<< HEAD
 </div>
   </div> -->
-<!-- 
 
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{item.name}} </td>
-    </ng-container>
-  
-
-    <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef> Weight </th>
-      <td mat-cell *matCellDef="let element"> {{item.remark}} </td>
-    </ng-container>
- =
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  
-</div> -->
 
 <div class="limiter">
   
@@ -109,15 +68,15 @@
           <table>
             <thead>
               <tr class="row100 head">
-                <th class="cell100 column1">Class name</th>
-                <th class="cell100 column2">Name</th>
-                <th class="cell100 column3">Remark</th>
-                <th class="cell100 column4"></th>
-                <th >
-                  <button type="submit" (click)="add()" class="btn btn-warning" style="margin-left: 70px; color: chartreuse;" aria-label="Left Align" >
-                    <i class="material-icons" >
-                      done
-                      </i>
+                <!-- <th class="cell100 column1">Class name</th> -->
+                <th class="cell100 column1">Name</th>
+                <th class="cell100 column2">Remark</th>
+                <th class="cell100 column3"></th>
+                <th class="cell100 column4">
+                  <button type="submit" (click)="add()"  style="margin-left: 70px; color: chartreuse;" aria-label="Left Align" >
+                    <span class="material-icons">
+                      add_circle
+                      </span>
                   </button>
                 </th>
 
@@ -131,11 +90,11 @@
           <table>
             <tbody>
               <tr class="row100 body" *ngFor="let item of listhopitalCatValues">
-                <td class="cell100 column1">Like a butterfly</td>
-                <td class="cell100 column2">{{item.name}} </td>
+                <!-- <td class="cell100 column1">Like a butterfly</td> -->
+                <td class="cell100 column1">{{item.name}} </td>
                 <!-- <td class="cell100 column3">{{item.name}}</td> -->
-                <td class="cell100 column3">{{item.remark}}</td>
-                <td class="cell100 column4">
+                <td class="cell100 column2">{{item.remark}}</td>
+                <td class="cell100 column3">
                   <button style="margin: 10px; color: cornflowerblue; " type="button"  aria-label="Left Align">
                     <i class="material-icons">
                       autorenew
@@ -155,7 +114,3 @@
       </div>
       
   
-=======
-  </div>
-</div>
->>>>>>> 86a53aed2b4834e329884e73d3796dcd81eb8a76

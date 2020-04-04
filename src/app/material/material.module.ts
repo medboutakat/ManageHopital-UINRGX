@@ -18,6 +18,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule, MatCellDef } from '@angular/material/table';
 import { MatPaginatorModule, MatSortModule } from '@angular/material';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA} from '@angular/material/bottom-sheet';  
+import { AgGridModule } from 'ag-grid-angular';
+import { DoctorCatComponent } from '../doctors/doctorCategorie/doctor-cat/doctor-cat.component';
 
 const Materiallist = [
   MatButtonModule,
@@ -51,7 +53,8 @@ const Materiallist = [
     MatIconModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+
   ],
   exports: [
     Materiallist,

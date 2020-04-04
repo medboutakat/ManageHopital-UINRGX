@@ -59,6 +59,7 @@ import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
 import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
 import { AppointementEffect } from './appointements/store/appointement.effect';
 import { AppointementReducer } from './appointements/store/appointement.reducer';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 @NgModule({
@@ -81,13 +82,16 @@ import { AppointementReducer } from './appointements/store/appointement.reducer'
     DoctorCatComponent,
     CategoryComponent,
     ContactComponent,
-
+    OperationComponent,
+    AddOperationComponent,
     AddAppointementComponent,
     SavePdfComponent,
     HospitalEditComponent,
     DialogHospComponent,
     HospitalCatAddComponent,
+    DeleteOperationComponent,
     MenuComponent,
+    SigninComponent
     // FooterComponent, 
     // HeaderComponent
   ],
@@ -97,12 +101,15 @@ import { AppointementReducer } from './appointements/store/appointement.reducer'
     AddAppointementComponent,
     SavePdfComponent,
     DialogHospComponent,
-    HospitalCatAddComponent
+    HospitalCatAddComponent,
+    AddOperationComponent,DeleteOperationComponent
   ],
 
 
   imports: [
     BrowserModule,
+    AgGridModule.withComponents([DoctorCatComponent]),
+
     AppRoutingModule,
     AppRoutingModule,
     BrowserAnimationsModule,
