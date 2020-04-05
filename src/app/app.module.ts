@@ -28,6 +28,10 @@ import { CategoryComponent } from './category/category.component';
 import { HospitalEditComponent } from './hospital/hospital-edit/hospital-edit.component';
 import { SignupComponent } from './connexion/signup/signup.component';
 import { SigninComponent } from './connexion/signin/signin.component';
+
+
+import { AppstoreModule } from './appstore/appstore.module';
+
 import { AddAppointementComponent } from './appointements/add-appointement/add-appointement.component';
 import { HospitalReducer } from './appointements/store/hospital.reducer';
 import { HospitalEffect } from './appointements/store/hospital.effect';
@@ -40,7 +44,13 @@ import { OperationCategoryReducer } from './operations/store/category.reducer';
 import { OpCatEffect } from './operations/store/category.effects';
 
 import { SavePdfComponent } from './appointements/save-pdf/save-pdf.component';
-import { AppstoreModule } from './appstore/appstore.module';
+
+import { DialogHospComponent } from './hospital/dialog-hosp/dialog-hosp.component';
+import { HospitalCatAddComponent } from './HospitalCategorie/hospital-cat-add/hospital-cat-add.component';
+
+import {MatDialogModule} from '@angular/material/dialog';
+import { MenuComponent } from './menu/menu.component';
+
 import { HttpClientModule } from '@angular/common/http';
 import { HospitalCatReducer } from './HospitalCategorie/Store/reducer';
 import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
@@ -49,8 +59,7 @@ import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
 import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
 import { AppointementEffect } from './appointements/store/appointement.effect';
 import { AppointementReducer } from './appointements/store/appointement.reducer';
-
-
+import { AgGridModule } from 'ag-grid-angular';
 
 
 @NgModule({
@@ -73,24 +82,42 @@ import { AppointementReducer } from './appointements/store/appointement.reducer'
     DoctorCatComponent,
     CategoryComponent,
     ContactComponent,
-    SigninComponent,
-    SignupComponent,
-    AddAppointementComponent,
-    SavePdfComponent,
     OperationComponent,
     AddOperationComponent,
+    AddAppointementComponent,
+    SavePdfComponent,
+    HospitalEditComponent,
+    DialogHospComponent,
+    HospitalCatAddComponent,
     DeleteOperationComponent,
+    MenuComponent,
+    SigninComponent
+    // FooterComponent, 
+    // HeaderComponent
   ],
-
-  entryComponents: [DialogComponent, AddAppointementComponent, SavePdfComponent, AddOperationComponent, DeleteOperationComponent, SavePdfComponent],
+  entryComponents: [
+    DialogComponent,
+    HospitalEditComponent,
+    AddAppointementComponent,
+    SavePdfComponent,
+    DialogHospComponent,
+    HospitalCatAddComponent,
+    AddOperationComponent,DeleteOperationComponent
+  ],
 
 
   imports: [
     BrowserModule,
+    AgGridModule.withComponents([DoctorCatComponent]),
+
     AppRoutingModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     DefaultModule,
+
+    [MatDialogModule],
+    AppstoreModule,
+
     AppstoreModule,
     HttpClientModule,
     StoreModule.forRoot({}),
@@ -107,11 +134,13 @@ import { AppointementReducer } from './appointements/store/appointement.reducer'
     StoreModule.forFeature("hospitals", HospitalReducer),
     StoreModule.forFeature("doctors", doctorReducer),
 
+
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     MatBottomSheetModule,
     MatTooltipModule,
+
     //for doctor
 
 

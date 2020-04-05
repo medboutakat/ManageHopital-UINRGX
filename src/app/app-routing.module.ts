@@ -19,6 +19,7 @@ import { CategoryComponent } from './category/category.component';
 
 
 
+
 const routes: Routes = [
 
   {
@@ -46,7 +47,6 @@ const routes: Routes = [
     ]
   },
   { path: 'signin', component: SigninComponent },
-  { path: 'signup', component: SignupComponent }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

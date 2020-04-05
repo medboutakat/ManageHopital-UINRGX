@@ -30,6 +30,19 @@ export class DoctorCatEffect {
           catchError(err =>of(new ActionsFile.LoadDoctorCatFail(err)))
       )
       )
-  )
+  );
+  @Effect()
+  DeleteDoctorCat$: Observable<Action> = this.actions$.pipe(
+      ofType<ActionsFile.DeleteDoctorCat>(
+          ActionsFile.DoctorCatActionType.DELETE_DoctorCat
+      ),
+      map((Actions : ActionsFile.DeleteDoctorCat)=>Actions.payload),
+      mergeMap((id:string)=>
+      this.DoctorCatServ.deleteDoctorCat(id).pipe(
+          map(()=>new ActionsFile.DeleteDoctorCatSuccess()),
+          catchError(err =>of(new ActionsFile.DeleteDoctorCatFail(err)))
+      )
+      )
+  );
 
 }

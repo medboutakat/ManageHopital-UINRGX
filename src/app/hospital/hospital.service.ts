@@ -19,7 +19,18 @@ export class HospitalService{
     getHospitalCatById(payload : number):Observable<Hospital>{
         return this.http.get<Hospital>(`${this.HospitalUrl}/${payload}`)
     }
-    deleteHospital(payload) {
+    createHospital(payload: Hospital): Observable<Hospital> {
+        return this.http.post<Hospital>(this.HospitalUrl, payload);
+      }
+
+      updateHospital(hospital: Hospital): Observable<Hospital> {
+        return this.http.patch<Hospital>(
+          `${this.HospitalUrl}/${hospital.id}`,
+          hospital
+        );
+      }
+
+      deleteHospital(payload: string) {
         return this.http.delete(`${this.HospitalUrl}/${payload}`);
       }
 

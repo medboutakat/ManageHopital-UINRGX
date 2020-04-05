@@ -7,6 +7,7 @@ import * as ActionsFiles from 'src/app/hospital/store/Action'
 import { MatBottomSheet, MatDialog } from '@angular/material';
 import { HospitalEditComponent } from '../hospital-edit/hospital-edit.component';
 import { DialogComponent } from 'src/app/appointements/dialog/dialog.component';
+import { DialogHospComponent } from '../dialog-hosp/dialog-hosp.component';
 
 @Component({
   selector: 'app-hopital',
@@ -45,6 +46,6 @@ export class HopitalComponent implements OnInit {
     console.log('show bottom sheet ...')
   }
   openDialog(data) {
-    this.dialog.open(DialogComponent, { data })
+    this.dialog.open(DialogHospComponent, { data })
   }
 }
