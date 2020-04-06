@@ -64,6 +64,6 @@ const Materiallist = [
   providers: [ { provide: MatBottomSheetRef, useValue: {} },
     { provide: MAT_BOTTOM_SHEET_DATA, useValue: {} }],
 })
-export class MaterialModule { }
+export class AngularMaterialModule { }
 
 

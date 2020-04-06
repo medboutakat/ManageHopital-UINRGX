@@ -33,17 +33,13 @@ const routes: Routes = [
       { path: 'doctors', component: DoctorComponent },
       { path: 'doctoredit', component: DoctorEditComponent },
       { path: 'home', component: HomeComponent },
+      { path: 'material', component: HomeComponent },      
       { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' },
       { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full' },
       { path: 'contacts', component: ContactComponent },
       { path: 'doctorCategory', component: DoctorCatComponent, pathMatch: 'full' },
-
       { path: 'operation', component: OperationComponent, pathMatch: 'full' },
-
       { path: 'Category', component: CategoryComponent, pathMatch: 'full' },
-
-
-
     ]
   },
   { path: 'signin', component: SigninComponent },

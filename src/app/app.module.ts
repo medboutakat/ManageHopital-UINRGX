@@ -10,8 +10,7 @@ import { StoreRouterConnectingModule, routerReducer, RouterStateSerializer, } fr
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { HospitalCatEffect } from './HospitalCategorie/Store/Effect';
 import { AppointementComponent } from './appointements/appointement/appointement.component';
-import { HopitalComponent } from './hospital/hopital/hopital.component';
-import { MaterialModule } from './material/material.module';
+import { HopitalComponent } from './hospital/hopital/hopital.component'; 
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-cat.component';
@@ -60,6 +59,7 @@ import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
 import { AppointementEffect } from './appointements/store/appointement.effect';
 import { AppointementReducer } from './appointements/store/appointement.reducer';
 import { AgGridModule } from 'ag-grid-angular';
+import { AngularMaterialModule } from './angular-material/angular-material.module';
 
 
 @NgModule({
@@ -135,7 +135,7 @@ import { AgGridModule } from 'ag-grid-angular';
     StoreModule.forFeature("doctors", doctorReducer),
 
 
-    MaterialModule,
+    AngularMaterialModule,
     FormsModule,
     ReactiveFormsModule,
     MatBottomSheetModule,
