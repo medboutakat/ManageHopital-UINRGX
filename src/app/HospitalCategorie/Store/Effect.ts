@@ -21,7 +21,7 @@ export class HospitalCatEffect {
           ActionsFile.HospitalCatActionType.LOAD_HospitalCat
       ),
       mergeMap((Actions : ActionsFile.LoadHospitalCat)=>
-      this.HospitalCatServ.getHospitalCats().pipe(
+      this.HospitalCatServ.getAll().pipe(
           map(
               (HospitalCats : HospitalCat[])=>
               new ActionsFile.LoadHospitalCatSuccess(HospitalCats)
@@ -40,7 +40,7 @@ export class HospitalCatEffect {
        ),
        map((Actions : ActionsFile.CreateHospitalCat)=>Actions.payload),
        mergeMap((HospitalCateg : HospitalCat )=>
-       this.HospitalCatServ.createHospitalCat(HospitalCateg ).pipe(
+       this.HospitalCatServ.add(HospitalCateg ).pipe(
            map(
                (NewHospitalCats : HospitalCat)=>
                new ActionsFile.CreateHospitalCatSuccess(NewHospitalCats)
@@ -59,7 +59,7 @@ export class HospitalCatEffect {
        ),
        map((Actions : ActionsFile.UpdateHospitalCat)=>Actions.payload),
        mergeMap((HospitalCateg : HospitalCat )=>
-       this.HospitalCatServ. updateHospitalCat(HospitalCateg ).pipe(
+       this.HospitalCatServ. update(HospitalCateg ).pipe(
            map(
                (updateHospitalCats : HospitalCat)=>
                new ActionsFile.CreateHospitalCatSuccess({
@@ -81,7 +81,7 @@ export class HospitalCatEffect {
         ),
         map((Actions : ActionsFile.DeleteHospitalCat)=>Actions.payload),
         mergeMap((id:string)=>
-        this.HospitalCatServ.deleteHospitalCat(id ).pipe(
+        this.HospitalCatServ.delete(id ).pipe(
             map(()=>new ActionsFile.DeleteHospitalCatSuccess(id)),
             catchError(err =>of(new ActionsFile.DeleteHospitalCatFail(err)))
         )
