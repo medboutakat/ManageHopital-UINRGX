@@ -5,10 +5,13 @@
     "types": []
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "../node_modules/api-ai-javascript/*.ts",
+    "../node_modules/api-ai-javascript/**/*.ts",
   ],
   "exclude": [
     "src/test.ts",
-    "src/**/*.spec.ts"
+    "src/**/*.spec.ts",
+    "../node_modules/api-ai-javascript/ts/Request/TTSRequest.ts"
   ]
 }

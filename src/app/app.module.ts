@@ -49,6 +49,7 @@ import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
 import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
 import { AppointementEffect } from './appointements/store/appointement.effect';
 import { AppointementReducer } from './appointements/store/appointement.reducer';
+import { ChatModule } from './chat/chat.module'
 
 
 
@@ -106,7 +107,7 @@ import { AppointementReducer } from './appointements/store/appointement.reducer'
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
     StoreModule.forFeature("hospitals", HospitalReducer),
     StoreModule.forFeature("doctors", doctorReducer),
-
+    ChatModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,

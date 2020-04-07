@@ -9,13 +9,13 @@ import { HomeComponent } from './home/home.component';
 import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-cat.component';
 import { AppointementComponent } from './appointements/appointement/appointement.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { ContactComponent } from './contacts/contact/contact.component';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
 import { SignupComponent } from './connexion/signup/signup.component';
 import { OperationComponent } from './operations/operation/operation.component';
 import { SigninComponent } from './connexion/signin/signin.component';
 import { CategoryComponent } from './category/category.component';
+import { ContactComponent } from './chat/contact/contact.component'
 
 
 
@@ -34,13 +34,12 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' },
       { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full' },
-      { path: 'contacts', component: ContactComponent },
       { path: 'doctorCategory', component: DoctorCatComponent, pathMatch: 'full' },
 
       { path: 'operation', component: OperationComponent, pathMatch: 'full' },
 
       { path: 'Category', component: CategoryComponent, pathMatch: 'full' },
-
+      { path: 'chat', component: ContactComponent, pathMatch: 'full' },
 
 
     ]

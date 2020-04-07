@@ -1,9 +1,11 @@
 {
+
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
+    "skipLibCheck": true,
     "declaration": false,
     "downlevelIteration": true,
     "module": "esnext",
@@ -11,12 +13,19 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es2015",
+    "paths": {
+      "api-ai-javascript/*": ["node_modules/api-ai-javascript/es6/*"]
+    },
     "typeRoots": [
       "node_modules/@types"
     ],
+
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    // "paths": {
+    //   "api-ai-javascript/*": ["node_modules/api-ai-javascript/es6/ApiAiClient"] //bypass the index.ts
+    // }
   }
 }
