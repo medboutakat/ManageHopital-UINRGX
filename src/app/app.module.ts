@@ -60,6 +60,7 @@ import { AppointementEffect } from './appointements/store/appointement.effect';
 import { AppointementReducer } from './appointements/store/appointement.reducer';
 import { AgGridModule } from 'ag-grid-angular';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
+import { MaterialModule } from './material/material/material.module';
 
 
 @NgModule({
@@ -110,8 +111,7 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
     BrowserModule,
     AgGridModule.withComponents([DoctorCatComponent]),
 
-    AppRoutingModule,
-    AppRoutingModule,
+    AppRoutingModule, 
     BrowserAnimationsModule,
     DefaultModule,
 
@@ -120,6 +120,9 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 
     AppstoreModule,
     HttpClientModule,
+    
+    // MaterialModule,
+
     StoreModule.forRoot({}),
     StoreModule.forRoot({ router: routerReducer }),
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
@@ -140,7 +143,6 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
     ReactiveFormsModule,
     MatBottomSheetModule,
     MatTooltipModule,
-
     //for doctor
 
 
