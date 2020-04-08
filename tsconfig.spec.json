@@ -13,6 +13,11 @@
   ],
   "include": [
     "src/**/*.spec.ts",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "../node_modules/api-ai-javascript/*.ts",
+    "../node_modules/api-ai-javascript/**/*.ts",
+  ],
+  "exclude": [
+    "../node_modules/api-ai-javascript/ts/Request/TTSRequest.ts"
   ]
 }
