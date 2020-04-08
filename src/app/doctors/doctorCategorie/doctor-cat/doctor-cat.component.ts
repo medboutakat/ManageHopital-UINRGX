@@ -4,6 +4,7 @@ import * as ActionsFile from 'src/app/doctors/doctorCategorie/Store/Action'
 import { Observable } from 'rxjs';
 import { doctorCat } from '../doctorCat.module';
 import { ColDef, GridApi, ColumnApi } from 'ag-grid-community';
+import { selectAll,selectOne } from 'src/app/doctors/doctorCategorie/doctorCat.selector';
 
 @Component({
   selector: 'app-doctor-cat',
@@ -21,7 +22,8 @@ export class DoctorCatComponent implements OnInit {
   listDoctorCat
   constructor(private store : Store<any>) { 
     this.columnDefs = this.createColumnDefs();
-    this.delete;  
+       this.delete=this.delete.bind(this);  
+
 
   }
 
@@ -91,10 +93,18 @@ onSelectionChanged(event) {
   console.log("Selected row :",this.SelectedClient)
 }
 
-delete(hospital: doctorCat) {
+deletee(doctorcat: doctorCat) {
   if (confirm("Are You Sure You want to Delete the User?")) {
-    this.store.dispatch(new ActionsFile.DeleteDoctorCat(hospital.id));
+    this.store.dispatch(new ActionsFile.DeleteDoctorCat(doctorcat.id));
     this.store.dispatch( new ActionsFile.LoadDoctorCat());
   }
+}
+
+delete() {  
+  this.store.select(selectOne,{id:this.SelectedClient.id}).subscribe(res=>{
+      console.log("selected res", res);
+      this.store.dispatch(new ActionsFile.DeleteDoctorCat(res.objlist.id));
+      this.store.dispatch( new ActionsFile.LoadDoctorCat());        
+  })  
 }
 }
