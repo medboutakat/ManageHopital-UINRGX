@@ -1,0 +1,17 @@
+<h1>Contact Us</h1>
+
+<div class="form-group">
+  <input style="text-align: center;font-size: 14px;" [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text"
+    class="form-control" placeholder="Your Message">
+</div>
+
+<button class="btn btn-success" (click)="sendMessage()">send</button><br><br>
+<ng-container *ngFor="let message of messages | async">
+  <div class="message" [ngClass]="{'from':message.sentBy ==='bot',
+                                      'to':message.sentBy==='user'}">
+  </div>
+  <div class="form-group">
+    <input style="text-align: center;font-size: 14px;outline: none;cursor:none;" type="text"
+      class="form-control btn btn-info" value="{{message.content}}">
+  </div>
+</ng-container>

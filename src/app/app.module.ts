@@ -57,11 +57,11 @@ import { doctorReducer } from './doctors/doctor-store/doctor.reducer';
 import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
 import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
 import { AppointementEffect } from './appointements/store/appointement.effect';
-import { AppointementReducer } from './appointements/store/appointement.reducer';
+import { AppointementReducer } from './appointements/store/appointement.reducer'; 
+import { ChatModule } from './chat/chat.module' 
 import { AgGridModule } from 'ag-grid-angular';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
-import { MaterialModule } from './material/material/material.module';
-
+import { MaterialModule } from './material/material/material.module'; 
 
 @NgModule({
   declarations: [
@@ -135,10 +135,9 @@ import { MaterialModule } from './material/material/material.module';
     StoreModule.forFeature("operations", OperationReducer),
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
     StoreModule.forFeature("hospitals", HospitalReducer),
-    StoreModule.forFeature("doctors", doctorReducer),
-
-
-    AngularMaterialModule,
+    StoreModule.forFeature("doctors", doctorReducer), 
+    ChatModule,  
+    AngularMaterialModule, 
     FormsModule,
     ReactiveFormsModule,
     MatBottomSheetModule,
