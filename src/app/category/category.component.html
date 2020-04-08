@@ -8,17 +8,4 @@
          <input matInput placeholder="remark" [(ngModel)]='objemp.remark'>
         </mat-form-field> -->
 
-        <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <button type="button" class="btn btn-primary" (click)="loadAddnew()" data-toggle="modal" data-target="#myModal">New</button>      
-      </li>
-      <li class="breadcrumb-item">
-        <button [disabled]="!IsRowSelected || IsMultple" type="button" class="btn btn-warning" (click)="edit()"  data-toggle="modal" data-target="#myModal">Edit</button>
-      </li>
-      <li class="breadcrumb-item">
-        <button [disabled]="!IsRowSelected" type="button" class="btn btn-danger" (click)="delete()" data-toggle="modal" >Delete</button>
-      </li>
-    </ol>
-  </nav>
 

@@ -33,11 +33,29 @@
         <mat-card class="container">
             <div class="row">
               <div class="col">
-               <app-category></app-category>   
+                <div class="container" width="400px">
+                  
+                    <!-- <button style="color: crimson;" mat-raised-button mat-dialog-close>
+                      <span class="material-icons">
+                      clear
+                      </span>
+                    </button> -->
+                      <form class="example-form" >
+                          <mat-form-field class="example-full-width"> 
+                            <input matInput placeholder="name" >
+                          </mat-form-field  >
+                          <br>
+                           <mat-form-field class="example-full-width">
+                             <input matInput placeholder="remark"> 
+                            </mat-form-field>
+                            <br>
+                            <!-- <app-menu></app-menu> -->
+                      </form>
+                </div>
               </div>
               <div class="col">
                 <div class="table-responsive">
-                    <table class="table" >
+                    <!-- <table class="table" >
                       <thead>
                         <tr>
                           <th scope="col">name</th>
@@ -50,7 +68,26 @@
                           <td>{{item.remark}}</td> 
                         </tr>        
                       </tbody>
-                    </table>
+                    </table> -->
+                      <!-- <ag-grid-angular
+                        style="width: 500px; height: 150px;"
+                        class="ag-theme-balham"
+                        [rowData]="rowData"
+                        [columnDefs]="columnDefs">
+                    </ag-grid-angular> -->
+
+                    <app-menu [IsRowSelected]="IsRowSelected" 
+                    [addAction]="add" 
+                    [editAction]="edit" 
+                    [deleteAction]="delete" 
+                    [IsMultple]="IsMultple"
+                    [isNew]="isNew" 
+                    ></app-menu>
+
+                    <ag-grid-angular style="width: 100%; height: 400px;"
+                    class="ag-theme-balham" (gridReady)="onGridReady($event)" rowSelection='multiple' 
+                    [columnDefs]="columnDefs" [rowData]="(listDoctorCat)" (selectionChanged)="onSelectionChanged($event)">
+                    </ag-grid-angular>
                 </div>
               </div>
             </div>

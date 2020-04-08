@@ -19,11 +19,13 @@ import { ContactComponent } from './chat/contact/contact.component'
 
 
 
+
 const routes: Routes = [
 
   {
     path: '',
     component: DefaultComponent,
+    
     children: [
       { path: '', component: DashboardComponent },
       { path: 'posts', component: PostsComponent },
@@ -31,21 +33,19 @@ const routes: Routes = [
       { path: 'hospitals', component: HopitalComponent },
       { path: 'doctors', component: DoctorComponent },
       { path: 'doctoredit', component: DoctorEditComponent },
-      { path: 'home', component: HomeComponent },
+      { path: 'home', component: HomeComponent },       
       { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' },
       { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full' },
       { path: 'doctorCategory', component: DoctorCatComponent, pathMatch: 'full' },
-
-      { path: 'operation', component: OperationComponent, pathMatch: 'full' },
-
+      { path: 'operation', component: OperationComponent, pathMatch: 'full' }, 
       { path: 'Category', component: CategoryComponent, pathMatch: 'full' },
       { path: 'chat', component: ContactComponent, pathMatch: 'full' },
 
-
+ 
     ]
   },
   { path: 'signin', component: SigninComponent },
-  { path: 'signup', component: SignupComponent }
+  { path: 'material', loadChildren: () => import('./material/material/material.module').then(m => m.MaterialModule) } 
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
