@@ -26,8 +26,9 @@ import { DoctorComponent } from './doctors/doctor/doctor.component';
 import { CategoryComponent } from './category/category.component';
 import { HospitalEditComponent } from './hospital/hospital-edit/hospital-edit.component';
 import { SignupComponent } from './connexion/signup/signup.component';
-import { SigninComponent } from './connexion/signin/signin.component';
-
+import { SigninComponent } from './connexion/signin/signin.component'; 
+import { InvoiceComponent } from './invoices/invoice/invoice.component';
+import { DetailsComponent } from './invoices/details/details.component'; 
 
 import { AppstoreModule } from './appstore/appstore.module';
 
@@ -82,7 +83,11 @@ import { MaterialModule } from './material/material/material.module';
     ContactComponent,
     DoctorCatComponent,
     CategoryComponent,
-    ContactComponent,
+    ContactComponent, 
+    SigninComponent,
+    SignupComponent,
+    InvoiceComponent,
+    DetailsComponent, 
     OperationComponent,
     AddOperationComponent,
     AddAppointementComponent,
@@ -92,7 +97,7 @@ import { MaterialModule } from './material/material/material.module';
     HospitalCatAddComponent,
     DeleteOperationComponent,
     MenuComponent,
-    SigninComponent
+    SigninComponent 
     // FooterComponent, 
     // HeaderComponent
   ],
