@@ -1,0 +1,37 @@
+
+<div >
+    <h3>Add</h3>
+    <form class="example-form">
+
+<div style="height:100%;">
+    <h3>New hospital</h3>
+    <form class="example-form mat-bottom-sheet-container-large">
+        <mat-form-field class="example-full-width">
+            <mat-label>name</mat-label>
+            <input matInput [errorStateMatcher]="matcher"
+                            placeholder="@name">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Remark</mat-label>
+            <input matInput  [errorStateMatcher]="matcher" placeholder="@remark">
+        </mat-form-field> 
+        <mat-form-field class="example-full-width">
+            <mat-label>history</mat-label>
+            <input matInput  [errorStateMatcher]="matcher" placeholder="@history">
+        </mat-form-field> 
+        <br>
+     
+         <div class="form-group">
+              <div class="col-sm-8"> 
+                <app-select label="Select user" display="name" [listObjects]="listhopitalCatValues"></app-select>
+              </div>
+        </div>    
+        <div>
+        <app-contact (getOutputForm)="getContact($event)"></app-contact>
+        </div>
+        <button class="btn btn-primary">imane</button>
+    </form>
+</div>
+
+

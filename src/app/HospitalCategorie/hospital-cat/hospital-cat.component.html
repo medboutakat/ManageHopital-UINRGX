@@ -1,41 +1,116 @@
-<div>
+<!-- <div>
     <div style="margin-left: 250px;" class="my-3 p-3 bg-white rounded shadow-sm">
       <h6 class="border-bottom border-gray pb-2 mb-0">Hospital Category</h6>
       <div class="media text-muted pt-3">
-        <!-- function select  -->
-        <!-- <div class="form-group">
+        function select 
+        <div class="form-group">
           <div class="col-sm-8"> 
             <app-select  [listObjects]="listhopitalCatValues"></app-select>
           </div>
-        </div>    -->
-
-        <mat-card class="container">
+        </div>   
+**********************************************
+        <mat-card class="container" >
           <div class="row">
          <div class="col">
-<app-category></app-category>
-        
-         </div>
-            <div class="col">
-              <div class="table-responsive">
-              <table class="table" >
-                <thead>
-                  <tr>
-                    <th scope="col">name</th>
-                    <th scope="col">remark</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of listhopitalCatValues">
-                    <th scope="row">{{item.name}}</th>
-                    <td>{{item.remark}}</td> 
-                  </tr>        
-                </tbody>
-              </table>
-            </div>
+          <form class="example-form" [formGroup]="HospitalCatForm" (submit)="creHospitalCat()">
+            <mat-form-field class="example-full-width"> 
+              <input matInput placeholder="name" formControlName="name" >
+            </mat-form-field  >
+             <mat-form-field class="example-full-width">
+               <input matInput placeholder="remark" formControlName="remark"> 
+              </mat-form-field>
+              <button type="submit" class="btn btn-warning" aria-label="Left Align">
+                <i class="material-icons">
+                  done
+                </i>
+              </button>
+            </form>
+
+
+          </div>
+          <div class="col" style="margin-left: -50px;">
+            <h6 class="border-bottom border-gray pb-2 mb-0">Recents Appointements</h6>
+            <div *ngFor="let item of listhopitalCatValues" class="media text-muted pt-3">
+              <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-gray-dark">{{item.name}}</strong>
+                {{item.remark}}
+              </p>
+              <div class="col-md-5">
+                <button style="margin: 10px;" type="button" class="btn btn-warning" aria-label="Left Align">
+                  <i class="material-icons">
+                    autorenew
+                  </i>
+                </button>
+                <button (click)="deleteCustomer(item)" style="margin:5px;" type="button" class="btn btn-danger"
+                  aria-label="Left Align">
+                  <i class="material-icons">delete</i>
+                </button>
               </div>
             </div>
+
+          </div>
+        </div>
       </mat-card>
-      </div>
     </div>
+</div>
+  </div> -->
+
+
+<div class="limiter">
   
-  </div>
+  <div class="container-table100">
+    <div class="wrap-table100">
+ 
+      <div class="table100 ver1 m-b-110">
+      
+        <div class="table100-head">
+      
+          <table>
+            <thead>
+              <tr class="row100 head">
+                <!-- <th class="cell100 column1">Class name</th> -->
+                <th class="cell100 column1">Name</th>
+                <th class="cell100 column2">Remark</th>
+                <th class="cell100 column3"></th>
+                <th class="cell100 column4">
+                  <button type="submit" (click)="add()"  style="margin-left: 70px; color: chartreuse;" aria-label="Left Align" >
+                    <span class="material-icons">
+                      add_circle
+                      </span>
+                  </button>
+                </th>
+
+                
+              </tr>
+            </thead>
+          </table>
+        </div>
+
+        <div class="table100-body js-pscroll">
+          <table>
+            <tbody>
+              <tr class="row100 body" *ngFor="let item of listhopitalCatValues">
+                <!-- <td class="cell100 column1">Like a butterfly</td> -->
+                <td class="cell100 column1">{{item.name}} </td>
+                <!-- <td class="cell100 column3">{{item.name}}</td> -->
+                <td class="cell100 column2">{{item.remark}}</td>
+                <td class="cell100 column3">
+                  <button style="margin: 10px; color: cornflowerblue; " type="button"  aria-label="Left Align">
+                    <i class="material-icons">
+                      autorenew
+                      </i>
+                </button>
+                <button (click)="deleteCustomer(item)" style="margin:5px; color: red; " type="button"  aria-label="Left Align">
+                <i class="material-icons">delete</i>
+                </button>
+                </td>
+              </tr>
+
+
+         
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+  
