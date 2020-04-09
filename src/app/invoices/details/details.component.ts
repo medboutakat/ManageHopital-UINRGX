@@ -54,14 +54,21 @@ export class DetailsComponent implements ControlValueAccessor {
   }
 
   addDetail(){
-    console.log('new product : ',this.productForm.value)
-      this.products.push(this.productForm.value)
+    var a = 0
+    this.products.forEach(item =>{
+      item.id > a ? item.id = a : null
+    });
+    console.log('a = ',a)
+    this.productForm.setControl('id',new FormControl(a+1))
+    this.products.push(this.productForm.value)
+    console.log('product form : ',this.productForm.value)
+    console.log(this.products)
     this.showAdd();
-    console.log('data after : ',data);
     localStorage.setItem('data', JSON.stringify(this.products));
-    console.log('data befor : ',data);
-    console.log('products : ',this.products);
     this.productForm.reset();
+    
   }
+
+  
 
 }

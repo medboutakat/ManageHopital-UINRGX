@@ -1,64 +1,73 @@
-<div class="row" style="padding-left: 10%;">
-    <div id="divinfos" class="row col-10" style="margin-bottom: 0;">
-        <div class="col-5"><h6>Name</h6></div>
-        <div class="col-2 "><h6>Quantity</h6> </div>
-        <div class="col-2 "><h6>Price</h6></div>
-        <div class="col-1 "><h6>Tax</h6></div>
-    </div>
-    <div class="col-1" style="text-align: center;">
-        <h6>Total</h6> 
-     </div>
-</div>
-<div class="doctor-list" *ngFor="let product of products" style="padding-left: 10%;">
-    <div class="row">
-        <div class="row col-11 product-div">
-            <div class="col-10 div-detail">
-                <div id="divinfos" class="row">
-                    <div class="col-7"><h6>{{product.name}}</h6></div>
-                    <div class="col-2 q">{{product.quantity}} </div>
-                    <div class="col-2 q">{{product.price}}</div>
-                    <div class="col-1 q">{{product.tax}}</div>
-                </div>
-                <textarea aria-readonly="true" class="form-control" rows="1">{{product.description}}</textarea>
+<div class="row container" *ngFor="let product of products ; let i = index">
+    <!-- title -->
+    <div class="row col-11" *ngIf="i==0">
+        <section class="row col-10">
+            <div  class="col12 divtitle row" >
+                <div class="col-7 p">Description</div>
+                <div class="col-2 p">Quantity </div>
+                <div class="col-2 p">Price</div>
+                <div class="col-1 p">Tax</div>
             </div>
-            <div class="col-2">
-               <h6>765.00</h6> 
-            </div>
-        </div>
-        <a class="col-1" style="padding: 10px;color:#1E90FF ;margin-left: 15px;">
-            <svg class="bi bi-x-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
-                <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
-                <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
-            </svg>
-        </a>
+        </section>
+        <h6 class="col-2" style="margin: 0 auto;text-align: center;">Amount</h6>
     </div>
+    <!-- body -->
+    <div class="row test-div col-11">
+        <section class="row col-10">
+            <div  class="col12 divinfos row" >
+                <div class="col-7 q"><input class="Input" style="width:100%;" id="abd1" type="text" [value]="product.name"></div>
+                <div class="col-2 q"><input class="Input" type="text" [value]="product.quantity" /> </div>
+                <div class="col-2 q"><input class="Input" type="text" [value]="product.price" /></div>
+                <div class="col-1 q"><input class="Input" type="text" [value]="product.tax" /></div>
+            </div>
+            <!-- <div class="col-2 c" style="background-color: aquamarine;"></div> -->
+            <textarea aria-readonly="true" class="form-control col-12" rows="1">{{product.description}}</textarea>
+        </section>
+        <h6 class="col-2" style="margin: 5% auto;text-align: center;">76.00</h6>
+    </div>
+    <a class="col-1" style="padding: 10px;color:#1E90FF ;margin-left: 15px;" 
+        matTooltip="Delete line" [matTooltipPosition]="'left'"
+        >
+        <svg class="bi bi-x-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
+        </svg>
+    </a>
 </div>
-<!-- [formGroup]="productForm" (ngSubmit)="addDetail()" -->
-<form [formGroup]="productForm" (ngSubmit)="addDetail()" *ngIf="show" >
-    <div class="container">
-        <input formControlName="name" type="text" placeholder="name" />
-        <textarea formControlName="description" class="form-control" rows="2"  placeholder="description"></textarea>
-        <input formControlName="quantity" type="number" #qte placeholder="quntity" aria-valuemin="1" value="1" >
-        <input formControlName="price" type="text" #price placeholder="price"
-                aria-describedby="inputGroup-sizing-sm" value="00.00"> DH
-        <input formControlName="tax" type="number" style="width: 10%;" placeholder="tax" aria-valuemin="1" value="1" >%
-          
-        <h6 style="float: right;" aria-disabled="true">Total : {{total}}</h6>
-        <button class="btn btn-primary">
+<!-- <a class="btn btn-success a"><label for="abd1">Add row</label></a>
+<a class="btn btn-primary a"><label for="abd1">Edit item</label></a> -->
+
+
+<!-- < [formGroup]="productForm" (ngSubmit)="addDetail()"> -->
+<form [formGroup]="productForm" (ngSubmit)="addDetail()" *ngIf="show" class="row container" >
+    <div class="row test-div col-11">
+        <section class="row col-10">
+            <div  class="col12 divinfos row" >
+                <div class="col-7 q"><input class="Input" formControlName="name" placeholder="Name" style="width:100%;" id="abd1" type="text"></div>
+                <div class="col-2 q"><input class="Input" formControlName="quantity"  type="text" /> </div>
+                <div class="col-2 q"><input class="Input" type="text"#price formControlName="price" placeholder="price" /></div>
+                <div class="col-1 q"><input class="Input" type="text" formControlName="tax" placeholder="tax" /></div>
+            </div>
+            <!-- <div class="col-2 c" style="background-color: aquamarine;"></div> -->
+            <textarea aria-readonly="true" formControlName="description" placeholder="description" class="form-control col-12" rows="1"></textarea>
+        </section>
+        <h6 class="col-2" style="margin: 5% auto;text-align: center;">76.00</h6>
+    </div>
+    
+    <button class="btn btn-primary col-2">
             <svg class="bi bi-plus-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"/>
             </svg>
         </button>
-    </div>
-    
 </form>
 
-    <a class="col" (click)="showAdd()" *ngIf="!show">
-        <nav class="div-add">
-            <svg class="bi bi-plus-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"/>
-            </svg>
-               Add a line of object
-        </nav>
-    </a>
+
+<a class="col row container addbtn" (click)="showAdd()" *ngIf="!show">
+    <nav class="div-add col-11">
+        <svg class="bi bi-plus-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"/>
+        </svg>
+            Add a line of object
+    </nav>
+</a>
