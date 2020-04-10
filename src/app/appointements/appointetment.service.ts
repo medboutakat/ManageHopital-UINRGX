@@ -2,33 +2,37 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Appointement } from './appointement.model';
 import { Hospital } from './hospital';
+import { ICrudService } from '../icrud-service';
+import { RootURLS } from '../root-urls';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AppointetmentService {
-  url = "http://144.91.76.98:5002/api/Appointement"
-  url2 = "http://144.91.76.98:5002/api/Hospital";
-  constructor(private http: HttpClient) { }
-  //*********************get all Appointements************************* */
-  getAppointements() {
-    return this.http.get<Appointement[]>(this.url)
+export class AppointetmentService implements ICrudService<Appointement> {
+  ReponseUrl: string;
+  RepByDm: Appointement[];
+
+  constructor(private http: HttpClient) {
+    this.ReponseUrl = RootURLS.getUrl("Appointement");
   }
-  /**********************Delete Appointement************************************* */
-  deleteAppointement(payload) {
-    return this.http.delete(`${this.url}/${payload}`);
+  getAll(): Observable<Appointement[]> {
+    return this.http.get<Appointement[]>(this.ReponseUrl);
   }
-  /*************************get Hospitals*********************************************** */
-  gethospital() {
-    return this.http.get<Hospital[]>(this.url2);
+  getById(payload: number): Observable<Appointement> {
+    return this.http.get<Appointement>(`${this.ReponseUrl}/${payload}`);
   }
-  /****************************Add Appointement************************************************* */
-  addApps(app: Appointement) {
-    const headers = new HttpHeaders().set('content-type', 'application/json');
-    var body = {
-      id: app.id, identityNo: app.identityNo, assurance: app.assurance,
-      reservationTimeStamp: app.reservationTimeStamp, subject: app.subject, hospitalId: app.hospitalId,
-    }
-    return this.http.post<Appointement>(this.url, body, { headers })
+  add(payload: Appointement): Observable<Appointement> {
+    return this.http.post<Appointement>(this.ReponseUrl, payload);
   }
+  update(hospitalCat: Appointement): Observable<Appointement> {
+    return this.http.patch<Appointement>(
+      `${this.ReponseUrl}/${hospitalCat.id}`,
+      hospitalCat
+    );
+  }
+  delete(payload: string) {
+    return this.http.delete(`${this.ReponseUrl}/${payload}`);
+  }
+
 }

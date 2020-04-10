@@ -10,7 +10,7 @@ import { StoreRouterConnectingModule, routerReducer, RouterStateSerializer, } fr
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { HospitalCatEffect } from './HospitalCategorie/Store/Effect';
 import { AppointementComponent } from './appointements/appointement/appointement.component';
-import { HopitalComponent } from './hospital/hopital/hopital.component'; 
+import { HopitalComponent } from './hospital/hopital/hopital.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-cat.component';
@@ -27,27 +27,24 @@ import { CategoryComponent } from './category/category.component';
 import { HospitalEditComponent } from './hospital/hospital-edit/hospital-edit.component';
 import { SignupComponent } from './connexion/signup/signup.component';
 import { SigninComponent } from './connexion/signin/signin.component';
-
-
 import { AppstoreModule } from './appstore/appstore.module';
-
 import { AddAppointementComponent } from './appointements/add-appointement/add-appointement.component';
 import { HospitalReducer } from './appointements/store/hospital.reducer';
-import { HospitalEffect } from './appointements/store/hospital.effect';
+import { HospitalsEffect } from './appointements/store/hospital.effect';
 import { OperationComponent } from './operations/operation/operation.component';
 import { AddOperationComponent } from './operations/add-operation/add-operation.component';
 import { DeleteOperationComponent } from './operations/delete-operation/delete-operation.component';
 import { OperationReducer } from './operations/store/operations.reducer';
 import { OpEffect } from './operations/store/operation.effect';
 import { OperationCategoryReducer } from './operations/store/category.reducer';
-import { OpCatEffect } from './operations/store/category.effects';
+import { OperationCatEffect } from './operations/store/category.effects';
 
 import { SavePdfComponent } from './appointements/save-pdf/save-pdf.component';
 
 import { DialogHospComponent } from './hospital/dialog-hosp/dialog-hosp.component';
 import { HospitalCatAddComponent } from './HospitalCategorie/hospital-cat-add/hospital-cat-add.component';
 
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MenuComponent } from './menu/menu.component';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -57,11 +54,11 @@ import { doctorReducer } from './doctors/doctor-store/doctor.reducer';
 import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
 import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
 import { AppointementEffect } from './appointements/store/appointement.effect';
-import { AppointementReducer } from './appointements/store/appointement.reducer'; 
-import { ChatModule } from './chat/chat.module' 
+import { AppointementReducer } from './appointements/store/appointement.reducer';
+import { ChatModule } from './chat/chat.module'
 import { AgGridModule } from 'ag-grid-angular';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
-import { MaterialModule } from './material/material/material.module'; 
+import { MaterialModule } from './material/material/material.module';
 
 @NgModule({
   declarations: [
@@ -103,7 +100,7 @@ import { MaterialModule } from './material/material/material.module';
     SavePdfComponent,
     DialogHospComponent,
     HospitalCatAddComponent,
-    AddOperationComponent,DeleteOperationComponent
+    AddOperationComponent, DeleteOperationComponent
   ],
 
 
@@ -111,7 +108,7 @@ import { MaterialModule } from './material/material/material.module';
     BrowserModule,
     AgGridModule.withComponents([DoctorCatComponent]),
 
-    AppRoutingModule, 
+    AppRoutingModule,
     BrowserAnimationsModule,
     DefaultModule,
 
@@ -120,7 +117,7 @@ import { MaterialModule } from './material/material/material.module';
 
     AppstoreModule,
     HttpClientModule,
-    
+
     // MaterialModule,
 
     StoreModule.forRoot({}),
@@ -135,9 +132,9 @@ import { MaterialModule } from './material/material/material.module';
     StoreModule.forFeature("operations", OperationReducer),
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
     StoreModule.forFeature("hospitals", HospitalReducer),
-    StoreModule.forFeature("doctors", doctorReducer), 
-    ChatModule,  
-    AngularMaterialModule, 
+    StoreModule.forFeature("doctors", doctorReducer),
+    ChatModule,
+    AngularMaterialModule,
     FormsModule,
     ReactiveFormsModule,
     MatBottomSheetModule,
@@ -145,7 +142,7 @@ import { MaterialModule } from './material/material/material.module';
     //for doctor
 
 
-    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, OpCatEffect]),
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, OpEffect, OperationCatEffect, HospitalsEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,13 +6,14 @@ import * as appsActions from './category.actions'
 import { OperationCategory } from '../operation-category';
 import { map, mergeMap, catchError } from "rxjs/operators";
 import { Action } from '@ngrx/store';
+import { OperationCatService } from '../operation-cat.service';
 
 @Injectable()
-export class OpCatEffect {
+export class OperationCatEffect {
 
     constructor
         (
-            private service: OperationService,
+            private service: OperationCatService,
             private actions$: Actions
         ) { }
 
@@ -23,7 +24,7 @@ export class OpCatEffect {
             appsActions.OperationCategoyrActionTypes.LOAD_OPERATIONSCATEGORY
         ),
         mergeMap((actions: appsActions.LoadOperationsCategory) =>
-            this.service.getOpCategory().pipe(
+            this.service.getAll().pipe(
                 map((operations: OperationCategory[]) =>
                     new appsActions.LoadOperationsCategorySuccess(operations)
                 ),
