@@ -67,8 +67,6 @@ export class DetailsComponent implements ControlValueAccessor {
     localStorage.setItem('data', JSON.stringify(this.products));
     this.productForm.reset();
     
-  }
-
-  
+  } 
 
 }

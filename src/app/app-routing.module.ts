@@ -17,6 +17,7 @@ import { SigninComponent } from './connexion/signin/signin.component';
 import { InvoiceComponent } from './invoices/invoice/invoice.component'; 
 import { CategoryComponent } from './category/category.component';
 import { ContactComponent } from './chat/contact/contact.component' 
+import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
 
 
 
@@ -38,6 +39,7 @@ const routes: Routes = [
       { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full' },
       { path: 'doctorCategory', component: DoctorCatComponent, pathMatch: 'full' }, 
       { path: 'invoice', component: InvoiceComponent, pathMatch: 'full' }, 
+      { path: 'invoices', component: InvoiceListComponent, pathMatch: 'full' }, 
       { path: 'operation', component: OperationComponent, pathMatch: 'full' }, 
       { path: 'Category', component: CategoryComponent, pathMatch: 'full' },
       { path: 'chat', component: ContactComponent, pathMatch: 'full' }, 

@@ -36,7 +36,7 @@ form{
     color: #1C63B7;
 }
 .Input{
-    border: none ;
+    border: solid rgb(0, 153, 255) 1px;
     width: 98%;
     height: 100%;
     padding-left: 5px;
