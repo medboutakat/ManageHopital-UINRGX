@@ -17,8 +17,7 @@ import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-
 import { SelectComponent } from './select/select.component';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 import { ContactComponent } from './contacts/contact/contact.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatBottomSheetRef, MatBottomSheet } from '@angular/material/bottom-sheet';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 import { MatBottomSheetModule, MatTooltipModule, MatCellDef } from '@angular/material'
 import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
 import { DialogComponent } from './appointements/dialog/dialog.component';
@@ -59,6 +58,9 @@ import { ChatModule } from './chat/chat.module'
 import { AgGridModule } from 'ag-grid-angular';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { MaterialModule } from './material/material/material.module';
+import { InvoiceComponent } from './invoices/invoice/invoice.component';
+import { DetailsComponent } from './invoices/details/details.component';
+import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,11 @@ import { MaterialModule } from './material/material/material.module';
     ContactComponent,
     DoctorCatComponent,
     CategoryComponent,
-    ContactComponent,
+    ContactComponent, 
+    SigninComponent,
+    SignupComponent,
+    InvoiceComponent,
+    DetailsComponent, 
     OperationComponent,
     AddOperationComponent,
     AddAppointementComponent,
@@ -89,7 +95,9 @@ import { MaterialModule } from './material/material/material.module';
     HospitalCatAddComponent,
     DeleteOperationComponent,
     MenuComponent,
-    SigninComponent
+    SigninComponent,
+    InvoiceListComponent,
+    // StoreComponent 
     // FooterComponent, 
     // HeaderComponent
   ],
