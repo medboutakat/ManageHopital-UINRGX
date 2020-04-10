@@ -24,7 +24,7 @@ export class HopitalComponent implements OnInit {
   constructor(private store : Store<any>, private _bottomSheet: MatBottomSheet,public dialog: MatDialog) {
     this.store.dispatch( new ActionsFile.LoadHospitalCat());
     this.store.subscribe(data =>{  
-      this.listhopitalCatValues = Object.values(data.HospitalCat.entities)  
+      this.listhopitalCatValues = Object.values(data)  
       console.log(" this.listhopitalCatValues=> ",this.listhopitalCatValues)    
     }
     ),

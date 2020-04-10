@@ -6,6 +6,19 @@ import { doctorCat } from '../doctorCat.module';
 import { ColDef, GridApi, ColumnApi } from 'ag-grid-community';
 import { selectAll,selectOne } from 'src/app/doctors/doctorCategorie/doctorCat.selector';
 
+
+export interface PeriodicElement {
+  name: string;
+  
+  remark: number;
+
+}
+
+const ELEMENT_DATA: PeriodicElement[] = [
+  {name: 'Hydrogen', remark: 1.0079},
+
+];
+
 @Component({
   selector: 'app-doctor-cat',
   templateUrl: './doctor-cat.component.html',
@@ -39,6 +52,9 @@ export class DoctorCatComponent implements OnInit {
     }
     );
   }
+
+  displayedColumns: string[] = [ 'name', 'remark'];
+  dataSource = this.listDoctorCat;
 private createColumnDefs() {
   return [
     { headerName: 'name', field: 'name', editable: true, filter: true, sortable: true, checkboxSelection: true },

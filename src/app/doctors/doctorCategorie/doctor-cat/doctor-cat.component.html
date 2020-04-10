@@ -1,5 +1,5 @@
-
 <!-- 
+
     <div style="margin-left: 250px;" class="my-3 p-3 bg-white rounded shadow-sm">
       <h6 class="border-bottom border-gray pb-2 mb-0">Doctor Category</h6>
       <div class="media text-muted pt-3">
@@ -23,7 +23,7 @@
           </div>
       </div>
     </div>
-   -->
+
  
   
   <div>
@@ -35,11 +35,11 @@
               <div class="col">
                 <div class="container" width="400px">
                   
-                    <!-- <button style="color: crimson;" mat-raised-button mat-dialog-close>
+                    <button style="color: crimson;" mat-raised-button mat-dialog-close>
                       <span class="material-icons">
                       clear
                       </span>
-                    </button> -->
+                    </button>
                       <form class="example-form" >
                           <mat-form-field class="example-full-width"> 
                             <input matInput placeholder="name" >
@@ -49,13 +49,13 @@
                              <input matInput placeholder="remark"> 
                             </mat-form-field>
                             <br>
-                            <!-- <app-menu></app-menu> -->
+                             <app-menu></app-menu> 
                       </form>
                 </div>
               </div>
               <div class="col">
                 <div class="table-responsive">
-                    <!-- <table class="table" >
+                    <table class="table" >
                       <thead>
                         <tr>
                           <th scope="col">name</th>
@@ -68,13 +68,13 @@
                           <td>{{item.remark}}</td> 
                         </tr>        
                       </tbody>
-                    </table> -->
-                      <!-- <ag-grid-angular
+                    </table> 
+                      <ag-grid-angular
                         style="width: 500px; height: 150px;"
                         class="ag-theme-balham"
                         [rowData]="rowData"
                         [columnDefs]="columnDefs">
-                    </ag-grid-angular> -->
+                    </ag-grid-angular>
 
                     <app-menu [IsRowSelected]="IsRowSelected" 
                     [addAction]="add" 
@@ -94,4 +94,30 @@
         </mat-card>
       </div>
     </div> 
-  </div>
+  </div> -->
+
+  <table mat-table [dataSource]="(dataSource)" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="remark">
+      <th mat-header-cell *matHeaderCellDef> remark </th>
+      <td mat-cell *matCellDef="let element"> {{element.remark}} </td>
+    </ng-container>
+  
+   
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  

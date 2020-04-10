@@ -54,7 +54,8 @@ const Materiallist = [
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-
+    MatTableModule,
+    
   ],
   exports: [
     Materiallist,
