@@ -1,23 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import * as ActionsFile from 'src/app/doctors/doctorCategorie/Store/Action'
 import { Observable } from 'rxjs';
 import { doctorCat } from '../doctorCat.module';
 import { ColDef, GridApi, ColumnApi } from 'ag-grid-community';
 import { selectAll,selectOne } from 'src/app/doctors/doctorCategorie/doctorCat.selector';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { PeriodicElement } from 'src/app/modules/dashboard/dashboard.component';
+import { SelectionModel } from '@angular/cdk/collections';
 
 
-export interface PeriodicElement {
-  name: string;
+// export interface listDoctorCat {
+//   name: string;
   
-  remark: number;
+//   remark: string;
 
-}
+// }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {name: 'Hydrogen', remark: 1.0079},
+// const ELEMENT_DATA: listDoctorCat[] = [
+//   {name: '', remark: ''},
 
-];
+// ];
 
 @Component({
   selector: 'app-doctor-cat',
@@ -33,41 +36,64 @@ export class DoctorCatComponent implements OnInit {
 
 
   listDoctorCat
+  dataSource;
+  selection: SelectionModel<doctorCat>;
   constructor(private store : Store<any>) { 
-    this.columnDefs = this.createColumnDefs();
+    // this.columnDefs = this.createColumnDefs();
        this.delete=this.delete.bind(this);  
-
+ 
 
   }
+  displayedColumns: string[] = [ 'select','name', 'remark'];
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   ngOnInit() {
     this.store.dispatch( new ActionsFile.LoadDoctorCat());
-    this.LoadData();
-
-  }
-  LoadData() {
-     this.store.subscribe(data =>{
+    this.store.subscribe(data =>{
       this.listDoctorCat = Object.values(data.DoctorCat.entities)  
-      console.log(" this.listDoctorCat=> ",this.listDoctorCat) 
-    }
-    );
+      console.log(" listDoctorCat=> ",this.listDoctorCat) 
+  this.dataSource = new MatTableDataSource<doctorCat>(this.listDoctorCat);
+  this.dataSource.sort = this.sort;
+  this.dataSource.paginator = this.paginator;
+  this.selection = new SelectionModel<doctorCat>(true, []);
+    })
+
+  }
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+    
   }
 
-  displayedColumns: string[] = [ 'name', 'remark'];
-  dataSource = this.listDoctorCat;
-private createColumnDefs() {
-  return [
-    { headerName: 'name', field: 'name', editable: true, filter: true, sortable: true, checkboxSelection: true },
-    { headerName: 'remark', field: 'remark', editable: true, filter: true, sortable: true },
-  ]
-}
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => 
+          this.selection.select(row),
+       
+        );
+  }
+  onrowselect(row){
+    console.log("roow",row)
+  }
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: doctorCat): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+    
+  }
+
+  applyFilter(filtervalue : string){
+    this.dataSource.filter = filtervalue.trim().toLowerCase();
+  }
+  
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
 exist: boolean = false;
-
-// row data and column definitions
-private rowData: doctorCat[];
-private columnDefs: ColDef[];
-
 
 // gridApi and columnApi
 private api: GridApi;

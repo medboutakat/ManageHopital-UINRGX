@@ -16,7 +16,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule, MatCellDef } from '@angular/material/table';
-import { MatPaginatorModule, MatSortModule } from '@angular/material';
+import { MatPaginatorModule, MatSortModule, MatCheckbox, MatCheckboxModule } from '@angular/material';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA} from '@angular/material/bottom-sheet';  
 import { AgGridModule } from 'ag-grid-angular';
 import { DoctorCatComponent } from '../doctors/doctorCategorie/doctor-cat/doctor-cat.component';
@@ -38,6 +38,9 @@ const Materiallist = [
   MatDialogModule,
   MatTableModule,
   MatPaginatorModule,
+  MatSortModule,
+  MatCheckboxModule
+
 ]
 
 @NgModule({
@@ -54,12 +57,14 @@ const Materiallist = [
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
-    
+    MatSortModule,
+    MatCheckboxModule
   ],
   exports: [
     Materiallist,
     MatToolbarModule,
     MatTableModule,
+  
   ],
   providers: [ { provide: MatBottomSheetRef, useValue: {} },
     { provide: MAT_BOTTOM_SHEET_DATA, useValue: {} }],
