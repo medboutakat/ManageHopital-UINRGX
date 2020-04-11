@@ -28,11 +28,10 @@ export class MaterialEditComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      id: [null],
+    this.form = this.fb.group({ 
       name: ["", Validators.required],
       remark: ["", Validators.required],
-      quantity: [0, Validators.required], 
+      quantity: [15, Validators.required], 
     });
 
 
@@ -46,12 +45,9 @@ export class MaterialEditComponent implements OnInit {
 
 
   add(){
-    var a =this.form.value as Material; 
-    
+    var a =this.form.value as Material;     
     console.log(a);
-    this.store.dispatch(new ActionsFile.CreateMaterial(a));
-    // this.form.reset();
-    // this.router.navigate(['/material']);
+    this.store.dispatch(new ActionsFile.CreateMaterial(a)); 
   }
 
 }

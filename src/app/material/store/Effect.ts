@@ -11,7 +11,7 @@ import { Material } from '../material-model';
 @Injectable()
 export class MaterialEffect {
     constructor(private actions$ : Actions,
-        private MaterialServ : MaterialService)
+        private service : MaterialService)
    {
    }
 
@@ -21,12 +21,10 @@ export class MaterialEffect {
           ActionsFile.MaterialActionType.LOAD
       ),
       mergeMap((Actions : ActionsFile.LoadMaterial)=>
-      this.MaterialServ.getAll().pipe(
-          map((data : Material[])=>
-              new ActionsFile.LoadMaterialSuccess(data)
-          ),
-          catchError(err =>of(new ActionsFile.LoadMaterialFail(err)))
-      )
+      this.service.getAll().pipe(
+                map((data : Material[])=>new ActionsFile.LoadMaterialSuccess(data)),
+                catchError(err =>of(new ActionsFile.LoadMaterialFail(err)))
+           )
       )
   )
 
@@ -35,11 +33,11 @@ export class MaterialEffect {
    @Effect()
    CreateMaterial$: Observable<Action> = this.actions$.pipe(
        ofType<ActionsFile.CreateMaterial>(
-           ActionsFile.MaterialActionType.CREATE
+           ActionsFile.MaterialActionType.CREATE,
        ),
        map((Actions : ActionsFile.CreateMaterial)=>Actions.payload),
        mergeMap((MaterialCateg : Material )=>
-       this.MaterialServ.add(MaterialCateg ).pipe(
+       this.service.add(MaterialCateg ).pipe(
            map(
                (NewMaterialCats : Material)=>
                new ActionsFile.CreateMaterialSuccess(NewMaterialCats)
@@ -80,7 +78,7 @@ export class MaterialEffect {
         ),
         map((Actions : ActionsFile.DeleteMaterial)=>Actions.payload),
         mergeMap((id:string)=>
-        this.MaterialServ.delete(id).pipe(
+        this.service.delete(id).pipe(
             map(()=>new ActionsFile.DeleteMaterialSuccess()),
             catchError(err =>of(new ActionsFile.DeleteMaterialFail(err)))
         )
