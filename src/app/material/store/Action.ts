@@ -34,13 +34,11 @@ export class LoadMaterialFail implements Action{
     constructor(public payload: string){}
 }
 
-
-// Add MaterialCategory
+ 
 
 export class CreateMaterial implements Action{
     readonly type = MaterialActionType.CREATE;
- constructor(public payload: Material){}
-
+    constructor(public payload: Material){}
 }
 export class CreateMaterialSuccess implements Action{
     readonly type = MaterialActionType.CREATE_SUCCESS;
@@ -52,9 +50,7 @@ export class CreateMaterialFail implements Action{
     readonly type = MaterialActionType.CREATE_FAIL
     constructor(public payload: string){}
 }
-
-//Update MaterialCategory
-
+ 
 export class UpdateMaterial implements Action{
     readonly type = MaterialActionType.UPDATE;
  constructor(public payload: Material){}
@@ -88,19 +84,19 @@ export class DeleteMaterialFail implements Action{
 }
 
 export type MaterialAction=
-// LoadMaterialCat
+// Load
  LoadMaterial |
  LoadMaterialSuccess | 
  LoadMaterialFail
-// CreateMaterialCat
+// Create
  |CreateMaterial
- | CreateMaterialSuccess
+ |CreateMaterialSuccess
  |CreateMaterialFail
-//  UpdateMaterialCat
+//  Update
  |UpdateMaterial
  |UpdateMaterialSuccess
  |UpdateMaterialFail
- // DeleteMaterialCat
+ // Delete
  |DeleteMaterial
  |DeleteMaterialSuccess
  |DeleteMaterialFail;

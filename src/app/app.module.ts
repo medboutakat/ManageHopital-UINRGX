@@ -67,6 +67,7 @@ import { InvoiceEffect } from './invoices/store/Effect';
 import { MaterialComponent } from './material/material/material.component';
 import { MaterialEffect } from './material/store/Effect';
 import { MaterialReducer } from './material/store/Reducer';
+import { MaterialEditComponent } from './material/material-edit/material-edit.component';
 
 @NgModule({
   declarations: [
@@ -104,6 +105,7 @@ import { MaterialReducer } from './material/store/Reducer';
     SigninComponent,
     InvoiceListComponent,
     MaterialComponent,
+    MaterialEditComponent,
     // StoreComponent 
     // FooterComponent, 
     // HeaderComponent
