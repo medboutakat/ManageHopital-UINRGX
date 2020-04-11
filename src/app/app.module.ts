@@ -18,7 +18,6 @@ import { SelectComponent } from './select/select.component';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 import { ContactComponent } from './contacts/contact/contact.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatBottomSheetRef, MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatBottomSheetModule, MatTooltipModule, MatCellDef } from '@angular/material'
 import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
 import { DialogComponent } from './appointements/dialog/dialog.component';
@@ -27,6 +26,8 @@ import { CategoryComponent } from './category/category.component';
 import { HospitalEditComponent } from './hospital/hospital-edit/hospital-edit.component';
 import { SignupComponent } from './connexion/signup/signup.component';
 import { SigninComponent } from './connexion/signin/signin.component';
+import { InvoiceComponent } from './invoices/invoice/invoice.component';
+import { DetailsComponent } from './invoices/details/details.component';
 import { AppstoreModule } from './appstore/appstore.module';
 import { AddAppointementComponent } from './appointements/add-appointement/add-appointement.component';
 import { HospitalReducer } from './appointements/store/hospital.reducer';
@@ -57,8 +58,14 @@ import { AppointementEffect } from './appointements/store/appointement.effect';
 import { AppointementReducer } from './appointements/store/appointement.reducer';
 import { ChatModule } from './chat/chat.module'
 import { AgGridModule } from 'ag-grid-angular';
+
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { MaterialModule } from './material/material/material.module';
+import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
+import { InvoiceReducer } from './invoices/store/Reducer';
+import { InvoiceEffect } from './invoices/store/Effect';
+import { HospitalEffect } from './hospital/store/Effect';
+
 
 @NgModule({
   declarations: [
@@ -80,6 +87,10 @@ import { MaterialModule } from './material/material/material.module';
     DoctorCatComponent,
     CategoryComponent,
     ContactComponent,
+    SigninComponent,
+    SignupComponent,
+    InvoiceComponent,
+    DetailsComponent,
     OperationComponent,
     AddOperationComponent,
     AddAppointementComponent,
@@ -89,7 +100,9 @@ import { MaterialModule } from './material/material/material.module';
     HospitalCatAddComponent,
     DeleteOperationComponent,
     MenuComponent,
-    SigninComponent
+    SigninComponent,
+    InvoiceListComponent,
+    // StoreComponent 
     // FooterComponent, 
     // HeaderComponent
   ],
@@ -100,7 +113,10 @@ import { MaterialModule } from './material/material/material.module';
     SavePdfComponent,
     DialogHospComponent,
     HospitalCatAddComponent,
-    AddOperationComponent, DeleteOperationComponent
+    AddOperationComponent, DeleteOperationComponent,
+    AddOperationComponent,
+    DeleteOperationComponent
+
   ],
 
 
@@ -132,7 +148,12 @@ import { MaterialModule } from './material/material/material.module';
     StoreModule.forFeature("operations", OperationReducer),
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
     StoreModule.forFeature("hospitals", HospitalReducer),
+
     StoreModule.forFeature("doctors", doctorReducer),
+    ChatModule,
+    AngularMaterialModule,
+    StoreModule.forFeature("doctors", doctorReducer),
+    StoreModule.forFeature("invoices", InvoiceReducer),
     ChatModule,
     AngularMaterialModule,
     FormsModule,
@@ -143,6 +164,8 @@ import { MaterialModule } from './material/material/material.module';
 
 
     EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, OpEffect, OperationCatEffect, HospitalsEffect]),
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, InvoiceEffect]),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

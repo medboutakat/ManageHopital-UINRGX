@@ -35,10 +35,9 @@ const Materiallist = [
   MatProgressBarModule,
   MatCardModule,
   MatIconModule,
-
   MatDialogModule,
-
   MatTableModule,
+  MatPaginatorModule,
 ]
 
 @NgModule({

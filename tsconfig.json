@@ -23,9 +23,11 @@
     "lib": [
       "es2018",
       "dom"
-    ],
+    ], 
+    "resolveJsonModule": true,
+    "esModuleInterop": true 
     // "paths": {
     //   "api-ai-javascript/*": ["node_modules/api-ai-javascript/es6/ApiAiClient"] //bypass the index.ts
-    // }
+    // } 
   }
 }
