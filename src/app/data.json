@@ -5,7 +5,8 @@
         "description": "Incidunt et magni est ut.",
         "tax":"20%",
         "price": "170.00",
-        "quantity": 56840
+        "quantity": 56840,
+        "total":320
     },
     {
         "id": 2,
@@ -13,7 +14,9 @@
         "description": "Sint libero mollitia.",
         "tax":"30%",
         "price": "302.00",
-        "quantity": 9358
+        "quantity": 9358,
+        "total":5302
+
     },
     {
         "id": 3,
@@ -21,6 +24,8 @@
         "description": "In consequuntur cupiditate et unde minus.",
         "tax":"20%",
         "price": "279.00",
-        "quantity": 90316
+        "quantity": 90316,
+        "total":250
+
     }
 ]
