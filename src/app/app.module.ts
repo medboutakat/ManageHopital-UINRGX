@@ -64,6 +64,9 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component'; 
 import { InvoiceReducer } from './invoices/store/Reducer';
 import { InvoiceEffect } from './invoices/store/Effect';
+import { MaterialComponent } from './material/material/material.component';
+import { MaterialEffect } from './material/store/Effect';
+import { MaterialReducer } from './material/store/Reducer';
 
 @NgModule({
   declarations: [
@@ -100,6 +103,7 @@ import { InvoiceEffect } from './invoices/store/Effect';
     MenuComponent,
     SigninComponent,
     InvoiceListComponent,
+    MaterialComponent,
     // StoreComponent 
     // FooterComponent, 
     // HeaderComponent
@@ -146,6 +150,7 @@ import { InvoiceEffect } from './invoices/store/Effect';
     StoreModule.forFeature("hospitals", HospitalReducer),
     StoreModule.forFeature("doctors", doctorReducer), 
     StoreModule.forFeature("invoices", InvoiceReducer), 
+    StoreModule.forFeature("Materials", MaterialReducer), 
     ChatModule,  
     AngularMaterialModule, 
     FormsModule,
@@ -155,7 +160,7 @@ import { InvoiceEffect } from './invoices/store/Effect';
     //for doctor
 
 
-    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, OpCatEffect,InvoiceEffect]),
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, OpCatEffect,InvoiceEffect,MaterialEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]
