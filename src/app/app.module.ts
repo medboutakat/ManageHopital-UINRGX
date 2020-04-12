@@ -67,7 +67,6 @@ import { MaterialComponent } from './material/material/material.component';
 import { MaterialEffect } from './material/store/Effect';
 import { MaterialReducer } from './material/store/Reducer';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -149,6 +148,7 @@ import { MaterialReducer } from './material/store/Reducer';
     StoreModule.forFeature("hospitals", HospitalReducer),
     StoreModule.forFeature("operations", OperationReducer),
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
+
     StoreModule.forFeature("hospitals", HospitalReducer),
 
 
@@ -160,6 +160,15 @@ import { MaterialReducer } from './material/store/Reducer';
     ChatModule,
     AngularMaterialModule,
 
+    StoreModule.forFeature("doctors", doctorReducer),
+    StoreModule.forFeature("invoices", InvoiceReducer),
+    StoreModule.forFeature("Materials", MaterialReducer),
+    ChatModule,
+    AngularMaterialModule,
+
+
+    StoreModule.forFeature("hospitals", HospitalReducer),
+    StoreModule.forFeature("doctors", doctorReducer),
     StoreModule.forFeature("doctors", doctorReducer),
     StoreModule.forFeature("invoices", InvoiceReducer),
     StoreModule.forFeature("Materials", MaterialReducer),
@@ -178,6 +187,10 @@ import { MaterialReducer } from './material/store/Reducer';
     EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, InvoiceEffect]),
 
     EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, InvoiceEffect, MaterialEffect]),
+
+
+    //for doctor 
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, OperationCatEffect, InvoiceEffect, , MaterialEffect]),
 
   ],
   providers: [],
