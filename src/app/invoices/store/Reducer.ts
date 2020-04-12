@@ -42,8 +42,7 @@ export function InvoiceReducer(state = initialState, action: ActionsFile.Invoice
                 ...state,
                 loading: false,
                 loaded: true,
-                invoices: action.payload,
-
+                invoices: action.payload
             });
         }
 
@@ -62,7 +61,53 @@ export function InvoiceReducer(state = initialState, action: ActionsFile.Invoice
     }
 
 }
+      }); 
+      }
+      
+    case ActionsFile.InvoiceActionType.LOAD_FAIL :{
+        return {
+            ... state,
+            loading :false,
+            entities :{},
+            loaded :false,
+            error : action.payload
+        }
+    }
 
+    case ActionsFile.InvoiceActionType.CREATE_SUCCESS: {
+        return InvoiceAdapter.addOne(action.payload, state);
+      }
+    case ActionsFile.InvoiceActionType.CREATE_FAIL: {
+        return {
+            ...state,
+            error: action.payload
+        };
+    }
+
+    case ActionsFile.InvoiceActionType.UPDATE_SUCCESS: {
+        return InvoiceAdapter.updateOne(action.payload, state);
+      }
+      case ActionsFile.InvoiceActionType.UPDATE_FAIL: {
+        return {
+          ...state,
+          error: action.payload
+        };
+      }
+  
+      case ActionsFile.InvoiceActionType.DELETE_SUCCESS: {
+        return InvoiceAdapter.removeOne(action.payload, state);
+      }
+      case ActionsFile.InvoiceActionType.DELETE_FAIL: {
+        return {
+          ...state,
+          error: action.payload
+        };
+      }
+
+      default : {
+        return state;
+    }
+   }
 
 const getHospitalsFeatursState = createFeatureSelector<InvoiceState>(
     "Invoice"
@@ -88,8 +133,8 @@ export const getHospitalCatsbyid = createSelector(
     getHospitalsFeatursState,
     (state: InvoiceState) => state.selectedById
 );
-export const getcurrenthospital = createSelector(
-    getHospitalsFeatursState,
-    getHospitalCatsbyid,
+export const getcurrentInvoice = createSelector(
+    getInvoiceFeatursState,
+    geInvoicebyid,
     state => state.entities[state.selectedById]
 );

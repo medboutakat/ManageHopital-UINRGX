@@ -63,10 +63,13 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 import { MaterialModule } from './material/material/material.module';
 import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
 import { InvoiceReducer } from './invoices/store/Reducer';
-import { InvoiceEffect } from './invoices/store/Effect';
+import { InvoiceEffect } from './invoices/store/Effect'; 
 import { HospitalEffect } from './hospital/store/Effect';
-
-
+ 
+import { MaterialComponent } from './material/material/material.component';
+import { MaterialEffect } from './material/store/Effect';
+import { MaterialReducer } from './material/store/Reducer';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -102,6 +105,7 @@ import { HospitalEffect } from './hospital/store/Effect';
     MenuComponent,
     SigninComponent,
     InvoiceListComponent,
+    MaterialComponent,
     // StoreComponent 
     // FooterComponent, 
     // HeaderComponent
@@ -147,25 +151,19 @@ import { HospitalEffect } from './hospital/store/Effect';
     StoreModule.forFeature("hospitals", HospitalReducer),
     StoreModule.forFeature("operations", OperationReducer),
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
-    StoreModule.forFeature("hospitals", HospitalReducer),
-
-    StoreModule.forFeature("doctors", doctorReducer),
-    ChatModule,
-    AngularMaterialModule,
-    StoreModule.forFeature("doctors", doctorReducer),
-    StoreModule.forFeature("invoices", InvoiceReducer),
-    ChatModule,
-    AngularMaterialModule,
+    StoreModule.forFeature("hospitals", HospitalReducer), 
+    StoreModule.forFeature("doctors", doctorReducer), 
+    StoreModule.forFeature("doctors", doctorReducer), 
+    StoreModule.forFeature("invoices", InvoiceReducer), 
+    StoreModule.forFeature("Materials", MaterialReducer), 
+    ChatModule,  
+    AngularMaterialModule,  
     FormsModule,
     ReactiveFormsModule,
     MatBottomSheetModule,
     MatTooltipModule,
-    //for doctor
-
-
-    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, OpEffect, OperationCatEffect, HospitalsEffect]),
-    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, InvoiceEffect]),
-
+    //for doctor 
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, OperationCatEffect,InvoiceEffect, OpCatEffect,MaterialEffect,HospitalsEffec]), 
   ],
   providers: [],
   bootstrap: [AppComponent]
