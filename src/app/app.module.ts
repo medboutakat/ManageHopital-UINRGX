@@ -58,13 +58,14 @@ import { AppointementEffect } from './appointements/store/appointement.effect';
 import { AppointementReducer } from './appointements/store/appointement.reducer';
 import { ChatModule } from './chat/chat.module'
 import { AgGridModule } from 'ag-grid-angular';
-
 import { AngularMaterialModule } from './angular-material/angular-material.module';
-import { MaterialModule } from './material/material/material.module';
 import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
 import { InvoiceReducer } from './invoices/store/Reducer';
 import { InvoiceEffect } from './invoices/store/Effect';
 import { HospitalEffect } from './hospital/store/Effect';
+import { MaterialComponent } from './material/material/material.component';
+import { MaterialEffect } from './material/store/Effect';
+import { MaterialReducer } from './material/store/Reducer';
 
 
 @NgModule({
@@ -102,6 +103,7 @@ import { HospitalEffect } from './hospital/store/Effect';
     MenuComponent,
     SigninComponent,
     InvoiceListComponent,
+    MaterialComponent,
     // StoreComponent 
     // FooterComponent, 
     // HeaderComponent
@@ -149,6 +151,7 @@ import { HospitalEffect } from './hospital/store/Effect';
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
     StoreModule.forFeature("hospitals", HospitalReducer),
 
+
     StoreModule.forFeature("doctors", doctorReducer),
     ChatModule,
     AngularMaterialModule,
@@ -156,6 +159,13 @@ import { HospitalEffect } from './hospital/store/Effect';
     StoreModule.forFeature("invoices", InvoiceReducer),
     ChatModule,
     AngularMaterialModule,
+
+    StoreModule.forFeature("doctors", doctorReducer),
+    StoreModule.forFeature("invoices", InvoiceReducer),
+    StoreModule.forFeature("Materials", MaterialReducer),
+    ChatModule,
+    AngularMaterialModule,
+
     FormsModule,
     ReactiveFormsModule,
     MatBottomSheetModule,
@@ -163,8 +173,11 @@ import { HospitalEffect } from './hospital/store/Effect';
     //for doctor
 
 
+
     EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, OpEffect, OperationCatEffect, HospitalsEffect]),
     EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, InvoiceEffect]),
+
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, InvoiceEffect, MaterialEffect]),
 
   ],
   providers: [],
