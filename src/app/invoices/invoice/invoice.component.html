@@ -7,7 +7,7 @@
             <table>
                 <tr>
                     <td><h6>Invoice code</h6></td>
-                    <td><input type="number" value="001" formControlName="code"></td>
+                    <td><input type="text" value="001" formControlName="code"></td>
                     <td style="align-self: center;">
                         <svg style="color: red;margin-bottom: 6px;font-size: 15px;" class="bi bi-exclamation-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8 4a.905.905 0 00-.9.995l.35 3.507a.552.552 0 001.1 0l.35-3.507A.905.905 0 008 4zm.002 6a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"/>
@@ -52,8 +52,8 @@
         <div class="row test-div col-11">
             <section class="row col-10">
                 <div  class="col12 divinfos row" >
-                    <div class="col-7 q"><input class="Input" style="width:100%;" id="abd1" type="text" [value]="product.name"></div>
-                    <div class="col-2 q"><input class="Input" type="text" [value]="product.quantity" /> </div>
+                    <div class="col-7 q"><input class="Input" style="width:100%;" id="abd1" type="text" [value]="product.product"></div>
+                    <div class="col-2 q"><input class="Input" type="text" [value]="product.qte" /> </div>
                     <div class="col-2 q"><input class="Input" type="text" [value]="product.price" /></div>
                     <div class="col-1 q"><input class="Input" type="text" [value]="product.tax" /></div>
                 </div>
@@ -62,15 +62,17 @@
             </section>
             <h6 class="col-2" style="margin: 5% auto;text-align: center;">{{product.total}}</h6>
         </div>
-        <a class="col-1" style="padding: 10px;color:#1E90FF ;margin-left: 15px;" 
-            matTooltip="Delete line" [matTooltipPosition]="'left'"
+        <div class="col-1">
+            <a style="padding: 10px;color:#1E90FF ;margin-left: 15px;" 
+            matTooltip="Delete line" [matTooltipPosition]="'left'" (click)="deleteDetail(product, i)"
             >
-            <svg class="bi bi-x-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
-                <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
-                <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
-            </svg>
-        </a>
+                <svg class="bi bi-x-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
+                </svg>
+            </a>
+        </div>
     </div>
     <!-- <a class="btn btn-success a"><label for="abd1">Add row</label></a>
     <a class="btn btn-primary a"><label for="abd1">Edit item</label></a> -->
@@ -81,15 +83,15 @@
         <div class="row test-div col-11">
             <section class="row col-10">
                 <div  class="col12 divinfos row" >
-                    <div class="col-7 q"><input class="Input" formControlName="name" placeholder="Name" style="width:100%;" id="abd1" type="text"></div>
-                    <div class="col-2 q"><input class="Input" formControlName="quantity" #qte type="text" /> </div>
-                    <div class="col-2 q"><input class="Input" type="text"#price formControlName="price" placeholder="price" /></div>
-                    <div class="col-1 q"><input class="Input" type="text" #tax formControlName="tax" placeholder="tax" /></div>
+                    <div class="col-7 q"><input class="Input" formControlName="product" placeholder="product name" style="width:100%;" id="abd1" type="text"></div>
+                    <div class="col-2 q"><input class="Input" formControlName="qte" placeholder="qte" #qte (keyup)="valueChanged(qte.value,price.value,tax.value)" type="text" /> </div>
+                    <div class="col-2 q"><input class="Input" type="number"#price (keyup)="valueChanged(qte.value,price.value,tax.value)" formControlName="price" placeholder="price" /></div>
+                    <div class="col-1 q"><input class="Input" type="number" #tax formControlName="tax" placeholder="tax" /></div>
                 </div>
                 <!-- <div class="col-2 c" style="background-color: aquamarine;"></div> -->
                 <textarea aria-readonly="true" formControlName="description" placeholder="description" class="form-control col-12" rows="1"></textarea>
             </section>
-            <h6 class="col-2" style="margin: 5% auto;text-align: center;">{{qte.value * price.value}}</h6>
+            <h6 class="col-2" style="margin: 5% auto;text-align: center;">{{total}}</h6>
         </div>
         
         <button class="btn btn-primary col-2">
@@ -145,7 +147,7 @@
                 <h6>Expedition</h6>
             </tr>
             <tr class="col-4" >
-                <input type="text" formControlName="expedition" style="width:100%;width: 100%;">
+                <input type="number" formControlName="expedition" style="width:100%;width: 100%;">
             </tr>
             <tr class="col-4">
                 b
@@ -182,3 +184,4 @@
 </dir>
 </form>
 <button class="btn btn-primary" (click)="addInvoice()">save all of that</button>
+<!-- {{this.invoiceForm.value | json}} -->

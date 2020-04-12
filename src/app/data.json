@@ -1,31 +1,26 @@
 [
     {
-        "id": 1,
-        "name": "Licensed Frozen Hat",
+        "product": "Licensed Frozen Hat",
         "description": "Incidunt et magni est ut.",
-        "tax":"20%",
-        "price": "170.00",
-        "quantity": 56840,
+        "qte": 56840,
+        "price": 170.00,
+        "tax":20,
         "total":320
     },
     {
-        "id": 2,
-        "name": "Rustic Concrete Chicken",
+        "product": "Rustic Concrete Chicken",
         "description": "Sint libero mollitia.",
-        "tax":"30%",
-        "price": "302.00",
-        "quantity": 9358,
+        "qte": 9358,
+        "price": 302.00,
+        "tax":30,
         "total":5302
-
     },
     {
-        "id": 3,
-        "name": "Fantastic Metal Computer",
+        "product": "Fantastic Metal Computer",
         "description": "In consequuntur cupiditate et unde minus.",
-        "tax":"20%",
-        "price": "279.00",
-        "quantity": 90316,
+        "qte": 90316,
+        "price": 279.00,
+        "tax":20,
         "total":250
-
     }
 ]
