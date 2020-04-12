@@ -23,7 +23,7 @@ export class AppointementEffect {
             appsActions.AppointementActionTypes.LOAD_APPOINTEMENTS
         ),
         mergeMap((actions: appsActions.LoadAppointements) =>
-            this.service.getAppointements().pipe(
+            this.service.getAll().pipe(
                 map((appointements: Appointement[]) =>
                     new appsActions.LoadAppointementsSuccess(appointements)
                 ),
@@ -39,7 +39,7 @@ export class AppointementEffect {
         ),
         map((action: appsActions.DeleteAppointement) => action.payload),
         mergeMap((id) =>
-            this.service.deleteAppointement(id).pipe(
+            this.service.delete(id).pipe(
                 map(() =>
                     new appsActions.DeleteAppointementSuccess(id)
                 ),
@@ -55,7 +55,7 @@ export class AppointementEffect {
         ),
         map((action: appsActions.CreateAppointement) => action.payload),
         mergeMap((apps: Appointement) =>
-            this.service.addApps(apps).pipe(
+            this.service.add(apps).pipe(
                 map(
                     (newApp: Appointement) =>
                         new appsActions.CreateAppointementSuccess(newApp)

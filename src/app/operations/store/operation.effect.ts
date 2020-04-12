@@ -23,7 +23,7 @@ export class OpEffect {
             appsActions.OperationActionTypes.LOAD_OPERATIONS
         ),
         mergeMap((actions: appsActions.LoadOperations) =>
-            this.service.getOperation().pipe(
+            this.service.getAll().pipe(
                 map((operations: Operation[]) =>
                     new appsActions.LoadOperationsSuccess(operations)
                 ),
@@ -39,7 +39,7 @@ export class OpEffect {
         ),
         map((action: appsActions.DeleteOperation) => action.payload),
         mergeMap((id) =>
-            this.service.deleteOperation(id).pipe(
+            this.service.delete(id).pipe(
                 map(() =>
                     new appsActions.DeleteOperationSuccess(id)
                 ),
@@ -55,7 +55,7 @@ export class OpEffect {
         ),
         map((action: appsActions.CreateOperation) => action.payload),
         mergeMap((apps: Operation) =>
-            this.service.addOpp(apps).pipe(
+            this.service.add(apps).pipe(
                 map(
                     (newApp: Operation) =>
                         new appsActions.CreateOperationSuccess(newApp)
