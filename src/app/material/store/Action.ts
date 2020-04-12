@@ -44,17 +44,19 @@ export class CreateMaterial implements Action{
     }
 }
 export class CreateMaterialSuccess implements Action{
-    private router: Router
-    readonly type = MaterialActionType.CREATE_SUCCESS;
+  
+ readonly type = MaterialActionType.CREATE_SUCCESS;
 
- constructor(public payload: Material){
+ constructor(public payload: Material, private router: Router){
     console.log("CreateMaterialSuccess Action: ",payload)
-    this.router.navigate(['/material']);
+    this.router.navigateByUrl('/material');
+  
  }
 
 }
 export class CreateMaterialFail implements Action{
     readonly type = MaterialActionType.CREATE_FAIL
+
     constructor(public payload: string){
         console.log("CreateMaterialFail Action: ",payload)
     }

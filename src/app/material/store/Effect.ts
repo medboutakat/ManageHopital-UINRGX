@@ -7,11 +7,12 @@ import {Action} from '@ngrx/store'
 import * as ActionsFile from 'src/app/Material/store/Action'
 import { MaterialService } from '../material.service';
 import { Material } from '../material-model';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class MaterialEffect {
     constructor(private actions$ : Actions,
-        private service : MaterialService)
+        private service : MaterialService, private router: Router)
    {
    }
 
@@ -40,7 +41,7 @@ export class MaterialEffect {
        this.service.add(MaterialCateg ).pipe(
            map(
                (NewMaterialCats : Material)=>
-               new ActionsFile.CreateMaterialSuccess(NewMaterialCats)
+               new ActionsFile.CreateMaterialSuccess(NewMaterialCats,this.router)
            ),
            catchError(err =>of(new ActionsFile.CreateMaterialFail(err)))
        )

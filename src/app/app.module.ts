@@ -135,9 +135,6 @@ import { MaterialEditComponent } from './material/material-edit/material-edit.co
 
     AppstoreModule,
     HttpClientModule,
-    
-    // MaterialModule,
-
     StoreModule.forRoot({}),
     StoreModule.forRoot({ router: routerReducer }),
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
