@@ -52,25 +52,24 @@ export class InvoiceEffect {
  
    //Update InvoiceCategory
  
-//    @Effect()
-//    UpdateInvoice$: Observable<Action> = this.actions$.pipe(
-//        ofType<ActionsFile.UpdateInvoice>(
-//            ActionsFile.InvoiceActionType.UPDATE_Invoice
-//        ),
-//        map((Actions : ActionsFile.UpdateInvoice)=>Actions.payload),
-//        mergeMap((InvoiceCateg : Invoice )=>
-//        this.InvoiceServ. updateInvoice(InvoiceCateg ).pipe(
-//            map(
-//                (updateInvoiceCats : Invoice)=>
-//                new ActionsFile.CreateInvoiceSuccess({
-//                    id:updateInvoiceCats.id,
-//                    name:updateInvoiceCats.name,
-//                    remark:updateInvoiceCats.remark,
-//                }),
-//            catchError(err =>of(new ActionsFile.UpdateInvoiceCatFail(err)))
-//        )
-//        )
-//    ));
+   @Effect()
+   UpdateInvoice$: Observable<Action> = this.actions$.pipe(
+       ofType<ActionsFile.UpdateInvoice>(
+           ActionsFile.InvoiceActionType.UPDATE
+       ),
+       map((Actions : ActionsFile.UpdateInvoice)=>Actions.payload),
+       mergeMap((Invoice : Invoice )=>
+       this.InvoiceServ.update(Invoice).pipe(
+           map(
+               (updateInvoice : Invoice)=>
+               new ActionsFile.UpdateInvoiceSuccess({
+                   id:updateInvoice.id,
+                   changes:updateInvoice
+               }),
+           catchError(err =>of(new ActionsFile.UpdateInvoiceFail(err)))
+       )
+       )
+   ));
  
     //Delete Invoice Category
  
@@ -82,7 +81,7 @@ export class InvoiceEffect {
         map((Actions : ActionsFile.DeleteInvoice)=>Actions.payload),
         mergeMap((id:string)=>
         this.InvoiceServ.delete(id).pipe(
-            map(()=>new ActionsFile.DeleteInvoiceSuccess()),
+            map(()=>new ActionsFile.DeleteInvoiceSuccess(id)),
             catchError(err =>of(new ActionsFile.DeleteInvoiceFail(err)))
         )
         )
