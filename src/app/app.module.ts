@@ -59,8 +59,7 @@ import { AppointementReducer } from './appointements/store/appointement.reducer'
 import { ChatModule } from './chat/chat.module'
 import { AgGridModule } from 'ag-grid-angular';
 
-import { AngularMaterialModule } from './angular-material/angular-material.module';
-import { MaterialModule } from './material/material/material.module';
+import { AngularMaterialModule } from './angular-material/angular-material.module'; 
 import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
 import { InvoiceReducer } from './invoices/store/Reducer';
 import { InvoiceEffect } from './invoices/store/Effect'; 
@@ -68,13 +67,10 @@ import { HospitalEffect } from './hospital/store/Effect';
  
 import { MaterialComponent } from './material/material/material.component';
 import { MaterialEffect } from './material/store/Effect';
-import { MaterialReducer } from './material/store/Reducer';
-<<<<<<< HEAD
+import { MaterialReducer } from './material/store/Reducer'; 
 import { MaterialEditComponent } from './material/material-edit/material-edit.component';
 
-=======
  
->>>>>>> 94aac39e3b0e900eb6f72ca9943bb8dfc96de8a1
 @NgModule({
   declarations: [
     AppComponent,
@@ -142,13 +138,7 @@ import { MaterialEditComponent } from './material/material-edit/material-edit.co
     AppstoreModule,
 
     AppstoreModule,
-    HttpClientModule,
-<<<<<<< HEAD
-=======
-
-    // MaterialModule,
-
->>>>>>> 94aac39e3b0e900eb6f72ca9943bb8dfc96de8a1
+    HttpClientModule, 
     StoreModule.forRoot({}),
     StoreModule.forRoot({ router: routerReducer }),
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
@@ -172,7 +162,9 @@ import { MaterialEditComponent } from './material/material-edit/material-edit.co
     MatBottomSheetModule,
     MatTooltipModule,
     //for doctor 
-    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, OperationCatEffect,InvoiceEffect, OpCatEffect,MaterialEffect,HospitalsEffec]), 
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, OperationCatEffect,InvoiceEffect, 
+      MaterialEffect
+    ]), 
   ],
   providers: [],
   bootstrap: [AppComponent]

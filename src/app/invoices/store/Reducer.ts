@@ -54,16 +54,7 @@ export function InvoiceReducer(state = initialState, action: ActionsFile.Invoice
                 loaded: false,
                 error: action.payload
             }
-        }
-        default: {
-            return state;
-        }
-    }
-
-}
-      }); 
-      }
-      
+        }      
     case ActionsFile.InvoiceActionType.LOAD_FAIL :{
         return {
             ... state,
@@ -92,8 +83,7 @@ export function InvoiceReducer(state = initialState, action: ActionsFile.Invoice
           ...state,
           error: action.payload
         };
-      }
-  
+      } 
       case ActionsFile.InvoiceActionType.DELETE_SUCCESS: {
         return InvoiceAdapter.removeOne(action.payload, state);
       }
@@ -108,7 +98,7 @@ export function InvoiceReducer(state = initialState, action: ActionsFile.Invoice
         return state;
     }
    }
-
+}
 const getHospitalsFeatursState = createFeatureSelector<InvoiceState>(
     "Invoice"
 )
@@ -133,8 +123,8 @@ export const getHospitalCatsbyid = createSelector(
     getHospitalsFeatursState,
     (state: InvoiceState) => state.selectedById
 );
-export const getcurrentInvoice = createSelector(
-    getInvoiceFeatursState,
-    geInvoicebyid,
-    state => state.entities[state.selectedById]
-);
+// export const getcurrentInvoice = createSelector(
+//     getInvoiceFeatursState,
+//     geInvoicebyid,
+//     state => state.entities[state.selectedById]
+// );
