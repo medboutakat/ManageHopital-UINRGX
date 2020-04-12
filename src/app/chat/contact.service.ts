@@ -3,7 +3,6 @@ import { environment } from '../../environments/environment';
 import { ApiAiClient } from 'api-ai-javascript/es6/ApiAiClient';
 import { Observable, BehaviorSubject } from 'rxjs';
 
-
 @Injectable()
 export class ContactService {
 
