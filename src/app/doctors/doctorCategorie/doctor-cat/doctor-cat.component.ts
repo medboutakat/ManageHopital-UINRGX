@@ -38,9 +38,10 @@ export class DoctorCatComponent implements OnInit {
   listDoctorCat
   dataSource;
   selection: SelectionModel<doctorCat>;
+  
   constructor(private store : Store<any>) { 
     // this.columnDefs = this.createColumnDefs();
-       this.delete=this.delete.bind(this);  
+      //  this.delete=this.delete.bind(this);  
  
 
   }
@@ -52,10 +53,10 @@ export class DoctorCatComponent implements OnInit {
     this.store.subscribe(data =>{
       this.listDoctorCat = Object.values(data.DoctorCat.entities)  
       console.log(" listDoctorCat=> ",this.listDoctorCat) 
-  this.dataSource = new MatTableDataSource<doctorCat>(this.listDoctorCat);
-  this.dataSource.sort = this.sort;
-  this.dataSource.paginator = this.paginator;
-  this.selection = new SelectionModel<doctorCat>(true, []);
+      this.dataSource = new MatTableDataSource<doctorCat>(this.listDoctorCat);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.selection = new SelectionModel<doctorCat>(true, []);
     })
 
   }
@@ -83,7 +84,7 @@ export class DoctorCatComponent implements OnInit {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.name + 1}`;
     
   }
 
@@ -95,58 +96,58 @@ export class DoctorCatComponent implements OnInit {
 
 exist: boolean = false;
 
-// gridApi and columnApi
-private api: GridApi;
-private columnApi: ColumnApi;
 
-private rowSelection;
-private IsRowSelected: boolean;
-private IsMultple: boolean;
+// private api: GridApi;
+// private columnApi: ColumnApi;
 
-private SelectedClient: doctorCat=new doctorCat();
+// private rowSelection;
+// private IsRowSelected: boolean;
+// private IsMultple: boolean;
 
-onGridReady(params): void {
-  this.api = params.api;
-  this.columnApi = params.columnApi;
+// private SelectedClient: doctorCat=new doctorCat();
 
-  this.api.sizeColumnsToFit();
-  console.log('params', params);
-}
+// onGridReady(params): void {
+//   this.api = params.api;
+//   this.columnApi = params.columnApi;
 
-onSelectionChanged(event) { 
-  var selectedRowLenght=this.api.getSelectedRows().length;
-  if (selectedRowLenght == 0) { 
-    this.IsMultple = false;
-    this.IsRowSelected = false;
-  }else 
-  if(selectedRowLenght == 1)
-  { 
-    this.IsRowSelected = true;
-    this.IsMultple = false;
-  }
-   else {
-    this.IsRowSelected = true;
-    this.IsMultple = true;
-  }
-  console.log(event);
+//   this.api.sizeColumnsToFit();
+//   console.log('params', params);
+// }
 
-  this.SelectedClient= this.IsRowSelected? this.api.getSelectedRows()[0]:new doctorCat();
+// onSelectionChanged(event) { 
+//   var selectedRowLenght=this.api.getSelectedRows().length;
+//   if (selectedRowLenght == 0) { 
+//     this.IsMultple = false;
+//     this.IsRowSelected = false;
+//   }else 
+//   if(selectedRowLenght == 1)
+//   { 
+//     this.IsRowSelected = true;
+//     this.IsMultple = false;
+//   }
+//    else {
+//     this.IsRowSelected = true;
+//     this.IsMultple = true;
+//   }
+//   console.log(event);
 
-  console.log("Selected row :",this.SelectedClient)
-}
+//   this.SelectedClient= this.IsRowSelected? this.api.getSelectedRows()[0]:new doctorCat();
 
-deletee(doctorcat: doctorCat) {
-  if (confirm("Are You Sure You want to Delete the User?")) {
-    this.store.dispatch(new ActionsFile.DeleteDoctorCat(doctorcat.id));
-    this.store.dispatch( new ActionsFile.LoadDoctorCat());
-  }
-}
+//   console.log("Selected row :",this.SelectedClient)
+// }
 
-delete() {  
-  this.store.select(selectOne,{id:this.SelectedClient.id}).subscribe(res=>{
-      console.log("selected res", res);
-      this.store.dispatch(new ActionsFile.DeleteDoctorCat(res.objlist.id));
-      this.store.dispatch( new ActionsFile.LoadDoctorCat());        
-  })  
-}
+// deletee(doctorcat: doctorCat) {
+//   if (confirm("Are You Sure You want to Delete the User?")) {
+//     this.store.dispatch(new ActionsFile.DeleteDoctorCat(doctorcat.id));
+//     this.store.dispatch( new ActionsFile.LoadDoctorCat());
+//   }
+// }
+
+// delete() {  
+//   this.store.select(selectOne,{id:this.SelectedClient.id}).subscribe(res=>{
+//       console.log("selected res", res);
+//       this.store.dispatch(new ActionsFile.DeleteDoctorCat(res.objlist.id));
+//       this.store.dispatch( new ActionsFile.LoadDoctorCat());        
+//   })  
+// }
 }
