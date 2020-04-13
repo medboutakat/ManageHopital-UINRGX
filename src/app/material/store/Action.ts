@@ -2,6 +2,7 @@
 import { Store, Action } from '@ngrx/store' 
 import { Update } from '@ngrx/entity';
 import { Material } from '../material-model';
+import { Router } from '@angular/router';
  
 export enum MaterialActionType {
     LOAD = "[Material] load Material",
@@ -34,27 +35,33 @@ export class LoadMaterialFail implements Action{
     constructor(public payload: string){}
 }
 
-
-// Add MaterialCategory
+ 
 
 export class CreateMaterial implements Action{
     readonly type = MaterialActionType.CREATE;
- constructor(public payload: Material){}
-
+    constructor(public payload: Material){
+        console.log("CreateMaterial Action: ",payload)
+    }
 }
 export class CreateMaterialSuccess implements Action{
-    readonly type = MaterialActionType.CREATE_SUCCESS;
+  
+ readonly type = MaterialActionType.CREATE_SUCCESS;
 
- constructor(public payload: Material){}
+ constructor(public payload: Material, private router: Router){
+    console.log("CreateMaterialSuccess Action: ",payload)
+    this.router.navigateByUrl('/material');
+  
+ }
 
 }
 export class CreateMaterialFail implements Action{
     readonly type = MaterialActionType.CREATE_FAIL
-    constructor(public payload: string){}
+
+    constructor(public payload: string){
+        console.log("CreateMaterialFail Action: ",payload)
+    }
 }
-
-//Update MaterialCategory
-
+ 
 export class UpdateMaterial implements Action{
     readonly type = MaterialActionType.UPDATE;
  constructor(public payload: Material){}
@@ -88,19 +95,19 @@ export class DeleteMaterialFail implements Action{
 }
 
 export type MaterialAction=
-// LoadMaterialCat
+// Load
  LoadMaterial |
  LoadMaterialSuccess | 
  LoadMaterialFail
-// CreateMaterialCat
+// Create
  |CreateMaterial
- | CreateMaterialSuccess
+ |CreateMaterialSuccess
  |CreateMaterialFail
-//  UpdateMaterialCat
+//  Update
  |UpdateMaterial
  |UpdateMaterialSuccess
  |UpdateMaterialFail
- // DeleteMaterialCat
+ // Delete
  |DeleteMaterial
  |DeleteMaterialSuccess
  |DeleteMaterialFail;

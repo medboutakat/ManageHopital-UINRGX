@@ -66,6 +66,7 @@ import { HospitalEffect } from './hospital/store/Effect';
 import { MaterialComponent } from './material/material/material.component';
 import { MaterialEffect } from './material/store/Effect';
 import { MaterialReducer } from './material/store/Reducer';
+import { MaterialEditComponent } from './material/material-edit/material-edit.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +104,7 @@ import { MaterialReducer } from './material/store/Reducer';
     SigninComponent,
     InvoiceListComponent,
     MaterialComponent,
+    MaterialEditComponent,
     // StoreComponent 
     // FooterComponent, 
     // HeaderComponent
@@ -134,9 +136,6 @@ import { MaterialReducer } from './material/store/Reducer';
 
     AppstoreModule,
     HttpClientModule,
-
-    // MaterialModule,
-
     StoreModule.forRoot({}),
     StoreModule.forRoot({ router: routerReducer }),
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
@@ -191,6 +190,9 @@ import { MaterialReducer } from './material/store/Reducer';
 
     //for doctor 
     EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, OperationCatEffect, InvoiceEffect, , MaterialEffect]),
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, OperationCatEffect, InvoiceEffect,
+      MaterialEffect
+    ]),
 
   ],
   providers: [],

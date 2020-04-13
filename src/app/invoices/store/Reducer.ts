@@ -26,12 +26,6 @@ export const DefaultState: InvoiceState = {
     loaded: false,
     error: ' ',
 }
-// export const initialState : HospitalCatState ={
-//     HospitalCats :[],
-//     loading: false,
-//     loaded : false,
-//     error : ' ',
-// }
 export const initialState = InvoiceAdapter.getInitialState(DefaultState)
 
 export function InvoiceReducer(state = initialState, action: ActionsFile.InvoiceAction): InvoiceState {
@@ -74,7 +68,15 @@ export function InvoiceReducer(state = initialState, action: ActionsFile.Invoice
                 error: action.payload
             };
         }
-
+        case ActionsFile.InvoiceActionType.LOAD_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                entities: {},
+                loaded: false,
+                error: action.payload
+            }
+        }
         case ActionsFile.InvoiceActionType.UPDATE_SUCCESS: {
             return InvoiceAdapter.updateOne(action.payload, state);
         }
@@ -134,10 +136,30 @@ export function InvoiceReducer(state = initialState, action: ActionsFile.Invoice
             };
         }
 
+        case ActionsFile.InvoiceActionType.UPDATE_SUCCESS: {
+            return InvoiceAdapter.updateOne(action.payload, state);
+        }
+        case ActionsFile.InvoiceActionType.UPDATE_FAIL: {
+            return {
+                ...state,
+                error: action.payload
+            };
+        }
+        case ActionsFile.InvoiceActionType.DELETE_SUCCESS: {
+            return InvoiceAdapter.removeOne(action.payload, state);
+        }
+        case ActionsFile.InvoiceActionType.DELETE_FAIL: {
+            return {
+                ...state,
+                error: action.payload
+            };
+        }
+
         default: {
             return state;
         }
     }
+
 }
 const getHospitalsFeatursState = createFeatureSelector<InvoiceState>(
     "Invoice"
@@ -189,9 +211,16 @@ export const geInvoicebyid = createSelector(
     (state: InvoiceState) => state.selectedById
 
 );
+
 export const getcurrentInvoice = createSelector(
     getInvoiceFeatursState,
     geInvoicebyid,
     state => state.entities[state.selectedById]
 );
+
+// export const getcurrentInvoice = createSelector(
+//     getInvoiceFeatursState,
+//     geInvoicebyid,
+//     state => state.entities[state.selectedById]
+// );
 

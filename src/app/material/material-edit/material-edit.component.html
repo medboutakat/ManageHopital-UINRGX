@@ -1,0 +1,28 @@
+<p>material-edit works!</p>
+
+
+<div class="container" width="400px"> 
+        <form class="example-form" [formGroup]="form" (submit)="add()">
+ 
+            <!-- <input  type="hidden"  formControlName="id" > -->
+            <mat-form-field class="example-full-width"> 
+              <input matInput placeholder="name" formControlName="name" >
+            </mat-form-field>
+            <br>
+             <mat-form-field class="example-full-width">
+               <input matInput placeholder="remark" formControlName="remark"> 
+              </mat-form-field>
+              <br>
+              <mat-form-field class="example-full-width">
+               <input type="number" matInput placeholder="quantity" formControlName="quantity"> 
+              </mat-form-field>
+              <br>
+              
+              <button type="submit" class="btn btn-warning" aria-label="Left Align" >
+                <i class="material-icons" >
+                  done
+                  </i>
+              </button>
+        </form>
+       
+  </div>

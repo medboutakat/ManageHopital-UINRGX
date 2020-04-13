@@ -11,11 +11,10 @@ export interface MaterialState extends EntityState<Material>{
     error : string
 }
 
-export interface AppState extends fromRoot.AppState{
-    Materials : MaterialState
-}
+export interface AppState extends fromRoot.AppState{Materials : MaterialState}
 
 export const MaterialAdapter: EntityAdapter<Material> = createEntityAdapter<Material>();
+
 export const DefaultState : MaterialState={
     ids :[],
     entities :{},
@@ -23,13 +22,8 @@ export const DefaultState : MaterialState={
     loading: false,
     loaded : false,
     error : ' ',
-}
-// export const initialState : HospitalCatState ={
-//     HospitalCats :[],
-//     loading: false,
-//     loaded : false,
-//     error : ' ',
-// }
+} 
+
 export const initialState = MaterialAdapter.getInitialState(DefaultState)
 
 export function MaterialReducer(state = initialState, action : ActionsFile.MaterialAction) : MaterialState{
@@ -61,15 +55,13 @@ export function MaterialReducer(state = initialState, action : ActionsFile.Mater
 }    
   
 
-  const getHospitalsFeatursState = createFeatureSelector<MaterialState>(
-      "Material"
-  )
-   export const getHospitalCats = createSelector(
-       getHospitalsFeatursState,
-    //    (state : HospitalCatState)=>state.HospitalCats
+const getHospitalsFeatursState = createFeatureSelector<MaterialState>("Material")
+
+export const getHospitalCats = createSelector(
+    getHospitalsFeatursState, 
       MaterialAdapter.getSelectors().selectAll
-   )
-   export const getHospitalCatsLoading = createSelector(
+)
+export const getHospitalCatsLoading = createSelector(
     getHospitalsFeatursState,
     (state : MaterialState)=>state.loading
 )
