@@ -58,19 +58,16 @@ import { AppointementEffect } from './appointements/store/appointement.effect';
 import { AppointementReducer } from './appointements/store/appointement.reducer';
 import { ChatModule } from './chat/chat.module'
 import { AgGridModule } from 'ag-grid-angular';
-
-import { AngularMaterialModule } from './angular-material/angular-material.module'; 
+import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
 import { InvoiceReducer } from './invoices/store/Reducer';
-import { InvoiceEffect } from './invoices/store/Effect'; 
+import { InvoiceEffect } from './invoices/store/Effect';
 import { HospitalEffect } from './hospital/store/Effect';
- 
 import { MaterialComponent } from './material/material/material.component';
 import { MaterialEffect } from './material/store/Effect';
-import { MaterialReducer } from './material/store/Reducer'; 
+import { MaterialReducer } from './material/store/Reducer';
 import { MaterialEditComponent } from './material/material-edit/material-edit.component';
 
- 
 @NgModule({
   declarations: [
     AppComponent,
@@ -138,7 +135,7 @@ import { MaterialEditComponent } from './material/material-edit/material-edit.co
     AppstoreModule,
 
     AppstoreModule,
-    HttpClientModule, 
+    HttpClientModule,
     StoreModule.forRoot({}),
     StoreModule.forRoot({ router: routerReducer }),
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
@@ -150,21 +147,53 @@ import { MaterialEditComponent } from './material/material-edit/material-edit.co
     StoreModule.forFeature("hospitals", HospitalReducer),
     StoreModule.forFeature("operations", OperationReducer),
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
-    StoreModule.forFeature("hospitals", HospitalReducer), 
-    StoreModule.forFeature("doctors", doctorReducer), 
-    StoreModule.forFeature("doctors", doctorReducer), 
-    StoreModule.forFeature("invoices", InvoiceReducer), 
-    StoreModule.forFeature("Materials", MaterialReducer), 
-    ChatModule,  
-    AngularMaterialModule,  
+
+    StoreModule.forFeature("hospitals", HospitalReducer),
+
+
+    StoreModule.forFeature("doctors", doctorReducer),
+    ChatModule,
+    AngularMaterialModule,
+    StoreModule.forFeature("doctors", doctorReducer),
+    StoreModule.forFeature("invoices", InvoiceReducer),
+    ChatModule,
+    AngularMaterialModule,
+
+    StoreModule.forFeature("doctors", doctorReducer),
+    StoreModule.forFeature("invoices", InvoiceReducer),
+    StoreModule.forFeature("Materials", MaterialReducer),
+    ChatModule,
+    AngularMaterialModule,
+
+
+    StoreModule.forFeature("hospitals", HospitalReducer),
+    StoreModule.forFeature("doctors", doctorReducer),
+    StoreModule.forFeature("doctors", doctorReducer),
+    StoreModule.forFeature("invoices", InvoiceReducer),
+    StoreModule.forFeature("Materials", MaterialReducer),
+    ChatModule,
+    AngularMaterialModule,
+
     FormsModule,
     ReactiveFormsModule,
     MatBottomSheetModule,
     MatTooltipModule,
+    //for doctor
+
+
+
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, OpEffect, OperationCatEffect, HospitalsEffect]),
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, InvoiceEffect]),
+
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, InvoiceEffect, MaterialEffect]),
+
+
     //for doctor 
-    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, OperationCatEffect,InvoiceEffect, 
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, OperationCatEffect, InvoiceEffect, , MaterialEffect]),
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, OperationCatEffect, InvoiceEffect,
       MaterialEffect
-    ]), 
+    ]),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

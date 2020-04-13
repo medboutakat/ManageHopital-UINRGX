@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import * as invoiceAction from '../store/Action'
 import { Invoice } from '../invoice-model';
 import jspdf from 'jspdf';
+import { SelectionModel } from '@angular/cdk/collections';
 
 /**
  * @title Table with pagination
@@ -16,8 +17,9 @@ import jspdf from 'jspdf';
   styleUrls: ['./invoice-list.component.scss']
 })
 export class InvoiceListComponent implements OnInit {
-  displayedColumns: string[] = ['code', 'date', 'totalAmont', 'expedition', 'livraison', 'remise'];
-  displayedColumnsData: string[] = ['code', 'date', 'totalAmont', 'expedition', 'livraison', 'remise'];
+  displayedColumns: string[] = ['code', 'date', 'totalAmont', 'expedition', 'livraison', 'remise', 'star'];
+  displayedColumnsData: string[] = ['code', 'date', 'totalAmont', 'expedition', 'livraison', 'remise', 'star'];
+  selection = new SelectionModel<Invoice>(true, []);
 
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -51,6 +53,8 @@ export class InvoiceListComponent implements OnInit {
     doc.save("facture n°.pdf");
 
   }
+
 }
+
 
 
