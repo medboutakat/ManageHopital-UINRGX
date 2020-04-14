@@ -8,6 +8,8 @@ import * as fromHospitalCat from "src/app/HospitalCategorie/Store/reducer";
 import { HospitalCat } from '../hospitalCat.model';
 import { HospitalCatAddComponent } from '../hospital-cat-add/hospital-cat-add.component';
 import { SelectionModel } from '@angular/cdk/collections';
+import { GridApi } from 'ag-grid-community';
+import { AddHospitalCatComponent } from 'src/app/HospitalCategorie/add-hospital-cat/add-hospital-cat.component';
 
 @Component({
   selector: 'app-hospital-cat',
@@ -58,27 +60,63 @@ deleteCustomer(hospital: HospitalCat) {
   }
 }
 
-add() {
-  console.log("hello");
-  this.dialog.open(HospitalCatAddComponent);
-}
+// add() {
+//   console.log("hello");
+//   this.dialog.open(HospitalCatAddComponent);
+// }
 
 isAllSelected() {
   const numSelected = this.selection.selected.length;
+  
   const numRows = this.dataSource.data.length;
   return numSelected === numRows;
   
 }
 
+
+private rowSelection;
+private IsRowSelected: boolean;
+private IsMultple: boolean;
+
+private SelectedClient: HospitalCat=new HospitalCat();
+
+
+// onSelectionChanged(event) { 
+//   var selectedRowLenght=this.api.getSelectedRows().length;
+//   if (selectedRowLenght == 0) { 
+//     this.IsMultple = false;
+//     this.IsRowSelected = false;
+//   }else 
+//   if(selectedRowLenght == 1)
+//   { 
+//     this.IsRowSelected = true;
+//     this.IsMultple = false;
+//   }
+//    else {
+//     this.IsRowSelected = true;
+//     this.IsMultple = true;
+//   }
+//   console.log(event);
+
+//   this.SelectedClient= this.IsRowSelected? this.api.getSelectedRows()[0]:new doctorCat();
+
+//   console.log("Selected row :",this.SelectedClient)
+// }
+
+
+
+
+
+
 /** Selects all rows if they are not all selected; otherwise clear selection. */
-masterToggle() {
-  this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach(row => 
-        this.selection.select(row),
+// masterToggle() {
+//   this.isAllSelected() ?
+//       this.selection.clear() :
+//       this.dataSource.data.forEach(row => 
+//         this.selection.select(row),
      
-      );
-}
+//       );
+// }
 onrowselect(row){
   console.log("roow",row)
 }
@@ -91,5 +129,8 @@ checkboxLabel(row?: HospitalCat): string {
   
 }
 
-
+add() {
+  console.log("hello");
+  this.dialog.open(AddHospitalCatComponent);
+}
 }

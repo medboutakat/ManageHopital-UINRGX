@@ -5,9 +5,10 @@ import { Observable } from 'rxjs';
 import { doctorCat } from '../doctorCat.module';
 import { ColDef, GridApi, ColumnApi } from 'ag-grid-community';
 import { selectAll,selectOne } from 'src/app/doctors/doctorCategorie/doctorCat.selector';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { PeriodicElement } from 'src/app/modules/dashboard/dashboard.component';
 import { SelectionModel } from '@angular/cdk/collections';
+import { AddDoctorCatComponent } from '../add-doctor-cat/add-doctor-cat.component';
 
 
 // export interface listDoctorCat {
@@ -39,7 +40,7 @@ export class DoctorCatComponent implements OnInit {
   dataSource;
   selection: SelectionModel<doctorCat>;
   
-  constructor(private store : Store<any>) { 
+  constructor(private store : Store<any>,public dialog: MatDialog) { 
     // this.columnDefs = this.createColumnDefs();
       //  this.delete=this.delete.bind(this);  
  
@@ -72,14 +73,19 @@ export class DoctorCatComponent implements OnInit {
     this.isAllSelected() ?
         this.selection.clear() :
         this.dataSource.data.forEach(row => 
-          this.selection.select(row),
-       
+          this.selection.select(row),        
         );
+        
   }
   onrowselect(row){
     console.log("roow",row)
+    // this.isSelect
   }
+
   /** The label for the checkbox on the passed row */
+  isMuliple:boolean = false
+  isSelect:boolean = false
+
   checkboxLabel(row?: doctorCat): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
@@ -96,58 +102,9 @@ export class DoctorCatComponent implements OnInit {
 
 exist: boolean = false;
 
+add() {
+  console.log("hello");
+  this.dialog.open(AddDoctorCatComponent);
+}
 
-// private api: GridApi;
-// private columnApi: ColumnApi;
-
-// private rowSelection;
-// private IsRowSelected: boolean;
-// private IsMultple: boolean;
-
-// private SelectedClient: doctorCat=new doctorCat();
-
-// onGridReady(params): void {
-//   this.api = params.api;
-//   this.columnApi = params.columnApi;
-
-//   this.api.sizeColumnsToFit();
-//   console.log('params', params);
-// }
-
-// onSelectionChanged(event) { 
-//   var selectedRowLenght=this.api.getSelectedRows().length;
-//   if (selectedRowLenght == 0) { 
-//     this.IsMultple = false;
-//     this.IsRowSelected = false;
-//   }else 
-//   if(selectedRowLenght == 1)
-//   { 
-//     this.IsRowSelected = true;
-//     this.IsMultple = false;
-//   }
-//    else {
-//     this.IsRowSelected = true;
-//     this.IsMultple = true;
-//   }
-//   console.log(event);
-
-//   this.SelectedClient= this.IsRowSelected? this.api.getSelectedRows()[0]:new doctorCat();
-
-//   console.log("Selected row :",this.SelectedClient)
-// }
-
-// deletee(doctorcat: doctorCat) {
-//   if (confirm("Are You Sure You want to Delete the User?")) {
-//     this.store.dispatch(new ActionsFile.DeleteDoctorCat(doctorcat.id));
-//     this.store.dispatch( new ActionsFile.LoadDoctorCat());
-//   }
-// }
-
-// delete() {  
-//   this.store.select(selectOne,{id:this.SelectedClient.id}).subscribe(res=>{
-//       console.log("selected res", res);
-//       this.store.dispatch(new ActionsFile.DeleteDoctorCat(res.objlist.id));
-//       this.store.dispatch( new ActionsFile.LoadDoctorCat());        
-//   })  
-// }
 }

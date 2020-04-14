@@ -55,8 +55,22 @@
           </table>
         </div>
       </div>-->
-      
-   
+      <a (click)="add()" matTooltip="Click for add a new Appointement" [matTooltipPosition]="'left'"
+      class="flotting-btn btn-success" style="color: white;">+</a>
+      <div style="float: right;"> 
+        <button (click)="save(item)" style="line-height: 15px;margin: 10px; " type="button" class="btn btn-warning"
+        aria-label="Left Align">
+        <i class="material-icons">
+         autorenew
+         </i>
+      </button>
+      <button (click)="openDialog(item)" style="line-height: 15px;" type="button" class="btn btn-danger"
+      aria-label="Left Align">
+      <i class="material-icons">
+       delete
+       </i>
+    </button>     
+   </div>
  <mat-form-field class="example-full-width">
     <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
   </mat-form-field>

@@ -61,6 +61,8 @@ import { MaterialModule } from './material/material/material.module';
 import { InvoiceComponent } from './invoices/invoice/invoice.component';
 import { DetailsComponent } from './invoices/details/details.component';
 import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
+import { AddDoctorCatComponent } from './doctors/doctorCategorie/add-doctor-cat/add-doctor-cat.component';
+import { AddHospitalCatComponent } from './HospitalCategorie/add-hospital-cat/add-hospital-cat.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +99,8 @@ import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.compo
     MenuComponent,
     SigninComponent,
     InvoiceListComponent,
+    AddDoctorCatComponent,
+    AddHospitalCatComponent,
     // StoreComponent 
     // FooterComponent, 
     // HeaderComponent
@@ -108,7 +112,9 @@ import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.compo
     SavePdfComponent,
     DialogHospComponent,
     HospitalCatAddComponent,
-    AddOperationComponent, DeleteOperationComponent
+    AddOperationComponent, DeleteOperationComponent,
+    AddDoctorCatComponent,
+    AddHospitalCatComponent
   ],
 
 
@@ -128,29 +134,15 @@ import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.compo
 
     // MaterialModule,
 
-    StoreModule.forRoot({}),
-    StoreModule.forRoot({ router: routerReducer }),
-    StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
     StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([]),
-    StoreModule.forFeature("HospitalCat", HospitalCatReducer),
-    StoreModule.forFeature("DoctorCat", DoctorCatReducer),
-    StoreModule.forFeature("appointements", AppointementReducer),
-    StoreModule.forFeature("hospitals", HospitalReducer),
-    StoreModule.forFeature("operations", OperationReducer),
-    StoreModule.forFeature("operationsCat", OperationCategoryReducer),
-    StoreModule.forFeature("hospitals", HospitalReducer),
-    StoreModule.forFeature("doctors", doctorReducer),
+
     ChatModule,
     AngularMaterialModule,
     FormsModule,
     ReactiveFormsModule,
     MatBottomSheetModule,
     MatTooltipModule,
-    //for doctor
-
-
-    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, OpEffect, OperationCatEffect, HospitalsEffect]),
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
