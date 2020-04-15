@@ -82,6 +82,8 @@ export class DeleteInvoice implements Action{
 }
 export class DeleteInvoiceSuccess implements Action{
     readonly type = InvoiceActionType.DELETE_SUCCESS;
+
+    constructor(public payload: string) {}
 }
 
 export class DeleteInvoiceFail implements Action{

@@ -18,6 +18,8 @@ import { InvoiceComponent } from './invoices/invoice/invoice.component';
 import { CategoryComponent } from './category/category.component';
 import { ContactComponent } from './chat/contact/contact.component' 
 import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
+import { MaterialComponent } from './material/material/material.component';
+import { MaterialEditComponent } from './material/material-edit/material-edit.component';
 
 
 
@@ -43,11 +45,15 @@ const routes: Routes = [
       { path: 'operation', component: OperationComponent, pathMatch: 'full' }, 
       { path: 'Category', component: CategoryComponent, pathMatch: 'full' },
       { path: 'chat', component: ContactComponent, pathMatch: 'full' }, 
+      { path: 'material', component: MaterialComponent, pathMatch: 'full' }, 
+      { path: 'materialedit', component: MaterialEditComponent, pathMatch: 'full' }, 
+
+      
  
     ]
   },
   { path: 'signin', component: SigninComponent },
-  { path: 'material', loadChildren: () => import('./material/material/material.module').then(m => m.MaterialModule) } 
+  // { path: 'material', loadChildren: () => import('./material/material/material.module').then(m => m.MaterialModule) } 
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
