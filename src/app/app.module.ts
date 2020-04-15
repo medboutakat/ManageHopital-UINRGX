@@ -26,11 +26,6 @@ import { CategoryComponent } from './category/category.component';
 import { HospitalEditComponent } from './hospital/hospital-edit/hospital-edit.component';
 import { SignupComponent } from './connexion/signup/signup.component';
 import { SigninComponent } from './connexion/signin/signin.component';
-<<<<<<< HEAD
-=======
-import { InvoiceComponent } from './invoices/invoice/invoice.component';
-import { DetailsComponent } from './invoices/details/details.component';
->>>>>>> 9abe56f4e8ff9a40f9c02ec58ad7c8644ec86d7c
 import { AppstoreModule } from './appstore/appstore.module';
 import { AddAppointementComponent } from './appointements/add-appointement/add-appointement.component';
 import { HospitalReducer } from './appointements/store/hospital.reducer';
@@ -62,23 +57,14 @@ import { AppointementReducer } from './appointements/store/appointement.reducer'
 import { ChatModule } from './chat/chat.module'
 import { AgGridModule } from 'ag-grid-angular';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
-<<<<<<< HEAD
-import { MaterialModule } from './material/material/material.module';
+// import { MaterialModule } from './material/material/material.module';
 import { InvoiceComponent } from './invoices/invoice/invoice.component';
 import { DetailsComponent } from './invoices/details/details.component';
 import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
 import { AddDoctorCatComponent } from './doctors/doctorCategorie/add-doctor-cat/add-doctor-cat.component';
 import { AddHospitalCatComponent } from './HospitalCategorie/add-hospital-cat/add-hospital-cat.component';
-=======
-import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
-import { InvoiceReducer } from './invoices/store/Reducer';
-import { InvoiceEffect } from './invoices/store/Effect';
-import { HospitalEffect } from './hospital/store/Effect';
 import { MaterialComponent } from './material/material/material.component';
-import { MaterialEffect } from './material/store/Effect';
-import { MaterialReducer } from './material/store/Reducer';
 import { MaterialEditComponent } from './material/material-edit/material-edit.component';
->>>>>>> 9abe56f4e8ff9a40f9c02ec58ad7c8644ec86d7c
 
 @NgModule({
   declarations: [
@@ -115,16 +101,13 @@ import { MaterialEditComponent } from './material/material-edit/material-edit.co
     MenuComponent,
     SigninComponent,
     InvoiceListComponent,
-<<<<<<< HEAD
     AddDoctorCatComponent,
     AddHospitalCatComponent,
-=======
-    MaterialComponent,
-    MaterialEditComponent,
->>>>>>> 9abe56f4e8ff9a40f9c02ec58ad7c8644ec86d7c
     // StoreComponent 
     // FooterComponent, 
     // HeaderComponent
+    MaterialComponent,
+    MaterialEditComponent
   ],
   entryComponents: [
     DialogComponent,
@@ -134,14 +117,9 @@ import { MaterialEditComponent } from './material/material-edit/material-edit.co
     DialogHospComponent,
     HospitalCatAddComponent,
     AddOperationComponent, DeleteOperationComponent,
-<<<<<<< HEAD
     AddDoctorCatComponent,
-    AddHospitalCatComponent
-=======
-    AddOperationComponent,
-    DeleteOperationComponent
-
->>>>>>> 9abe56f4e8ff9a40f9c02ec58ad7c8644ec86d7c
+    AddHospitalCatComponent,
+    
   ],
 
 
@@ -158,7 +136,6 @@ import { MaterialEditComponent } from './material/material-edit/material-edit.co
 
     AppstoreModule,
     HttpClientModule,
-<<<<<<< HEAD
 
     // MaterialModule,
 
@@ -166,70 +143,11 @@ import { MaterialEditComponent } from './material/material-edit/material-edit.co
 
     ChatModule,
     AngularMaterialModule,
-=======
-    StoreModule.forRoot({}),
-    StoreModule.forRoot({ router: routerReducer }),
-    StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
-    StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([]),
-    StoreModule.forFeature("HospitalCat", HospitalCatReducer),
-    StoreModule.forFeature("DoctorCat", DoctorCatReducer),
-    StoreModule.forFeature("appointements", AppointementReducer),
-    StoreModule.forFeature("hospitals", HospitalReducer),
-    StoreModule.forFeature("operations", OperationReducer),
-    StoreModule.forFeature("operationsCat", OperationCategoryReducer),
-
-    StoreModule.forFeature("hospitals", HospitalReducer),
-
-
-    StoreModule.forFeature("doctors", doctorReducer),
-    ChatModule,
-    AngularMaterialModule,
-    StoreModule.forFeature("doctors", doctorReducer),
-    StoreModule.forFeature("invoices", InvoiceReducer),
-    ChatModule,
-    AngularMaterialModule,
-
-    StoreModule.forFeature("doctors", doctorReducer),
-    StoreModule.forFeature("invoices", InvoiceReducer),
-    StoreModule.forFeature("Materials", MaterialReducer),
-    ChatModule,
-    AngularMaterialModule,
-
-
-    StoreModule.forFeature("hospitals", HospitalReducer),
-    StoreModule.forFeature("doctors", doctorReducer),
-    StoreModule.forFeature("doctors", doctorReducer),
-    StoreModule.forFeature("invoices", InvoiceReducer),
-    StoreModule.forFeature("Materials", MaterialReducer),
-    ChatModule,
-    AngularMaterialModule,
-
->>>>>>> 9abe56f4e8ff9a40f9c02ec58ad7c8644ec86d7c
     FormsModule,
     ReactiveFormsModule,
     MatBottomSheetModule,
     MatTooltipModule,
-<<<<<<< HEAD
   
-=======
-    //for doctor
-
-
-
-    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, OpEffect, OperationCatEffect, HospitalsEffect]),
-    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, InvoiceEffect]),
-
-    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, InvoiceEffect, MaterialEffect]),
-
-
-    //for doctor 
-    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, OperationCatEffect, InvoiceEffect, , MaterialEffect]),
-    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, OperationCatEffect, InvoiceEffect,
-      MaterialEffect
-    ]),
-
->>>>>>> 9abe56f4e8ff9a40f9c02ec58ad7c8644ec86d7c
   ],
   providers: [],
   bootstrap: [AppComponent]
