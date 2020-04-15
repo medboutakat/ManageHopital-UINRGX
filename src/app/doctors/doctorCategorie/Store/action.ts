@@ -7,7 +7,10 @@ export enum DoctorCatActionType {
     LOAD_DoctorCat_SUCCESS = "[DoctorCat] LOAD DoctorCat Success",
     LOAD_DoctorCat_FAIL = "[DoctorCat] Load DoctorCat Fail ",
     AddAll = "AddAll",
-
+  
+    CREATE_DoctorCat = "[DoctorCat] Create DoctorCat",
+    CREATE_DoctorCat_SUCCESS = "[DoctorCat] Create DoctorCat Success",
+    CREATE_DoctorCat_FAIL = "[DoctorCat] Create DoctorCat Fail ",
     
     DELETE_DoctorCat = "[DoctorCat] Delete DoctorCat",
     DELETE_DoctorCat_SUCCESS = "[DoctorCat] Delete DoctorCat Success",
@@ -27,6 +30,25 @@ export class LoadDoctorCatSuccess implements Action{
 }
 export class LoadDoctorCatFail implements Action{
     readonly type = DoctorCatActionType.LOAD_DoctorCat_FAIL
+    constructor(public payload: string){}
+}
+
+
+// Add HospitalCategory
+
+export class CreateDoctorCat implements Action{
+    readonly type = DoctorCatActionType.CREATE_DoctorCat;
+ constructor(public payload: doctorCat){}
+
+}
+export class CreateDoctorCatSuccess implements Action{
+    readonly type = DoctorCatActionType.CREATE_DoctorCat_SUCCESS;
+
+ constructor(public payload: doctorCat){}
+
+}
+export class CreateDoctorCatFail implements Action{
+    readonly type = DoctorCatActionType.CREATE_DoctorCat_FAIL
     constructor(public payload: string){}
 }
 
@@ -52,6 +74,10 @@ export type DoctorCatction=
  LoadDoctorCat | 
  LoadDoctorCatSuccess |
 LoadDoctorCatFail
+// CreateHospitalCat
+|CreateDoctorCat
+| CreateDoctorCatSuccess
+|CreateDoctorCatFail
  // DeleteHospitalCat
  |DeleteDoctorCat
  |DeleteDoctorCatSuccess

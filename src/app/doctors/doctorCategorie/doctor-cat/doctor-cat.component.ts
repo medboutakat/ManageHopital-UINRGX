@@ -1,9 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import * as ActionsFile from 'src/app/doctors/doctorCategorie/Store/Action'
 import { Observable } from 'rxjs';
 import { doctorCat } from '../doctorCat.module';
 import { ColDef, GridApi, ColumnApi } from 'ag-grid-community';
+import { selectAll,selectOne } from 'src/app/doctors/doctorCategorie/doctorCat.selector';
+import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
+import { PeriodicElement } from 'src/app/modules/dashboard/dashboard.component';
+import { SelectionModel } from '@angular/cdk/collections';
+import { AddDoctorCatComponent } from '../add-doctor-cat/add-doctor-cat.component';
+
+
+// export interface listDoctorCat {
+//   name: string;
+  
+//   remark: string;
+
+// }
+
+// const ELEMENT_DATA: listDoctorCat[] = [
+//   {name: '', remark: ''},
+
+// ];
 
 @Component({
   selector: 'app-doctor-cat',
@@ -19,82 +37,74 @@ export class DoctorCatComponent implements OnInit {
 
 
   listDoctorCat
-  constructor(private store : Store<any>) { 
-    this.columnDefs = this.createColumnDefs();
-    this.delete;  
+  dataSource;
+  selection: SelectionModel<doctorCat>;
+  
+  constructor(private store : Store<any>,public dialog: MatDialog) { 
+    // this.columnDefs = this.createColumnDefs();
+      //  this.delete=this.delete.bind(this);  
+ 
 
   }
+  displayedColumns: string[] = [ 'select','name', 'remark'];
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   ngOnInit() {
     this.store.dispatch( new ActionsFile.LoadDoctorCat());
-    this.LoadData();
+    this.store.subscribe(data =>{
+      this.listDoctorCat = Object.values(data.DoctorCat.entities)  
+      console.log(" listDoctorCat=> ",this.listDoctorCat) 
+      this.dataSource = new MatTableDataSource<doctorCat>(this.listDoctorCat);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.selection = new SelectionModel<doctorCat>(true, []);
+    })
 
   }
-  LoadData() {
-     this.store.subscribe(data =>{
-      this.listDoctorCat = Object.values(data.DoctorCat.entities)  
-      console.log(" this.listDoctorCat=> ",this.listDoctorCat) 
-    }
-    );
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+    
   }
-private createColumnDefs() {
-  return [
-    { headerName: 'name', field: 'name', editable: true, filter: true, sortable: true, checkboxSelection: true },
-    { headerName: 'remark', field: 'remark', editable: true, filter: true, sortable: true },
-  ]
-}
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => 
+          this.selection.select(row),        
+        );
+        
+  }
+  onrowselect(row){
+    console.log("roow",row)
+    // this.isSelect
+  }
+
+  /** The label for the checkbox on the passed row */
+  isMuliple:boolean = false
+  isSelect:boolean = false
+
+  checkboxLabel(row?: doctorCat): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.name + 1}`;
+    
+  }
+
+  applyFilter(filtervalue : string){
+    this.dataSource.filter = filtervalue.trim().toLowerCase();
+  }
+  
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
 exist: boolean = false;
 
-// row data and column definitions
-private rowData: doctorCat[];
-private columnDefs: ColDef[];
-
-
-// gridApi and columnApi
-private api: GridApi;
-private columnApi: ColumnApi;
-
-private rowSelection;
-private IsRowSelected: boolean;
-private IsMultple: boolean;
-
-private SelectedClient: doctorCat=new doctorCat();
-
-onGridReady(params): void {
-  this.api = params.api;
-  this.columnApi = params.columnApi;
-
-  this.api.sizeColumnsToFit();
-  console.log('params', params);
+add() {
+  console.log("hello");
+  this.dialog.open(AddDoctorCatComponent);
 }
 
-onSelectionChanged(event) { 
-  var selectedRowLenght=this.api.getSelectedRows().length;
-  if (selectedRowLenght == 0) { 
-    this.IsMultple = false;
-    this.IsRowSelected = false;
-  }else 
-  if(selectedRowLenght == 1)
-  { 
-    this.IsRowSelected = true;
-    this.IsMultple = false;
-  }
-   else {
-    this.IsRowSelected = true;
-    this.IsMultple = true;
-  }
-  console.log(event);
-
-  this.SelectedClient= this.IsRowSelected? this.api.getSelectedRows()[0]:new doctorCat();
-
-  console.log("Selected row :",this.SelectedClient)
-}
-
-delete(hospital: doctorCat) {
-  if (confirm("Are You Sure You want to Delete the User?")) {
-    this.store.dispatch(new ActionsFile.DeleteDoctorCat(hospital.id));
-    this.store.dispatch( new ActionsFile.LoadDoctorCat());
-  }
-}
 }

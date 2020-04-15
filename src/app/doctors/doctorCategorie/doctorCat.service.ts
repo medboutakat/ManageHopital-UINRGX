@@ -22,4 +22,8 @@ export class DoctorCatService{
     deleteDoctorCat(payload: string) {
         return this.http.delete(`${this.DoctorCatUrl}/${payload}`);
       }
+
+      add(payload: doctorCat): Observable<doctorCat> {
+        return this.http.post<doctorCat>(this.DoctorCatUrl, payload);
+      }
 }

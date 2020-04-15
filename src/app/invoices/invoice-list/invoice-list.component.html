@@ -1,28 +1,6 @@
-<div class="body">
-  <h2>Manage Invoices</h2>
-  <button class="btn btn-primary"><i class="fa fa-plus"></i> add facture</button>
-  <hr>
-  <ng-container>
-    <div class="btn-toolbar">
-      <button type="button" class="btn active  btn-sm">All</button>
-      <button type="button" class="btn  btn-sm">Draft</button>
-      <button type="button" class="btn  btn-sm">Scheduled</button>
-      <button type="button" class="btn  btn-sm">Unpaid</button>
-      <button type="button" class="btn  btn-sm">Paid</button>
-    </div>
-  </ng-container>
-  <ng-container>
-    <mat-form-field class="mat">
-      <mat-label class="labe">Search</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Name">
-    </mat-form-field>
-  </ng-container>
-  <div class="mat-elevation-z8" #content id="content">
-    <div class="alert bge" role="alert"><br><br>
-      <button (click)="Download()" type="button" class="btn btn-link"><i class="fa fa-download"></i> Download</button>
-    </div>
-    <table mat-table [dataSource]="this.dataSource">
-
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+  
       <!-- Position Column -->
       <ng-container matColumnDef="code">
         <th mat-header-cell *matHeaderCellDef> No. </th>
@@ -75,4 +53,3 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
 
-</div>

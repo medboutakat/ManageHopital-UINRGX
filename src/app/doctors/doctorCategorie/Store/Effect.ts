@@ -31,6 +31,27 @@ export class DoctorCatEffect {
       )
       )
   );
+
+     //Create Hospital Category
+
+     @Effect()
+     CreateDoctorCat$: Observable<Action> = this.actions$.pipe(
+         ofType<ActionsFile.CreateDoctorCat>(
+             ActionsFile.DoctorCatActionType.CREATE_DoctorCat
+         ),
+         map((Actions : ActionsFile.CreateDoctorCat)=>Actions.payload),
+         mergeMap((DoctorCate : doctorCat )=>
+         this.DoctorCatServ.add(DoctorCate ).pipe(
+             map(
+                 (NewHospitalCats : doctorCat)=>
+                 new ActionsFile.CreateDoctorCatSuccess(NewHospitalCats)
+             ),
+             catchError(err =>of(new ActionsFile.CreateDoctorCatFail(err)))
+         )
+         )
+     );
+   
+
   @Effect()
   DeleteDoctorCat$: Observable<Action> = this.actions$.pipe(
       ofType<ActionsFile.DeleteDoctorCat>(

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 
 import { Store, select } from "@ngrx/store";
@@ -8,6 +8,8 @@ import * as doctorActions from "../doctor-store/doctor.action";
 import * as fromDoctorReducer from "../doctor-store/doctor.reducer";
 import { Doctor } from '../doctor.model';
 import { DoctorEditComponent } from '../doctor-edit/doctor-edit.component';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-doctor',
@@ -18,23 +20,64 @@ export class DoctorComponent implements OnInit {
 
   doctors: Doctor[];
   error$: Observable<String>;
+  dataSource: any;
+  selection: SelectionModel<Doctor>;
 
   constructor(private store: Store<fromDoctorReducer.AppSate>, private _bottomSheet: MatBottomSheet) { }
 
+  applyFilter(filtervalue : string){
+    this.dataSource.filter = filtervalue.trim().toLowerCase();
+  }
+  
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+  displayedColumns: string[] = [ 'select','firstName', 'lastName','sexe'];
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
   ngOnInit() {
     this.store.dispatch( new doctorActions.getDoctor());
-  
     this.store.subscribe(data =>{
-      this.doctors = data.doctors.doctors
-      // console.log(data.todos)
-      console.log("list ; ",this.doctors)
+      this.doctors = Object.values(data.doctors.doctors)  
+      console.log(" listDoctorCat=> ",this.doctors) 
+      this.dataSource = new MatTableDataSource<Doctor>(this.doctors);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.selection = new SelectionModel<Doctor>(true, []);
     })
-    console.log(this.doctors)
   }
 
   openBottomSheet(): void {
     this._bottomSheet.open(DoctorEditComponent);
     console.log('show bottom sheet ...')
+  }
+
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+    
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => 
+          this.selection.select(row),
+       
+        );
+  }
+  onrowselect(row){
+    console.log("roow",row)
+  }
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: Doctor): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+    
   }
 
 }
