@@ -1,55 +1,65 @@
 <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
-  
-      <!-- Position Column -->
-      <ng-container matColumnDef="code">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.code}} </td>
-      </ng-container>
+  <button matTooltip="Click for Add New facture" class="btn btn-info" style="float: right;" (click)="add()"><i
+      class="fa fa-plus"></i></button>
+  <button *ngIf="isAvailable" matTooltip="Click for Edit facture" class="btn btn-warning" style="float: right;"
+    (click)="edit()"><i class="fa fa-edit"></i></button>
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected() "
+          [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="selected(row)" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+    <!-- Position Column -->
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+    </ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef> date </th>
-        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
-      </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> date </th>
+      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>
 
-      <!-- Weight Column -->
-      <ng-container matColumnDef="totalAmont">
-        <th mat-header-cell *matHeaderCellDef> totalAmont </th>
-        <td mat-cell *matCellDef="let element"> {{element.totalAmont}} </td>
-      </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="totalAmont">
+      <th mat-header-cell *matHeaderCellDef> totalAmont </th>
+      <td mat-cell *matCellDef="let element"> {{element.totalAmont}} </td>
+    </ng-container>
 
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef> Symbol </th>
-        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-      </ng-container>
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="expedition">
-        <th mat-header-cell *matHeaderCellDef> expedition </th>
-        <td mat-cell *matCellDef="let element"> {{element.expedition}} </td>
-      </ng-container>
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="livraison">
-        <th mat-header-cell *matHeaderCellDef> livraison </th>
-        <td mat-cell *matCellDef="let element"> {{element.livraison}} </td>
-      </ng-container>
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="remise">
-        <th mat-header-cell *matHeaderCellDef> remise </th>
-        <td mat-cell *matCellDef="let element"> {{element.remise}} </td>
-      </ng-container>
-      <ng-container matColumnDef="star" stickyEnd>
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element">
-          <button matTooltip="Click for Edit facture" class="btn btn-warning edit"></button>
-        </td>
-      </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef> Symbol </th>
+      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="expedition">
+      <th mat-header-cell *matHeaderCellDef> expedition </th>
+      <td mat-cell *matCellDef="let element"> {{element.expedition}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="livraison">
+      <th mat-header-cell *matHeaderCellDef> livraison </th>
+      <td mat-cell *matCellDef="let element"> {{element.livraison}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="remise">
+      <th mat-header-cell *matHeaderCellDef> remise </th>
+      <td mat-cell *matCellDef="let element"> {{element.remise}} </td>
+    </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr (click)="logdata(row)" mat-row *matRowDef="let row; columns: displayedColumnsData;"></tr>
-    </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-  </div>
+    <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr (click)="logdata(row)" mat-row *matRowDef="let row; columns: displayedColumnsData;"></tr> -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
