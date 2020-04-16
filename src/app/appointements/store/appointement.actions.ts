@@ -5,9 +5,11 @@ export enum AppointementActionTypes {
     LOAD_APPOINTEMENTS = "[appointement] Load Appointements",
     LOAD_APPOINTEMENTS_SUCCESS = "[appointement] Load Appointements Success",
     LOAD_APPOINTEMENTS_FAILED = "[appointement] Load Appointements Failed",
+
     DELETE_APPOINTEMENT = "[appointement] Delete Appointements",
     DELETE_APPOINTEMENT_SUCCESS = "[appointement] Delete Appointements Success",
     DELETE_APPOINTEMENT_FAIL = "[appointement] Delete Appointements Fail",
+
     CREATE_APPOINTEMENT = "[appointement] Create Appointements",
     CREATE_APPOINTEMENT_SUCCESS = "[appointement] Create Appointements Success",
     CREATE_APPOINTEMENT_FAIL = "[appointement] Create Appointements Fail",
