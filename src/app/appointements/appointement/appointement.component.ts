@@ -22,22 +22,22 @@ export class AppointementComponent implements OnInit {
 
 
 
-  applyFilter(filtervalue : string){
+  applyFilter(filtervalue: string) {
     this.dataSource.filter = filtervalue.trim().toLowerCase();
   }
-  
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  displayedColumns: string[] = [ 'select','assurance', 'reservationTimeStamp','subject'];
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  
+  displayedColumns: string[] = ['select', 'assurance', 'reservationTimeStamp', 'subject'];
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+
   constructor(private store: Store<any>, public dialog: MatDialog) {
-    
-      this.store.dispatch(new actionApps.LoadAppointements());
-      this.store.subscribe(data =>{
-      this.apps = Object.values(data.appointements.appointements)  
-      console.log(" apps=> ",this.apps) 
+
+    this.store.dispatch(new actionApps.LoadAppointements());
+    this.store.subscribe(data => {
+      this.apps = Object.values(data.appointements.appointements)
+      console.log(" apps=> ", this.apps)
       this.dataSource = new MatTableDataSource<Appointement>(this.apps);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -58,26 +58,26 @@ export class AppointementComponent implements OnInit {
     this.dialog.open(AddAppointementComponent);
   }
 
-  
+
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
-    
+
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
     this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => 
-          this.selection.select(row),
-       
-        );
+      this.selection.clear() :
+      this.dataSource.data.forEach(row =>
+        this.selection.select(row)
+
+      );
   }
-  
-  onrowselect(row){
-    console.log("roow",row)
+
+  onrowselect(row) {
+    console.log("roow", row)
   }
 
   /** The label for the checkbox on the passed row */
@@ -86,6 +86,6 @@ export class AppointementComponent implements OnInit {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
-    
+
   }
 }

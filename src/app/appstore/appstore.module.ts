@@ -18,11 +18,13 @@ import { HospitalEffect } from '../hospital/store/Effect';
 import { OperationReducer } from '../operations/store/operations.reducer';
 import { OperationCategoryReducer } from '../operations/store/category.reducer';
 import { OpEffect } from '../operations/store/operation.effect';
+import { InvoiceReducer } from '../invoices/store/Reducer';
+import { InvoiceEffect } from '../invoices/store/Effect';
 
 
 @NgModule({
   declarations: [],
-  imports: [ 
+  imports: [
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument(),
@@ -38,10 +40,10 @@ import { OpEffect } from '../operations/store/operation.effect';
     StoreModule.forRoot({ "appointements": AppointementReducer }),
     StoreModule.forRoot({ "Hospital": HospitalReducer }),
     StoreModule.forFeature("doctors", doctorReducer),
-
+    StoreModule.forFeature("invoices", InvoiceReducer),
     StoreModule.forFeature("operations", OperationReducer),
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
-    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect,HospitalEffect,OpEffect]),
+    EffectsModule.forRoot([DoctorEffect, InvoiceEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect]),
     CommonModule
 
 
