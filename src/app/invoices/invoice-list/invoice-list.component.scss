@@ -1,3 +1,83 @@
 table {
-    width: 100%;
-  }
+  width: 100%;
+}
+
+.body {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
+
+.body h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 18px;
+  font-weight: lighter;
+}
+
+.body .btn {
+  float: right;
+  margin-top: -5%;
+  margin-right: 5%;
+}
+
+.body hr {
+  width: 90%;
+}
+
+.body .btn-toolbar {
+  margin-left: 20%;
+  margin-top: 10%;
+  line-height: -10px;
+}
+
+.body .btn-toolbar .btn {
+  line-height: -10px;
+  border-color: rgb(238, 228, 228);
+  width: 100px;
+  height: 40px;
+  background-color: white;
+}
+
+.body .btn-toolbar .btn.active {
+  background-color: rgb(211, 211, 211);
+}
+
+.body .mat {
+  margin-left: 10%;
+  margin-top: 2%;
+  width: 80%;
+  text-align: center;
+}
+
+.body .mat .labe {
+  font-size: 13px;
+
+}
+
+.body .inp1 input {
+  text-align: center;
+}
+
+.body .bge {
+  background-color: #f3f5f9;
+  height: 50px;
+}
+
+
+.body .bge button {
+  font-size: 13px;
+}
+
+.mat-column-select {
+  overflow: initial;
+}
+
+.edit {
+  width: 30px;
+  height: 20px;
+}
+
+.icone {
+  width: 20px;
+  height: 15px;
+}

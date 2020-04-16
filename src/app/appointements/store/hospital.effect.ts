@@ -6,13 +6,14 @@ import * as appsActions from './hospital.actions'
 import { Hospital } from '../hospital';
 import { map, mergeMap, catchError } from "rxjs/operators";
 import { Action } from '@ngrx/store';
+import { HospitalService } from 'src/app/appointements/hospital.service';
 
 @Injectable()
-export class HospitalEffect {
+export class HospitalsEffect {
 
     constructor
         (
-            private service: AppointetmentService,
+            private service: HospitalService,
             private actions$: Actions
         ) { }
 
@@ -23,7 +24,7 @@ export class HospitalEffect {
             appsActions.HospitalActionTypes.LOAD_HOSPITALS
         ),
         mergeMap((actions: appsActions.LoadHospitals) =>
-            this.service.gethospital().pipe(
+            this.service.getAll().pipe(
                 map((hospitals: Hospital[]) =>
                     new appsActions.LoadHospitalsSuccess(hospitals)
                 ),

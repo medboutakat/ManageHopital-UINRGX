@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as ActionsFile from 'src/app/HospitalCategorie/Store/Action'
 import { DialogComponent } from 'src/app/appointements/dialog/dialog.component';
-import { MatDialog, MatBottomSheetRef, MatBottomSheet } from '@angular/material';
+import { MatDialog, MatBottomSheetRef, MatBottomSheet, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as fromHospitalCat from "src/app/HospitalCategorie/Store/reducer";
 import { HospitalCat } from '../hospitalCat.model';
 import { HospitalCatAddComponent } from '../hospital-cat-add/hospital-cat-add.component';
+import { SelectionModel } from '@angular/cdk/collections';
+import { GridApi } from 'ag-grid-community';
+import { AddHospitalCatComponent } from 'src/app/HospitalCategorie/add-hospital-cat/add-hospital-cat.component';
 
 @Component({
   selector: 'app-hospital-cat',
@@ -16,6 +19,13 @@ import { HospitalCatAddComponent } from '../hospital-cat-add/hospital-cat-add.co
 export class HospitalCatComponent implements OnInit {
   listhopitalCatValues: any; 
   HospitalCatForm: FormGroup;
+  dataSource;
+  selection: SelectionModel<HospitalCat>;
+  
+  displayedColumns: string[] = [ 'select','name', 'remark'];
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
 
   constructor(private store : Store<any>,public dialog: MatDialog,private fb: FormBuilder,) {
     this.store.dispatch( new ActionsFile.LoadHospitalCat());
@@ -24,10 +34,18 @@ export class HospitalCatComponent implements OnInit {
       this.listhopitalCatValues = Object.values(data.HospitalCat.entities)  
       console.log(" this.listhopitalCatValues=> ",this.listhopitalCatValues) 
     
+      this.dataSource = new MatTableDataSource<HospitalCat>(this.listhopitalCatValues);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.selection = new SelectionModel<HospitalCat>(true, []);
     }
     )
   } 
   
+applyFilter(filtervalue : string){
+  this.dataSource.filter = filtervalue.trim().toLowerCase();
+}
+
   ngOnInit() {
    
   }
@@ -42,8 +60,77 @@ deleteCustomer(hospital: HospitalCat) {
   }
 }
 
+// add() {
+//   console.log("hello");
+//   this.dialog.open(HospitalCatAddComponent);
+// }
+
+isAllSelected() {
+  const numSelected = this.selection.selected.length;
+  
+  const numRows = this.dataSource.data.length;
+  return numSelected === numRows;
+  
+}
+
+
+private rowSelection;
+private IsRowSelected: boolean;
+private IsMultple: boolean;
+
+private SelectedClient: HospitalCat=new HospitalCat();
+
+
+// onSelectionChanged(event) { 
+//   var selectedRowLenght=this.api.getSelectedRows().length;
+//   if (selectedRowLenght == 0) { 
+//     this.IsMultple = false;
+//     this.IsRowSelected = false;
+//   }else 
+//   if(selectedRowLenght == 1)
+//   { 
+//     this.IsRowSelected = true;
+//     this.IsMultple = false;
+//   }
+//    else {
+//     this.IsRowSelected = true;
+//     this.IsMultple = true;
+//   }
+//   console.log(event);
+
+//   this.SelectedClient= this.IsRowSelected? this.api.getSelectedRows()[0]:new doctorCat();
+
+//   console.log("Selected row :",this.SelectedClient)
+// }
+
+
+
+
+
+
+/** Selects all rows if they are not all selected; otherwise clear selection. */
+// masterToggle() {
+//   this.isAllSelected() ?
+//       this.selection.clear() :
+//       this.dataSource.data.forEach(row => 
+//         this.selection.select(row),
+     
+//       );
+// }
+onrowselect(row){
+  console.log("roow",row)
+}
+/** The label for the checkbox on the passed row */
+checkboxLabel(row?: HospitalCat): string {
+  if (!row) {
+    return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+  }
+  return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.name + 1}`;
+  
+}
+
 add() {
   console.log("hello");
-  this.dialog.open(HospitalCatAddComponent);
+  this.dialog.open(AddHospitalCatComponent);
 }
 }

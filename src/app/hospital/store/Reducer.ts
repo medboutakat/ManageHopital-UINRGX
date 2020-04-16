@@ -13,7 +13,7 @@ export interface HospitalState extends EntityState<Hospital>{
 }
 
 export interface AppState extends fromRoot.AppState{
-    Hospitals : HospitalState
+    HospitalCats : HospitalState
 }
 
 export const HospitalAdapter: EntityAdapter<Hospital> = createEntityAdapter<Hospital>();
@@ -65,29 +65,29 @@ export function HospitalReducer(state = initialState, action : ActionsFile.Hospi
   const getHospitalsFeatursState = createFeatureSelector<HospitalState>(
       "Hospitals"
   )
-   export const getHospitalCats = createSelector(
+   export const getHospitals = createSelector(
        getHospitalsFeatursState,
     //    (state : HospitalCatState)=>state.HospitalCats
       HospitalAdapter.getSelectors().selectAll
    )
-   export const getHospitalCatsLoading = createSelector(
+   export const getHospitalsLoading = createSelector(
     getHospitalsFeatursState,
     (state : HospitalState)=>state.loading
 )
-export const getHospitalCatsLoaded = createSelector(
+export const getHospitalsLoaded = createSelector(
     getHospitalsFeatursState,
     (state : HospitalState)=>state.loaded
 )
-export const getHospitalCatsError = createSelector(
+export const getHospitalsError = createSelector(
     getHospitalsFeatursState,
     (state : HospitalState)=>state.error
 )
-export const getHospitalCatsbyid = createSelector(
+export const getHospitalsbyid = createSelector(
     getHospitalsFeatursState,
     (state :HospitalState)=>state.selectedHospitalbyId
 );
 export const getcurrenthospital = createSelector(
     getHospitalsFeatursState,
-    getHospitalCatsbyid,
+    getHospitalsbyid,
     state => state.entities[state.selectedHospitalbyId]
 );
