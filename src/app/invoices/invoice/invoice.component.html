@@ -1,4 +1,4 @@
-<h4 id="title"style="float: left;">Create an invoice </h4><p></p><h6>(abdelwahed was here 😎)</h6>
+<h4 id="title"style="float: left;"> {{ isNew ? "Create an invoice" : "Update invoice" }} </h4><p></p><h6>(abdelwahed was here 😎)</h6>
 <form [formGroup]="invoiceForm">
 <div class="container">
     <div class="row">
@@ -84,9 +84,9 @@
             <section class="row col-10">
                 <div  class="col12 divinfos row" >
                     <div class="col-7 q"><input class="Input" formControlName="product" placeholder="product name" style="width:100%;" id="abd1" type="text"></div>
-                    <div class="col-2 q"><input class="Input" formControlName="qte" placeholder="qte" #qte (keyup)="valueChanged(qte.value,price.value,tax.value)" type="text" /> </div>
+                    <div class="col-2 q"><input class="Input" formControlName="qte" placeholder="qte" #qte (keyup)="valueChanged(qte.value,price.value,tax.value)" type="number" /> </div>
                     <div class="col-2 q"><input class="Input" type="number"#price (keyup)="valueChanged(qte.value,price.value,tax.value)" formControlName="price" placeholder="price" /></div>
-                    <div class="col-1 q"><input class="Input" type="number" #tax formControlName="tax" placeholder="tax" /></div>
+                    <div class="col-1 q"><input class="Input" type="number" #tax (keyup)="valueChanged(qte.value,price.value,tax.value)" formControlName="tax" placeholder="tax" /></div>
                 </div>
                 <!-- <div class="col-2 c" style="background-color: aquamarine;"></div> -->
                 <textarea aria-readonly="true" formControlName="description" placeholder="description" class="form-control col-12" rows="1"></textarea>
@@ -123,65 +123,56 @@
             <tr class="col-8" >
                 <h6>Subtotal</h6>
             </tr>
-            <tr class="col-4">
-                12.00
+            <tr class="col-4 trInp" style="padding: 0.1%;">
+                <input class="caseInput" type="number" [value]="subtotal">
             </tr>
             <!-- row two -->
             <tr class="col-4" >
                 <h6>Remise</h6>
             </tr>
-            <tr class="col-2" >
-                <input type="number" formControlName="remise" style="width: 100%;">
+            <tr class="col-2 trInp" style="padding: .1%;">
+                <input #remise class="caseInput" (keyup)="calculRemise(slct.value,remise.value)" (change)="calculRemise(slct.value,remise.value)" type="number" >
             </tr>
-            <tr class="col-2" >
-                <select >
+            <tr class="col-2 trInp" style="padding: .1%;">
+                <select #slct class="caseInput" (change)="calculRemise(slct.value,remise.value)">
+                    <option value="dh">DH</option>
                     <option value="%">%</option>
-                    <option value="dollar">$</option>
                 </select>
             </tr>
-            <tr class="col-4">
-                40
+            <tr class="col-4 trInp">
+                <input type="number" class="caseInput" [value]="remiseval" (change)="Amount(remiseval,expedition,livraison)" formControlName="remise">
             </tr>
             <!-- row tree -->
             <tr class="col-4" >
                 <h6>Expedition</h6>
             </tr>
-            <tr class="col-4" >
-                <input type="number" formControlName="expedition" style="width:100%;width: 100%;">
+            <tr class="col-4 trInp" style="padding: .1%;">
+                <input type="number" #expedition class="caseInput" (change)="Amount(remiseval,expedition,livraison)" formControlName="expedition">
             </tr>
             <tr class="col-4">
-                b
+                <h6>{{expedition.value}}</h6>
             </tr>
             <!-- row four -->
             <tr class="col-4" >
                 <h6>Livraison</h6>
             </tr>
-            <tr class="col-4" >
-                <input type="text" value="20% : 20%">
+            <tr class="col-4 trInp"  style="padding: .1%;">
+                <input type="number" #livraison class="caseInput" (change)="Amount(remiseval,expedition,livraison)" formControlName="livraison">
             </tr>
             <tr class="col-4">
-                b
-            </tr>
-            <!-- row five -->
-            <tr class="col-4" >
-                <h6>20%</h6>
-            </tr>
-            <tr class="col-4" >
-                <h6>(20%)</h6>
-            </tr>
-            <tr class="col-4">
-                b
+                <h6>{{livraison.value}}</h6>
             </tr>
             <!-- total -->
             <tr class="col-8">
                 <h5>Total</h5>
             </tr>
-            <tr class="col-4" formControlName="totalAmont">
-                120.96 DH
+            <tr class="col-4 trInp" style="padding: .1%;">
+                <input type="text" readonly class="caseInput" formControlName="totalAmont" [value]="TotalAmount">
             </tr>
         </table>
     </div>
 </dir>
 </form>
-<button class="btn btn-primary" (click)="addInvoice()">save all of that</button>
-<!-- {{this.invoiceForm.value | json}} -->
+<button class="btn btn-primary" *ngIf="isNew" (click)="addInvoice()">save all of that</button>
+<button class="btn btn-success" *ngIf="!isNew" (click)="updateInvoice()" >Update Invoice</button>
+{{this.updatedInvoice | json}}

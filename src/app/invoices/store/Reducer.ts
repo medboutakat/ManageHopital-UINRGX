@@ -12,7 +12,7 @@ export interface InvoiceState extends EntityState<Invoice>{
 }
 
 export interface AppState extends fromRoot.AppState{
-    Invoices : InvoiceState
+    invoices : InvoiceState
 }
 
 export const InvoiceAdapter: EntityAdapter<Invoice> = createEntityAdapter<Invoice>();
@@ -40,10 +40,8 @@ export function InvoiceReducer(state = initialState, action : ActionsFile.Invoic
         ...state,
         loading : false,
         loaded : true,
-
       }); 
-      }
-      
+    }
     case ActionsFile.InvoiceActionType.LOAD_FAIL :{
         return {
             ... state,
@@ -52,6 +50,19 @@ export function InvoiceReducer(state = initialState, action : ActionsFile.Invoic
             loaded :false,
             error : action.payload
         }
+    }
+
+    case ActionsFile.InvoiceActionType.LOAD_ONE_SUCCESS: {
+      return InvoiceAdapter.addOne(action.payload, {
+        ...state,
+        selectedCustomerId: action.payload.id
+      });
+    }
+    case ActionsFile.InvoiceActionType.LOAD_ONE_FAIL: {
+      return {
+        ...state,
+        error: action.payload
+      };
     }
 
     case ActionsFile.InvoiceActionType.CREATE_SUCCESS: {
@@ -63,7 +74,6 @@ export function InvoiceReducer(state = initialState, action : ActionsFile.Invoic
             error: action.payload
         };
     }
-
     case ActionsFile.InvoiceActionType.UPDATE_SUCCESS: {
         return InvoiceAdapter.updateOne(action.payload, state);
       }
@@ -71,8 +81,8 @@ export function InvoiceReducer(state = initialState, action : ActionsFile.Invoic
         return {
           ...state,
           error: action.payload
-        };
-      }
+      };
+    }
   
       case ActionsFile.InvoiceActionType.DELETE_SUCCESS: {
         return InvoiceAdapter.removeOne(action.payload, state);
@@ -95,14 +105,14 @@ export function InvoiceReducer(state = initialState, action : ActionsFile.Invoic
   const getInvoiceFeatursState = createFeatureSelector<InvoiceState>(
       "Invoice"
   )
-   export const getInvoices = createSelector(
-      getInvoiceFeatursState,
-    //    (state : HospitalCatState)=>state.HospitalCats
-      InvoiceAdapter.getSelectors().selectAll
-   )
-   export const getInvoicesLoading = createSelector(
+  export const getInvoices = createSelector(
     getInvoiceFeatursState,
-    (state : InvoiceState)=>state.loading
+  //    (state : HospitalCatState)=>state.HospitalCats
+    InvoiceAdapter.getSelectors().selectAll
+  )
+  export const getInvoicesLoading = createSelector(
+  getInvoiceFeatursState,
+  (state : InvoiceState)=>state.loading
 )
 export const getInvoicesLoaded = createSelector(
     getInvoiceFeatursState,
@@ -112,12 +122,12 @@ export const getInvoicesError = createSelector(
     getInvoiceFeatursState,
     (state : InvoiceState)=>state.error
 )
-export const geInvoicebyid = createSelector(
+export const getInvoicebyid = createSelector(
     getInvoiceFeatursState,
     (state :InvoiceState)=>state.selectedById
 );
 export const getcurrentInvoice = createSelector(
     getInvoiceFeatursState,
-    geInvoicebyid,
+    getInvoicebyid,
     state => state.entities[state.selectedById]
 );

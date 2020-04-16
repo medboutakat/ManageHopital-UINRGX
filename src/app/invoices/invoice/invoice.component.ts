@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store'
 import * as fromInvoice from '../store/Reducer'
 import * as invoiceActions from '../store/Action'
 
-import { Invoice } from '../invoice-model';
+import { Invoice, InvoiceDetail } from '../invoice-model';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -17,76 +17,121 @@ import { Observable } from 'rxjs';
 })
 export class InvoiceComponent implements OnInit {
 //detail code
-  products: any = (data as any).default;
+  products = [];
   total= 0;
   show:boolean = false;
   productForm = new FormGroup({
-    // id:new FormControl(''),
     product:new FormControl(''),
     description:new FormControl(''),
-    tax:new FormControl(''),
-    price:new FormControl(''),
     qte:new FormControl(''),
+    price:new FormControl(''),
+    tax:new FormControl(''),
     total:new FormControl(this.total)
   })
 
   showAdd(){
     this.show = !this.show;
   }
-//  a = 0
+
   addDetail(){
-    // this.products.forEach(item =>{
-    //   item.id > this.a ? this.a = item.id : null
-    // });
-    
-    //this.productForm.get('id').patchValue(this.a+1)
-    this.products.push(this.productForm.value)
     console.log('product form : ',this.productForm.value)
-    console.log(this.products)
+    this.subtotal += this.productForm.get('total').value
+    this.products.push(this.productForm.value)
+    console.log('product : ',this.products)
     this.showAdd();
-    localStorage.setItem('data', JSON.stringify(this.products));
     this.productForm.reset();
     this.total=0;
   }
 
   deleteDetail(item,index){
-    console.log('item : ',item)
-    if(this.products[index] == item){
-      //alert('item '+this.products[index].name+' is deleted')
-      this.products.splice(index)
-    }
-    else alert('not same product, nothing was deleted')
+    console.log('item : ',item);
+    this.subtotal -= item.total;
+    this.products.splice(index,1);
   }
 
   valueChanged(qte,price,tax){
     this.total = qte*price;
     this.productForm.get("total").patchValue(this.total)
-    console.log('total = ',qte*price)
+  }
+  calculRemise(slct,remise){
+    console.log("slct ;",slct)
+    console.log("remise :",remise)
+    slct == 'dh' ? this.remiseval = remise : this.remiseval = (this.subtotal*remise)/100
+  }
+  Amount(remise,exp,liv){
+    this.TotalAmount =this.subtotal + Number(exp.value) + Number(liv.value) - remise
   }
  //end detail code
+
+ id:string='0';
+ subtotal:number = 0;
+ remiseval:number = 0
+ TotalAmount:number = 0;
+ isNew:boolean;
 
  invoiceForm = new FormGroup({
   code: new FormControl(''),
   date: new FormControl(formatDate(new Date(), 'yyyy-MM-dd', 'en')),
-  totalAmont: new FormControl(0),
+  totalAmont: new FormControl(this.TotalAmount),
   expedition: new FormControl(0),
   livraison: new FormControl(0),
-  remise: new FormControl(),
-  invoiceDetails: new FormControl([])
+  remise: new FormControl(this.remiseval),
  })
+  constructor(private store:Store<fromInvoice.AppState>) 
+  { 
+    this.id = "214b787f-1bec-4b98-e21b-08d7df1b978e"
+  }
 
-  constructor(private store:Store<fromInvoice.AppState>) { }
-  
+  invoice:Invoice = null
+
   ngOnInit(): void {
-    // this.myDate 
-    //const invoice$:Observable<Invoice> = this.store.select()
+    this.id == null? this.isNew=true : this.isNew=false;//verefication ADD or EDIT
+
+    if(!this.isNew){
+      this.store.dispatch(new invoiceActions.LoadOneInvoice(this.id));
+      this.store.subscribe(state => {
+        this.invoice = state.invoices.entities[this.id] as Invoice
+        if (this.invoice == null) {
+        } else {
+          this.invoice.invoiceDetails.forEach(item=>
+            {
+              this.products.push(item);
+              this.subtotal += item.total; 
+            });
+          this.invoiceForm.setValue({code:this.invoice.code,date:this.invoice.date,expedition:this.invoice.expedition,
+                            livraison:this.invoice.livraison,remise:this.invoice.remise,totalAmont:this.invoice.totalAmont})
+          console.log("invoice : ", this.invoice)
+          console.log("invoiceDetails : ", this.invoice.invoiceDetails)
+        }
+      })
+    }
+
+
   }
 
   addInvoice(){
-    this.invoiceForm.get('invoiceDetails').patchValue(this.products)
+    this.invoiceForm.setControl('invoiceDetails', new FormControl(this.products));
     console.log('invoice : ',this.invoiceForm.value);
     this.store.dispatch(new invoiceActions.CreateInvoice(this.invoiceForm.value));
     //this.invoiceForm.reset();
+  }
+  updatedInvoice:Invoice
+  updateInvoice(){
+    console.log("updatedInvoice form : ",this.invoiceForm.value);
+
+    this.updatedInvoice = {
+      id:this.id,
+      code:this.invoiceForm.get('code').value,
+      date:this.invoiceForm.get('date').value,
+      livraison:this.invoiceForm.get('livraison').value,
+      remise:this.invoiceForm.get('remise').value,
+      totalAmont:this.invoiceForm.get('totalAmont').value,
+      expedition:this.invoiceForm.get('expedition').value,
+      invoiceDetails:this.products
+    }
+    console.log("updatedInvoice : ",this.invoiceForm.value);
+    this.store.dispatch(new invoiceActions.UpdateInvoice(this.updatedInvoice));
+    console.log("Updated is done ");
   }
 
 }

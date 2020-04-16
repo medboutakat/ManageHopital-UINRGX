@@ -6,7 +6,7 @@ export interface ICrudService<T> {
 
     getAll(): Observable<T[]>;
     
-    getById(payload: number): Observable<T>;
+    getById(payload: string): Observable<T>;
     
     add(payload: T): Observable<T>;
     
