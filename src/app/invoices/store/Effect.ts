@@ -31,6 +31,22 @@ export class InvoiceEffect {
       )
   )
 
+  @Effect()
+  LoadOneInvoice$: Observable<Action> = this.actions$.pipe(
+    ofType<ActionsFile.LoadOneInvoice>(
+        ActionsFile.InvoiceActionType.LOAD_ONE
+      ),
+      mergeMap((action: ActionsFile.LoadOneInvoice) =>
+        this.InvoiceServ.getById(action.payload).pipe(
+          map(
+            (invoice: Invoice) =>
+              new ActionsFile.LoadOneInvoiceSuccess(invoice)
+          ),
+          catchError(err => of(new ActionsFile.LoadOneInvoiceFail(err)))
+        )
+      )
+  )
+
    //Create Invoice Category
 
    @Effect()
@@ -60,14 +76,14 @@ export class InvoiceEffect {
        map((Actions : ActionsFile.UpdateInvoice)=>Actions.payload),
        mergeMap((Invoice : Invoice )=>
        this.InvoiceServ.update(Invoice).pipe(
-           map(
-               (updateInvoice : Invoice)=>
-               new ActionsFile.UpdateInvoiceSuccess({
-                   id:updateInvoice.id,
-                   changes:updateInvoice
-               }),
-           catchError(err =>of(new ActionsFile.UpdateInvoiceFail(err)))
-       )
+            map(
+                (updateInvoice : Invoice)=>
+                new ActionsFile.UpdateInvoiceSuccess({
+                    id:updateInvoice.id,
+                    changes:updateInvoice
+                }),
+                catchError(err =>of(new ActionsFile.UpdateInvoiceFail(err)))
+            )
        )
    ));
  

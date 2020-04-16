@@ -23,7 +23,7 @@ export class HospitalCatService implements ICrudService<HospitalCat> {
     return this.http.get<HospitalCat[]>(this.ReponseUrl);
   }
 
-  getById(payload: number): Observable<HospitalCat> {
+  getById(payload: string): Observable<HospitalCat> {
     return this.http.get<HospitalCat>(`${this.ReponseUrl}/${payload}`);
   }
 

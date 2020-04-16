@@ -22,16 +22,16 @@ export class AppointementComponent implements OnInit {
 
 
 
-  applyFilter(filtervalue : string){
+  applyFilter(filtervalue: string) {
     this.dataSource.filter = filtervalue.trim().toLowerCase();
   }
-  
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  displayedColumns: string[] = [ 'select','assurance', 'reservationTimeStamp','subject'];
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  
+  displayedColumns: string[] = ['select', 'assurance', 'reservationTimeStamp', 'subject'];
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+
   constructor(private store: Store<any>, public dialog: MatDialog) {
     
  
@@ -65,7 +65,7 @@ export class AppointementComponent implements OnInit {
     
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
-    
+
   }
   
   
@@ -78,7 +78,7 @@ export class AppointementComponent implements OnInit {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
-    
+
   }
   
 
