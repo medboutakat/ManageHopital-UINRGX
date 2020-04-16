@@ -22,7 +22,7 @@ export class MaterialService implements ICrudService<Material> {
     return this.http.get<Material[]>(this.ReponseUrl);
   }
 
-  getById(payload: number): Observable<Material> {
+  getById(payload: string): Observable<Material> {
     return this.http.get<Material>(`${this.ReponseUrl}/${payload}`);
   }
 
