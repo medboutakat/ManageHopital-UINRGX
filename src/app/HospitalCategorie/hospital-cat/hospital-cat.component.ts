@@ -74,49 +74,6 @@ isAllSelected() {
 }
 
 
-private rowSelection;
-private IsRowSelected: boolean;
-private IsMultple: boolean;
-
-private SelectedClient: HospitalCat=new HospitalCat();
-
-
-// onSelectionChanged(event) { 
-//   var selectedRowLenght=this.api.getSelectedRows().length;
-//   if (selectedRowLenght == 0) { 
-//     this.IsMultple = false;
-//     this.IsRowSelected = false;
-//   }else 
-//   if(selectedRowLenght == 1)
-//   { 
-//     this.IsRowSelected = true;
-//     this.IsMultple = false;
-//   }
-//    else {
-//     this.IsRowSelected = true;
-//     this.IsMultple = true;
-//   }
-//   console.log(event);
-
-//   this.SelectedClient= this.IsRowSelected? this.api.getSelectedRows()[0]:new doctorCat();
-
-//   console.log("Selected row :",this.SelectedClient)
-// }
-
-
-
-
-
-
-/** Selects all rows if they are not all selected; otherwise clear selection. */
-// masterToggle() {
-//   this.isAllSelected() ?
-//       this.selection.clear() :
-//       this.dataSource.data.forEach(row => 
-//         this.selection.select(row),
-     
-//       );
-// }
 onrowselect(row){
   console.log("roow",row)
 }
