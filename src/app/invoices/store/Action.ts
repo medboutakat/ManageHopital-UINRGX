@@ -9,6 +9,10 @@ export enum InvoiceActionType {
     LOAD_FAIL = "[Invoice] Load Invoice Fail ",
     AddAll = "AddAll", 
 
+    LOAD_ONE = "[Invoice] Load One Invoice",
+    LOAD_ONE_SUCCESS = "[Invoice] Load One Invoice Success",
+    LOAD_ONE_FAIL = "[Invoice] Load One Invoice Fail",
+
     CREATE = "[Invoice] Create Invoice",
     CREATE_SUCCESS = "[Invoice] Create Invoice Success",
     CREATE_FAIL = "[Invoice] Create Invoice Fail ",
@@ -36,19 +40,29 @@ export class LoadInvoiceFail implements Action{
     constructor(public payload: string){}
 }
 
+export class LoadOneInvoice implements Action {
+    readonly type = InvoiceActionType.LOAD_ONE;
+    constructor(public payload: string) {}
+}
+  
+export class LoadOneInvoiceSuccess implements Action {
+    readonly type = InvoiceActionType.LOAD_ONE_SUCCESS;
+    constructor(public payload: Invoice) {}
+}
+
+export class LoadOneInvoiceFail implements Action {
+    readonly type = InvoiceActionType.LOAD_ONE_FAIL;
+    constructor(public payload: string) {}
+}
 
 // Add InvoiceCategory
-
 export class CreateInvoice implements Action{
     readonly type = InvoiceActionType.CREATE;
- constructor(public payload: Invoice){}
-
+    constructor(public payload: Invoice){}
 }
 export class CreateInvoiceSuccess implements Action{
     readonly type = InvoiceActionType.CREATE_SUCCESS;
-
- constructor(public payload: Invoice){}
-
+    constructor(public payload: Invoice){}
 }
 export class CreateInvoiceFail implements Action{
     readonly type = InvoiceActionType.CREATE_FAIL
@@ -56,18 +70,16 @@ export class CreateInvoiceFail implements Action{
 }
 
 //Update InvoiceCategory
-
 export class UpdateInvoice implements Action{
     readonly type = InvoiceActionType.UPDATE;
- constructor(public payload: Invoice){}
-
+    constructor(public payload: Invoice){}
 }
+
 export class UpdateInvoiceSuccess implements Action{
     readonly type = InvoiceActionType.UPDATE_SUCCESS;
-
- constructor(public payload: Update<Invoice>){}
-
+    constructor(public payload: Update<Invoice>){}
 }
+
 export class UpdateInvoiceFail implements Action{
     readonly type = InvoiceActionType.UPDATE_FAIL
     constructor(public payload: string){}
@@ -82,7 +94,6 @@ export class DeleteInvoice implements Action{
 }
 export class DeleteInvoiceSuccess implements Action{
     readonly type = InvoiceActionType.DELETE_SUCCESS;
-
     constructor(public payload: string) {}
 }
 
@@ -92,13 +103,17 @@ export class DeleteInvoiceFail implements Action{
 }
 
 export type InvoiceAction=
-// LoadInvoiceCat
- LoadInvoice |
- LoadInvoiceSuccess | 
- LoadInvoiceFail
+// LoadInvoice
+LoadInvoice 
+|LoadInvoiceSuccess  
+|LoadInvoiceFail
+// LoadInvoice
+|LoadOneInvoice 
+|LoadOneInvoiceSuccess  
+|LoadOneInvoiceFail
 // CreateInvoiceCat
  |CreateInvoice
- | CreateInvoiceSuccess
+ |CreateInvoiceSuccess
  |CreateInvoiceFail
 //  UpdateInvoiceCat
  |UpdateInvoice
