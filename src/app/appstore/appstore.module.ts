@@ -37,10 +37,11 @@ import { OpEffect } from '../operations/store/operation.effect';
     StoreModule.forFeature("DoctorCat", DoctorCatReducer),
     StoreModule.forRoot({ "Hospital": HospitalReducer }),
     StoreModule.forFeature("doctors", doctorReducer),
+    StoreModule.forRoot({ "appointements": AppointementReducer }),
 
     StoreModule.forFeature("operations", OperationReducer),
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
-    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect,HospitalEffect,OpEffect]),
+    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect,HospitalEffect,OpEffect,AppointementEffect]),
     CommonModule
 
 

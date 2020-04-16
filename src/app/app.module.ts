@@ -137,13 +137,7 @@ import { AppointementEffect } from './appointements/store/appointement.effect';
     ReactiveFormsModule,
     MatBottomSheetModule,
     MatTooltipModule,
-    EffectsModule.forRoot([]),
-    StoreModule.forRoot({}),
-
-    StoreModule.forRoot({ "appointements": AppointementReducer }),
-
-    EffectsModule.forRoot([AppointementEffect]),
-  
+   
   ],
   providers: [],
   bootstrap: [AppComponent]
