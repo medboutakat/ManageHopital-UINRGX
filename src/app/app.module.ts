@@ -138,14 +138,14 @@ import { HospitalReducer } from './hospital/store/Reducer';
     ReactiveFormsModule,
     MatBottomSheetModule,
     MatTooltipModule,
-    StoreModule.forRoot({}),
+    // StoreModule.forRoot({}),
     
-    EffectsModule.forRoot([]),
+    // EffectsModule.forRoot([]),
     
-    StoreModule.forRoot({ "Hospital": HospitalReducer }),
-    StoreModule.forRoot({ "appointements": AppointementReducer }),
+    // StoreModule.forRoot({ "Hospital": HospitalReducer }),
+    // StoreModule.forRoot({ "appointements": AppointementReducer }),
 
-    EffectsModule.forRoot([HospitalEffect,AppointementEffect]),
+    // EffectsModule.forRoot([HospitalEffect,AppointementEffect]),
 
   ],
   providers: [],

@@ -48,7 +48,7 @@ export class HopitalComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch( new ActionsFiles.LoadHospital());
     this.store.subscribe(data =>{  
-      this.listHopital = Object.values(data.Hospital.entities)  
+      this.listHopital = Object.values(data)  
       console.log(" this.listhopital=> ",this.listHopital) ,
       this.dataSource = new MatTableDataSource<Hospital>(this.listHopital);
       this.dataSource.sort = this.sort;

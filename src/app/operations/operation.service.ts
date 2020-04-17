@@ -18,7 +18,7 @@ export class OperationService implements ICrudService<Operation> {
   getAll(): Observable<Operation[]> {
     return this.http.get<Operation[]>(this.ReponseUrl);
   }
-  getById(payload: number): Observable<Operation> {
+  getById(payload: string): Observable<Operation> {
     return this.http.get<Operation>(`${this.ReponseUrl}/${payload}`);
   }
   add(payload: Operation): Observable<Operation> {
