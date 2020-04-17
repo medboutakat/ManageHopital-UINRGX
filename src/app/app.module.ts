@@ -28,15 +28,10 @@ import { SignupComponent } from './connexion/signup/signup.component';
 import { SigninComponent } from './connexion/signin/signin.component';
 import { AppstoreModule } from './appstore/appstore.module';
 import { AddAppointementComponent } from './appointements/add-appointement/add-appointement.component';
-import { HospitalReducer } from './appointements/store/hospital.reducer';
-import { HospitalsEffect } from './appointements/store/hospital.effect';
+
 import { OperationComponent } from './operations/operation/operation.component';
 import { AddOperationComponent } from './operations/add-operation/add-operation.component';
 import { DeleteOperationComponent } from './operations/delete-operation/delete-operation.component';
-import { OperationReducer } from './operations/store/operations.reducer';
-import { OpEffect } from './operations/store/operation.effect';
-import { OperationCategoryReducer } from './operations/store/category.reducer';
-import { OperationCatEffect } from './operations/store/category.effects';
 
 import { SavePdfComponent } from './appointements/save-pdf/save-pdf.component';
 
@@ -47,13 +42,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MenuComponent } from './menu/menu.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { HospitalCatReducer } from './HospitalCategorie/Store/reducer';
-import { DoctorCatReducer } from './doctors/doctorCategorie/Store/reducer';
-import { doctorReducer } from './doctors/doctor-store/doctor.reducer';
-import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
-import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
-import { AppointementEffect } from './appointements/store/appointement.effect';
-import { AppointementReducer } from './appointements/store/appointement.reducer';
 import { ChatModule } from './chat/chat.module'
 import { AgGridModule } from 'ag-grid-angular';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
@@ -65,6 +53,8 @@ import { AddDoctorCatComponent } from './doctors/doctorCategorie/add-doctor-cat/
 import { AddHospitalCatComponent } from './HospitalCategorie/add-hospital-cat/add-hospital-cat.component';
 import { MaterialComponent } from './material/material/material.component';
 import { MaterialEditComponent } from './material/material-edit/material-edit.component';
+import { AppointementReducer } from './appointements/store/appointement.reducer';
+import { AppointementEffect } from './appointements/store/appointement.effect';
 
 @NgModule({
   declarations: [
@@ -132,14 +122,14 @@ import { MaterialEditComponent } from './material/material-edit/material-edit.co
     DefaultModule,
 
     [MatDialogModule],
-    AppstoreModule,
+  
 
     AppstoreModule,
     HttpClientModule,
 
     // MaterialModule,
 
-    StoreDevtoolsModule.instrument(),
+    // StoreDevtoolsModule.instrument(),
 
     ChatModule,
     AngularMaterialModule,
@@ -147,7 +137,7 @@ import { MaterialEditComponent } from './material/material-edit/material-edit.co
     ReactiveFormsModule,
     MatBottomSheetModule,
     MatTooltipModule,
-  
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

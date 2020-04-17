@@ -35,8 +35,8 @@ export class InvoiceListComponent implements OnInit {
   constructor(private store: Store<any>, private router: Router) {
     this.store.dispatch(new invoiceAction.LoadInvoice());
     this.store.subscribe(data => {
-      this.invoices = Object.values(data.invoices.invoices)
-      console.log(" listDoctorCat=> ", this.invoices)
+      this.invoices = Object.values(data.invoices.entities)
+      console.log(" invoices  ", this.invoices)
       this.dataSource = new MatTableDataSource<Invoice>(this.invoices);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
