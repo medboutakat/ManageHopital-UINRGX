@@ -19,7 +19,11 @@ export class AppointetmentService implements ICrudService<Appointement> {
   getAll(): Observable<Appointement[]> {
     return this.http.get<Appointement[]>(this.ReponseUrl);
   }
+<<<<<<< HEAD
   getById(payload: string ): Observable<Appointement> {
+=======
+  getById(payload: string): Observable<Appointement> {
+>>>>>>> b34e33f7a4c4eb172af22268917e4117d38f7ed5
     return this.http.get<Appointement>(`${this.ReponseUrl}/${payload}`);
   }
   add(payload: Appointement): Observable<Appointement> {
