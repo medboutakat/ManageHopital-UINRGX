@@ -55,6 +55,8 @@ import { MaterialComponent } from './material/material/material.component';
 import { MaterialEditComponent } from './material/material-edit/material-edit.component';
 import { AppointementReducer } from './appointements/store/appointement.reducer';
 import { AppointementEffect } from './appointements/store/appointement.effect';
+import { HospitalEffect } from './hospital/store/Effect';
+import { HospitalReducer } from './hospital/store/Reducer';
 
 @NgModule({
   declarations: [
@@ -109,7 +111,7 @@ import { AppointementEffect } from './appointements/store/appointement.effect';
     AddOperationComponent, DeleteOperationComponent,
     AddDoctorCatComponent,
     AddHospitalCatComponent,
-    
+    DialogHospComponent
   ],
 
 
@@ -120,7 +122,6 @@ import { AppointementEffect } from './appointements/store/appointement.effect';
     AppRoutingModule,
     BrowserAnimationsModule,
     DefaultModule,
-
     [MatDialogModule],
   
 
@@ -137,7 +138,15 @@ import { AppointementEffect } from './appointements/store/appointement.effect';
     ReactiveFormsModule,
     MatBottomSheetModule,
     MatTooltipModule,
-   
+    StoreModule.forRoot({}),
+    
+    EffectsModule.forRoot([]),
+    
+    StoreModule.forRoot({ "Hospital": HospitalReducer }),
+    StoreModule.forRoot({ "appointements": AppointementReducer }),
+
+    EffectsModule.forRoot([HospitalEffect,AppointementEffect]),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -48,17 +48,19 @@
               });
             
             </script>
-            <div style="float: right;"> 
+            <div style="float: right;" > 
             <button style="line-height: 15px;margin: 10px;" type="button" class="btn btn-warning" aria-label="Left Align">
               <i class="material-icons">
                 autorenew
                 </i>
             </button>
-            <button style="line-height: 15px;" type="button" class="btn btn-danger" aria-label="Left Align">
+            <div *ngIf="!iscolled">
+            <button (click)="mnmmm()"  style="line-height: 15px;" type="button" class="btn btn-danger" aria-label="Left Align" >
               <i class="material-icons">
                 delete
                 </i>
             </button>
+            </div>
             </div>
             <a (click)="openBottomSheet()" matTooltip="Click for add a new hospital" [matTooltipPosition]="'left'"
               class="flotting-btn btn-success" style="color: white;">+</a>
@@ -67,7 +69,7 @@
                 <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
               </mat-form-field>
               <table mat-table [dataSource]="dataSource"  matSort  class="mat-elevation-z8">
-            
+
                 <ng-container matColumnDef="select">
                   <th mat-header-cell *matHeaderCellDef>
                     <mat-checkbox (change)="$event ? masterToggle() : null"
@@ -100,18 +102,20 @@
               
                 <ng-container matColumnDef="remark">
                   <th mat-header-cell *matHeaderCellDef  mat-sort-header> remark </th>
-                  <td mat-cell *matCellDef="let element"> {{element.remark}} </td>
+                  <td mat-cell *matCellDef="let element"> {{element.sexe}} </td>
                 </ng-container>
               
                 <ng-container matColumnDef="history">
                   <th mat-header-cell *matHeaderCellDef  mat-sort-header> history </th>
                   <td mat-cell *matCellDef="let element"> {{element.history}} </td>
                 </ng-container>
-              
+
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"
                 (click)="selection.toggle(row);"
-                (click)="onrowselect(row)"></tr>
+                (click)="onrowselect(row)" 
+                (click)="isToggele(row)"></tr>
+               
             
               </table>
               <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

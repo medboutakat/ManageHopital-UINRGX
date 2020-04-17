@@ -23,7 +23,7 @@ export class HopitalComponent implements OnInit {
   error$: Observable<String>;
   dataSource: any;
   selection: SelectionModel<Hospital>;
-
+  iscolled : boolean = true
 
   constructor(private store : Store<any>, private _bottomSheet: MatBottomSheet,public dialog: MatDialog) {
     this.store.dispatch( new ActionsFile.LoadHospitalCat());
@@ -66,10 +66,12 @@ export class HopitalComponent implements OnInit {
   }
   openDialog(data) {
     this.dialog.open(DialogHospComponent, { data })
+    
   }
 
 
   
+
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
@@ -87,7 +89,7 @@ export class HopitalComponent implements OnInit {
         );
   }
   onrowselect(row){
-    console.log("roow",row)
+    console.log("roow",row.id)
   }
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: Hospital): string {
@@ -96,5 +98,13 @@ export class HopitalComponent implements OnInit {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
     
+  }
+
+  isToggele (){
+    this.iscolled= !this.iscolled;
+  }
+
+  mnmmm(){
+    console.log("nnnnnnnnnnnnnnnnnnnnnn")
   }
 }
