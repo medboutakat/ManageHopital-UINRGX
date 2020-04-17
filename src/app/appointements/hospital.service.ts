@@ -18,7 +18,7 @@ export class HospitalService implements ICrudService<Hospital> {
   getAll(): Observable<Hospital[]> {
     return this.http.get<Hospital[]>(this.ReponseUrl);
   }
-  getById(payload: number): Observable<Hospital> {
+  getById(payload: string): Observable<Hospital> {
     return this.http.get<Hospital>(`${this.ReponseUrl}/${payload}`);
   }
   add(payload: Hospital): Observable<Hospital> {
