@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs"; 
+import { Observable } from "rxjs";
 import { ICrudService } from '../icrud-service';
 import { RootURLS } from '../root-urls';
 import { Material } from './Material-model';
@@ -15,14 +15,14 @@ export class MaterialService implements ICrudService<Material> {
   RepByDm: Material[];
 
   constructor(private http: HttpClient) {
-    this.ReponseUrl=RootURLS.getUrl("Material");
+    this.ReponseUrl = RootURLS.getUrl("Material");
   }
 
   getAll(): Observable<Material[]> {
     return this.http.get<Material[]>(this.ReponseUrl);
   }
 
-  getById(payload: number): Observable<Material> {
+  getById(payload: string): Observable<Material> {
     return this.http.get<Material>(`${this.ReponseUrl}/${payload}`);
   }
 
@@ -39,5 +39,5 @@ export class MaterialService implements ICrudService<Material> {
 
   delete(payload: string) {
     return this.http.delete(`${this.ReponseUrl}/${payload}`);
-  } 
+  }
 }
