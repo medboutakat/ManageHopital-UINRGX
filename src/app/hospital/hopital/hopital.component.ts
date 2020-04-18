@@ -23,7 +23,7 @@ export class HopitalComponent implements OnInit {
   error$: Observable<String>;
   dataSource: any;
   selection: SelectionModel<Hospital>;
-
+  iscolled : boolean = true
 
   constructor(private store : Store<any>, private _bottomSheet: MatBottomSheet,public dialog: MatDialog) {
     this.store.dispatch( new ActionsFile.LoadHospitalCat());
@@ -31,6 +31,16 @@ export class HopitalComponent implements OnInit {
       this.listhopitalCatValues = Object.values(data.HospitalCat.entities)  
       console.log(" this.listhopitalCatValues=> ",this.listhopitalCatValues) 
     
+    });
+
+    this.store.dispatch( new ActionsFiles.LoadHospital());
+    this.store.subscribe(data =>{  
+      this.listHopital = Object.values(data.Hospital.entities)  
+      console.log(" this.listhopital=> ",this.listHopital) ,
+      this.dataSource = new MatTableDataSource<Hospital>(this.listHopital);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.selection = new SelectionModel<Hospital>(true, []);
     })
   
   }
@@ -46,15 +56,7 @@ export class HopitalComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   ngOnInit() {
-    this.store.dispatch( new ActionsFiles.LoadHospital());
-    this.store.subscribe(data =>{  
-      this.listHopital = Object.values(data.Hospital.entities)  
-      console.log(" this.listhopital=> ",this.listHopital) ,
-      this.dataSource = new MatTableDataSource<Hospital>(this.listHopital);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-      this.selection = new SelectionModel<Hospital>(true, []);
-    })
+   
   }
   get hospitalcat(){
      return this.listhopitalCatValues;
@@ -64,12 +66,11 @@ export class HopitalComponent implements OnInit {
     this._bottomSheet.open(HospitalEditComponent);
     console.log('show bottom sheet ...')
   }
-  openDialog(data) {
-    this.dialog.open(DialogHospComponent, { data })
-  }
+ 
 
 
   
+
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
@@ -87,7 +88,8 @@ export class HopitalComponent implements OnInit {
         );
   }
   onrowselect(row){
-    console.log("roow",row)
+    console.log("roow",row.id)
+    localStorage.setItem("rows",row.id)
   }
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: Hospital): string {
@@ -96,5 +98,17 @@ export class HopitalComponent implements OnInit {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
     
+  }
+
+  isToggele (){
+    this.iscolled= !this.iscolled;
+  }
+  openDialog(data) {
+    this.dialog.open(DialogHospComponent, { data })
+    
+  }
+  mnmmm(){
+    console.log("rowss",localStorage.getItem("rows"))
+    var rows = localStorage.getItem("rows")
   }
 }

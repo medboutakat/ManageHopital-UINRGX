@@ -16,7 +16,7 @@ export class HospitalService{
     getHospitalCats(): Observable<Hospital[]>{
         return this.http.get<Hospital[]>(this.HospitalUrl);
     }
-    getHospitalCatById(payload : number):Observable<Hospital>{
+    getHospitalCatById(payload : string):Observable<Hospital>{
         return this.http.get<Hospital>(`${this.HospitalUrl}/${payload}`)
     }
     createHospital(payload: Hospital): Observable<Hospital> {

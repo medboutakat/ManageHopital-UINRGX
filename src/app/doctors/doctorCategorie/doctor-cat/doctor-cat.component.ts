@@ -10,19 +10,6 @@ import { PeriodicElement } from 'src/app/modules/dashboard/dashboard.component';
 import { SelectionModel } from '@angular/cdk/collections';
 import { AddDoctorCatComponent } from '../add-doctor-cat/add-doctor-cat.component';
 
-
-// export interface listDoctorCat {
-//   name: string;
-  
-//   remark: string;
-
-// }
-
-// const ELEMENT_DATA: listDoctorCat[] = [
-//   {name: '', remark: ''},
-
-// ];
-
 @Component({
   selector: 'app-doctor-cat',
   templateUrl: './doctor-cat.component.html',
