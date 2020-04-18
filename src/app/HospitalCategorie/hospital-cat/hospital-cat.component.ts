@@ -32,7 +32,7 @@ export class HospitalCatComponent implements OnInit {
   private IsMultple: boolean=false;
   action: string;
 
-  displayedColumns: string[] = [ 'select','name', 'remark'];
+  displayedColumns: string[] = [ 'select',"No",'name', 'remark'];
   constructor(private store : Store<any>,public dialog: MatDialog,private fb: FormBuilder,) {
     this.add=this.add.bind(this);
     this.edit=this.edit.bind(this);
@@ -49,7 +49,9 @@ export class HospitalCatComponent implements OnInit {
     this.store.dispatch( new ActionsFile.LoadHospitalCat()); 
     this.store.subscribe(data =>{  
       this.listhopitalCatValues = Object.values(data.HospitalCat.entities)  
-      console.log(" this.listhopitalCatValues=> ",this.listhopitalCatValues)  
+      
+      console.log(" this.listhopitalCatValues=> ",this.listhopitalCatValues) 
+
       this.dataSource = new MatTableDataSource<HospitalCat>(this.listhopitalCatValues);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -90,7 +92,7 @@ checkboxLabel(row?: HospitalCat): string {
   if (!row) {
     return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
   }
-  return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+  return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.name + 1}`;
 }
 
 
@@ -128,6 +130,8 @@ edit() {
     title:"Update "+cat.name
   }
   this.dialog.open(HospitalCatEditComponent,dialogConfig);
+
+  console.log('updated');
   this.reload();
 } 
 

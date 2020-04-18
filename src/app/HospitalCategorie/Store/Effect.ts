@@ -59,9 +59,9 @@ export class HospitalCatEffect {
        ),
        map((Actions : ActionsFile.UpdateHospitalCat)=>Actions.payload),
        mergeMap((HospitalCateg : HospitalCat )=>
-       this.HospitalCatServ. update(HospitalCateg ).pipe(
+       this.HospitalCatServ. update(HospitalCateg).pipe(
            map(
-               (updateHospitalCats : HospitalCat)=>
+               (updateHospitalCats : HospitalCat)=>               
                new ActionsFile.CreateHospitalCatSuccess({
                    id:updateHospitalCats.id,
                    name:updateHospitalCats.name,
