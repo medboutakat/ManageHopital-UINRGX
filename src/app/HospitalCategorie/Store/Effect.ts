@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http'
 import { Injectable } from '@angular/core';
-import { map ,mergeMap,catchError} from 'rxjs/operators';
+import { map ,mergeMap,catchError, tap} from 'rxjs/operators';
 import {of , Observable} from'rxjs'
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import {Action} from '@ngrx/store'
@@ -51,6 +51,10 @@ export class HospitalCatEffect {
    );
  
    //Update HospitalCategory
+
+//    id:updateHospitalCats.id,
+//    name:updateHospitalCats.name,
+//    remark:updateHospitalCats.remark,
  
    @Effect()
    UpdateHospitalCat$: Observable<Action> = this.actions$.pipe(
@@ -58,20 +62,43 @@ export class HospitalCatEffect {
            ActionsFile.HospitalCatActionType.UPDATE_HospitalCat
        ),
        map((Actions : ActionsFile.UpdateHospitalCat)=>Actions.payload),
-       mergeMap((HospitalCateg : HospitalCat )=>
-       this.HospitalCatServ. update(HospitalCateg).pipe(
+       mergeMap((payload : HospitalCat )=>
+       this.HospitalCatServ. update(payload).pipe(
            map(
-               (updateHospitalCats : HospitalCat)=>               
-               new ActionsFile.CreateHospitalCatSuccess({
-                   id:updateHospitalCats.id,
-                   name:updateHospitalCats.name,
-                   remark:updateHospitalCats.remark,
-               }),
-           catchError(err =>of(new ActionsFile.UpdateHospitalCatFail(err)))
+               (payload : HospitalCat)=>               
+               new ActionsFile.UpdateHospitalCatSuccess("seccess"
+                //    {
+                //        id:payload.id,
+                //        name:payload.name,
+                //        remark:payload.remark,
+                //    }
+               )
+           ), 
+           tap((data) => {
+                    console.log(data);
+           }),
+          catchError(err =>of(new ActionsFile.UpdateHospitalCatFail(err))
        )
        )
    ));
  
+//    update$ = createEffect(() => this.actions$.pipe(
+//     ofType(actions.Update),
+
+//     switchMap(({one}) => this.vatService.Update(one)
+//         .pipe(
+//             map((vat: Vat) => actions.UpdateSuccess({ one })),                
+//             tap((data) => {
+//                 console.log(data);
+//             }),
+//             catchError(err =>
+//                 of(actions.UpdateFaillure({ err }))
+//             ))
+//     ))
+// );
+
+
+
     //Delete Hospital Category
  
     @Effect()

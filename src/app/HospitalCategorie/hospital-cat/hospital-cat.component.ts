@@ -32,7 +32,7 @@ export class HospitalCatComponent implements OnInit {
   private IsMultple: boolean=false;
   action: string;
 
-  displayedColumns: string[] = [ 'select',"No",'name', 'remark'];
+  displayedColumns: string[] = [ 'select','name', 'remark'];
   constructor(private store : Store<any>,public dialog: MatDialog,private fb: FormBuilder,) {
     this.add=this.add.bind(this);
     this.edit=this.edit.bind(this);
@@ -92,7 +92,7 @@ checkboxLabel(row?: HospitalCat): string {
   if (!row) {
     return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
   }
-  return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.name + 1}`;
+  return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
 }
 
 
