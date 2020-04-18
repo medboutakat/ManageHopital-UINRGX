@@ -41,7 +41,6 @@ export function HospitalCatReducer(state = initialState, action : ActionsFile.Ho
         ...state,
         loading : false,
         loaded : true,
-
       }); 
       }
       
@@ -55,7 +54,7 @@ export function HospitalCatReducer(state = initialState, action : ActionsFile.Ho
              }
          }
 
-         case ActionsFile.HospitalCatActionType.CREATE_HospitalCat_SUCCESS: {
+   case ActionsFile.HospitalCatActionType.CREATE_HospitalCat_SUCCESS: {
             return HospitalCatAdapter.addOne(action.payload, state);
           }
           case ActionsFile.HospitalCatActionType.CREATE_HospitalCat_FAIL: {
@@ -63,10 +62,21 @@ export function HospitalCatReducer(state = initialState, action : ActionsFile.Ho
               ...state,
               error: action.payload
             };
-          }
-         default : {
-            return state;
-        } 
+          }       
+     
+    case ActionsFile.HospitalCatActionType.UPDATE_HospitalCat_SUCCESS: {
+        return HospitalCatAdapter.updateOne(action.payload, state);
+      }
+      case ActionsFile.HospitalCatActionType.UPDATE_HospitalCat_FAIL: {
+        return {
+          ...state,
+          error: action.payload
+        };
+      }
+     default : {
+        return state;
+    } 
+    
    }
 
 }    

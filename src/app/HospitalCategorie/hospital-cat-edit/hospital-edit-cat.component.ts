@@ -16,7 +16,8 @@ export class  HospitalCatEditComponent implements OnInit {
   HospitalCatForm: FormGroup;
   listhopitalCatValues: any; 
  _currentObject: HospitalCat; 
- title:any;
+  title:any;
+  emptyGuid="00000000-0000-0000-0000-000000000000";
 
   constructor( private fb: FormBuilder,
     private store: Store<fromHospitalCat.HospitalCatState>,
@@ -24,11 +25,7 @@ export class  HospitalCatEditComponent implements OnInit {
      )
    {
     this._currentObject=  data._currentObject;
-    this.title=  data.title;
-      
-      if(this._currentObject==null)
-        this._currentObject=new HospitalCat();
-
+    this.title=  data.title; 
       console.log("current Object: ", this._currentObject);    
    }
   ngOnInit() {
@@ -43,8 +40,7 @@ export class  HospitalCatEditComponent implements OnInit {
 
   reserve() {
     var newApp = this.HospitalCatForm.value as HospitalCat
-    if(newApp.id=="" ||  newApp.id==null){
-      newApp.id=null;
+    if(newApp.id=="00000000-0000-0000-0000-000000000000"){ 
       console.log("Add")
       this.store.dispatch(new ActionsFile.CreateHospitalCat(newApp));
     }
@@ -53,6 +49,6 @@ export class  HospitalCatEditComponent implements OnInit {
       this.store.dispatch(new ActionsFile.UpdateHospitalCat(newApp));
     }
     this.HospitalCatForm.reset();
-    console.log("bien faite")    
+    console.log("success")    
   }
 }

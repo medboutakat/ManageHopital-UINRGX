@@ -58,7 +58,9 @@ export class CreateHospitalCatFail implements Action{
 
 export class UpdateHospitalCat implements Action{
     readonly type = HospitalCatActionType.UPDATE_HospitalCat;
- constructor(public payload: HospitalCat){}
+ constructor(public payload: HospitalCat){     
+    console.log("UpdateHospitalCat",payload);
+ }
 
 }
 export class UpdateHospitalCatSuccess implements Action{
@@ -69,7 +71,9 @@ export class UpdateHospitalCatSuccess implements Action{
 }
 export class UpdateHospitalCatFail implements Action{
     readonly type = HospitalCatActionType.UPDATE_HospitalCat_FAIL
-    constructor(public payload: string){}
+    constructor(public payload: string){
+    console.log("update fail",payload);
+    }
 }
 
 // delete HospitalCategory
