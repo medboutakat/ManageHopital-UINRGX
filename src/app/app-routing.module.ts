@@ -38,7 +38,7 @@ const routes: Routes = [
       { path: 'doctoredit', component: DoctorEditComponent },
       { path: 'home', component: HomeComponent },
       { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' },
-      { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full' },
+      { path: 'hospitalcat/:id', component: HospitalCatComponent, pathMatch: 'full' },
       { path: 'doctorCategory', component: DoctorCatComponent, pathMatch: 'full' },
       { path: 'invoice', component: InvoiceComponent, pathMatch: 'full' },
       { path: 'invoicewithId/:id', component: InvoiceComponent, pathMatch: 'full' },

@@ -49,7 +49,6 @@ import { InvoiceComponent } from './invoices/invoice/invoice.component';
 import { DetailsComponent } from './invoices/details/details.component';
 import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
 import { AddDoctorCatComponent } from './doctors/doctorCategorie/add-doctor-cat/add-doctor-cat.component';
-import { AddHospitalCatComponent } from './HospitalCategorie/add-hospital-cat/add-hospital-cat.component';
 import { MaterialComponent } from './material/material/material.component';
 import { MaterialEditComponent } from './material/material-edit/material-edit.component';
 import { AppointementReducer } from './appointements/store/appointement.reducer';
@@ -65,6 +64,7 @@ import { OperationReducer } from './operations/store/operations.reducer';
 import { DoctorEffect } from './doctors/doctor-store/doctor.effect';
 import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
 import { OpEffect } from './operations/store/operation.effect';
+import { HospitalCatEditComponent } from './HospitalCategorie/hospital-cat-edit/hospital-edit-cat.component'; 
 
 @NgModule({
   declarations: [
@@ -102,12 +102,9 @@ import { OpEffect } from './operations/store/operation.effect';
     SigninComponent,
     InvoiceListComponent,
     AddDoctorCatComponent,
-    AddHospitalCatComponent,
-    // StoreComponent 
-    // FooterComponent, 
-    // HeaderComponent
+    HospitalCatEditComponent, 
     MaterialComponent,
-    MaterialEditComponent
+    MaterialEditComponent, 
   ],
   entryComponents: [
     DialogComponent,
@@ -115,11 +112,13 @@ import { OpEffect } from './operations/store/operation.effect';
     AddAppointementComponent,
     SavePdfComponent,
     DialogHospComponent,
-    AddOperationComponent, DeleteOperationComponent,
+    AddOperationComponent, 
+    DeleteOperationComponent,
     AddDoctorCatComponent,
-    AddHospitalCatComponent,
+    HospitalCatEditComponent,
     DialogHospComponent,
-    DialogComponent
+    DialogComponent,
+    MenuComponent
   ],
 
 

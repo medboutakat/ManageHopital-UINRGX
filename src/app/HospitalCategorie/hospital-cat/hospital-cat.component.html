@@ -54,8 +54,9 @@
           </table>
         </div>
       </div>-->
- <a (click)="add()" matTooltip="Click for add a new Appointement" [matTooltipPosition]="'left'"
+ <!-- <a (click)="add()" matTooltip="Click for add a new Appointement" [matTooltipPosition]="'left'"
    class="flotting-btn btn-success" style="color: white;">+</a>
+
  <div style="float: right;">
    <button (click)="save(item)" style="line-height: 15px;margin: 10px; " type="button" class="btn btn-warning"
      aria-label="Left Align">
@@ -69,7 +70,17 @@
        delete
      </i>
    </button>
- </div>
+ </div> -->
+
+ <app-menu 
+ [IsRowSelected]="IsRowSelected" 
+ [addAction]="add" 
+ [editAction]="edit" 
+ [deleteAction]="delete" 
+ [IsMultple]="IsMultple"
+ [isNew]="isNew" 
+ ></app-menu> 
+
  <mat-form-field class="example-full-width">
    <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
  </mat-form-field>
@@ -78,7 +89,7 @@
    <ng-container matColumnDef="select">
      <th mat-header-cell *matHeaderCellDef>
        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
-         [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+         [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()"   (click)="onrowselect(row)">
        </mat-checkbox>
      </th>
      <td mat-cell *matCellDef="let row">

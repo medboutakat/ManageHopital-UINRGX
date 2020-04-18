@@ -6,11 +6,11 @@ import * as ActionsFile from 'src/app/HospitalCategorie/Store/Action'
 import { HospitalCat } from '../hospitalCat.model';
 
 @Component({
-  selector: 'add-hospital-cat',
-  templateUrl: './add-hospital-cat.component.html',
-  styleUrls: ['./add-hospital-cat.component.scss']
+  selector: 'hospital-cat-edit',
+  templateUrl: './hospital-cat-edit.component.html',
+  styleUrls: ['./hospital-cat-edit.component.scss']
 })
-export class AddHospitalCatComponent implements OnInit {
+export class  HospitalCatEditComponent implements OnInit {
 
   HospitalCat: FormGroup;
 
@@ -29,7 +29,6 @@ export class AddHospitalCatComponent implements OnInit {
     var newApp = this.HospitalCat.value as HospitalCat
     this.store.dispatch(new ActionsFile.CreateHospitalCat(newApp));
     this.HospitalCat.reset();
-    console.log("bien faite")
-    
+    console.log("bien faite")    
   }
 }
