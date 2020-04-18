@@ -100,13 +100,14 @@ checkboxLabel(row?: HospitalCat): string {
 
 add() {
   const dialogConfig = new MatDialogConfig();
-  dialogConfig.disableClose = true;
-  dialogConfig.autoFocus = true;
+  // dialogConfig.disableClose = true;
+  // dialogConfig.autoFocus = true;
   dialogConfig.data = { 
     title:"Add "
   }
 
   this.dialog.open(HospitalCatEditComponent,dialogConfig);
+   
   this.dialog.afterAllClosed.subscribe(res=> this.remplir())  
 } 
 
@@ -115,8 +116,8 @@ edit() {
   console.log("edit");
   var cat=<HospitalCat>this.selection.selected[0];
   const dialogConfig = new MatDialogConfig();
-  dialogConfig.disableClose = true;
-  dialogConfig.autoFocus = true;
+  // dialogConfig.disableClose = true;
+  // dialogConfig.autoFocus = true;
   dialogConfig.data = {
     _currentObject: cat,
     title:"Update "+cat.name

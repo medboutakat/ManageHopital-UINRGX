@@ -17,13 +17,15 @@ export class  HospitalCatEditComponent implements OnInit {
   listhopitalCatValues: any; 
  _currentObject: HospitalCat; 
  title:any;
- 
+
   constructor( private fb: FormBuilder,
     private store: Store<fromHospitalCat.HospitalCatState>,
      @Inject(MAT_DIALOG_DATA) data
      )
    {
-      this._currentObject=  data._currentObject;
+    this._currentObject=  data._currentObject;
+    this.title=  data.title;
+      
       if(this._currentObject==null)
         this._currentObject=new HospitalCat();
 
@@ -41,10 +43,15 @@ export class  HospitalCatEditComponent implements OnInit {
 
   reserve() {
     var newApp = this.HospitalCatForm.value as HospitalCat
-    if(newApp.id=="")
-        this.store.dispatch(new ActionsFile.CreateHospitalCat(newApp));
-    else
-        this.store.dispatch(new ActionsFile.UpdateHospitalCat(newApp));
+    if(newApp.id=="" ||  newApp.id==null){
+      newApp.id=null;
+      console.log("Add")
+      this.store.dispatch(new ActionsFile.CreateHospitalCat(newApp));
+    }
+    else{ 
+      console.log("Update")
+      this.store.dispatch(new ActionsFile.UpdateHospitalCat(newApp));
+    }
     this.HospitalCatForm.reset();
     console.log("bien faite")    
   }
