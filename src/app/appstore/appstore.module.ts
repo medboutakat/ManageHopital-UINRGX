@@ -40,10 +40,10 @@ import { InvoiceEffect } from '../invoices/store/Effect';
     StoreModule.forRoot({ "Hospital": HospitalReducer }),
     StoreModule.forFeature("doctors", doctorReducer),
     StoreModule.forRoot({ "appointements": AppointementReducer }),
-
+    StoreModule.forRoot({ "invoices": InvoiceReducer }),
     StoreModule.forFeature("operations", OperationReducer),
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
-    EffectsModule.forRoot([DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect,HospitalEffect,OpEffect,AppointementEffect]),
+    EffectsModule.forRoot([HospitalEffect,AppointementEffect,DoctorEffect, HospitalCatEffect, DoctorCatEffect,OpEffect,AppointementEffect]),
     CommonModule
 
 

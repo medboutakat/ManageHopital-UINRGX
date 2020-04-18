@@ -16,12 +16,13 @@ export class DialogHospComponent implements OnInit {
   constructor(private _snackBar: MatSnackBar, @Inject(MAT_DIALOG_DATA) public data: any, private store: Store<any>, private dialogRef: MatDialogRef<DialogComponent>) {
     console.log("objet", data)
   }
-  id
+ 
   ngOnInit() {
   }
   delete() {
-    this.id = this.data.id;
-    this.store.dispatch(new ActionsFile.DeleteHospital(this.id));
+    var rows = localStorage.getItem("rows")
+    rows = this.data.rows;
+    this.store.dispatch(new ActionsFile.DeleteHospital(rows));
     this.dialogRef.close();
     this._snackBar.open("operation done", "delete", {
       duration: 2000,
