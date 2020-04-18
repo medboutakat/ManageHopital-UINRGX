@@ -95,8 +95,7 @@ import { HospitalCatEditComponent } from './HospitalCategorie/hospital-cat-edit/
     AddAppointementComponent,
     SavePdfComponent,
     HospitalEditComponent,
-    DialogHospComponent,
-    
+    DialogHospComponent,    
     DeleteOperationComponent,
     MenuComponent,
     SigninComponent,
@@ -124,11 +123,15 @@ import { HospitalCatEditComponent } from './HospitalCategorie/hospital-cat-edit/
 
   imports: [
     BrowserModule,
-    AgGridModule.withComponents([DoctorCatComponent]),
+    FormsModule , 
+    ReactiveFormsModule,
 
+    AgGridModule.withComponents([DoctorCatComponent]),
+    
     AppRoutingModule,
     BrowserAnimationsModule,
     DefaultModule,
+
     [MatDialogModule],
   
 
@@ -140,9 +143,7 @@ import { HospitalCatEditComponent } from './HospitalCategorie/hospital-cat-edit/
     StoreDevtoolsModule.instrument(),
 
     ChatModule,
-    AngularMaterialModule,
-    FormsModule,
-    ReactiveFormsModule,
+    AngularMaterialModule, 
     MatBottomSheetModule,
     MatTooltipModule,
     StoreDevtoolsModule.instrument(),

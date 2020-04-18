@@ -58,7 +58,7 @@ const Materiallist = [
     MatSortModule,
     MatTableModule,
     MatSortModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ],
   exports: [
     Materiallist,

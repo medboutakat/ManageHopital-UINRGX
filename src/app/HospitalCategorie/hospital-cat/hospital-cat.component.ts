@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store ,select} from '@ngrx/store';
 import * as ActionsFile from 'src/app/HospitalCategorie/Store/Action' 
-import { MatDialog, MatBottomSheetRef, MatBottomSheet, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatDialog, MatBottomSheetRef, MatBottomSheet, MatTableDataSource, MatPaginator, MatSort, MatDialogConfig } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
 import { HospitalCat } from '../hospitalCat.model';
 
@@ -28,8 +28,8 @@ export class HospitalCatComponent implements OnInit {
 
   
   private rowSelection;
-  private IsRowSelected: boolean;
-  private IsMultple: boolean;
+  private IsRowSelected: boolean=false;
+  private IsMultple: boolean=false;
   action: string;
 
   displayedColumns: string[] = [ 'select','name', 'remark'];
@@ -58,32 +58,31 @@ export class HospitalCatComponent implements OnInit {
   }
   
 
-  
-  onrowselect(row){
-    console.log("onrowselect=> ",row) 
-  }
-
-  ngOnInit() { 
-    
-  this.IsRowSelected=true;
-  }
-
-
-
-// add() {
-//   console.log("hello");
-//   this.dialog.open(HospitalCatAddComponent);
-// }
-
-isAllSelected() {
-  const numSelected = this.selection.selected.length;  
-  const numRows = this.dataSource.data.length;
  
-  this.IsRowSelected = numSelected==1;
-  this.IsMultple = numSelected>1;
+
+  ngOnInit() {  
+  }
+
+ 
+
+  onrowselect(){
+      this.IsMultple= this.selection.selected.length>1;
+      this.IsRowSelected= this.selection.selected.length==1;
+  }
+
+/** Whether the number of selected elements matches the total number of rows. */
+isAllSelected() {
+  const numSelected = this.selection.selected.length;
+  const numRows = this.dataSource.data.length; 
   return numSelected === numRows;
 }
 
+/** Selects all rows if they are not all selected; otherwise clear selection. */
+masterToggle() { 
+  this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row)); 
+}
 
 /** The label for the checkbox on the passed row */
 checkboxLabel(row?: HospitalCat): string {
@@ -91,13 +90,23 @@ checkboxLabel(row?: HospitalCat): string {
   if (!row) {
     return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
   }
-  return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.name + 1}`;
-  
+  return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
 }
 
+
+
+
+ 
+
 add() {
-  console.log("hello");
-  this.dialog.open(HospitalCatEditComponent);
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = true;
+  dialogConfig.autoFocus = true;
+  dialogConfig.data = { 
+    title:"Add "
+  }
+
+  this.dialog.open(HospitalCatEditComponent,dialogConfig);
   this.dialog.afterAllClosed.subscribe(res=> this.remplir())  
 } 
 
@@ -105,9 +114,14 @@ add() {
 edit() {
   console.log("edit");
   var cat=<HospitalCat>this.selection.selected[0];
-  console.log("cat => ",cat);
-  
-  this.dialog.open(HospitalCatEditComponent);
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = true;
+  dialogConfig.autoFocus = true;
+  dialogConfig.data = {
+    _currentObject: cat,
+    title:"Update "+cat.name
+  }
+  this.dialog.open(HospitalCatEditComponent,dialogConfig);
   this.dialog.afterAllClosed.subscribe(res=> this.remplir())  
 } 
 
