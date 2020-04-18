@@ -50,8 +50,7 @@ export class HospitalCatEffect {
        )
    );
  
-   //Update HospitalCategory
-
+   //Update HospitalCategory 
 //    id:updateHospitalCats.id,
 //    name:updateHospitalCats.name,
 //    remark:updateHospitalCats.remark,
@@ -80,24 +79,7 @@ export class HospitalCatEffect {
           catchError(err =>of(new ActionsFile.UpdateHospitalCatFail(err))
        )
        )
-   ));
- 
-//    update$ = createEffect(() => this.actions$.pipe(
-//     ofType(actions.Update),
-
-//     switchMap(({one}) => this.vatService.Update(one)
-//         .pipe(
-//             map((vat: Vat) => actions.UpdateSuccess({ one })),                
-//             tap((data) => {
-//                 console.log(data);
-//             }),
-//             catchError(err =>
-//                 of(actions.UpdateFaillure({ err }))
-//             ))
-//     ))
-// );
-
-
+   )); 
 
     //Delete Hospital Category
  

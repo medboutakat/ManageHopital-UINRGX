@@ -24,13 +24,7 @@ export const DefaulttHospitalCat : HospitalCatState={
     loading: false,
     loaded : false,
     error : ' ',
-}
-// export const initialState : HospitalCatState ={
-//     HospitalCats :[],
-//     loading: false,
-//     loaded : false,
-//     error : ' ',
-// }
+} 
 export const initialState = HospitalCatAdapter.getInitialState(DefaulttHospitalCat)
 
 export function HospitalCatReducer(state = initialState, action : ActionsFile.HospitalCatAction) : HospitalCatState{
@@ -73,6 +67,16 @@ export function HospitalCatReducer(state = initialState, action : ActionsFile.Ho
           error: action.payload
         };
       }
+           
+    case ActionsFile.HospitalCatActionType.DELETE_HospitalCat_SUCCESS: {
+      return HospitalCatAdapter.removeOne(action.payload, state);
+    }
+    case ActionsFile.HospitalCatActionType.DELETE_HospitalCat_FAIL: {
+      return {
+        ...state,
+        error: action.payload
+      };
+    }
      default : {
         return state;
     } 

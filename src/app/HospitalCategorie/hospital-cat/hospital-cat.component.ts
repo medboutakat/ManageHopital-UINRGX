@@ -39,14 +39,13 @@ export class HospitalCatComponent implements OnInit {
     this.delete=this.delete.bind(this);  
 
     console.log('bind action')
-
+    this.store.dispatch( new ActionsFile.LoadHospitalCat()); 
     this.remplir()
     // this.hospitalCat$ = this.store.pipe(select(fromHospitalCat.getHospitalCats));
   
   }
 
   remplir(){
-    this.store.dispatch( new ActionsFile.LoadHospitalCat()); 
     this.store.subscribe(data =>{  
       this.listhopitalCatValues = Object.values(data.HospitalCat.entities)  
       
@@ -142,9 +141,8 @@ delete() {
   if (confirm("Are You Sure You want to Delete the User?")) { 
     var cat=<HospitalCat>this.selection.selected[0];
     console.log("cat => ",cat);
-    this.store.dispatch(new ActionsFile.DeleteHospitalCat(cat.id));
-    this.store.dispatch( new ActionsFile.LoadHospitalCat());
-    this.remplir()      
+    this.store.dispatch(new ActionsFile.DeleteHospitalCat(cat.id)); 
+    this.remplir() 
   }
 }
 

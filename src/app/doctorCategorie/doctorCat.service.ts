@@ -10,7 +10,7 @@ import { doctorCat } from './doctorCat.module';
 
 export class DoctorCatService{
     private DoctorCatUrl = "http://144.91.76.98:5002/api/DoctorCategory"
-    RepByDm: doctorCat[];
+  RepByDm: doctorCat[];
     constructor( private  http : HttpClient ){}
     getDoctorCat(): Observable<doctorCat[]>{
         return this.http.get<doctorCat[]>(this.DoctorCatUrl);
@@ -21,9 +21,9 @@ export class DoctorCatService{
 
     deleteDoctorCat(payload: string) {
         return this.http.delete(`${this.DoctorCatUrl}/${payload}`);
-    }
+      }
 
-    add(payload: doctorCat): Observable<doctorCat> {
+      add(payload: doctorCat): Observable<doctorCat> {
         return this.http.post<doctorCat>(this.DoctorCatUrl, payload);
-    }
+      }
 }
