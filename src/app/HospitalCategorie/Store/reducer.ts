@@ -1,5 +1,5 @@
 import * as ActionsFile from 'src/app/HospitalCategorie/Store/Action'
-import * as fromRoot from 'src/app/HospitalCategorie/State/app-state'
+import * as fromRoot from 'src/app/HospitalCategorie/Store/State/app-state'
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { HospitalCat } from '../hospitalCat.model';
 import { EntityAdapter ,createEntityAdapter ,EntityState} from '@ngrx/entity';
@@ -54,6 +54,16 @@ export function HospitalCatReducer(state = initialState, action : ActionsFile.Ho
                  error : action.payload
              }
          }
+
+         case ActionsFile.HospitalCatActionType.CREATE_HospitalCat_SUCCESS: {
+            return HospitalCatAdapter.addOne(action.payload, state);
+          }
+          case ActionsFile.HospitalCatActionType.CREATE_HospitalCat_FAIL: {
+            return {
+              ...state,
+              error: action.payload
+            };
+          }
          default : {
             return state;
         } 

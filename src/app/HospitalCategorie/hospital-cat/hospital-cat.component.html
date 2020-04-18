@@ -63,8 +63,8 @@
        autorenew
      </i>
    </button>
-   <button (click)="openDialog(item)" style="line-height: 15px;" type="button" class="btn btn-danger"
-     aria-label="Left Align">
+   <button (click)="deleteHospitalCat()" style="line-height: 15px;" type="button" class="btn btn-danger"
+     aria-label="Left Align" >
      <i class="material-icons">
        delete
      </i>
@@ -87,13 +87,13 @@
        </mat-checkbox>
      </td>
    </ng-container>
-   <!-- Name Column -->
+
    <ng-container matColumnDef="name">
      <th mat-header-cell *matHeaderCellDef mat-sort-header> name </th>
      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
    </ng-container>
 
-   <!-- Weight Column -->
+ 
    <ng-container matColumnDef="remark">
      <th mat-header-cell *matHeaderCellDef mat-sort-header> remark </th>
      <td mat-cell *matCellDef="let element"> {{element.remark}} </td>

@@ -1,15 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store ,select} from '@ngrx/store';
 import * as ActionsFile from 'src/app/HospitalCategorie/Store/Action'
 import { DialogComponent } from 'src/app/appointements/dialog/dialog.component';
 import { MatDialog, MatBottomSheetRef, MatBottomSheet, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as fromHospitalCat from "src/app/HospitalCategorie/Store/reducer";
 import { HospitalCat } from '../hospitalCat.model';
-import { HospitalCatAddComponent } from '../hospital-cat-add/hospital-cat-add.component';
+
 import { SelectionModel } from '@angular/cdk/collections';
 import { GridApi } from 'ag-grid-community';
 import { AddHospitalCatComponent } from 'src/app/HospitalCategorie/add-hospital-cat/add-hospital-cat.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-hospital-cat',
@@ -21,44 +22,53 @@ export class HospitalCatComponent implements OnInit {
   HospitalCatForm: FormGroup;
   dataSource;
   selection: SelectionModel<HospitalCat>;
-  
-  displayedColumns: string[] = [ 'select','name', 'remark'];
+  hospitalCat$ : Observable<HospitalCat[]>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+  applyFilter(filtervalue : string){
+    this.dataSource.filter = filtervalue.trim().toLowerCase();
+  }
 
-
+  displayedColumns: string[] = [ 'select','name', 'remark'];
   constructor(private store : Store<any>,public dialog: MatDialog,private fb: FormBuilder,) {
-    this.store.dispatch( new ActionsFile.LoadHospitalCat());
-  
+    this.remplir()
+    // this.hospitalCat$ = this.store.pipe(select(fromHospitalCat.getHospitalCats));
+
+  }
+
+  remplir(){
+    this.store.dispatch( new ActionsFile.LoadHospitalCat()); 
     this.store.subscribe(data =>{  
       this.listhopitalCatValues = Object.values(data.HospitalCat.entities)  
-      console.log(" this.listhopitalCatValues=> ",this.listhopitalCatValues) 
-    
+      console.log(" this.listhopitalCatValues=> ",this.listhopitalCatValues)  
       this.dataSource = new MatTableDataSource<HospitalCat>(this.listhopitalCatValues);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.selection = new SelectionModel<HospitalCat>(true, []);
     }
     )
-  } 
+
+  }
   
-applyFilter(filtervalue : string){
-  this.dataSource.filter = filtervalue.trim().toLowerCase();
-}
+  deleteHospitalCat() {
+    var RowId = localStorage.getItem("RowId")
+    if (confirm("Are You Sure You want to Delete the User?")) {
+      this.store.dispatch(new ActionsFile.DeleteHospitalCat(localStorage.getItem("RowId")));
+      this.store.dispatch( new ActionsFile.LoadHospitalCat());
+      this.remplir()
+      
+    }
+  }
+  
+  onrowselect(row){
+    console.log("roow",row)
+    localStorage.setItem("RowId",row.id)
+  }
 
-  ngOnInit() {
-   
-  }
-  openDialog(data) {
-    this.dialog.open(DialogComponent, { data })
+  ngOnInit() { 
   }
 
-deleteCustomer(hospital: HospitalCat) {
-  if (confirm("Are You Sure You want to Delete the User?")) {
-    this.store.dispatch(new ActionsFile.DeleteHospitalCat(hospital.id));
-    this.store.dispatch( new ActionsFile.LoadHospitalCat());
-  }
-}
+
 
 // add() {
 //   console.log("hello");
@@ -74,9 +84,6 @@ isAllSelected() {
 }
 
 
-onrowselect(row){
-  console.log("roow",row)
-}
 /** The label for the checkbox on the passed row */
 checkboxLabel(row?: HospitalCat): string {
   if (!row) {
@@ -89,5 +96,7 @@ checkboxLabel(row?: HospitalCat): string {
 add() {
   console.log("hello");
   this.dialog.open(AddHospitalCatComponent);
+  this.dialog.afterAllClosed.subscribe(res=> this.remplir())
+  
 }
 }

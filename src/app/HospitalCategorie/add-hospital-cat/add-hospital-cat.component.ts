@@ -30,5 +30,6 @@ export class AddHospitalCatComponent implements OnInit {
     this.store.dispatch(new ActionsFile.CreateHospitalCat(newApp));
     this.HospitalCat.reset();
     console.log("bien faite")
+    
   }
 }
