@@ -32,8 +32,10 @@ export class InvoiceListComponent implements OnInit {
   dataSource
   selection: SelectionModel<Invoice>;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+
   constructor(private store: Store<any>, private router: Router) {
-    this.store.dispatch(new invoiceAction.LoadInvoice());
+
+    this.store.dispatch(new invoiceAction.LoadInvoice());  
     this.store.subscribe(data => {
       this.invoices = Object.values(data.invoices.entities)
       console.log(" invoices  ", this.invoices)
@@ -98,8 +100,8 @@ export class InvoiceListComponent implements OnInit {
     console.log("selected row", row)
     this.isAvailable = true
     this.id = row.id
-
   }
+
   onrowselect(row) {
     console.log("roow", row)
 
@@ -110,7 +112,6 @@ export class InvoiceListComponent implements OnInit {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
-
 
   }
 
