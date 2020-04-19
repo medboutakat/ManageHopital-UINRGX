@@ -35,6 +35,10 @@ export class InvoiceListComponent implements OnInit {
 
   constructor(private store: Store<any>, private router: Router) {
 
+    this.add=this.add.bind(this);
+    this.edit=this.edit.bind(this);
+    this.delete=this.delete.bind(this); 
+
     this.store.dispatch(new invoiceAction.LoadInvoice());  
     this.store.subscribe(data => {
       this.invoices = Object.values(data.invoices.entities)
@@ -68,10 +72,7 @@ export class InvoiceListComponent implements OnInit {
     doc.save("facture n°.pdf");
 
   }
-  add() {
-    this.router.navigate(['/invoice'])
-
-  }
+ 
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -89,12 +90,8 @@ export class InvoiceListComponent implements OnInit {
 
       );
   }
-  edit() {
+  
 
-    console.log("id", this.id)
-    this.router.navigate(['/invoicewithId', this.id])
-
-  }
   id: string
   selected(row) {
     console.log("selected row", row)
@@ -115,6 +112,18 @@ export class InvoiceListComponent implements OnInit {
 
   }
 
+
+  add() {
+    this.router.navigate(['/invoice'])
+  }
+  edit() {
+    console.log("id", this.id)
+    this.router.navigate(['/invoicewithId', this.id])
+  }
+  delete() {
+    console.log("id", this.id) 
+  }
+  
 }
 
 

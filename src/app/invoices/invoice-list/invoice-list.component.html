@@ -1,8 +1,27 @@
+
+ <app-menu 
+ [IsRowSelected]="isAvailable" 
+ [addAction]="add" 
+ [editAction]="edit" 
+ [deleteAction]="delete" 
+ [IsMultple]="IsMultple"
+ [isNew]="isNew" 
+ ></app-menu>
+
+
 <div class="mat-elevation-z8">
+
+<!-- 
   <button matTooltip="Click for Add New facture" class="btn btn-info" style="float: right;" (click)="add()"><i
-      class="fa fa-plus"></i></button>
-  <button *ngIf="isAvailable" matTooltip="Click for Edit facture" class="btn btn-warning" style="float: right;"
-    (click)="edit()"><i class="fa fa-edit"></i></button>
+      class="fa fa-plus"></i></button> -->
+
+
+  <!-- <button *ngIf="isAvailable" matTooltip="Click for Edit facture" class="btn btn-warning" style="float: right;"
+    (click)="edit()"><i class="fa fa-edit"></i></button> -->
+
+
+
+
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
