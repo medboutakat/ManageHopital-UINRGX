@@ -1,49 +1,26 @@
-<div>
-    <h6 class="border-bottom border-gray pb-2 mb-0">Contact infos :</h6>
-    <form [formGroup]="contactFormControl" (ngSubmit)="Onclick()" *ngIf="showSave" class="example-form">
-        <p>
-            <mat-form-field class="example-full-width">
-                <mat-label>Phone</mat-label>
-                <input matInput formControlName="phone1" [errorStateMatcher]="matcher" placeholder="Ex: +212 643666895">
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>Phone 2</mat-label>
-                <input matInput formControlName="phone2" [errorStateMatcher]="matcher" placeholder="Ex: +212 643666895">
-            </mat-form-field> <br>
+<form [formGroup]="contactFormControl" (ngSubmit)="Onclick()" *ngIf="showSave">
+  <ng-template matStepLabel>Fill out this informations</ng-template>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input formControlName="email" matInput placeholder="your email" required>
+  </mat-form-field><br>
+  <mat-form-field>
+    <mat-label>Phone</mat-label>
+    <input formControlName="phone1" matInput placeholder="your Phone number" required>
+  </mat-form-field><br>
+  <mat-form-field>
+    <mat-label>Adress</mat-label>
+    <input formControlName="adress1" matInput placeholder="your adress" required>
+  </mat-form-field><br>
+  <mat-form-field>
+    <mat-label>Select City</mat-label>
+    <mat-select formControlName="cityId">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let item of cities" [(value)]="item.id">{{item.name}}</mat-option>
 
-            <mat-form-field class="example-full-width">
-                <mat-label>Address</mat-label>
-                <input matInput formControlName="adress1" [errorStateMatcher]="matcher" placeholder="Ex: bloc 10 n° 12 Morocco">
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>Address 2</mat-label>
-                <input matInput formControlName="adress2" [errorStateMatcher]="matcher" placeholder="Ex: bloc 10 n° 12 Morocco">
-            </mat-form-field> <br>
-
-            <mat-form-field class="example-full-width" style="width: 41%;">
-                <mat-label>Email</mat-label>
-                <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-                        placeholder="Ex. pat@example.com">
-                <mat-hint>Errors appear instantly!</mat-hint>
-                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                Please enter a valid email address
-                </mat-error>
-                <mat-error *ngIf="emailFormControl.hasError('required')">
-                Email is <strong>required</strong>
-                </mat-error>
-            </mat-form-field><br>
-            
-            <mat-form-field class="example-full-width" style="margin-top: 20px;">
-                <mat-label>Fax</mat-label>
-                <input matInput formControlName="fax" [errorStateMatcher]="matcher" placeholder="@fax">
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>City</mat-label>
-                <input matInput formControlName="cityId" [errorStateMatcher]="matcher" placeholder="@City">
-            </mat-form-field> <br>
-            
-        </p>
-        <button class="btn btn-success">save contact</button>
-    </form>
-    <div id="saveIsDoneDiv" *ngIf="!showSave">contact is saved</div>
-</div>
+    </mat-select>
+  </mat-form-field>
+  <div>
+    <button type="submit" mat-button matStepperNext>Next</button>
+  </div>
+</form>

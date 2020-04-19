@@ -35,7 +35,6 @@ const routes: Routes = [
       { path: 'appointement', component: AppointementComponent },
       { path: 'hospitals', component: HopitalComponent },
       { path: 'doctors', component: DoctorComponent },
-      { path: 'doctoredit', component: DoctorEditComponent },
       { path: 'home', component: HomeComponent },
       { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' },
       { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full' },
@@ -48,6 +47,7 @@ const routes: Routes = [
       { path: 'chat', component: ContactComponent, pathMatch: 'full' },
       { path: 'material', component: MaterialComponent, pathMatch: 'full' },
       { path: 'materialedit', component: MaterialEditComponent, pathMatch: 'full' },
+      { path: 'addDoctor', component: DoctorEditComponent, pathMatch: 'full' }
 
 
 

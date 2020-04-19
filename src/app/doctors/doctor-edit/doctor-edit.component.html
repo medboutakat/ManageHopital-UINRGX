@@ -1,40 +1,26 @@
+<div class="container">
+  <h3>{{this.title}}</h3>
+  <p style="font-weight: lighter;color: gray;font-size: 14px;" class="card-text">to reserve, please fill this
+    informations</p>
+  <form [formGroup]="DoctorForm">
+    <div class="form-row">
+      <input type="hidden" formControlName="id">
+      <div class="form-group col-md-6">
+        <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="firstName"
+          placeholder="firstName">
+      </div>
+      <div class="form-group col-md-6">
+        <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="lastName"
+          placeholder="lastName">
+      </div>
+    </div>
+    <div class="input-group form-group ">
+      <select formControlName="sexe" placeholder="choose Sexe" class="custom-select">
+        <option style="text-align: center;font-size: 14px;" value="Female">Female</option>
+        <option style="text-align: center;font-size: 14px;" value="Female">Male</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-info btn-block" (click)="reserve()">Submit</button><br>
+  </form>
 
-<p>doctor-edit works!</p>
-<div >
-    <h3>Add</h3>
-    <form class="example-form">
-
-<div style="height:100%;">
-    <h3>New doctor</h3>
-    <form [formGroup]="doctorForm" (ngSubmit)="addDoctor()" class="example-form mat-bottom-sheet-container-large">
-        <mat-form-field class="example-full-width">
-            <mat-label>Lastname</mat-label>
-            <input matInput [errorStateMatcher]="matcher"
-                formControlName="firstName"  placeholder="@firstname">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-            <mat-label>Firstname</mat-label>
-            <input matInput  [errorStateMatcher]="matcher" placeholder="@lastname"
-                formControlName="firstName">
-        </mat-form-field> 
-        
-        <br>
-        <mat-form-field style="width: 100%;">
-            <mat-label>Select your gender</mat-label>
-            <mat-select [(ngModel)]="selectedValue" name="food" formControlName="sexe">
-              <mat-option *ngFor="let sexe of genders" [value]="sexe.value">
-                {{sexe.viewValue}}
-              </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <div>
-            <div class="col-sm-8">
-                <app-select label="Select user" display="name" [listObjects]="listDoctorCat" (valueSelected)="getvalue($event)" placeholder="DoctorCategory"></app-select>
-            </div>
-        <app-contact (getOutputForm)="getContact($event)"></app-contact>
-        </div>
-        <button class="btn btn-primary">Abdelwahed</button>
-    </form>
 </div>
-

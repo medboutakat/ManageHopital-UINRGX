@@ -1,27 +1,30 @@
-
 .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .example-full-width {
-      margin-right: 2%;
-      width: 47%;
-  }
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  margin-right: 2%;
+  width: 47%;
+}
 
 
 
 @media screen and (min-width: 601px) {
-    .mat-bottom-sheet-container-large {
-        min-width: 606px;
-        max-width: calc(100vw - 256px);
-    }
+  .mat-bottom-sheet-container-large {
+    min-width: 606px;
+    max-width: calc(100vw - 256px);
+  }
 }
 
 @media screen and (max-width: 600px) {
-    .mat-bottom-sheet-container-large {
-        min-width: 306px;
-        max-width: calc(100vw - 256px);
-    }
+  .mat-bottom-sheet-container-large {
+    min-width: 306px;
+    max-width: calc(100vw - 256px);
+  }
+}
+
+mat-form-field {
+  width: 350px;
 }
