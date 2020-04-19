@@ -1,8 +1,6 @@
-export class HospitalCat{
-    id: string ;
+import { GeneratedId } from '../generatedId';
+
+export class HospitalCat extends GeneratedId{ 
     name: string;
-    remark: string; 
-    constructor() { 
-        this.id="00000000-0000-0000-0000-000000000000";
-    }
+    remark: string;  
 }

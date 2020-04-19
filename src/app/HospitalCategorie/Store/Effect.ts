@@ -1,4 +1,3 @@
-import {HttpClient} from '@angular/common/http'
 import { Injectable } from '@angular/core';
 import { map ,mergeMap,catchError, tap} from 'rxjs/operators';
 import {of , Observable} from'rxjs'
@@ -18,7 +17,7 @@ export class HospitalCatEffect {
   @Effect()
   LoadHospitalCat$: Observable<Action> = this.actions$.pipe(
       ofType<ActionsFile.LoadHospitalCat>(
-          ActionsFile.HospitalCatActionType.LOAD_HospitalCat
+          ActionsFile.HospitalCatActionType.LOAD
       ),
       mergeMap((Actions : ActionsFile.LoadHospitalCat)=>
       this.HospitalCatServ.getAll().pipe(
@@ -36,7 +35,7 @@ export class HospitalCatEffect {
    @Effect()
    CreateHospitalCat$: Observable<Action> = this.actions$.pipe(
        ofType<ActionsFile.CreateHospitalCat>(
-           ActionsFile.HospitalCatActionType.CREATE_HospitalCat
+           ActionsFile.HospitalCatActionType.CREATE
        ),
        map((Actions : ActionsFile.CreateHospitalCat)=>Actions.payload),
        mergeMap((HospitalCateg : HospitalCat )=>
@@ -49,29 +48,19 @@ export class HospitalCatEffect {
        )
        )
    );
- 
-   //Update HospitalCategory 
-//    id:updateHospitalCats.id,
-//    name:updateHospitalCats.name,
-//    remark:updateHospitalCats.remark,
+  
  
    @Effect()
    UpdateHospitalCat$: Observable<Action> = this.actions$.pipe(
        ofType<ActionsFile.UpdateHospitalCat>(
-           ActionsFile.HospitalCatActionType.UPDATE_HospitalCat
+           ActionsFile.HospitalCatActionType.UPDATE
        ),
        map((Actions : ActionsFile.UpdateHospitalCat)=>Actions.payload),
        mergeMap((payload : HospitalCat )=>
        this.HospitalCatServ. update(payload).pipe(
            map(
                (payload : HospitalCat)=>               
-               new ActionsFile.UpdateHospitalCatSuccess("seccess"
-                //    {
-                //        id:payload.id,
-                //        name:payload.name,
-                //        remark:payload.remark,
-                //    }
-               )
+               new ActionsFile.UpdateHospitalCatSuccess("Succcess")
            ), 
            tap((data) => {
                     console.log(data);
@@ -86,7 +75,7 @@ export class HospitalCatEffect {
     @Effect()
     DeleteHospitalCat$: Observable<Action> = this.actions$.pipe(
         ofType<ActionsFile.DeleteHospitalCat>(
-            ActionsFile.HospitalCatActionType.DELETE_HospitalCat
+            ActionsFile.HospitalCatActionType.DELETE
         ),
         map((Actions : ActionsFile.DeleteHospitalCat)=>Actions.payload),
         mergeMap((id:string)=>
