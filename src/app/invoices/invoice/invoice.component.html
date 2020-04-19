@@ -23,10 +23,6 @@
                         </svg>
                     </td>
                 </tr>
-                <tr>
-                    <td><h6>Reference</h6></td>
-                    <td><input type="text"></td>
-                </tr>
             </table>
         </div>
     </div>
@@ -124,14 +120,15 @@
                 <h6>Subtotal</h6>
             </tr>
             <tr class="col-4 trInp" style="padding: 0.1%;">
-                <input class="caseInput" type="number" [value]="subtotal">
+                <input class="caseInput" type="number" [value]="subtotal"
+                    (keyup)="Amount(remiseval,expedition,livraison)">
             </tr>
             <!-- row two -->
             <tr class="col-4" >
                 <h6>Remise</h6>
             </tr>
             <tr class="col-2 trInp" style="padding: .1%;">
-                <input #remise class="caseInput" (keyup)="calculRemise(slct.value,remise.value)" (change)="calculRemise(slct.value,remise.value)" type="number" >
+                <input #remise class="caseInput" (keyup)="calculRemise(slct.value,remise.value)" type="number" >
             </tr>
             <tr class="col-2 trInp" style="padding: .1%;">
                 <select #slct class="caseInput" (change)="calculRemise(slct.value,remise.value)">
@@ -140,14 +137,14 @@
                 </select>
             </tr>
             <tr class="col-4 trInp">
-                <input type="number" class="caseInput" [value]="remiseval" (change)="Amount(remiseval,expedition,livraison)" formControlName="remise">
+                <input type="number" class="caseInput" [value]="remiseval" (keyup)="Amount(remiseval,expedition,livraison)" formControlName="remise">
             </tr>
             <!-- row tree -->
             <tr class="col-4" >
                 <h6>Expedition</h6>
             </tr>
             <tr class="col-4 trInp" style="padding: .1%;">
-                <input type="number" #expedition class="caseInput" (change)="Amount(remiseval,expedition,livraison)" formControlName="expedition">
+                <input type="text" #expedition class="caseInput" (keyup)="Amount(remiseval,expedition,livraison)" formControlName="expedition">
             </tr>
             <tr class="col-4">
                 <h6>{{expedition.value}}</h6>
@@ -157,7 +154,7 @@
                 <h6>Livraison</h6>
             </tr>
             <tr class="col-4 trInp"  style="padding: .1%;">
-                <input type="number" #livraison class="caseInput" (change)="Amount(remiseval,expedition,livraison)" formControlName="livraison">
+                <input type="number" #livraison class="caseInput" (keyup)="Amount(remiseval,expedition,livraison)" formControlName="livraison">
             </tr>
             <tr class="col-4">
                 <h6>{{livraison.value}}</h6>
@@ -167,7 +164,7 @@
                 <h5>Total</h5>
             </tr>
             <tr class="col-4 trInp" style="padding: .1%;">
-                <input type="text" readonly class="caseInput" formControlName="totalAmont" [value]="TotalAmount">
+                <input type="text" class="caseInput" readonly [value]="TotalAmount"> <!-- formControlName="totalAmont" -->
             </tr>
         </table>
     </div>
