@@ -66,16 +66,7 @@ export class InvoiceListComponent implements OnInit {
       this.selection = new SelectionModel<Invoice>(true, []);
     })
   }
-  /****************************Delete Invoice************************************ */
-  delete() {
-    if (confirm("Are You Sure You want to Delete the User?")) {
-      var Invoice = <Invoice>this.selection.selected[0];
-      console.log("invoice deleted", Invoice.id);
-      var id = Invoice.id
-      this.store.dispatch(new invoiceAction.DeleteInvoice(id));
-      this.remplir()
-    }
-  }
+
 
   /*****************************Select Methods**************************************************** */
   onrowselect() {
@@ -98,7 +89,7 @@ export class InvoiceListComponent implements OnInit {
   id: string
   selected(row) {
     console.log("selected row", row)
-    this.isAvailable = true
+    this.IsRowSelected = true
     this.id = row.id
   }
 
@@ -110,7 +101,7 @@ export class InvoiceListComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 
-
+ /****************************Invoice menu commands************************************ */
   add() {
     this.router.navigate(['/invoice'])
   }
@@ -118,8 +109,15 @@ export class InvoiceListComponent implements OnInit {
     console.log("id", this.id)
     this.router.navigate(['/invoicewithId', this.id])
   }
-  delete() {
-    console.log("id", this.id) 
+  
+   delete() {
+    if (confirm("Are You Sure You want to Delete the User?")) {
+      var Invoice = <Invoice>this.selection.selected[0];
+      console.log("invoice deleted", Invoice.id);
+      var id = Invoice.id
+      this.store.dispatch(new invoiceAction.DeleteInvoice(id));
+      this.remplir()
+    }
   }
   
 }

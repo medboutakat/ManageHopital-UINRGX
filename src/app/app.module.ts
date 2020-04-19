@@ -103,13 +103,12 @@ import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component
     DeleteOperationComponent,
     MenuComponent,
     SigninComponent,
-    InvoiceListComponent, 
-    AddDoctorCatComponent,
+    InvoiceListComponent,  
     HospitalCatEditComponent,
     MaterialComponent,
     MaterialEditComponent,
-    DeleteDoctorComponent 
-    DoctorEditCatComponent,  
+    DeleteDoctorComponent  ,
+    DoctorEditCatComponent 
   ],
   entryComponents: [
     DialogComponent,
@@ -118,14 +117,13 @@ import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component
     SavePdfComponent,
     DialogHospComponent,
     AddOperationComponent,
-    DeleteOperationComponent,
-    AddDoctorCatComponent,
+    DeleteOperationComponent, 
     DeleteDoctorComponent,
     HospitalCatEditComponent,
     DialogHospComponent,
     DialogComponent,
     MenuComponent,
-    DoctorEditComponent
+    DoctorEditComponent ,
     DoctorEditCatComponent
   ],
 
