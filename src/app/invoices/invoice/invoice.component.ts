@@ -9,7 +9,7 @@ import * as invoiceActions from '../store/Action'
 
 import { Invoice, InvoiceDetail } from '../invoice-model';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-invoice',
@@ -82,7 +82,8 @@ export class InvoiceComponent implements OnInit {
 
   constructor(
     private store:Store<fromInvoice.AppState>,
-    private routeValue:ActivatedRoute
+    private routeValue:ActivatedRoute,
+    private router:Router
     ) { 
     this.routeValue.paramMap.subscribe(params => this.id=params.get('id'))
     //this.id =  "214b787f-1bec-4b98-e21b-08d7df1b978e"
@@ -119,7 +120,7 @@ export class InvoiceComponent implements OnInit {
     this.invoiceForm.setControl('invoiceDetails', new FormControl(this.products));
     console.log('invoice : ',this.invoiceForm.value);
     this.store.dispatch(new invoiceActions.CreateInvoice(this.invoiceForm.value));
-    //this.invoiceForm.reset();
+    this.router.navigate(['invoices'])
   }
   updatedInvoice:Invoice
   updateInvoice(){
@@ -138,6 +139,7 @@ export class InvoiceComponent implements OnInit {
     console.log("updatedInvoice : ",this.invoiceForm.value);
     this.store.dispatch(new invoiceActions.UpdateInvoice(this.updatedInvoice));
     console.log("Updated is done ");
+    this.router.navigate(['invoices'])
   }
 
 }
