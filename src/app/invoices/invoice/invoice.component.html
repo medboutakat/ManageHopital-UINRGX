@@ -65,9 +65,9 @@
                     <div class="col12 divinfos row">
                         <div class="col-7 q"><input formControlName="product" class="Input" style="width:100%;"
                                 id="abd1" type="text"></div>
-                        <div class="col-2 q"><input formControlName="qte" class="Input" type="text" /> </div>
-                        <div class="col-2 q"><input formControlName="price" class="Input" type="text" /></div>
-                        <div class="col-1 q"><input formControlName="tax" class="Input" type="text" /></div>
+                        <div class="col-2 q"><input formControlName="qte" class="Input" type="text"  (keyup)="valueChanged(detail)" /> </div>
+                        <div class="col-2 q"><input formControlName="price" class="Input" type="text"  (keyup)="valueChanged(detail)" /></div>
+                        <div class="col-1 q"><input formControlName="tax" class="Input" type="text"  (keyup)="valueChanged(detail)" /></div>
                     </div>                     
                     <textarea aria-readonly="true" formControlName="description" placeholder="description" class="form-control col-12" rows="1"></textarea>
                      

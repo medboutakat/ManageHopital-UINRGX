@@ -1,16 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { formatDate } from "@angular/common";
 import * as data from "src/app/data.json";
-import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder, FormArray } from "@angular/forms";
 import { Store } from "@ngrx/store";
-
 import * as fromInvoice from "../store/Reducer";
 import * as invoiceActions from "../store/Action";
-
-import { Invoice, InvoiceDetail } from "../invoice-model";
-import { Observable } from "rxjs";
-import { ActivatedRoute, Router } from "@angular/router";
-import { arrayMax } from 'highcharts';
+import { Invoice, InvoiceDetail } from "../invoice-model"; 
+import { ActivatedRoute, Router } from "@angular/router"; 
 
 @Component({
   selector: "app-invoice",
@@ -41,11 +37,15 @@ export class InvoiceComponent implements OnInit {
     }
   }
 
-  valueChanged(detail) {
-    console.log("value changed",detail)
-    detail.total=detail.qte * detail.price;
-    this.total += detail.total;
-    this.productForm.get("total").patchValue(this.total);
+  valueChanged(formDetail) {
+ 
+    console.log("formdetail",formDetail)
+    let qteValue= formDetail.get("qte").value;
+    let priceValue=formDetail.get("price").value;
+    let taxValue=formDetail.get("tax").value;
+    let totalValue=qteValue*priceValue;
+
+    formDetail.get("total").setValue(totalValue);  
   }
   calculRemise(slct, remise) {
     console.log("slct ;", slct);
@@ -106,10 +106,8 @@ export class InvoiceComponent implements OnInit {
 
   invoiceForm ;
   initialze() {
-
     let arr=[];  
     this.invoice.invoiceDetails.forEach((item) => {
-      // this.details.push(item);
       this.subtotal += item.total;
       arr.push(this.BuildFormDynamic(item))     
     }); 
