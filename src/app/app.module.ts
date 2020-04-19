@@ -15,7 +15,7 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-cat.component';
 import { SelectComponent } from './select/select.component';
-import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
+
 import { ContactComponent } from './contacts/contact/contact.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatBottomSheetModule, MatTooltipModule, MatCellDef } from '@angular/material'
@@ -48,7 +48,6 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 import { InvoiceComponent } from './invoices/invoice/invoice.component';
 import { DetailsComponent } from './invoices/details/details.component';
 import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
-import { AddDoctorCatComponent } from './doctors/doctorCategorie/add-doctor-cat/add-doctor-cat.component';
 import { MaterialComponent } from './material/material/material.component';
 import { MaterialEditComponent } from './material/material-edit/material-edit.component';
 import { AppointementReducer } from './appointements/store/appointement.reducer';
@@ -66,6 +65,8 @@ import { DoctorCatEffect } from './doctors/doctorCategorie/Store/Effect';
 import { OpEffect } from './operations/store/operation.effect';
 import { HospitalCatEditComponent } from './HospitalCategorie/hospital-cat-edit/hospital-edit-cat.component'; 
 import { InvoiceEffect } from './invoices/store/Effect';
+import { DoctorEditCatComponent } from './doctors/doctorCategorie/doctor-edit-cat/doctor-edit-cat.component';
+import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,6 @@ import { InvoiceEffect } from './invoices/store/Effect';
     SelectComponent,
     DoctorComponent,
     SelectComponent,
-    DoctorEditComponent,
     ContactComponent,
     DoctorCatComponent,
     CategoryComponent,
@@ -101,10 +101,11 @@ import { InvoiceEffect } from './invoices/store/Effect';
     MenuComponent,
     SigninComponent,
     InvoiceListComponent,
-    AddDoctorCatComponent,
     HospitalCatEditComponent, 
     MaterialComponent,
-    MaterialEditComponent, 
+    MaterialEditComponent,
+    DoctorEditCatComponent, 
+    
   ],
   entryComponents: [
     DialogComponent,
@@ -114,11 +115,11 @@ import { InvoiceEffect } from './invoices/store/Effect';
     DialogHospComponent,
     AddOperationComponent, 
     DeleteOperationComponent,
-    AddDoctorCatComponent,
+    // HospitalCatEditComponent,
     HospitalCatEditComponent,
     DialogHospComponent,
     DialogComponent,
-    MenuComponent
+    DoctorEditCatComponent
   ],
 
 

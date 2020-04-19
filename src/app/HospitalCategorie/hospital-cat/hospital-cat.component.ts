@@ -112,7 +112,6 @@ add() {
 
   this.dialog.open(HospitalCatEditComponent,dialogConfig);   
   this.reload();
- 
 } 
 
 reload(){
