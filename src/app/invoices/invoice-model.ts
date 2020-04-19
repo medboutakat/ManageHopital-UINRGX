@@ -14,16 +14,20 @@ export class Invoice extends GeneratedId {
   constructor() {
     super();
     this.invoiceDetails=[];
+    this.date=new Date();
   }
-  firstEmptyRow():void{
+  newEmptyRow():InvoiceDetail{
     var detail=new InvoiceDetail();
     detail.description='';
     detail.product='';
     detail.price=0;
     detail.qte=0;
     detail.tax=0;
-    detail.total=0;    
-    this.invoiceDetails.push(detail);
+    detail.total=0;     
+    return detail;
+  }
+  firstEmptyRow():void{      
+    this.invoiceDetails.push( this.newEmptyRow()); 
   }
 }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { formatDate } from "@angular/common";
 import * as data from "src/app/data.json";
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
 import { Store } from "@ngrx/store";
 
 import * as fromInvoice from "../store/Reducer";
@@ -10,6 +10,7 @@ import * as invoiceActions from "../store/Action";
 import { Invoice, InvoiceDetail } from "../invoice-model";
 import { Observable } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
+import { arrayMax } from 'highcharts';
 
 @Component({
   selector: "app-invoice",
@@ -20,28 +21,18 @@ export class InvoiceComponent implements OnInit {
   //detail code
   total = 0;
   show: boolean = false;
-  productForm = new FormGroup({
-    product: new FormControl(""),
-    description: new FormControl(""),
-    qte: new FormControl(""),
-    price: new FormControl(""),
-    tax: new FormControl(""),
-    total: new FormControl(this.total),
-  });
+ 
 
-  showAdd() {
-    this.show = !this.show;
-  }
-
+   
   addDetail(index) {
-    console.log("product form : ", this.productForm.value);
-    this.subtotal += this.productForm.get("total").value;
-    this.invoice.invoiceDetails.splice(index + 1, 0, this.productForm.value);
-    this.showAdd();
-    this.productForm.reset();
-    this.total = 0;
+    var detailRow=this.invoice.newEmptyRow();
+    var produForm=this.invoiceForm.get("productForm") 
+    produForm.insert(index+1, this.BuildFormDynamic(detailRow)); 
   }
-
+  addItem() {
+    // const formArray  = this.array;
+    // formArray.insert(0, this.fb.control(formArray.length + 1));
+  }
   deleteDetail(item, index) {
     if (this.invoice.invoiceDetails.length > 1) {
       console.log("item : ", item);
@@ -50,8 +41,10 @@ export class InvoiceComponent implements OnInit {
     }
   }
 
-  valueChanged(qte, price, tax) {
-    this.total = qte * price;
+  valueChanged(detail) {
+    console.log("value changed",detail)
+    detail.total=detail.qte * detail.price;
+    this.total += detail.total;
     this.productForm.get("total").patchValue(this.total);
   }
   calculRemise(slct, remise) {
@@ -74,19 +67,12 @@ export class InvoiceComponent implements OnInit {
   TotalAmount: number = 0;
   isNew: boolean;
 
-  invoiceForm = new FormGroup({
-    code: new FormControl(""),
-    date: new FormControl(formatDate(new Date(), "yyyy-MM-dd", "en")),
-    expedition: new FormControl(0),
-    livraison: new FormControl(0),
-    remise: new FormControl(this.remiseval),
-    totalAmont: new FormControl(this.TotalAmount),
-  });
+
 
   constructor(
     private store: Store<fromInvoice.AppState>,
     private routeValue: ActivatedRoute,
-    private router: Router
+    private router: Router,private fb :FormBuilder
   ) {
     this.routeValue.paramMap.subscribe(
       (params) => (this.id = params.get("id"))
@@ -118,50 +104,81 @@ export class InvoiceComponent implements OnInit {
     }
   }
 
+  invoiceForm ;
   initialze() {
+
+    let arr=[];  
     this.invoice.invoiceDetails.forEach((item) => {
       // this.details.push(item);
       this.subtotal += item.total;
-    });
-    this.invoiceForm.setValue({
-      code: this.invoice.code,
-      date: this.invoice.date,
-      expedition: this.invoice.expedition,
-      livraison: this.invoice.livraison,
-      remise: this.invoice.remise,
-      totalAmont: this.invoice.totalAmont,
-    });
-    console.log("invoice : ", this.invoice);
-    console.log("invoiceDetails : ", this.invoice.invoiceDetails);
+      arr.push(this.BuildFormDynamic(item))     
+    }); 
+    console.log("invoice : ", this.invoice);   
+    this.invoiceForm =  this.fb.group({  
+      code: new FormControl(this.invoice.code),
+      date: new FormControl(formatDate(this.invoice.date, "yyyy-MM-dd", "en")),
+      expedition: new FormControl(this.invoice.expedition),
+      livraison: new FormControl(this.invoice.livraison),
+      remise: new FormControl(this.invoice.remise),
+      totalAmont: new FormControl(this.invoice.totalAmont), 
+      productForm:this.fb.array(arr)  
+    })  
+
+    console.log("Invoice form: ",this.invoiceForm)
   }
-  addInvoice() {
-    this.invoiceForm.get("totalAmont").patchValue(this.TotalAmount);
-    this.invoiceForm.setControl(
-      "invoiceDetails",
-      new FormControl(this.invoice.invoiceDetails)
-    );
-    console.log("invoice : ", this.invoiceForm.value);
-    this.store.dispatch(
-      new invoiceActions.CreateInvoice(this.invoiceForm.value)
-    );
-    this.router.navigate(["invoices"]);
+BuildFormDynamic(detail:InvoiceDetail):FormGroup{  
+    return this.fb.group({  
+      product:[detail.product],
+      description: [detail.description],
+      qte: [detail.qte],
+      price:[detail.price],
+      tax: [detail.tax],
+      total: [detail.total],
+     })  
+   }  
+  
+  productForm = new FormGroup({
+    product: new FormControl(""),
+    description: new FormControl(""),
+    qte: new FormControl(0),
+    price: new FormControl(0),
+    tax: new FormControl(0),
+    total: new FormControl(this.total),
+  });
+
+  
+  edit(isNew) {
+    console.log("updatedInvoice form ==> ", this.invoiceForm.value);
+    if (isNew) {
+      this.invoiceForm.get("totalAmont").patchValue(this.TotalAmount);
+      this.invoiceForm.setControl(
+        "invoiceDetails",
+        new FormControl(this.invoice.invoiceDetails)
+      );
+      console.log("invoice : ", this.invoiceForm.value);
+      this.store.dispatch(
+        new invoiceActions.CreateInvoice(this.invoiceForm.value)
+      );
+    } else {
+      console.log("updatedInvoice form : ", this.invoiceForm.value);
+      this.invoice.id = this.id;
+      this.invoice.code = this.invoiceForm.get("code").value;
+      this.invoice.date = this.invoiceForm.get("date").value;
+      this.invoice.livraison = this.invoiceForm.get("livraison").value;
+      this.invoice.remise = this.invoiceForm.get("remise").value;
+      this.invoice.totalAmont = this.invoiceForm.get("totalAmont").value;
+      this.invoice.expedition = this.invoiceForm.get("expedition").value;
+      this.invoice.invoiceDetails = this.invoice.invoiceDetails;
+      
+      console.log("updatedInvoice : ", this.invoiceForm.value);
+      this.store.dispatch(new invoiceActions.UpdateInvoice(this.invoice));
+      console.log("Updated is done ");
+    }
+
+    // this.backHome();
   }
 
-  updateInvoice() {
-    console.log("updatedInvoice form : ", this.invoiceForm.value);
-
-    this.invoice.id = this.id;
-    this.invoice.code = this.invoiceForm.get("code").value;
-    this.invoice.date = this.invoiceForm.get("date").value;
-    this.invoice.livraison = this.invoiceForm.get("livraison").value;
-    this.invoice.remise = this.invoiceForm.get("remise").value;
-    this.invoice.totalAmont = this.invoiceForm.get("totalAmont").value;
-    this.invoice.expedition = this.invoiceForm.get("expedition").value;
-    this.invoice.invoiceDetails = this.invoice.invoiceDetails;
-
-    console.log("updatedInvoice : ", this.invoiceForm.value);
-    this.store.dispatch(new invoiceActions.UpdateInvoice(this.invoice));
-    console.log("Updated is done ");
+  backHome() {
     this.router.navigate(["invoices"]);
   }
 }

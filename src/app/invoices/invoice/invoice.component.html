@@ -1,188 +1,176 @@
-<h4 id="title"style="float: left;"> {{ isNew ? "Create an invoice" : "Update invoice" }} </h4><p></p><h6>(abdelwahed was here 😎)</h6>
+<h4 id="title" style="float: left;"> {{ isNew ? "Create an invoice" : "Update invoice" }} </h4>
+<p></p>
+<h6>(abdelwahed was here 😎)</h6>
 <form [formGroup]="invoiceForm">
-<div class="container">
-    <div class="row">
-        <div class="col"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <table>
+                    <tr>
+                        <td>
+                            <h6>Code</h6>
+                        </td>
+                        <td><input type="text" value="001" formControlName="code"></td>
+                        <td style="align-self: center;">
+                            <svg style="color: red;margin-bottom: 6px;font-size: 15px;"
+                                class="bi bi-exclamation-circle-fill" width="1em" height="1em" viewBox="0 0 16 16"
+                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8 4a.905.905 0 00-.9.995l.35 3.507a.552.552 0 001.1 0l.35-3.507A.905.905 0 008 4zm.002 6a1 1 0 100 2 1 1 0 000-2z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h6>Date</h6>
+                        </td>
+                        <td><input type="datetime" formControlName="date"><br></td>
+                        <td>
+                            <svg style="color: red;margin-bottom: 5px;font-size: 15px;"
+                                class="bi bi-exclamation-circle-fill" width="1em" height="1em" viewBox="0 0 16 16"
+                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8 4a.905.905 0 00-.9.995l.35 3.507a.552.552 0 001.1 0l.35-3.507A.905.905 0 008 4zm.002 6a1 1 0 100 2 1 1 0 000-2z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row col-10" *ngIf="true">
+        <section class="row col-10">
+            <div class="col12 divtitle row">
+                <div class="col-7 p">Description</div>
+                <div class="col-2 p">Quantity </div>
+                <div class="col-2 p">Price</div>
+                <div class="col-1 p">Tax</div>
+            </div>
+        </section>
+        <h6 class="col-2" style="margin: 0 auto;text-align: center;">Amount</h6>
+    </div>
+    <div id="divConmponent" formArrayName="productForm"
+        *ngFor="let detail of invoiceForm.controls.productForm.controls ;let i=index;">       
+
+        <div formGroupName={{i}} class="row container"> 
+
+          
+            <!-- body -->
+            <div class="row test-div col-11">
+                <section class="row col-10">
+                    <div class="col12 divinfos row">
+                        <div class="col-7 q"><input formControlName="product" class="Input" style="width:100%;"
+                                id="abd1" type="text"></div>
+                        <div class="col-2 q"><input formControlName="qte" class="Input" type="text" /> </div>
+                        <div class="col-2 q"><input formControlName="price" class="Input" type="text" /></div>
+                        <div class="col-1 q"><input formControlName="tax" class="Input" type="text" /></div>
+                    </div>                     
+                    <textarea aria-readonly="true" formControlName="description" placeholder="description" class="form-control col-12" rows="1"></textarea>
+                     
+                </section> 
+                    <!-- {{detail[].get('total').value}} -->
+                <input formControlName="total" class="col-2 Input" style="margin:4px auto;text-align: center;"  type="text" /> 
+                
+            </div>
+            <div class="col-1">
+                <a style="padding: 10px;color:#1E90FF ;margin-left: 15px;" matTooltip="Delete line"
+                    [matTooltipPosition]="'left'" (click)="deleteDetail(product, i)">
+                    <svg class="bi bi-x-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z"
+                            clip-rule="evenodd" />
+                        <path fill-rule="evenodd"
+                            d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z"
+                            clip-rule="evenodd" />
+                        <path fill-rule="evenodd"
+                            d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+
+            <button class="col row container addbtn" *ngIf="true" (click)="addDetail(i)">
+                <nav class="div-add col-11">
+                    <svg class="bi bi-plus-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    Add details
+                </nav>
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="total-dir row" style="width: 100%;">
         <div class="col">
-            <table>
-                <tr>
-                    <td><h6>Code</h6></td>
-                    <td><input type="text" value="001" formControlName="code"></td>
-                    <td style="align-self: center;">
-                        <svg style="color: red;margin-bottom: 6px;font-size: 15px;" class="bi bi-exclamation-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8 4a.905.905 0 00-.9.995l.35 3.507a.552.552 0 001.1 0l.35-3.507A.905.905 0 008 4zm.002 6a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"/>
-                        </svg>
-                    </td>
+
+        </div>
+        <div class="col container">
+            <table class="row bottom-table">
+                <tr class="col-8">
+                    <h6>Subtotal</h6>
                 </tr>
-                <tr>
-                    <td><h6>Date</h6></td>
-                    <td><input type="datetime" formControlName="date"><br></td>
-                    <td>
-                        <svg style="color: red;margin-bottom: 5px;font-size: 15px;" class="bi bi-exclamation-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8 4a.905.905 0 00-.9.995l.35 3.507a.552.552 0 001.1 0l.35-3.507A.905.905 0 008 4zm.002 6a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"/>
-                        </svg>
-                    </td>
+                <tr class="col-4 trInp" style="padding: 0.1%;">
+                    <input class="caseInput" type="number" [value]="subtotal"
+                        (keyup)="Amount(remiseval,expedition,livraison)">
+                </tr>
+                <!-- row two -->
+                <tr class="col-4">
+                    <h6>Remise</h6>
+                </tr>
+                <tr class="col-2 trInp" style="padding: .1%;">
+                    <input #remise class="caseInput" (keyup)="calculRemise(slct.value,remise.value)" type="number">
+                </tr>
+                <tr class="col-2 trInp" style="padding: .1%;">
+                    <select #slct class="caseInput" (change)="calculRemise(slct.value,remise.value)">
+                        <option value="dh">DH</option>
+                        <option value="%">%</option>
+                    </select>
+                </tr>
+                <tr class="col-4 trInp">
+                    <input type="number" class="caseInput" [value]="remiseval"
+                        (keyup)="Amount(remiseval,expedition,livraison)" formControlName="remise">
+                </tr>
+                <!-- row tree -->
+                <tr class="col-4">
+                    <h6>Expedition</h6>
+                </tr>
+                <tr class="col-4 trInp" style="padding: .1%;">
+                    <input type="text" #expedition class="caseInput" (keyup)="Amount(remiseval,expedition,livraison)"
+                        formControlName="expedition">
+                </tr>
+                <tr class="col-4">
+                    <h6>{{expedition.value}}</h6>
+                </tr>
+                <!-- row four -->
+                <tr class="col-4">
+                    <h6>Livraison</h6>
+                </tr>
+                <tr class="col-4 trInp" style="padding: .1%;">
+                    <input type="number" #livraison class="caseInput" (keyup)="Amount(remiseval,expedition,livraison)"
+                        formControlName="livraison">
+                </tr>
+                <tr class="col-4">
+                    <h6>{{livraison.value}}</h6>
+                </tr>
+                <!-- total -->
+                <tr class="col-8">
+                    <h5>Total</h5>
+                </tr>
+                <tr class="col-4 trInp" style="padding: .1%;">
+                    <input type="text" class="caseInput" readonly [value]="TotalAmount">
+                    <!-- formControlName="totalAmont" -->
                 </tr>
             </table>
         </div>
     </div>
-</div>
 </form>
-
-<div id="divConmponent">
-    <!-- <app-details></app-details> -->
-    <div class="row container" *ngFor="let product of invoice.invoiceDetails ; let i = index">
-        <!-- title -->
-        <div class="row col-11" *ngIf="true">
-            <section class="row col-10">
-                <div  class="col12 divtitle row" >
-                    <div class="col-7 p">Description</div>
-                    <div class="col-2 p">Quantity </div>
-                    <div class="col-2 p">Price</div>
-                    <div class="col-1 p">Tax</div>
-                </div>
-            </section>
-            <h6 class="col-2" style="margin: 0 auto;text-align: center;">Amount</h6>
-        </div>
-        <!-- body -->
-        <div class="row test-div col-11">
-            <section class="row col-10">
-                <div  class="col12 divinfos row" >
-                    <div class="col-7 q"><input class="Input" style="width:100%;" id="abd1" type="text" [value]="product.product"></div>
-                    <div class="col-2 q"><input class="Input" type="text" [value]="product.qte" /> </div>
-                    <div class="col-2 q"><input class="Input" type="text" [value]="product.price" /></div>
-                    <div class="col-1 q"><input class="Input" type="text" [value]="product.tax" /></div>
-                </div>
-                <!-- <div class="col-2 c" style="background-color: aquamarine;"></div> -->
-                <textarea aria-readonly="true" class="form-control col-12" rows="1">{{product.description}}</textarea>
-            </section>
-            <h6 class="col-2" style="margin: 5% auto;text-align: center;">{{product.total}}</h6>
-        </div>
-        <div class="col-1">
-            <a style="padding: 10px;color:#1E90FF ;margin-left: 15px;" 
-            matTooltip="Delete line" [matTooltipPosition]="'left'" (click)="deleteDetail(product, i)"
-            >
-                <svg class="bi bi-x-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
-                    <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
-                    <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
-                </svg>
-            </a>
-        </div>
-
-        <button class="col row container addbtn" *ngIf="true" (click)="addDetail(i)" >
-            <nav class="div-add col-11">
-                <svg class="bi bi-plus-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"/>
-                </svg>
-                    Add a line of object
-            </nav>
-        </button>  
-    </div>
-  
-
-    <!-- <a class="btn btn-success a"><label for="abd1">Add row</label></a>
-    <a class="btn btn-primary a"><label for="abd1">Edit item</label></a> -->
-    
-    
-    <!-- < [formGroup]="productForm" (ngSubmit)="addDetail()"> -->
-    <!-- <form [formGroup]="productForm" (ngSubmit)="addDetail()" *ngIf="true" class="row container" >
-        <h6>Resume</h6>
-        <div class="row test-div col-11">
-            <section class="row col-10">
-                <div  class="col12 divinfos row" > 
-                    <div class="col-7 q"><input class="Input" formControlName="product" placeholder="product name" style="width:100%;" id="abd1" type="text"></div>
-                    <div class="col-2 q"><input class="Input" formControlName="qte" placeholder="qte" #qte (keyup)="valueChanged(qte.value,price.value,tax.value)" type="number" /> </div>
-                    <div class="col-2 q"><input class="Input" type="number"#price (keyup)="valueChanged(qte.value,price.value,tax.value)" formControlName="price" placeholder="price" /></div>
-                    <div class="col-1 q"><input class="Input" type="number" #tax (keyup)="valueChanged(qte.value,price.value,tax.value)" formControlName="tax" placeholder="tax" /></div>                    
-
-                </div>
-            <div class="col-2 c" style="background-color: aquamarine;"></div> 
-                <textarea aria-readonly="true" formControlName="description" placeholder="description" class="form-control col-12" rows="1"></textarea>
-            </section>
-            <h6 class="col-2" style="margin: 5% auto;text-align: center;">{{total}}</h6>
-        </div>
-        
-        <button class="btn btn-primary col-2">
-                <svg class="bi bi-plus-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"/>
-                </svg>
-            </button>
-    </form> -->
-    
-    
-    <!-- <a class="col row container addbtn" (click)="showAdd()" *ngIf="">
-        <nav class="div-add col-11">
-            <svg class="bi bi-plus-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"/>
-            </svg>
-                Add a line of object
-        </nav>
-    </a> -->
-    
-</div>
-
-<form [formGroup]="invoiceForm">
-<div class="total-dir row" style="width: 100%;" >
-    <div class="col">
-
-    </div>
-    <div class="col container">
-        <table class="row bottom-table">
-            <tr class="col-8" >
-                <h6>Subtotal</h6>
-            </tr>
-            <tr class="col-4 trInp" style="padding: 0.1%;">
-                <input class="caseInput" type="number" [value]="subtotal"
-                    (keyup)="Amount(remiseval,expedition,livraison)">
-            </tr>
-            <!-- row two -->
-            <tr class="col-4" >
-                <h6>Remise</h6>
-            </tr>
-            <tr class="col-2 trInp" style="padding: .1%;">
-                <input #remise class="caseInput" (keyup)="calculRemise(slct.value,remise.value)" type="number" >
-            </tr>
-            <tr class="col-2 trInp" style="padding: .1%;">
-                <select #slct class="caseInput" (change)="calculRemise(slct.value,remise.value)">
-                    <option value="dh">DH</option>
-                    <option value="%">%</option>
-                </select>
-            </tr>
-            <tr class="col-4 trInp">
-                <input type="number" class="caseInput" [value]="remiseval" (keyup)="Amount(remiseval,expedition,livraison)" formControlName="remise">
-            </tr>
-            <!-- row tree -->
-            <tr class="col-4" >
-                <h6>Expedition</h6>
-            </tr>
-            <tr class="col-4 trInp" style="padding: .1%;">
-                <input type="text" #expedition class="caseInput" (keyup)="Amount(remiseval,expedition,livraison)" formControlName="expedition">
-            </tr>
-            <tr class="col-4">
-                <h6>{{expedition.value}}</h6>
-            </tr>
-            <!-- row four -->
-            <tr class="col-4" >
-                <h6>Livraison</h6>
-            </tr>
-            <tr class="col-4 trInp"  style="padding: .1%;">
-                <input type="number" #livraison class="caseInput" (keyup)="Amount(remiseval,expedition,livraison)" formControlName="livraison">
-            </tr>
-            <tr class="col-4">
-                <h6>{{livraison.value}}</h6>
-            </tr>
-            <!-- total -->
-            <tr class="col-8">
-                <h5>Total</h5>
-            </tr>
-            <tr class="col-4 trInp" style="padding: .1%;">
-                <input type="text" class="caseInput" readonly [value]="TotalAmount"> <!-- formControlName="totalAmont" -->
-            </tr>
-        </table>
-    </div>
-</div>
-</form>
-<button class="btn btn-primary" *ngIf="isNew" (click)="addInvoice()">save all of that</button>
-<button class="btn btn-success" *ngIf="!isNew" (click)="updateInvoice()" >Update Invoice</button>
-{{this.updatedInvoice | json}}
+<button class="btn btn-primary" *ngIf="isNew" (click)="edit(isNew)">Save</button>
