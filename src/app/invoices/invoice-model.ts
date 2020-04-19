@@ -1,17 +1,16 @@
 import { GeneratedId } from '../generatedId';
 
-export interface Invoice extends GeneratedId { 
+export class Invoice extends GeneratedId { 
   code: string;
   date: Date;
   totalAmont: number;
   expedition: number;
   livraison: number;
   remise: number;
-  invoiceDetails: InvoiceDetail[];  
-  
+  invoiceDetails: InvoiceDetail[];   
 }
 
-export interface InvoiceDetail {
+export class InvoiceDetail {
     id: string;
     product: string;
     description: string;

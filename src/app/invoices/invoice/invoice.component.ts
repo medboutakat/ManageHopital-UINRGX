@@ -17,8 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./invoice.component.css']
 })
 export class InvoiceComponent implements OnInit {
-//detail code
-  products = [];
+//detail code 
   total= 0;
   show:boolean = false;
   productForm = new FormGroup({
@@ -34,11 +33,10 @@ export class InvoiceComponent implements OnInit {
     this.show = !this.show;
   }
 
-  addDetail(){
+  addDetail(index){
     console.log('product form : ',this.productForm.value)
-    this.subtotal += this.productForm.get('total').value
-    this.products.push(this.productForm.value)
-    console.log('product : ',this.products)
+    this.subtotal += this.productForm.get('total').value 
+    this.invoice.invoiceDetails.splice(index+1,0,this.productForm.value) 
     this.showAdd();
     this.productForm.reset();
     this.total=0;
@@ -47,7 +45,7 @@ export class InvoiceComponent implements OnInit {
   deleteDetail(item,index){
     console.log('item : ',item);
     this.subtotal -= item.total;
-    this.products.splice(index,1);
+    this.invoice.invoiceDetails.splice(index,1);
   }
 
   valueChanged(qte,price,tax){
@@ -96,28 +94,43 @@ export class InvoiceComponent implements OnInit {
     this.id == null? this.isNew=true : this.isNew=false;//verefication ADD or EDIT
 
     if(!this.isNew){
+      console.log('this.isNew : ',this.id)
       this.store.dispatch(new invoiceActions.LoadOneInvoice(this.id));
       this.store.subscribe(state => {
         this.invoice = state.invoices.entities[this.id] as Invoice
         if (this.invoice == null) {
+
         } else {
-          this.invoice.invoiceDetails.forEach(item=>
-            {
-              this.products.push(item);
-              this.subtotal += item.total; 
-            });
-          this.invoiceForm.setValue({code:this.invoice.code,date:this.invoice.date,expedition:this.invoice.expedition,
-                            livraison:this.invoice.livraison,remise:this.invoice.remise,totalAmont:this.invoice.totalAmont})
-          console.log("invoice : ", this.invoice)
-          console.log("invoiceDetails : ", this.invoice.invoiceDetails)
+          this.initialze();        
         }
       })
     }
+    else{ 
+      console.log('this.1111 : ',this.id)
+      this.invoice=new Invoice(); 
+      this.invoice.invoiceDetails=[];
+      this.invoice.invoiceDetails.push(new InvoiceDetail());
+      console.log('new but initialize rows', this.invoice) 
+      // this.initialze();   
+      // console.log(" this.invoice.invoiceDetails- >", this.invoice.invoiceDetails)
+      // console.log('new but initialize rows')  
+    }
   }
 
+  initialze(){
+    this.invoice.invoiceDetails.forEach(item=>
+      {
+        // this.details.push(item);
+        this.subtotal += item.total; 
+      });
+    this.invoiceForm.setValue({code:this.invoice.code,date:this.invoice.date,expedition:this.invoice.expedition,
+                      livraison:this.invoice.livraison,remise:this.invoice.remise,totalAmont:this.invoice.totalAmont})
+    console.log("invoice : ", this.invoice)
+    console.log("invoiceDetails : ", this.invoice.invoiceDetails)
+  }
   addInvoice(){
     this.invoiceForm.get('totalAmont').patchValue(this.TotalAmount);
-    this.invoiceForm.setControl('invoiceDetails', new FormControl(this.products));
+    this.invoiceForm.setControl('invoiceDetails', new FormControl(this.invoice.invoiceDetails));
     console.log('invoice : ',this.invoiceForm.value);
     this.store.dispatch(new invoiceActions.CreateInvoice(this.invoiceForm.value));
     this.router.navigate(['invoices'])
@@ -134,7 +147,7 @@ export class InvoiceComponent implements OnInit {
       remise:this.invoiceForm.get('remise').value,
       totalAmont:this.invoiceForm.get('totalAmont').value,
       expedition:this.invoiceForm.get('expedition').value,
-      invoiceDetails:this.products
+      invoiceDetails:this.invoice.invoiceDetails
     }
     console.log("updatedInvoice : ",this.invoiceForm.value);
     this.store.dispatch(new invoiceActions.UpdateInvoice(this.updatedInvoice));
