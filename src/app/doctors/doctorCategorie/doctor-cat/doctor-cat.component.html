@@ -95,16 +95,17 @@
       </div>
     </div> 
   </div> -->
-
-  <app-menu [IsRowSelected]="IsRowSelected" 
-  [addAction]="add" 
-  [editAction]="edit" 
-  [deleteAction]="delete" 
-  [IsMultple]="IsMultple"
-  [isNew]="isNew" 
-  ></app-menu>
-  
-  <a (click)="add()" matTooltip="Click for add a new Appointement" [matTooltipPosition]="'left'"
+<div style="float: right;">
+  <app-menu 
+ [IsRowSelected]="IsRowSelected" 
+ [addAction]="add" 
+ [editAction]="edit" 
+ [deleteAction]="delete" 
+ [IsMultple]="IsMultple"
+ [isNew]="isNew" 
+ ></app-menu>
+  </div>
+  <!-- <a (click)="add()" matTooltip="Click for add a new Appointement" [matTooltipPosition]="'left'"
   class="flotting-btn btn-success" style="color: white;">+</a>
   <div style="float: right;"> 
     <button (click)="save(item)" style="line-height: 15px;margin: 10px; " type="button" class="btn btn-warning"
@@ -119,25 +120,20 @@
    delete
    </i>
 </button>
-  </div>
+  </div> -->
   <mat-form-field class="example-full-width">
     <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
   </mat-form-field>
   <table mat-table [dataSource]="(dataSource)"  matSort  class="mat-elevation-z8">
-
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
-        <mat-checkbox (change)="$event ? masterToggle() : null"
-                      [checked]="selection.hasValue() && isAllSelected()"
-                      [indeterminate]="selection.hasValue() && !isAllSelected()"
-                      [aria-label]="checkboxLabel()">
+        <mat-checkbox (change)="$event ? masterToggle() : null; onrowselect()" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()"    >
         </mat-checkbox>
       </th>
       <td mat-cell *matCellDef="let row">
-        <mat-checkbox (click)="$event.stopPropagation()"
-                      (change)="$event ? selection.toggle(row) : null"
-                      [checked]="selection.isSelected(row)"
-                      [aria-label]="checkboxLabel(row)">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null; onrowselect()"
+          [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)" (click)="onrowselect()" >
         </mat-checkbox>
       </td>
     </ng-container>
@@ -155,9 +151,8 @@
   
    
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-    (click)="selection.toggle(row);"
-    (click)="onrowselect(row)"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index" (click)="selection.toggle(row);"(click)="onrowselect()"></tr>
+
    
 
   </table>

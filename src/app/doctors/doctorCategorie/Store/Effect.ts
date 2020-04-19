@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http'
 import { Injectable } from '@angular/core';
-import { map ,mergeMap,catchError} from 'rxjs/operators';
+import { map ,mergeMap,catchError, tap} from 'rxjs/operators';
 import {of , Observable} from'rxjs'
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import {Action} from '@ngrx/store'
@@ -16,54 +16,74 @@ export class DoctorCatEffect {
    {
    }
 
-  @Effect()
-  LoadDoctorCat$: Observable<Action> = this.actions$.pipe(
-      ofType<ActionsFile.LoadDoctorCat>(
-          ActionsFile.DoctorCatActionType.LOAD_DoctorCat
-      ),
-      mergeMap((Actions : ActionsFile.LoadDoctorCat)=>
-      this.DoctorCatServ.getDoctorCat().pipe(
-          map(
-              (DoctorCats : doctorCat[])=>
-              new ActionsFile.LoadDoctorCatSuccess(DoctorCats)
-          ),
-          catchError(err =>of(new ActionsFile.LoadDoctorCatFail(err)))
-      )
-      )
-  );
+
+   @Effect()
+   LoadHospitalCat$: Observable<Action> = this.actions$.pipe(
+       ofType<ActionsFile.LoadDoctorCat>(
+           ActionsFile.DoctorCatActionType.LOAD
+       ),
+       mergeMap((Actions : ActionsFile.LoadDoctorCat)=>
+       this.DoctorCatServ.getAll().pipe(
+           map(
+               (HospitalCats : doctorCat[])=>
+               new ActionsFile.LoadDoctorCatSuccess(HospitalCats)
+           ),
+           catchError(err =>of(new ActionsFile.LoadDoctorCatFail(err)))
+       )
+       )
+   )
+ 
 
      //Create Hospital Category
 
      @Effect()
-     CreateDoctorCat$: Observable<Action> = this.actions$.pipe(
-         ofType<ActionsFile.CreateDoctorCat>(
-             ActionsFile.DoctorCatActionType.CREATE_DoctorCat
-         ),
-         map((Actions : ActionsFile.CreateDoctorCat)=>Actions.payload),
-         mergeMap((DoctorCate : doctorCat )=>
-         this.DoctorCatServ.add(DoctorCate ).pipe(
-             map(
-                 (NewHospitalCats : doctorCat)=>
-                 new ActionsFile.CreateDoctorCatSuccess(NewHospitalCats)
-             ),
-             catchError(err =>of(new ActionsFile.CreateDoctorCatFail(err)))
-         )
-         )
-     );
-   
+   CreateHospitalCat$: Observable<Action> = this.actions$.pipe(
+       ofType<ActionsFile.CreateDoctorCat>(
+           ActionsFile.DoctorCatActionType.CREATE
+       ),
+       map((Actions : ActionsFile.CreateDoctorCat)=>Actions.payload),
+       mergeMap((HospitalCateg : doctorCat )=>
+       this.DoctorCatServ.add(HospitalCateg ).pipe(
+           map(
+               (NewHospitalCats : doctorCat)=>
+               new ActionsFile.CreateDoctorCatSuccess(NewHospitalCats)
+           ),
+           catchError(err =>of(new ActionsFile.CreateDoctorCatFail(err)))
+       )
+       )
+   );
+  
+   @Effect()
+   UpdateHospitalCat$: Observable<Action> = this.actions$.pipe(
+       ofType<ActionsFile.UpdateDoctorCat>(
+           ActionsFile.DoctorCatActionType.UPDATE
+       ),
+       map((Actions : ActionsFile.UpdateDoctorCat)=>Actions.payload),
+       mergeMap((payload : doctorCat )=>
+       this.DoctorCatServ.update(payload).pipe(
+           map(
+               (payloadResult : doctorCat)=>new ActionsFile.UpdateDoctorCatSuccess(payload)
+           ), 
+           tap((data) => {
+                    console.log(data);
+           }),
+          catchError(err =>of(new ActionsFile.UpdateDoctorCatFail(err))
+       )
+       )
+   ));  
 
-  @Effect()
-  DeleteDoctorCat$: Observable<Action> = this.actions$.pipe(
-      ofType<ActionsFile.DeleteDoctorCat>(
-          ActionsFile.DoctorCatActionType.DELETE_DoctorCat
-      ),
-      map((Actions : ActionsFile.DeleteDoctorCat)=>Actions.payload),
-      mergeMap((id:string)=>
-      this.DoctorCatServ.deleteDoctorCat(id).pipe(
-          map(()=>new ActionsFile.DeleteDoctorCatSuccess()),
-          catchError(err =>of(new ActionsFile.DeleteDoctorCatFail(err)))
-      )
-      )
-  );
+   @Effect()
+   DeleteHospitalCat$: Observable<Action> = this.actions$.pipe(
+       ofType<ActionsFile.DeleteDoctorCat>(
+           ActionsFile.DoctorCatActionType.DELETE
+       ),
+       map((Actions : ActionsFile.DeleteDoctorCat)=>Actions.payload),
+       mergeMap((id:string)=>
+       this.DoctorCatServ.delete(id ).pipe(
+           map(()=>new ActionsFile.DeleteDoctorCatSuccess(id)),
+           catchError(err =>of(new ActionsFile.DeleteDoctorCatFail(err)))
+       )
+       )
+   );
 
 }
