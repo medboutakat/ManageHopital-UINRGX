@@ -100,10 +100,7 @@ export class InvoiceListComponent implements OnInit {
     this.id = row.id
 
   }
-  onrowselect(row) {
-    console.log("roow", row)
 
-  }
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: Invoice): string {
     if (!row) {

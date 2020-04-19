@@ -10,7 +10,7 @@ import { DoctorCatReducer } from '../doctors/doctorCategorie/Store/reducer';
 import { AppointementReducer } from '../appointements/store/appointement.reducer';
 import { HospitalReducer } from '../hospital/store/Reducer';
 import { doctorReducer } from '../doctors/doctor-store/doctor.reducer';
-import { DoctorEffect } from '../doctors/doctor-store/doctor.effect';
+import { DoctorsEffect } from '../doctors/doctor-store/doctor.effect';
 import { HospitalCatEffect } from '../HospitalCategorie/Store/Effect';
 import { DoctorCatEffect } from '../doctors/doctorCategorie/Store/Effect';
 import { AppointementEffect } from '../appointements/store/appointement.effect';
@@ -20,6 +20,10 @@ import { OperationCategoryReducer } from '../operations/store/category.reducer';
 import { OpEffect } from '../operations/store/operation.effect';
 import { InvoiceReducer } from '../invoices/store/Reducer';
 import { InvoiceEffect } from '../invoices/store/Effect';
+import { CityReducer } from '../cities/store/city.reducer';
+import { CityEffect } from '../cities/store/city.effect';
+import { ContactReducer } from '../contacts/store/contact.reducer';
+import { ContactsEffect } from '../contacts/store/contact.effect';
 
 
 @NgModule({
@@ -39,11 +43,13 @@ import { InvoiceEffect } from '../invoices/store/Effect';
     StoreModule.forFeature("DoctorCat", DoctorCatReducer),
     StoreModule.forRoot({ "Hospital": HospitalReducer }),
     StoreModule.forFeature("doctors", doctorReducer),
-    StoreModule.forRoot({ "appointements": AppointementReducer }),
-    StoreModule.forRoot({ "invoices": InvoiceReducer }),
+    StoreModule.forFeature("appointements", AppointementReducer),
+    StoreModule.forFeature("invoices", InvoiceReducer),
+    StoreModule.forFeature("contacts", ContactReducer),
     StoreModule.forFeature("operations", OperationReducer),
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
-    EffectsModule.forRoot([InvoiceEffect, DoctorEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, AppointementEffect]),
+    StoreModule.forRoot({ "cities": CityReducer }),
+    EffectsModule.forRoot([ContactsEffect, InvoiceEffect, CityEffect, InvoiceEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, AppointementEffect]),
     CommonModule
 
 

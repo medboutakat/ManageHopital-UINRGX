@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material';
 import { HopitalComponent } from '../hopital/hopital.component';
-import { MyErrorStateMatcher } from 'src/app/contacts/contact/contact.component';
 import { Store } from '@ngrx/store';
 import * as ActionsFile from 'src/app/HospitalCategorie/Store/Action'
 
@@ -20,21 +19,21 @@ interface Sexe {
 
 
 export class HospitalEditComponent implements OnInit {
-  
-  matcher = new MyErrorStateMatcher();
 
-  genders:Sexe[] = [
-    {value: 'men', viewValue: 'Men'},
-    {value: 'women', viewValue: 'Women'},
-    {value: 'other', viewValue: 'Other'}
+
+
+  genders: Sexe[] = [
+    { value: 'men', viewValue: 'Men' },
+    { value: 'women', viewValue: 'Women' },
+    { value: 'other', viewValue: 'Other' }
   ];
   listhopitalCatValues: unknown[];
 
-  constructor(private _bottomSheetRef: MatBottomSheetRef<HopitalComponent>,private store : Store<any>,) { 
-    this.store.dispatch( new ActionsFile.LoadHospitalCat());
-    this.store.subscribe(data =>{  
-      this.listhopitalCatValues = Object.values(data.HospitalCat.entities)  
-      console.log(" this.listhopitalCatValues=> ",this.listhopitalCatValues)    
+  constructor(private _bottomSheetRef: MatBottomSheetRef<HopitalComponent>, private store: Store<any>, ) {
+    this.store.dispatch(new ActionsFile.LoadHospitalCat());
+    this.store.subscribe(data => {
+      this.listhopitalCatValues = Object.values(data.HospitalCat.entities)
+      console.log(" this.listhopitalCatValues=> ", this.listhopitalCatValues)
     }
     )
   }
@@ -47,8 +46,8 @@ export class HospitalEditComponent implements OnInit {
     event.preventDefault();
   }
 
-  getContact(contact){
-    console.log('Contact : ',contact);
+  getContact(contact) {
+    console.log('Contact : ', contact);
   }
 
 

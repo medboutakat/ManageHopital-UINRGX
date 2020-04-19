@@ -17,9 +17,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule, MatCellDef } from '@angular/material/table';
 import { MatPaginatorModule, MatSortModule, MatCheckbox, MatCheckboxModule } from '@angular/material';
-import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA} from '@angular/material/bottom-sheet';  
+import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { AgGridModule } from 'ag-grid-angular';
-import { DoctorCatComponent } from '../doctors/doctorCategorie/doctor-cat/doctor-cat.component';
+import { MatStepperModule } from '@angular/material/stepper'
 
 const Materiallist = [
   MatButtonModule,
@@ -39,7 +39,8 @@ const Materiallist = [
   MatTableModule,
   MatPaginatorModule,
   MatSortModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatStepperModule
 
 ]
 
@@ -64,10 +65,10 @@ const Materiallist = [
     Materiallist,
     MatToolbarModule,
     MatTableModule,
-  
+
   ],
-  providers: [ { provide: MatBottomSheetRef, useValue: {} },
-    { provide: MAT_BOTTOM_SHEET_DATA, useValue: {} }],
+  providers: [{ provide: MatBottomSheetRef, useValue: {} },
+  { provide: MAT_BOTTOM_SHEET_DATA, useValue: {} }],
 })
 export class AngularMaterialModule { }
 

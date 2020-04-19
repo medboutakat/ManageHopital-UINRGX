@@ -48,6 +48,7 @@ const routes: Routes = [
       { path: 'chat', component: ContactComponent, pathMatch: 'full' },
       { path: 'material', component: MaterialComponent, pathMatch: 'full' },
       { path: 'materialedit', component: MaterialEditComponent, pathMatch: 'full' },
+      { path: 'addDoctor', component: DoctorEditComponent, pathMatch: 'full' }
 
 
 

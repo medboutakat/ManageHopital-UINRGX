@@ -1,4 +1,4 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store"
+import { createFeatureSelector, createSelector, State } from "@ngrx/store"
 import { EntityAdapter, createEntityAdapter, EntityState, Update } from "@ngrx/entity"
 import * as fromRoot from '../doctor-store/app-state';
 import * as doctorActions from '../doctor-store/doctor.action';
@@ -14,8 +14,8 @@ export interface doctorState {
 export interface AppState extends fromRoot.AppState {
   doctors: doctorState
 }
-
-export const initialState: doctorState = {
+export const DoctorAdapter: EntityAdapter<Doctor> = createEntityAdapter<Doctor>();
+export const initialStates: doctorState = {
   doctors: [],
   loadSeccess: false,
   getting: false,
@@ -25,7 +25,7 @@ export const initialState: doctorState = {
 export interface AppSate extends fromRoot.AppState {
   doctors: doctorState
 }
-
+export const initialState = DoctorAdapter.getInitialState(initialStates);
 //reducer
 export function doctorReducer(state = initialState, action: doctorActions.CustomAction): doctorState {
   switch (action.type) {
@@ -46,6 +46,27 @@ export function doctorReducer(state = initialState, action: doctorActions.Custom
         loadSeccess: true,
         error: action.payload
       }
+    }
+    /*******************************delete Doctor***************************************************** */
+    case doctorActions.DoctorActionTypes.DELETE_DOCTOR_SUCCESS: {
+      return DoctorAdapter.removeOne(action.payload, state)
+
+    }
+    case doctorActions.DoctorActionTypes.DELETE_DOCTOR_FAIL: {
+      return {
+        ...state,
+        error: action.payload
+      };
+    }
+    /**********************************create appointement********************************************************************* */
+    case doctorActions.DoctorActionTypes.ADD_DOCTOR_SUCCESS: {
+      return DoctorAdapter.addOne(action.payload, state);
+    }
+    case doctorActions.DoctorActionTypes.ADD_DOCTOR_FAIL: {
+      return {
+        ...state,
+        error: action.payload
+      };
     }
     default: {
       return state;

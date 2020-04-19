@@ -55,6 +55,7 @@ import { MaterialComponent } from './material/material/material.component';
 import { MaterialEditComponent } from './material/material-edit/material-edit.component';
 import { AppointementReducer } from './appointements/store/appointement.reducer';
 import { AppointementEffect } from './appointements/store/appointement.effect';
+import { DeleteDoctorComponent } from './doctors/delete-doctor/delete-doctor.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { AppointementEffect } from './appointements/store/appointement.effect';
     // FooterComponent, 
     // HeaderComponent
     MaterialComponent,
-    MaterialEditComponent
+    MaterialEditComponent,
+    DeleteDoctorComponent
   ],
   entryComponents: [
     DialogComponent,
@@ -109,7 +111,7 @@ import { AppointementEffect } from './appointements/store/appointement.effect';
     AddOperationComponent, DeleteOperationComponent,
     AddDoctorCatComponent,
     AddHospitalCatComponent,
-    
+    DeleteDoctorComponent
   ],
 
 
@@ -122,7 +124,7 @@ import { AppointementEffect } from './appointements/store/appointement.effect';
     DefaultModule,
 
     [MatDialogModule],
-  
+
 
     AppstoreModule,
     HttpClientModule,
@@ -137,7 +139,7 @@ import { AppointementEffect } from './appointements/store/appointement.effect';
     ReactiveFormsModule,
     MatBottomSheetModule,
     MatTooltipModule,
-   
+
   ],
   providers: [],
   bootstrap: [AppComponent]

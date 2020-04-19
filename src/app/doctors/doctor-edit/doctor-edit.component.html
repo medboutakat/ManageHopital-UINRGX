@@ -1,40 +1,37 @@
+<mat-vertical-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <app-contact (getOutputForm)="getContact($event)"></app-contact>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form>
+      <ng-template matStepLabel>Fill out your personelle informations</ng-template>
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="Your first name" required>
+      </mat-form-field><br>
+      <mat-form-field>
+        <mat-label>last Name</mat-label>
+        <input matInput placeholder="Your last name" required>
+      </mat-form-field><br>
+      <mat-form-field>
+        <mat-label>sexe</mat-label>
+        <mat-select>
+          <mat-option>None</mat-option>
+          <mat-option value="Female">Female</mat-option>
+          <mat-option value="Male">Male</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-<p>doctor-edit works!</p>
-<div >
-    <h3>Add</h3>
-    <form class="example-form">
-
-<div style="height:100%;">
-    <h3>New doctor</h3>
-    <form [formGroup]="doctorForm" (ngSubmit)="addDoctor()" class="example-form mat-bottom-sheet-container-large">
-        <mat-form-field class="example-full-width">
-            <mat-label>Lastname</mat-label>
-            <input matInput [errorStateMatcher]="matcher"
-                formControlName="firstName"  placeholder="@firstname">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-            <mat-label>Firstname</mat-label>
-            <input matInput  [errorStateMatcher]="matcher" placeholder="@lastname"
-                formControlName="firstName">
-        </mat-form-field> 
-        
-        <br>
-        <mat-form-field style="width: 100%;">
-            <mat-label>Select your gender</mat-label>
-            <mat-select [(ngModel)]="selectedValue" name="food" formControlName="sexe">
-              <mat-option *ngFor="let sexe of genders" [value]="sexe.value">
-                {{sexe.viewValue}}
-              </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <div>
-            <div class="col-sm-8">
-                <app-select label="Select user" display="name" [listObjects]="listDoctorCat" (valueSelected)="getvalue($event)" placeholder="DoctorCategory"></app-select>
-            </div>
-        <app-contact (getOutputForm)="getContact($event)"></app-contact>
-        </div>
-        <button class="btn btn-primary">Abdelwahed</button>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
     </form>
-</div>
-
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button>Confirme</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
