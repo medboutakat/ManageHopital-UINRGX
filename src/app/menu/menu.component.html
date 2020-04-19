@@ -6,9 +6,11 @@
               </li>
               <li class="breadcrumb-item">
                 <button [disabled]="!IsRowSelected || IsMultple" type="button" class="btn btn-warning" (click)="edit()"  data-toggle="modal" data-target="#myModal">Edit</button>
+                
               </li>
               <li class="breadcrumb-item">
                 <button [disabled]="!IsRowSelected" type="button" class="btn btn-danger" (click)="delete()" data-toggle="modal" >Delete</button>
               </li>
             </ol>
           </nav>
+          

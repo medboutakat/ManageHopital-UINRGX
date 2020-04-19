@@ -11,8 +11,9 @@ import { HospitalCatComponent } from '../HospitalCategorie/hospital-cat/hospital
 export class CategoryComponent implements ControlValueAccessor {
 
   @Input()  HospitalCatForm: FormGroup;   
-  @Input() reserveAction: any ; 
+ @Input() DoctorcAT :FormGroup;
 
+  @Input() reserveAction: any ; 
  onChange: any = () => {}
  onTouch: any = () => {}
  val= "" // this is the updated value that the class accesses

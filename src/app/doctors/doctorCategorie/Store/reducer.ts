@@ -36,15 +36,14 @@ export const DefaultDoctorCat : DoctorCatState={
 
    export function DoctorCatReducer(state = initialState, action : ActionsFile.DoctorCatction) : DoctorCatState{
      switch(action.type){
-         case ActionsFile.DoctorCatActionType.LOAD_DoctorCat_SUCCESS :{             
-              return doctorCatAdapter.addAll(action.payload,{
-                ...state,
-                loading : false,
-                loaded : true,
-        
-              }); 
-         }
-         case ActionsFile.DoctorCatActionType.LOAD_DoctorCat_FAIL :{
+        case ActionsFile.DoctorCatActionType.LOAD_SUCCESS: {
+            return doctorCatAdapter.addAll(action.payload, {
+              ...state,
+              loading: false,
+              loaded: true,
+            });
+          }
+         case ActionsFile.DoctorCatActionType.LOAD_FAIL :{
              return {
                  ... state,
                  loading :false,
@@ -53,6 +52,38 @@ export const DefaultDoctorCat : DoctorCatState={
                  error : action.payload
              }
          } 
+         case ActionsFile.DoctorCatActionType.CREATE_SUCCESS: {
+            return doctorCatAdapter.addOne(action.payload, state);
+          }
+          case ActionsFile.DoctorCatActionType.CREATE_FAIL: {
+            return {
+              ...state,
+              error: action.payload,
+            };
+          }
+
+          case ActionsFile.DoctorCatActionType.UPDATE_SUCCESS: { 
+            const changes = action.payload;
+            const id = changes.id;
+            console.log("updateOne:hello: ", changes)
+            return doctorCatAdapter.updateOne({ id,changes } , state);
+          }
+          case ActionsFile.DoctorCatActionType.UPDATE_FAIL: {
+            return {
+              ...state,
+              error: action.payload,
+            };
+          }
+
+          case ActionsFile.DoctorCatActionType.DELETE_SUCCESS: {
+            return doctorCatAdapter.removeOne(action.payload, state);
+          }
+          case ActionsFile.DoctorCatActionType.DELETE_FAIL: {
+            return {
+              ...state,
+              error: action.payload,
+            };
+          }
          default : {
              return state;
          }
