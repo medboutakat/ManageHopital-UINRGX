@@ -50,6 +50,7 @@ import { ContactsEffect } from '../contacts/store/contact.effect';
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
     StoreModule.forRoot({ "cities": CityReducer }),
     EffectsModule.forRoot([ContactsEffect, InvoiceEffect, CityEffect, InvoiceEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, AppointementEffect]),
+    EffectsModule.forRoot([HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect]),
     CommonModule
 
 

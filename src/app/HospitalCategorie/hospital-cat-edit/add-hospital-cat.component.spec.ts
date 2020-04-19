@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HospitalCatAddComponent } from './hospital-cat-add.component';
+import {  HospitalCatEditComponent } from './hospital-edit-cat.component';
 
-describe('HospitalCatAddComponent', () => {
-  let component: HospitalCatAddComponent;
-  let fixture: ComponentFixture<HospitalCatAddComponent>;
+describe('HospitalCatEditComponent', () => {
+  let component: HospitalCatEditComponent;
+  let fixture: ComponentFixture<HospitalCatEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HospitalCatAddComponent ]
+      declarations: [ HospitalCatEditComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HospitalCatAddComponent);
+    fixture = TestBed.createComponent(HospitalCatEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

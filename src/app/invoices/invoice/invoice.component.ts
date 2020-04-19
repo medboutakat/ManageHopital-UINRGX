@@ -9,6 +9,7 @@ import * as invoiceActions from '../store/Action'
 
 import { Invoice, InvoiceDetail } from '../invoice-model';
 import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-invoice',
@@ -56,10 +57,11 @@ export class InvoiceComponent implements OnInit {
   calculRemise(slct,remise){
     console.log("slct ;",slct)
     console.log("remise :",remise)
-    slct == 'dh' ? this.remiseval = remise : this.remiseval = (this.subtotal*remise)/100
+    let percent = (this.subtotal*remise)/100
+    slct == 'dh' ? this.remiseval = remise - remise*2 : this.remiseval = percent-percent*2
   }
   Amount(remise,exp,liv){
-    this.TotalAmount =this.subtotal + Number(exp.value) + Number(liv.value) - remise
+    this.TotalAmount =this.subtotal + Number(exp.value) + Number(liv.value) + remise
   }
  //end detail code
 
@@ -70,21 +72,27 @@ export class InvoiceComponent implements OnInit {
  isNew:boolean;
 
  invoiceForm = new FormGroup({
-  code: new FormControl(''),
-  date: new FormControl(formatDate(new Date(), 'yyyy-MM-dd', 'en')),
-  totalAmont: new FormControl(this.TotalAmount),
-  expedition: new FormControl(0),
-  livraison: new FormControl(0),
-  remise: new FormControl(this.remiseval),
+    code: new FormControl(''),
+    date: new FormControl(formatDate(new Date(), 'yyyy-MM-dd', 'en')),
+    expedition: new FormControl(0),
+    livraison: new FormControl(0),
+    remise: new FormControl(this.remiseval),
+    totalAmont: new FormControl(this.TotalAmount)
  })
-  constructor(private store:Store<fromInvoice.AppState>) 
-  { 
-    this.id = "214b787f-1bec-4b98-e21b-08d7df1b978e"
+
+  constructor(
+    private store:Store<fromInvoice.AppState>,
+    private routeValue:ActivatedRoute,
+    private router:Router
+    ) { 
+    this.routeValue.paramMap.subscribe(params => this.id=params.get('id'))
+    //this.id =  "214b787f-1bec-4b98-e21b-08d7df1b978e"
   }
 
   invoice:Invoice = null
 
   ngOnInit(): void {
+    console.log('ID : ',this.id)
     this.id == null? this.isNew=true : this.isNew=false;//verefication ADD or EDIT
 
     if(!this.isNew){
@@ -105,15 +113,14 @@ export class InvoiceComponent implements OnInit {
         }
       })
     }
-
-
   }
 
   addInvoice(){
+    this.invoiceForm.get('totalAmont').patchValue(this.TotalAmount);
     this.invoiceForm.setControl('invoiceDetails', new FormControl(this.products));
     console.log('invoice : ',this.invoiceForm.value);
     this.store.dispatch(new invoiceActions.CreateInvoice(this.invoiceForm.value));
-    //this.invoiceForm.reset();
+    this.router.navigate(['invoices'])
   }
   updatedInvoice:Invoice
   updateInvoice(){
@@ -132,6 +139,7 @@ export class InvoiceComponent implements OnInit {
     console.log("updatedInvoice : ",this.invoiceForm.value);
     this.store.dispatch(new invoiceActions.UpdateInvoice(this.updatedInvoice));
     console.log("Updated is done ");
+    this.router.navigate(['invoices'])
   }
 
 }

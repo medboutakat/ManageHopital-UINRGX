@@ -1,5 +1,5 @@
 import { Component, OnInit, forwardRef, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormGroup } from '@angular/forms';
 import { HospitalCatComponent } from '../HospitalCategorie/hospital-cat/hospital-cat.component';
 
 @Component({
@@ -9,12 +9,9 @@ import { HospitalCatComponent } from '../HospitalCategorie/hospital-cat/hospital
 
 })
 export class CategoryComponent implements ControlValueAccessor {
-  @Input() IsRowSelected: boolean ;
-  @Input() IsMultple: boolean ;  
-  @Input() isNew: boolean ; 
-  @Input() addAction: any ;
-  @Input() editAction: any ;
-  @Input() deleteAction: any ; 
+
+  @Input()  HospitalCatForm: FormGroup;   
+  @Input() reserveAction: any ; 
 
  onChange: any = () => {}
  onTouch: any = () => {}
@@ -46,14 +43,9 @@ export class CategoryComponent implements ControlValueAccessor {
     throw new Error("Method not implemented.");
   }
 
-  add(){
-    this.addAction();
-  }
-  edit(){
-    this.editAction();
-  }
-  delete(){
-    this.deleteAction();
+  
+  reserve(){
+    this.reserveAction();
   }
 
 }

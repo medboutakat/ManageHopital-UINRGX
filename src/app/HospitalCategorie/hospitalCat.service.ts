@@ -28,14 +28,23 @@ export class HospitalCatService implements ICrudService<HospitalCat> {
   }
 
   add(payload: HospitalCat): Observable<HospitalCat> {
+
+    console.log("service Add",payload)
     return this.http.post<HospitalCat>(this.ReponseUrl, payload);
   }
 
-  update(hospitalCat: HospitalCat): Observable<HospitalCat> {
-    return this.http.patch<HospitalCat>(
-      `${this.ReponseUrl}/${hospitalCat.id}`,
-      hospitalCat
+  update(payload: HospitalCat): Observable<HospitalCat> {
+    console.log("service update",payload)
+
+    return this.http.put<HospitalCat>(
+      `${this.ReponseUrl}/${payload.id}`,
+      payload
     );
+    // return this.http.patch<HospitalCat>(
+    //   `${this.ReponseUrl}/${hospitalCat.id}`,
+    //   hospitalCat
+    // );
+
   }
 
   delete(payload: string) {

@@ -15,9 +15,10 @@ export class AddAppointementComponent implements OnInit {
   addForm: FormGroup
   constructor(private store: Store<any>, private fb: FormBuilder) {
     this.store.dispatch(new actionApps.LoadHospitals());
-    this.store.subscribe(data => {
-      this.apps = data.hospitals.hospitals;
-      console.log("state hospital", this.apps)
+   
+    this.store.subscribe(data =>{  
+      this.apps = Object.values(data.Hospital.entities)  
+      console.log(" this.listhopital=> ",this.apps)
     })
   }
 
