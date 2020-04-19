@@ -19,101 +19,97 @@ import { MatSort } from '@angular/material';
   styleUrls: ['./invoice-list.component.scss']
 })
 export class InvoiceListComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'code', 'date', 'totalAmont', 'expedition', 'livraison', 'remise'];
-  displayedColumnsData: string[] = ['code', 'date', 'totalAmont', 'expedition', 'livraison', 'remise', 'star'];
 
-
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  isAvailable = false;
+  constructor(private store: Store<any>, private router: Router) {
+    this.store.dispatch(new invoiceAction.LoadInvoice());
+    this.remplir();
+    this.add = this.add.bind(this);
+    this.edit = this.edit.bind(this);
+    this.delete = this.delete.bind(this);
+  }
   ngOnInit() {
 
   }
-  invoices
-  dataSource
+
+  /***************************Displayed colmuns****************************************************** */
+  displayedColumns: string[] = ['select', 'code', 'date', 'totalAmont', 'expedition', 'livraison', 'remise'];
+
+  /*******************************Variables declared************************************************ */
+  private rowSelection;
+  private IsRowSelected: boolean = false;
+  private IsMultple: boolean = false;
+  invoices: any
+  dataSource: any
   selection: SelectionModel<Invoice>;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-
-  constructor(private store: Store<any>, private router: Router) {
-
-    this.store.dispatch(new invoiceAction.LoadInvoice());
+  /***************************Apply filtre *************************************************** */
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  /**************************Methods(app-Menu)**************************************** */
+  /**************************Load Data******************************** */
+  remplir() {
     this.store.subscribe(data => {
       this.invoices = Object.values(data.invoices.entities)
-      console.log(" invoices  ", this.invoices)
+      console.log(" invoices=> ", this.invoices)
       this.dataSource = new MatTableDataSource<Invoice>(this.invoices);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.selection = new SelectionModel<Invoice>(true, []);
     })
-
   }
-  row
-  logdata(row) {
-
-    console.log("row1", row)
-    this.row = row;
+  /****************************Delete Invoice************************************ */
+  delete() {
+    if (confirm("Are You Sure You want to Delete the User?")) {
+      var Invoice = <Invoice>this.selection.selected[0];
+      console.log("invoice deleted", Invoice.id);
+      var id = Invoice.id
+      this.store.dispatch(new invoiceAction.DeleteInvoice(id));
+      this.remplir()
+    }
   }
-  showRow(row) {
-    console.log("row selected", row);
-
-  }
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-  Download() {
-
-    var data = document.getElementById("content");
-    const doc = new jspdf();
-    doc.fromHTML(data.innerHTML, 30, 30);
-    doc.save("facture n°.pdf");
-
-  }
+  /*****************************Add Invoice******************************** */
   add() {
     this.router.navigate(['/invoice'])
-
+  }
+  /**************************Edit Invoice********************************************** */
+  edit() {
+    var Invoice = <Invoice>this.selection.selected[0];
+    var id = Invoice.id;
+    console.log("invocie id", id)
+    this.router.navigate(["/invoicewithId", id])
   }
 
+  /*****************************Select Methods**************************************************** */
+  onrowselect() {
+    this.IsMultple = this.selection.selected.length > 1;
+    this.IsRowSelected = this.selection.selected.length == 1;
+  }
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
-
   }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
-      this.dataSource.data.forEach(row =>
-        this.selection.select(row),
-
-      );
-  }
-  edit() {
-
-    console.log("id", this.id)
-    this.router.navigate(['/invoicewithId', this.id])
-
-  }
-  id: string
-  selected(row) {
-    console.log("selected row", row)
-    this.isAvailable = true
-    this.id = row.id
+      this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  onrowselect(row) {
-    console.log("roow", row)
-  }
-
-  /** The label for the checkbox on the passed row */
   checkboxLabel(row?: Invoice): string {
+
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
-
   }
+
+
+
+
+
 
 }
 

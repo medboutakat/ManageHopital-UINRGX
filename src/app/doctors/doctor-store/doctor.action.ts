@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store'
 import { Doctor } from '../doctor.model'
+import { Update } from '@ngrx/entity'
 
 export enum DoctorActionTypes {
     //get all
@@ -17,7 +18,11 @@ export enum DoctorActionTypes {
     // add Doctor 
     ADD_DOCTOR = "[Doctor] add doctor",
     ADD_DOCTOR_SUCCESS = "[Doctor] add Doctor success",
-    ADD_DOCTOR_FAIL = "[Doctor] add doctor fail"
+    ADD_DOCTOR_FAIL = "[Doctor] add doctor fail",
+    // update Doctor
+    UPDATE_DOCTOR = "[Doctor] Update doctor",
+    UPDATE_DOCTOR_SUCCESS = "[Doctor] Update doctor Success",
+    UPDATE_DOCTOR_FAIL = "[Doctor] Update doctor Fail ",
 }
 
 //get
@@ -81,6 +86,21 @@ export class CreateDoctorFail implements Action {
     constructor(public payload: string) { }
 }
 
+export class UpdateDoctor implements Action {
+    readonly type = DoctorActionTypes.UPDATE_DOCTOR;
+    constructor(public payload: Doctor) { }
+}
+
+export class UpdateDoctorSuccess implements Action {
+    readonly type = DoctorActionTypes.UPDATE_DOCTOR_SUCCESS;
+    constructor(public payload: Update<Doctor>) { }
+}
+
+export class UpdateDoctorCatFail implements Action {
+    readonly type = DoctorActionTypes.UPDATE_DOCTOR_FAIL
+    constructor(public payload: string) { }
+}
+
 export type CustomAction = getDoctorSeccess
     | getDoctor
     | getDoctorFail
@@ -93,3 +113,6 @@ export type CustomAction = getDoctorSeccess
     | CreateDoctor
     | CreateDoctorSuccess
     | CreateDoctorFail
+    | UpdateDoctor
+    | UpdateDoctorSuccess
+    | UpdateDoctorCatFail

@@ -1,14 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
-
 import { Store, select } from "@ngrx/store";
 import { Observable } from "rxjs";
-
 import * as doctorActions from "../doctor-store/doctor.action";
 import * as fromDoctorReducer from "../doctor-store/doctor.reducer";
 import { Doctor } from '../doctor.model';
 import { DoctorEditComponent } from '../doctor-edit/doctor-edit.component';
-import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DeleteAppointement } from 'src/app/appointements/store/appointement.actions';
 import { Invoice } from 'src/app/invoices/invoice-model';
@@ -22,85 +20,107 @@ import { Router } from '@angular/router';
 })
 export class DoctorComponent implements OnInit {
 
+
+  constructor(private router: Router, private store: Store<fromDoctorReducer.AppSate>, public dialog: MatDialog) {
+    this.store.dispatch(new doctorActions.getDoctor());
+    this.remplir();
+    this.add = this.add.bind(this);
+    this.edit = this.edit.bind(this);
+    this.delete = this.delete.bind(this);
+  }
+
+  ngOnInit() {
+  }
+
+  /*****************************Display Colmun***************************************** */
+  displayedColumns: string[] = ['select', 'firstName', 'lastName', 'sexe'];
+  /*******************************Variables declared************************************************ */
+  private rowSelection;
+  private IsRowSelected: boolean = false;
+  private IsMultple: boolean = false;
   doctors: Doctor[];
   error$: Observable<String>;
   dataSource: any;
   selection: SelectionModel<Doctor>;
-
-  constructor(private router: Router, private store: Store<fromDoctorReducer.AppSate>, private _bottomSheet: MatBottomSheet, public dialog: MatDialog) { }
-
-  applyFilter(filtervalue: string) {
-    this.dataSource.filter = filtervalue.trim().toLowerCase();
-  }
-
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-
-  displayedColumns: string[] = ['select', 'firstName', 'lastName', 'sexe'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
-  ngOnInit() {
-    this.store.dispatch(new doctorActions.getDoctor());
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  /***************************Apply filtre *************************************************** */
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  /**************************Methods(app-Menu)**************************************** */
+  /**************************Load Data******************************** */
+  remplir() {
     this.store.subscribe(data => {
-      this.doctors = Object.values(data.doctors.doctors)
-      console.log(" listDoctorCat=> ", this.doctors)
+      this.doctors = data.doctors.doctors
+      console.log(" doctors=> ", this.doctors)
       this.dataSource = new MatTableDataSource<Doctor>(this.doctors);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.selection = new SelectionModel<Doctor>(true, []);
     })
   }
-
-  openBottomSheet(): void {
-    this._bottomSheet.open(DoctorEditComponent);
-    console.log('show bottom sheet ...')
+  /****************************Delete Doctor************************************ */
+  delete() {
+    if (confirm("Are You Sure You want to Delete the User?")) {
+      var Doctor = <Doctor>this.selection.selected[0];
+      var id = Doctor.id
+      this.store.dispatch(new doctorActions.DeleteDoctor(id));
+      this.remplir()
+    }
   }
+  /**************************Edit Doctor********************************************** */
+  edit() {
+    console.log("edit");
+    var doctor = <Doctor>this.selection.selected[0];
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      _currentObject: doctor,
+      title: "Update " + doctor.firstName
+    }
+    this.dialog.open(DoctorEditComponent, dialogConfig);
+    console.log('updated');
+    this.reload();
+  }
+  /*********************************Add Doctor**************************************************** */
+  add() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      _currentObject: new Doctor(),
+      title: "Add ",
+    }
 
-
+    this.dialog.open(DoctorEditComponent, dialogConfig);
+    this.reload();
+  }
+  /**********************Reload ************************************************* */
+  reload() {
+    this.dialog.afterAllClosed.subscribe(res => this.remplir())
+  }
+  /*****************************Select Methods**************************************************** */
+  onrowselect() {
+    this.IsMultple = this.selection.selected.length > 1;
+    this.IsRowSelected = this.selection.selected.length == 1;
+  }
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
-
   }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
-      this.dataSource.data.forEach(row =>
-        this.selection.select(row),
-
-      );
+      this.dataSource.data.forEach(row => this.selection.select(row));
   }
-  // onrowselect(row) {
-  //   console.log("roow", row)
-  // }
-  /** The label for the checkbox on the passed row */
+
   checkboxLabel(row?: Doctor): string {
+
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+  }
 
-  }
-  id: string
-  data: any;
-  isAvailable = false;
-  selected(row) {
-    console.log("selected row", row)
-    this.isAvailable = true
-    this.data = row
-    this.id = row.id;
-    localStorage.setItem("id", this.id)
-
-  }
-  /*****************open dialog to delete doctor ******************************** */
-  OpenDelete() {
-    this.dialog.open(DeleteDoctorComponent)
-  }
-  /*************************add Doctor*********************************************** */
-  add() {
-    this.router.navigate(['/addDoctor'])
-  }
 
 }

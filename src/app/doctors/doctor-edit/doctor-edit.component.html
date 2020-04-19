@@ -1,37 +1,26 @@
-<mat-vertical-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <app-contact (getOutputForm)="getContact($event)"></app-contact>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
-    <form>
-      <ng-template matStepLabel>Fill out your personelle informations</ng-template>
-      <mat-form-field>
-        <mat-label>First Name</mat-label>
-        <input matInput placeholder="Your first name" required>
-      </mat-form-field><br>
-      <mat-form-field>
-        <mat-label>last Name</mat-label>
-        <input matInput placeholder="Your last name" required>
-      </mat-form-field><br>
-      <mat-form-field>
-        <mat-label>sexe</mat-label>
-        <mat-select>
-          <mat-option>None</mat-option>
-          <mat-option value="Female">Female</mat-option>
-          <mat-option value="Male">Male</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <div>
-        <button mat-button matStepperNext>Next</button>
+<div class="container">
+  <h3>{{this.title}}</h3>
+  <p style="font-weight: lighter;color: gray;font-size: 14px;" class="card-text">to reserve, please fill this
+    informations</p>
+  <form [formGroup]="DoctorForm">
+    <div class="form-row">
+      <input type="hidden" formControlName="id">
+      <div class="form-group col-md-6">
+        <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="firstName"
+          placeholder="firstName">
       </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button>Confirme</button>
+      <div class="form-group col-md-6">
+        <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="lastName"
+          placeholder="lastName">
+      </div>
     </div>
-  </mat-step>
-</mat-vertical-stepper>
+    <div class="input-group form-group ">
+      <select formControlName="sexe" placeholder="choose Sexe" class="custom-select">
+        <option style="text-align: center;font-size: 14px;" value="Female">Female</option>
+        <option style="text-align: center;font-size: 14px;" value="Female">Male</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-info btn-block" (click)="reserve()">Submit</button><br>
+  </form>
+
+</div>

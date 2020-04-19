@@ -21,13 +21,26 @@ export class DoctorService implements ICrudService<Doctor>{
     return this.http.get<Doctor>(`${this.ReponseUrl}/${payload}`);
   }
   add(payload: Doctor): Observable<Doctor> {
-    return this.http.post<Doctor>(this.ReponseUrl, payload);
+    const headers = new HttpHeaders().set('content-type', 'application/json');
+    var body = {
+      id: payload.id, firstName: payload.firstName, lastName: payload.lastName, sexe: payload.sexe
+    }
+    return this.http.post<Doctor>(this.ReponseUrl, body, { headers })
   }
-  update(doctor: Doctor): Observable<Doctor> {
-    return this.http.patch<Doctor>(
-      `${this.ReponseUrl}/${doctor.id}`,
-      doctor
-    );
+  update(payload: Doctor): Observable<Doctor> {
+    const params = new HttpParams().set('ID', payload.id);
+    const headers = new HttpHeaders().set('content-type', 'application/json');
+    var body = {
+      firstName: payload.firstName, lastName: payload.lastName, sexe: payload.sexe, id: payload.id
+    }
+    return this.http.put<Doctor>(`${this.ReponseUrl}/${payload.id}`, body, { headers, params })
+    // console.log("service update", payload)
+
+    // return this.http.put<Doctor>(
+    //   `${this.ReponseUrl}/${payload.id}`,
+    //   payload
+    // );
+
   }
   delete(payload: string) {
     return this.http.delete(`${this.ReponseUrl}/${payload}`);

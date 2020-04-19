@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import * as doctorActions from '../doctor-store/doctor.action'
 import { Doctor } from '../doctor.model';
-import { map, mergeMap, catchError } from "rxjs/operators";
+import { map, mergeMap, catchError, tap } from "rxjs/operators";
 import { Action } from '@ngrx/store';
 
 @Injectable()
@@ -64,5 +64,25 @@ export class DoctorsEffect {
             )
         )
     );
+    /******************************update Doctor*********************************************** */
+
+    @Effect()
+    UpdateDoctor$: Observable<Action> = this.actions$.pipe(
+        ofType<doctorActions.UpdateDoctor>(
+            doctorActions.DoctorActionTypes.UPDATE_DOCTOR
+        ),
+        map((Actions: doctorActions.UpdateDoctor) => Actions.payload),
+        mergeMap((doctor: Doctor) =>
+            this.locationServ.update(doctor).pipe(
+                map(
+                    (updateDoctor: Doctor) =>
+                        new doctorActions.UpdateDoctorSuccess({
+                            id: updateDoctor.id,
+                            changes: updateDoctor
+                        }),
+                    catchError(err => of(new doctorActions.UpdateDoctorCatFail(err)))
+                )
+            )
+        ));
 
 }

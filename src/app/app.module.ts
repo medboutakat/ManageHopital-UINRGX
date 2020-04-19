@@ -123,7 +123,8 @@ import { InvoiceEffect } from './invoices/store/Effect';
     HospitalCatEditComponent,
     DialogHospComponent,
     DialogComponent,
-    MenuComponent
+    MenuComponent,
+    DoctorEditComponent
   ],
 
 
