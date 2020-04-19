@@ -59,8 +59,7 @@ export class HospitalCatEffect {
        mergeMap((payload : HospitalCat )=>
        this.HospitalCatServ. update(payload).pipe(
            map(
-               (payload : HospitalCat)=>               
-               new ActionsFile.UpdateHospitalCatSuccess("Succcess")
+               (payloadResult : HospitalCat)=>new ActionsFile.UpdateHospitalCatSuccess(payload)
            ), 
            tap((data) => {
                     console.log(data);

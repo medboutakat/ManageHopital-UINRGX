@@ -62,8 +62,8 @@ export class UpdateHospitalCat implements Action{
 
 export class UpdateHospitalCatSuccess implements Action{
     readonly type = HospitalCatActionType.UPDATE_SUCCESS;
-    constructor(public payload: any){        
-       console.log("Action update success",payload);
+    constructor(public payload: HospitalCat){        
+       console.log("Action update success=>",payload);
     }
 }
 

@@ -26,7 +26,9 @@ export class  HospitalCatEditComponent implements OnInit {
    {
     this._currentObject=  data._currentObject;
     this.title=  data.title; 
-      console.log("current Object: ", this._currentObject);    
+      console.log("current Object: ", this._currentObject);
+      
+    this.reserve=this.reserve.bind(this);      
    }
   ngOnInit() {
     this.HospitalCatForm = this.fb.group({
@@ -34,8 +36,6 @@ export class  HospitalCatEditComponent implements OnInit {
       name: [this._currentObject.name, Validators.required],
       remark: [this._currentObject.remark, Validators.required],
     });
- 
-
   }
 
   reserve() {

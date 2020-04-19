@@ -42,7 +42,6 @@ export function HospitalCatReducer(
         loaded: true,
       });
     }
-
     case ActionsFile.HospitalCatActionType.LOAD_FAIL: {
       return {
         ...state,
@@ -52,7 +51,6 @@ export function HospitalCatReducer(
         error: action.payload,
       };
     }
-
     case ActionsFile.HospitalCatActionType.CREATE_SUCCESS: {
       return HospitalCatAdapter.addOne(action.payload, state);
     }
@@ -62,9 +60,11 @@ export function HospitalCatReducer(
         error: action.payload,
       };
     }
-
-    case ActionsFile.HospitalCatActionType.UPDATE_SUCCESS: {
-      return HospitalCatAdapter.updateOne(action.payload, state);
+    case ActionsFile.HospitalCatActionType.UPDATE_SUCCESS: { 
+      const changes = action.payload;
+      const id = changes.id;
+      console.log("updateOne:hello: ", changes)
+      return HospitalCatAdapter.updateOne({ id,changes } , state);
     }
     case ActionsFile.HospitalCatActionType.UPDATE_FAIL: {
       return {
@@ -72,7 +72,6 @@ export function HospitalCatReducer(
         error: action.payload,
       };
     }
-
     case ActionsFile.HospitalCatActionType.DELETE_SUCCESS: {
       return HospitalCatAdapter.removeOne(action.payload, state);
     }
