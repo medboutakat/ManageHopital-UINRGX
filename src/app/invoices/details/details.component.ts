@@ -63,9 +63,9 @@ export class DetailsComponent implements ControlValueAccessor {
     this.products.push(this.productForm.value)
     console.log('product form : ',this.productForm.value)
     console.log(this.products)
-    this.showAdd();
+    // this.showAdd();
     localStorage.setItem('data', JSON.stringify(this.products));
-    this.productForm.reset();
+    // this.productForm.reset();
     
   } 
 
