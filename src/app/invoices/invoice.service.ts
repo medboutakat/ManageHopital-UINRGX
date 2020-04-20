@@ -19,7 +19,6 @@ export class InvoiceService implements ICrudService<Invoice>{
   }
 
   getAll(): Observable<Invoice[]> {
-    console.log("helo")
     return this.http.get<Invoice[]>(this.ReponseUrl);
   }
 

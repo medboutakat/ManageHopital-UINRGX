@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { formatDate } from "@angular/common";
 import * as data from "src/app/data.json";
-import { FormGroup, FormControl, FormBuilder, FormArray } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder, FormArray, NgForm } from "@angular/forms";
 import { Store } from "@ngrx/store";
 import * as fromInvoice from "../store/Reducer";
 import * as invoiceActions from "../store/Action";
@@ -17,7 +17,6 @@ export class InvoiceComponent implements OnInit {
   //detail code
   total = 0;
   show: boolean = false;
- 
 
    
   addDetail(index) {
@@ -29,23 +28,28 @@ export class InvoiceComponent implements OnInit {
     // const formArray  = this.array;
     // formArray.insert(0, this.fb.control(formArray.length + 1));
   }
-  deleteDetail(item, index) {
-    if (this.invoice.invoiceDetails.length > 1) {
-      console.log("item : ", item);
-      this.subtotal -= item.total;
-      this.invoice.invoiceDetails.splice(index, 1);
-    }
+  deleteDetail(item, index) { 
+    var produForm=this.invoiceForm.get("productForm") 
+    produForm.remove(index); 
   }
 
-  valueChanged(formDetail) {
- 
+  valueChanged(formDetail) { 
     console.log("formdetail",formDetail)
     let qteValue= formDetail.get("qte").value;
     let priceValue=formDetail.get("price").value;
     let taxValue=formDetail.get("tax").value;
-    let totalValue=qteValue*priceValue;
-
+    let totalValue=qteValue*priceValue;    
     formDetail.get("total").setValue(totalValue);  
+
+    var produForm=this.invoiceForm.value.productForm as (InvoiceDetail[]) 
+     
+    // var invoice= this.invoiceForm.value as Invoice
+    produForm.forEach((item) => {
+      this.subtotal += item.total;    
+    }); 
+
+    console.log("array",produForm )
+    // this.invoiceForm.get("subtotal").setValue(this.subtotal);  
   }
   calculRemise(slct, remise) {
     console.log("slct ;", slct);
@@ -124,6 +128,7 @@ export class InvoiceComponent implements OnInit {
 
     console.log("Invoice form: ",this.invoiceForm)
   }
+
 BuildFormDynamic(detail:InvoiceDetail):FormGroup{  
     return this.fb.group({  
       product:[detail.product],
@@ -146,14 +151,13 @@ BuildFormDynamic(detail:InvoiceDetail):FormGroup{
 
   
   edit(isNew) {
-    console.log("updatedInvoice form ==> ", this.invoiceForm.value);
+    console.log(""+(isNew?'New':"update")+" : ", this.invoiceForm.value);
     if (isNew) {
       this.invoiceForm.get("totalAmont").patchValue(this.TotalAmount);
       this.invoiceForm.setControl(
         "invoiceDetails",
         new FormControl(this.invoice.invoiceDetails)
       );
-      console.log("invoice : ", this.invoiceForm.value);
       this.store.dispatch(
         new invoiceActions.CreateInvoice(this.invoiceForm.value)
       );
@@ -167,10 +171,7 @@ BuildFormDynamic(detail:InvoiceDetail):FormGroup{
       this.invoice.totalAmont = this.invoiceForm.get("totalAmont").value;
       this.invoice.expedition = this.invoiceForm.get("expedition").value;
       this.invoice.invoiceDetails = this.invoice.invoiceDetails;
-      
-      console.log("updatedInvoice : ", this.invoiceForm.value);
       this.store.dispatch(new invoiceActions.UpdateInvoice(this.invoice));
-      console.log("Updated is done ");
     }
 
     // this.backHome();
