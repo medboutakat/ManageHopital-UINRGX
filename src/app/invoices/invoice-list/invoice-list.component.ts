@@ -34,6 +34,7 @@ export class InvoiceListComponent implements OnInit {
   /***************************Displayed colmuns****************************************************** */
   displayedColumns: string[] = ['select', 'code', 'date', 'totalAmont', 'expedition', 'livraison', 'remise'];
 
+
   /*******************************Variables declared************************************************ */
   private rowSelection;
   private IsRowSelected: boolean = false;
@@ -51,6 +52,11 @@ export class InvoiceListComponent implements OnInit {
   /**************************Methods(app-Menu)**************************************** */
   /**************************Load Data******************************** */
   remplir() {
+    this.add=this.add.bind(this);
+    this.edit=this.edit.bind(this);
+    this.delete=this.delete.bind(this); 
+
+    this.store.dispatch(new invoiceAction.LoadInvoice());  
     this.store.subscribe(data => {
       this.invoices = Object.values(data.invoices.entities)
       console.log(" invoices=> ", this.invoices)
@@ -60,27 +66,7 @@ export class InvoiceListComponent implements OnInit {
       this.selection = new SelectionModel<Invoice>(true, []);
     })
   }
-  /****************************Delete Invoice************************************ */
-  delete() {
-    if (confirm("Are You Sure You want to Delete the User?")) {
-      var Invoice = <Invoice>this.selection.selected[0];
-      console.log("invoice deleted", Invoice.id);
-      var id = Invoice.id
-      this.store.dispatch(new invoiceAction.DeleteInvoice(id));
-      this.remplir()
-    }
-  }
-  /*****************************Add Invoice******************************** */
-  add() {
-    this.router.navigate(['/invoice'])
-  }
-  /**************************Edit Invoice********************************************** */
-  edit() {
-    var Invoice = <Invoice>this.selection.selected[0];
-    var id = Invoice.id;
-    console.log("invocie id", id)
-    this.router.navigate(["/invoicewithId", id])
-  }
+
 
   /*****************************Select Methods**************************************************** */
   onrowselect() {
@@ -96,6 +82,15 @@ export class InvoiceListComponent implements OnInit {
     this.isAllSelected() ?
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
+
+  }
+  
+
+  id: string
+  selected(row) {
+    console.log("selected row", row)
+    this.IsRowSelected = true
+    this.id = row.id
   }
 
   checkboxLabel(row?: Invoice): string {
@@ -106,11 +101,25 @@ export class InvoiceListComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 
-
-
-
-
-
+ /****************************Invoice menu commands************************************ */
+  add() {
+    this.router.navigate(['/invoice'])
+  }
+  edit() {
+    console.log("id", this.id)
+    this.router.navigate(['/invoicewithId', this.id])
+  }
+  
+   delete() {
+    if (confirm("Are You Sure You want to Delete the User?")) {
+      var Invoice = <Invoice>this.selection.selected[0];
+      console.log("invoice deleted", Invoice.id);
+      var id = Invoice.id
+      this.store.dispatch(new invoiceAction.DeleteInvoice(id));
+      this.remplir()
+    }
+  }
+  
 }
 
 

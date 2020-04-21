@@ -99,9 +99,6 @@ export class HospitalCatComponent implements OnInit {
 
   add() {
 
-    // dialogConfig.disableClose = true;
-    // dialogConfig.autoFocus = true;
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       _currentObject: new HospitalCat(),
