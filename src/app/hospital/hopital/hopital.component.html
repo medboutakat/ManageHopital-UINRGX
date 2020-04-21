@@ -40,6 +40,9 @@
                   class="flotting-btn btn-success" style="color: white;">+</a>
               </div>
              -->
+
+
+
              <script>
               $(document).ready(function () {
                 $("#flip").click(function () {
@@ -88,13 +91,13 @@
                     </mat-checkbox>
                   </td>
                 </ng-container>
-                <!-- Name Column -->
+                
                 <ng-container matColumnDef="countryHealthId">
                   <th mat-header-cell *matHeaderCellDef  mat-sort-header> countryHealthId </th>
                   <td mat-cell *matCellDef="let element"> {{element.countryHealthId}} </td>
                 </ng-container>
               
-                <!-- Weight Column -->
+               
                 <ng-container matColumnDef="name">
                   <th mat-header-cell *matHeaderCellDef  mat-sort-header> name </th>
                   <td mat-cell *matCellDef="let element"> {{element.name}} </td>
@@ -119,4 +122,4 @@
             
               </table>
               <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-            
+             

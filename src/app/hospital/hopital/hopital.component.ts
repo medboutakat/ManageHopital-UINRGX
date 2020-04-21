@@ -26,6 +26,7 @@ export class HopitalComponent implements OnInit {
   iscolled : boolean = true
 
   constructor(private store : Store<any>, private _bottomSheet: MatBottomSheet,public dialog: MatDialog) {
+    
     this.store.dispatch( new ActionsFile.LoadHospitalCat());
     this.store.subscribe(data =>{  
       this.listhopitalCatValues = Object.values(data.HospitalCat.entities)  
@@ -33,16 +34,19 @@ export class HopitalComponent implements OnInit {
     
     });
 
-    this.store.dispatch( new ActionsFiles.LoadHospital());
+    this.store.dispatch(new ActionsFiles.LoadHospital());
+    this.remplir()
+  }
+  remplir(){
     this.store.subscribe(data =>{  
-      this.listHopital = Object.values(data.Hospital.entities)  
+      this.listHopital = Object.values(data.Hospital.hospitals)  
       console.log(" this.listhopital=> ",this.listHopital) ,
       this.dataSource = new MatTableDataSource<Hospital>(this.listHopital);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.selection = new SelectionModel<Hospital>(true, []);
     })
-  
+   
   }
 
   applyFilter(filtervalue : string){

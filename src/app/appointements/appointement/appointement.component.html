@@ -23,13 +23,12 @@
    </div>
  </div>
  <a (click)="add()" matTooltip="Click for add a new Appointement" [matTooltipPosition]="'left'"
-   class="flotting-btn btn-success" style="color: white;">+</a> 
+   class="flotting-btn btn-success" style="color: white;">+</a>
  -->
-
 
  <a (click)="add()" matTooltip="Click for add a new Appointement" [matTooltipPosition]="'left'"
   class="flotting-btn btn-success" style="color: white;">+</a>
-  <div style="float: right;"> 
+  <div style="float: right;">
     <button (click)="save(item)" style="line-height: 15px;margin: 10px; " type="button" class="btn btn-warning"
     aria-label="Left Align">
     <i class="material-icons">
@@ -41,7 +40,7 @@
   <i class="material-icons">
    delete
    </i>
-</button>     
+</button>
 </div>
 <mat-form-field class="example-full-width">
 <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
@@ -89,4 +88,4 @@
 
 </table>
 
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> 
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>  

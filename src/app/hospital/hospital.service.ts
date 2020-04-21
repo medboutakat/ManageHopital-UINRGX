@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Hospital } from './hospital.model';
+import { ICrudService } from '../icrud-service';
+import { RootURLS } from '../root-urls';
 
 
 
@@ -9,29 +11,39 @@ import { Hospital } from './hospital.model';
     providedIn :"root"
 })
 
-export class HospitalService{
-    private HospitalUrl = "http://144.91.76.98:5002/api/Hospital"
+export class HospitalService implements ICrudService<Hospital>{
+
+  ReponseUrl: string;
+
   RepByDm: Hospital[];
-    constructor( private  http : HttpClient ){}
-    getHospitalCats(): Observable<Hospital[]>{
-        return this.http.get<Hospital[]>(this.HospitalUrl);
-    }
-    getHospitalCatById(payload : string):Observable<Hospital>{
-        return this.http.get<Hospital>(`${this.HospitalUrl}/${payload}`)
-    }
-    createHospital(payload: Hospital): Observable<Hospital> {
-        return this.http.post<Hospital>(this.HospitalUrl, payload);
-      }
 
-      updateHospital(hospital: Hospital): Observable<Hospital> {
-        return this.http.patch<Hospital>(
-          `${this.HospitalUrl}/${hospital.id}`,
-          hospital
-        );
-      }
+    constructor( private  http : HttpClient ){
+    this.ReponseUrl=RootURLS.getUrl("Hospital");
 
-      deleteHospital(payload: string) {
-        return this.http.delete(`${this.HospitalUrl}/${payload}`);
-      }
+    }
+    getAll(): Observable<Hospital[]> {
+      return this.http.get<Hospital[]>(this.ReponseUrl);
+    }
+    getById(payload: string): Observable<Hospital> {
+      return this.http.get<Hospital>(`${this.ReponseUrl}/${payload}`);
+    }
+    add(payload: Hospital): Observable<Hospital> {
+
+      console.log("service Add",payload)
+      return this.http.post<Hospital>(this.ReponseUrl, payload);
+    }
+  
+
+    update(payload: Hospital): Observable<Hospital> {
+      console.log("service update",payload)
+  
+      return this.http.put<Hospital>(
+        `${this.ReponseUrl}/${payload.id}`,
+        payload
+      );
+    }
+    delete(payload: string) {
+      return this.http.delete(`${this.ReponseUrl}/${payload}`);
+    } 
 
 }
