@@ -137,7 +137,6 @@ section{
 }
 
 .q > .Input:focus,textarea:focus{
-   border-left :3pt solid #1C63B7 ;
-   
+   border-left :3pt solid #1C63B7 ;   
 }
 /* end detail style */
