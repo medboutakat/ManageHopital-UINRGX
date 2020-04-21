@@ -7,6 +7,7 @@ import { Hospital } from '../hospital.model';
 
 export interface HospitalState extends EntityState<Hospital>{
     selectedHospitalbyId : string | null,
+    hospitals:Hospital[],
     loading: boolean,
     loaded : boolean,
     error : string
@@ -20,6 +21,7 @@ export const HospitalAdapter: EntityAdapter<Hospital> = createEntityAdapter<Hosp
 export const DefaulttHospital : HospitalState={
     ids :[],
     entities :{},
+    hospitals:[],
     selectedHospitalbyId : null,
     loading: false,
     loaded : false,
@@ -36,24 +38,57 @@ export const initialState = HospitalAdapter.getInitialState(DefaulttHospital)
 export function HospitalReducer(state = initialState, action : ActionsFile.HospitalAction) : HospitalState{
       switch(action.type){
    
-   case ActionsFile.HospitalActionType.LOAD_Hospital_SUCCESS :{
-      return HospitalAdapter.addAll(action.payload,{
-        ...state,
-        loading : false,
-        loaded : true,
-
-      }); 
-      }
+        case ActionsFile.HospitalActionType.LOAD_SUCCESS: {
+            return HospitalAdapter.addAll(action.payload, {
+              ...state,
+              loading: false,
+              loaded: true,
+              hospitals:action.payload
+            });
+          }
       
-    case ActionsFile.HospitalActionType.LOAD_Hospital_FAIL :{
-             return {
-                 ... state,
-                 loading :false,
-                 entities :{},
-                 loaded :false,
-                 error : action.payload
-             }
-         }
+          case ActionsFile.HospitalActionType.LOAD_FAIL: {
+            return {
+              ...state,
+              loading: false,
+              entities: {},
+              loaded: false,
+              error: action.payload,
+            };
+          }
+
+          case ActionsFile.HospitalActionType.CREATE_SUCCESS: {
+            return HospitalAdapter.addOne(action.payload, state);
+          }
+          case ActionsFile.HospitalActionType.CREATE_FAIL: {
+            return {
+              ...state,
+              error: action.payload,
+            };
+          }
+
+          case ActionsFile.HospitalActionType.UPDATE_SUCCESS: { 
+            const changes = action.payload;
+            const id = changes.id;
+            console.log("updateOne:hello: ", changes)
+            return HospitalAdapter.updateOne({ id,changes } , state);
+          }
+          case ActionsFile.HospitalActionType.UPDATE_FAIL: {
+            return {
+              ...state,
+              error: action.payload,
+            };
+          }
+
+          case ActionsFile.HospitalActionType.DELETE_SUCCESS: {
+            return HospitalAdapter.removeOne(action.payload, state);
+          }
+          case ActionsFile.HospitalActionType.DELETE_FAIL: {
+            return {
+              ...state,
+              error: action.payload,
+            };
+          }
          default : {
             return state;
         } 

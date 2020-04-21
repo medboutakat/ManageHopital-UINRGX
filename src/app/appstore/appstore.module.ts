@@ -39,18 +39,7 @@ import { ContactsEffect } from '../contacts/store/contact.effect';
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([]),
-    StoreModule.forFeature("HospitalCat", HospitalCatReducer),
-    StoreModule.forFeature("DoctorCat", DoctorCatReducer),
-    StoreModule.forRoot({ "Hospital": HospitalReducer }),
-    StoreModule.forFeature("doctors", doctorReducer),
-    StoreModule.forFeature("appointements", AppointementReducer),
-    StoreModule.forFeature("invoices", InvoiceReducer),
-    StoreModule.forFeature("contacts", ContactReducer),
-    StoreModule.forFeature("operations", OperationReducer),
-    StoreModule.forFeature("operationsCat", OperationCategoryReducer),
-    StoreModule.forRoot({ "cities": CityReducer }),
-    EffectsModule.forRoot([ContactsEffect, InvoiceEffect, CityEffect, InvoiceEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, AppointementEffect, HospitalEffect, OpEffect, AppointementEffect]),
-    EffectsModule.forRoot([HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect]),
+   
     CommonModule
 
 
