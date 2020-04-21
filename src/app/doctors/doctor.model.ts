@@ -6,7 +6,7 @@ export class Doctor extends GeneratedId {
     firstName: string;
     lastName: string;
     sexe: string;
-    contactId: number;
+    contactId: string;
     contact: Contact;
-    categoryId: number
+    categoryId: number;
 }

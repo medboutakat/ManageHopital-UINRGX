@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Contact } from '../contact.model';
 import { Store } from '@ngrx/store';
@@ -18,7 +18,11 @@ export class ContactComponent implements OnInit {
     email: new FormControl(''),
     phone1: new FormControl(''),
     adress1: new FormControl(''),
-    cityId: new FormControl('')
+    cityId: new FormControl(''),
+    phone2: new FormControl(''),
+    fax: new FormControl(''),
+    adress2: new FormControl(''),
+    whatsApp: new FormControl('')
   });
 
 
@@ -28,6 +32,7 @@ export class ContactComponent implements OnInit {
   @Output() getOutputForm = new EventEmitter();
 
   cities
+  @Input() visible = false
   constructor(
     private store: Store<any>, private service: ContactService
   ) {
@@ -43,15 +48,12 @@ export class ContactComponent implements OnInit {
   }
 
   Onclick() {
-    this.getOutputForm.emit(this.contactFormControl.value);
+
     this.showSave = false;
     var a = this.contactFormControl.value as Contact
-    console.log("objet contact 2", a)
-    this.store.dispatch(new contactActions.CreateContact(a));
-    console.log("id contact", a.id)
-    this.contactFormControl.reset();
+    console.log("objet contact 2", a);
+    this.getOutputForm.emit(a);
 
-    console.log("ajoute bien faite")
   }
 
 }

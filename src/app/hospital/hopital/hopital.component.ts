@@ -23,17 +23,13 @@ export class HopitalComponent implements OnInit {
   error$: Observable<String>;
   dataSource: any;
   selection: SelectionModel<Hospital>;
-
   // iscolled: boolean = true
-
   // constructor(private store: Store<any>, private _bottomSheet: MatBottomSheet, public dialog: MatDialog) {
   //   this.store.dispatch(new ActionsFile.LoadHospitalCat());
   //   this.store.subscribe(data => {
   //     this.listhopitalCatValues = data
   //     console.log(" this.listhopitalCatValues=> ", this.listhopitalCatValues)
-
   //   });
-
   //   this.store.dispatch(new ActionsFiles.LoadHospital());
   //   this.store.subscribe(data => {
   //     this.listHopital = Object.values(data.Hospital)
@@ -50,7 +46,6 @@ export class HopitalComponent implements OnInit {
       console.log(" this.listhopitalCatValues=> ", this.listhopitalCatValues)
 
     });
-
     this.store.dispatch(new ActionsFiles.LoadHospital());
     this.remplir()
   }

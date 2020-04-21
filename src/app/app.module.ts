@@ -69,6 +69,8 @@ import { InvoiceEffect } from './invoices/store/Effect';
 import { DoctorEditCatComponent } from './doctors/doctorCategorie/doctor-edit-cat/doctor-edit-cat.component';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 import { InvoiceEditComponent } from './invoices/invoice-edit/invoice-edit.component';
+import { CityReducer } from './cities/store/city.reducer';
+import { CityEffect } from './cities/store/city.effect';
 
 
 @NgModule({
@@ -103,12 +105,12 @@ import { InvoiceEditComponent } from './invoices/invoice-edit/invoice-edit.compo
     DeleteOperationComponent,
     MenuComponent,
     SigninComponent,
-    InvoiceListComponent,  
+    InvoiceListComponent,
     HospitalCatEditComponent,
     MaterialComponent,
     MaterialEditComponent,
-    DeleteDoctorComponent  ,
-    DoctorEditCatComponent 
+    DeleteDoctorComponent,
+    DoctorEditCatComponent
   ],
   entryComponents: [
     DialogComponent,
@@ -117,13 +119,13 @@ import { InvoiceEditComponent } from './invoices/invoice-edit/invoice-edit.compo
     SavePdfComponent,
     DialogHospComponent,
     AddOperationComponent,
-    DeleteOperationComponent, 
+    DeleteOperationComponent,
     DeleteDoctorComponent,
     HospitalCatEditComponent,
     DialogHospComponent,
     DialogComponent,
     MenuComponent,
-    DoctorEditComponent ,
+    DoctorEditComponent,
     DoctorEditCatComponent
   ],
 
@@ -174,7 +176,8 @@ import { InvoiceEditComponent } from './invoices/invoice-edit/invoice-edit.compo
     StoreModule.forRoot({ "invoices": InvoiceReducer }),
     StoreModule.forFeature("operations", OperationReducer),
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
-    EffectsModule.forRoot([HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect]),
+    StoreModule.forFeature("cities", CityReducer),
+    EffectsModule.forRoot([CityEffect, HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]
