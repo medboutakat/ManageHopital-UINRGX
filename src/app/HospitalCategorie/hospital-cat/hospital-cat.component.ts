@@ -37,7 +37,6 @@ export class HospitalCatComponent implements OnInit {
     this.add = this.add.bind(this);
     this.edit = this.edit.bind(this);
     this.delete = this.delete.bind(this);
-
     console.log('bind action')
     this.store.dispatch(new ActionsFile.LoadHospitalCat());
     this.remplir()

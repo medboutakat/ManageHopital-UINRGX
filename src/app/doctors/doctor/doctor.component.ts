@@ -98,6 +98,7 @@ export class DoctorComponent implements OnInit {
   reload() {
     this.dialog.afterAllClosed.subscribe(res => this.remplir())
   }
+
   /*****************************Select Methods**************************************************** */
   onrowselect() {
     this.IsMultple = this.selection.selected.length > 1;
