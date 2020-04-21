@@ -10,10 +10,10 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-invoice",
-  templateUrl: "./invoice.component.html",
-  styleUrls: ["./invoice.component.css"],
+  templateUrl: "./invoice-edit.component.html",
+  styleUrls: ["./invoice-edit.component.css"],
 })
-export class InvoiceComponent implements OnInit {
+export class InvoiceEditComponent implements OnInit {
   //detail code
   total = 0;
   show: boolean = false;
@@ -23,14 +23,13 @@ export class InvoiceComponent implements OnInit {
     var detailRow=this.invoice.newEmptyRow();
     var produForm=this.invoiceForm.get("productForm") 
     produForm.insert(index+1, this.BuildFormDynamic(detailRow)); 
-  }
-  addItem() {
-    // const formArray  = this.array;
-    // formArray.insert(0, this.fb.control(formArray.length + 1));
-  }
+  } 
+
   deleteDetail(item, index) { 
     var produForm=this.invoiceForm.get("productForm") 
-    produForm.remove(index); 
+    console.log("produForm",produForm); 
+    produForm.removeAt(index);
+    this.recalculate();
   }
 
   valueChanged(formDetail) { 
@@ -39,17 +38,17 @@ export class InvoiceComponent implements OnInit {
     let priceValue=formDetail.get("price").value;
     let taxValue=formDetail.get("tax").value;
     let totalValue=qteValue*priceValue;    
-    formDetail.get("total").setValue(totalValue);  
 
-    var produForm=this.invoiceForm.value.productForm as (InvoiceDetail[]) 
-     
-    // var invoice= this.invoiceForm.value as Invoice
+    formDetail.get("total").setValue(totalValue);   
+
+    this.recalculate();
+  }
+  recalculate(){
+    var produForm=this.invoiceForm.value.productForm as (InvoiceDetail[])  
+    this.subtotal=0;
     produForm.forEach((item) => {
       this.subtotal += item.total;    
-    }); 
-
-    console.log("array",produForm )
-    // this.invoiceForm.get("subtotal").setValue(this.subtotal);  
+    });  
   }
   calculRemise(slct, remise) {
     console.log("slct ;", slct);
@@ -131,23 +130,17 @@ export class InvoiceComponent implements OnInit {
 
 BuildFormDynamic(detail:InvoiceDetail):FormGroup{  
     return this.fb.group({  
-      product:[detail.product],
-      description: [detail.description],
-      qte: [detail.qte],
-      price:[detail.price],
-      tax: [detail.tax],
-      total: [detail.total],
+      product:new FormControl(detail.product),
+      description: new FormControl(detail.description),
+      qte:new FormControl(detail.qte),
+      price:new FormControl(detail.price),
+      tax: new FormControl(detail.tax),
+      total:new FormControl(detail.total),
      })  
+ 
    }  
   
-  productForm = new FormGroup({
-    product: new FormControl(""),
-    description: new FormControl(""),
-    qte: new FormControl(0),
-    price: new FormControl(0),
-    tax: new FormControl(0),
-    total: new FormControl(this.total),
-  });
+ 
 
   
   edit(isNew) {

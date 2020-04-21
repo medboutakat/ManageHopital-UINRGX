@@ -40,7 +40,7 @@ export class AppointementComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new actionApps.LoadAppointements());
     this.store.subscribe(data =>{
-    this.apps = Object.values(data.appointements.entities)  
+    this.apps = Object.values(data.appointements.Appointements)  
     console.log(" apps=> ",this.apps) 
     this.dataSource = new MatTableDataSource<Appointement>(this.apps);
     this.dataSource.sort = this.sort;

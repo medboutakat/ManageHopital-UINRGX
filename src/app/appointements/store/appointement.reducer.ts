@@ -7,6 +7,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 export interface AppointementState extends EntityState<Appointement>{
     selectedUserId: number | null,
+    Appointements : Appointement[]
     loading: boolean,
     loaded: boolean,
     error: string
@@ -19,6 +20,7 @@ export const appsAdapter: EntityAdapter<Appointement> = createEntityAdapter< App
 const initialStates: AppointementState = {
     ids :[],
     entities :{},
+    Appointements :[],
     selectedUserId: null,
     loaded: false,
     loading: false,
@@ -36,6 +38,7 @@ export function AppointementReducer(state = initialState, action: AppsActions.Ac
                 ...state,
                 loading: false,
                 loaded: true,
+                Appointements:action.playload
                 }) 
         }
         case AppsActions.AppointementActionTypes.LOAD_APPOINTEMENTS_FAILED: {
