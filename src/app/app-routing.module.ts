@@ -14,7 +14,7 @@ import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-
 import { SignupComponent } from './connexion/signup/signup.component';
 import { OperationComponent } from './operations/operation/operation.component';
 import { SigninComponent } from './connexion/signin/signin.component';
-import { InvoiceComponent } from './invoices/invoice/invoice.component';
+import { InvoiceEditComponent } from './invoices/invoice-edit/invoice-edit.component';
 import { CategoryComponent } from './category/category.component';
 import { ContactComponent } from './chat/contact/contact.component'
 import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
@@ -39,8 +39,8 @@ const routes: Routes = [
       { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' },
       { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full' },
       { path: 'doctorCategory', component: DoctorCatComponent, pathMatch: 'full' },
-      { path: 'invoice', component: InvoiceComponent, pathMatch: 'full' },
-      { path: 'invoicewithId/:id', component: InvoiceComponent, pathMatch: 'full' },
+      { path: 'invoice', component: InvoiceEditComponent, pathMatch: 'full' },
+      { path: 'invoicewithId/:id', component: InvoiceEditComponent, pathMatch: 'full' },
       { path: 'invoices', component: InvoiceListComponent, pathMatch: 'full' },
       { path: 'operation', component: OperationComponent, pathMatch: 'full' },
       { path: 'Category', component: CategoryComponent, pathMatch: 'full' },

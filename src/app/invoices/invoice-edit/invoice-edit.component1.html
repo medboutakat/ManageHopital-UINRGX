@@ -1,5 +1,6 @@
+<div class="container">
+    
 <h4 id="title" style="float: left;"> {{ isNew ? "Create an invoice" : "Update invoice" }} </h4>
-<p></p>
 <h6>(abdelwahed was here 😎)</h6>
 <form [formGroup]="invoiceForm"  >
     <div class="container">
@@ -61,8 +62,7 @@
             <div class="row test-div col-11">
                 <section class="row col-10">
                     <div class="col12 divinfos row">
-                        <div class="col-7 q"><input formControlName="product" class="Input" style="width:100%;"
-                                id="abd1" type="text"></div>
+                        <div class="col-7 q"><input formControlName="product" class="Input" style="width:100%;"  type="text"></div>
                         <div class="col-2 q"><input formControlName="qte" class="Input" type="text"  (change)="valueChanged(detail)" /> </div>
                         <div class="col-2 q"><input formControlName="price" class="Input" type="text"  (change)="valueChanged(detail)" /></div>
                         <div class="col-1 q"><input formControlName="tax" class="Input" type="text"  (change)="valueChanged(detail)" /></div>
@@ -93,9 +93,8 @@
                     </svg>
                 </a>
             </div>
-
-            <button class="col row container addbtn" *ngIf="true" (click)="addDetail(i)">
-                <nav class="div-add col-11">
+ 
+            <nav class="div-add col-11 btn btn-success"  (click)="addDetail(i)">
                     <svg class="bi bi-plus-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -103,9 +102,7 @@
                             clip-rule="evenodd" />
                     </svg>
                     Add details
-                </nav>
-            </button>
-
+            </nav> 
         </div>
 
     </div>
@@ -173,5 +170,9 @@
             </table>
         </div>
     </div>
-</form>
+    
 <button class="btn btn-primary" *ngIf="isNew" (click)="edit(isNew)">Save</button>
+</form>
+
+
+</div>
