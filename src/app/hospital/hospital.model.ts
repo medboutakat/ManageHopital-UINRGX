@@ -1,4 +1,7 @@
-export class Hospital{
+import { Contact } from '../contacts/contact.model';
+import { GeneratedId } from '../generatedId';
+
+export class Hospital extends GeneratedId{
     id:string;
     countryHealthId: string;
     name: string;
@@ -7,4 +10,5 @@ export class Hospital{
     hospitalCategoryId: string;
     categoryName: string;
     contactId: string;
+    contact: Contact;
 }
