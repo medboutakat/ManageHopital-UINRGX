@@ -69,6 +69,7 @@ import { HospitalCatEditComponent } from './HospitalCategorie/hospital-cat-edit/
 import { InvoiceEffect } from './invoices/store/Effect';
 import { DoctorEditCatComponent } from './doctors/doctorCategorie/doctor-edit-cat/doctor-edit-cat.component';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
+import { PaymentComponent } from './payment/payment/payment.component';
 
 
 @NgModule({
@@ -108,7 +109,8 @@ import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component
     MaterialComponent,
     MaterialEditComponent,
     DeleteDoctorComponent  ,
-    DoctorEditCatComponent 
+    DoctorEditCatComponent,
+    PaymentComponent 
   ],
   entryComponents: [
     DialogComponent,
