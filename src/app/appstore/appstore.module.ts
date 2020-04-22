@@ -41,7 +41,7 @@ import { ContactsEffect } from '../contacts/store/contact.effect';
     EffectsModule.forRoot([]),
     StoreModule.forFeature("HospitalCat", HospitalCatReducer),
     StoreModule.forFeature("DoctorCat", DoctorCatReducer),
-    StoreModule.forRoot({ "Hospital": HospitalReducer }),
+    StoreModule.forFeature("Hospital", HospitalReducer),
     StoreModule.forFeature("doctors", doctorReducer),
     StoreModule.forFeature("appointements", AppointementReducer),
     StoreModule.forFeature("invoices", InvoiceReducer),

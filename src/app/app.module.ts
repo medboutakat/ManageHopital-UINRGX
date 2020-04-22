@@ -44,8 +44,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChatModule } from './chat/chat.module'
 import { AgGridModule } from 'ag-grid-angular';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
-// import { MaterialModule } from './material/material/material.module';
-import { InvoiceComponent } from './invoices/invoice/invoice.component';
+// import { MaterialModule } from './material/material/material.module'; 
 import { DetailsComponent } from './invoices/details/details.component';
 import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
 import { MaterialComponent } from './material/material/material.component';
@@ -70,6 +69,9 @@ import { InvoiceEffect } from './invoices/store/Effect';
 import { DoctorEditCatComponent } from './doctors/doctorCategorie/doctor-edit-cat/doctor-edit-cat.component';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 import { PaymentComponent } from './payment/payment/payment.component';
+import { InvoiceEditComponent } from './invoices/invoice-edit/invoice-edit.component';
+import { CityReducer } from './cities/store/city.reducer';
+import { CityEffect } from './cities/store/city.effect';
 
 
 @NgModule({
@@ -93,7 +95,7 @@ import { PaymentComponent } from './payment/payment/payment.component';
     ContactComponent,
     SigninComponent,
     SignupComponent,
-    InvoiceComponent,
+    InvoiceEditComponent,
     DetailsComponent,
     OperationComponent,
     AddOperationComponent,
@@ -104,7 +106,7 @@ import { PaymentComponent } from './payment/payment/payment.component';
     DeleteOperationComponent,
     MenuComponent,
     SigninComponent,
-    InvoiceListComponent,  
+    InvoiceListComponent,
     HospitalCatEditComponent,
     MaterialComponent,
     MaterialEditComponent,
@@ -119,13 +121,13 @@ import { PaymentComponent } from './payment/payment/payment.component';
     SavePdfComponent,
     DialogHospComponent,
     AddOperationComponent,
-    DeleteOperationComponent, 
+    DeleteOperationComponent,
     DeleteDoctorComponent,
     HospitalCatEditComponent,
     DialogHospComponent,
     DialogComponent,
     MenuComponent,
-    DoctorEditComponent ,
+    DoctorEditComponent,
     DoctorEditCatComponent
   ],
 
@@ -165,15 +167,19 @@ import { PaymentComponent } from './payment/payment/payment.component';
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([]),
+    EffectsModule.forRoot([]),
+
+    // StoreModule.forRoot({"Hospital": HospitalReducer}),
     StoreModule.forFeature("HospitalCat", HospitalCatReducer),
+    StoreModule.forFeature("Hospital", HospitalReducer),
     StoreModule.forFeature("DoctorCat", DoctorCatReducer),
-    StoreModule.forRoot({ "Hospital": HospitalReducer }),
     StoreModule.forFeature("doctors", doctorReducer),
-    StoreModule.forRoot({ "appointements": AppointementReducer }),
+    StoreModule.forFeature("appointements", AppointementReducer),
     StoreModule.forRoot({ "invoices": InvoiceReducer }),
     StoreModule.forFeature("operations", OperationReducer),
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
-    EffectsModule.forRoot([HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect]),
+    StoreModule.forFeature("cities", CityReducer),
+    EffectsModule.forRoot([CityEffect, HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -30,30 +30,46 @@ export class DoctorEditComponent implements OnInit {
   }
   DoctorForm: FormGroup
 
-
+  contactFormControl: FormGroup = new FormGroup({
+    email: new FormControl(''),
+    // phone1: new FormControl(''),
+    adress1: new FormControl(''),
+    cityId: new FormControl(''),
+    phone2: new FormControl(''),
+    fax: new FormControl(''),
+    adress2: new FormControl(''),
+    whatsApp: new FormControl('')
+  });
 
   ngOnInit() {
     this.DoctorForm = this.fb.group({
       id: [this._currentObject.id, Validators.required],
       firstName: [this._currentObject.firstName, Validators.required],
       lastName: [this._currentObject.lastName, Validators.required],
-      sexe: [this._currentObject.sexe, Validators.required]
+      sexe: [this._currentObject.sexe, Validators.required],
+      phone1: [, Validators.required]
     });
 
 
   }
-
+  objet
+  afficher(eventArgs) {
+    this.objet = eventArgs
+  }
   reserve() {
     var newApp = this.DoctorForm.value as Doctor
-    if (newApp.id == "00000000-0000-0000-0000-000000000000") {
-      console.log("Add")
-      this.store.dispatch(new DoctorActions.CreateDoctor(newApp));
-    }
-    else {
-      console.log("Update")
-      console.log("id new app", newApp.id)
-      this.store.dispatch(new DoctorActions.UpdateDoctor(newApp));
-    }
+    console.log("objet contact", this.objet)
+    // if (newApp.id == "00000000-0000-0000-0000-000000000000") {
+    //   // console.log("Add")
+    //   // this.store.dispatch(new DoctorActions.CreateDoctor(newApp));
+    //   console.log("contact", newApp)
+
+    // }
+    // else {
+    //   console.log("Update")
+    //   console.log("id new app", newApp.id)
+    //   this.store.dispatch(new DoctorActions.UpdateDoctor(newApp));
+    // }
     this.DoctorForm.reset();
     console.log("success")
   }
