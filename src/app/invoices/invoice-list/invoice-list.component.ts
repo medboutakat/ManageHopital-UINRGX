@@ -39,6 +39,7 @@ export class InvoiceListComponent implements OnInit {
   private rowSelection;
   private IsRowSelected: boolean = false;
   private IsMultple: boolean = false;
+  finalAmount:number = 1;
   invoices: any
   dataSource: any
   selection: SelectionModel<Invoice>;
@@ -72,6 +73,8 @@ export class InvoiceListComponent implements OnInit {
   onrowselect() {
     this.IsMultple = this.selection.selected.length > 1;
     this.IsRowSelected = this.selection.selected.length == 1;
+    console.log('item : ',this.selection.selected)
+    this.IsRowSelected ? this.finalAmount = this.selection.selected[0].totalAmont: null;
   }
   isAllSelected() {
     const numSelected = this.selection.selected.length;

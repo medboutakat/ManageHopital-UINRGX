@@ -68,6 +68,7 @@ import { HospitalCatEditComponent } from './HospitalCategorie/hospital-cat-edit/
 import { InvoiceEffect } from './invoices/store/Effect';
 import { DoctorEditCatComponent } from './doctors/doctorCategorie/doctor-edit-cat/doctor-edit-cat.component';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
+import { PaymentComponent } from './payment/payment/payment.component';
 import { InvoiceEditComponent } from './invoices/invoice-edit/invoice-edit.component';
 import { CityReducer } from './cities/store/city.reducer';
 import { CityEffect } from './cities/store/city.effect';
@@ -109,8 +110,9 @@ import { CityEffect } from './cities/store/city.effect';
     HospitalCatEditComponent,
     MaterialComponent,
     MaterialEditComponent,
-    DeleteDoctorComponent,
-    DoctorEditCatComponent
+    DeleteDoctorComponent  ,
+    DoctorEditCatComponent,
+    PaymentComponent 
   ],
   entryComponents: [
     DialogComponent,
