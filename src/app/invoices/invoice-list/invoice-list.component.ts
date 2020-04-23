@@ -73,7 +73,6 @@ export class InvoiceListComponent implements OnInit {
   onrowselect() {
     this.IsMultple = this.selection.selected.length > 1;
     this.IsRowSelected = this.selection.selected.length == 1;
-    console.log('item : ',this.selection.selected)
     this.IsRowSelected ? this.finalAmount = this.selection.selected[0].totalAmont: null;
   }
   isAllSelected() {
