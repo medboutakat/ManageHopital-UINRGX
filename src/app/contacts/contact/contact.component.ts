@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder, ControlValueAccessor } from '@angular/forms';
 import { Contact } from '../contact.model';
 import { Store } from '@ngrx/store';
 import * as citiesActions from 'src/app/cities/store/city.actions'
@@ -11,49 +11,53 @@ import { ContactService } from '../contact.service';
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent implements OnInit, ControlValueAccessor {
   fb: FormBuilder;
   showSave: boolean;
-  contactFormControl: FormGroup = new FormGroup({
-    email: new FormControl(''),
-    phone1: new FormControl(''),
-    adress1: new FormControl(''),
-    cityId: new FormControl(''),
-    phone2: new FormControl(''),
-    fax: new FormControl(''),
-    adress2: new FormControl(''),
-    whatsApp: new FormControl('')
-  });
-
-
-
-
-  //output
-  @Output() getOutputForm = new EventEmitter();
-
   cities
-  @Input() visible = false
-  constructor(
-    private store: Store<any>, private service: ContactService
-  ) {
+
+
+
+  val = "" // this is the updated value that the class accesses
+
+  constructor(private store: Store<any>) {
     this.store.dispatch(new citiesActions.LoadCities());
     this.store.subscribe(res => {
       this.cities = res.cities.Cities
-      console.log("cities", this.cities)
+      console.log("city", this.cities)
     })
   }
-
   ngOnInit() {
-    this.showSave = true;
-  }
-
-  Onclick() {
-
-    this.showSave = false;
-    var a = this.contactFormControl.value as Contact
-    console.log("objet contact 2", a);
-    this.getOutputForm.emit(a);
 
   }
+
+  @Input() ContactForm: FormGroup;
+  onChange: any = () => { }
+  onTouch: any = () => { }
+  set value(val) {
+    // this value is updated by programmatic changes 
+    console.log("val", val)
+    if (val !== undefined && this.val !== val) {
+      this.val = val
+      this.onChange(val)
+      this.onTouch(val)
+    }
+  }
+  writeValue(value: any): void {
+    console.log("val", value)
+    this.value = value
+  }
+  registerOnChange(fn: any): void {
+    console.log("val", fn)
+    this.onChange = fn;
+  }
+  registerOnTouched(fn: any): void {
+    this.onTouch = fn;
+
+  }
+  setDisabledState?(isDisabled: boolean): void {
+    throw new Error("Method not implemented.");
+  }
+
 
 }

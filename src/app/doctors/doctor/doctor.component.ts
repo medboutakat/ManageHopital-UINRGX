@@ -12,6 +12,7 @@ import { DeleteAppointement } from 'src/app/appointements/store/appointement.act
 import { Invoice } from 'src/app/invoices/invoice-model';
 import { DeleteDoctorComponent } from '../delete-doctor/delete-doctor.component';
 import { Router } from '@angular/router';
+import { PageConfig } from 'src/app/config';
 
 @Component({
   selector: 'app-doctor',
@@ -35,6 +36,7 @@ export class DoctorComponent implements OnInit {
   /*****************************Display Colmun***************************************** */
   displayedColumns: string[] = ['select', 'firstName', 'lastName', 'sexe'];
   /*******************************Variables declared************************************************ */
+  private pageSize = PageConfig.pageSize;
   private rowSelection;
   private IsRowSelected: boolean = false;
   private IsMultple: boolean = false;

@@ -8,6 +8,7 @@ import jspdf from 'jspdf';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { MatSort } from '@angular/material';
+import { PageConfig } from 'src/app/config';
 
 /**
  * @title Table with pagination
@@ -41,6 +42,7 @@ export class InvoiceListComponent implements OnInit {
   private IsMultple: boolean = false;
   invoices: any
   dataSource: any
+  private pageSize = PageConfig.pageSize
   selection: SelectionModel<Invoice>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -52,11 +54,11 @@ export class InvoiceListComponent implements OnInit {
   /**************************Methods(app-Menu)**************************************** */
   /**************************Load Data******************************** */
   remplir() {
-    this.add=this.add.bind(this);
-    this.edit=this.edit.bind(this);
-    this.delete=this.delete.bind(this); 
+    this.add = this.add.bind(this);
+    this.edit = this.edit.bind(this);
+    this.delete = this.delete.bind(this);
 
-    this.store.dispatch(new invoiceAction.LoadInvoice());  
+    this.store.dispatch(new invoiceAction.LoadInvoice());
     this.store.subscribe(data => {
       this.invoices = Object.values(data.invoices.entities)
       console.log(" invoices=> ", this.invoices)
@@ -84,7 +86,7 @@ export class InvoiceListComponent implements OnInit {
       this.dataSource.data.forEach(row => this.selection.select(row));
 
   }
-  
+
 
   id: string
   selected(row) {
@@ -101,7 +103,7 @@ export class InvoiceListComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 
- /****************************Invoice menu commands************************************ */
+  /****************************Invoice menu commands************************************ */
   add() {
     this.router.navigate(['/invoice'])
   }
@@ -109,8 +111,8 @@ export class InvoiceListComponent implements OnInit {
     console.log("id", this.id)
     this.router.navigate(['/invoicewithId', this.id])
   }
-  
-   delete() {
+
+  delete() {
     if (confirm("Are You Sure You want to Delete the User?")) {
       var Invoice = <Invoice>this.selection.selected[0];
       console.log("invoice deleted", Invoice.id);
@@ -119,7 +121,7 @@ export class InvoiceListComponent implements OnInit {
       this.remplir()
     }
   }
-  
+
 }
 
 

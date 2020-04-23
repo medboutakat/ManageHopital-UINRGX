@@ -9,6 +9,7 @@ import { AddAppointementComponent } from '../add-appointement/add-appointement.c
 import { SavePdfComponent } from '../save-pdf/save-pdf.component';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Appointement } from '../appointement.model';
+import { PageConfig } from 'src/app/config';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class AppointementComponent implements OnInit {
   dataSource: any;
   selection: SelectionModel<Appointement>;
 
-
+  private pageSize = PageConfig.pageSize
 
   applyFilter(filtervalue: string) {
     this.dataSource.filter = filtervalue.trim().toLowerCase();
@@ -33,20 +34,20 @@ export class AppointementComponent implements OnInit {
 
 
   constructor(private store: Store<any>, public dialog: MatDialog) {
-    
- 
+
+
   }
   apps;
   ngOnInit() {
     this.store.dispatch(new actionApps.LoadAppointements());
-    this.store.subscribe(data =>{
-    this.apps = Object.values(data.appointements.Appointements)  
-    console.log(" apps=> ",this.apps) 
-    this.dataSource = new MatTableDataSource<Appointement>(this.apps);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.selection = new SelectionModel<Appointement>(true, []);
-  })
+    this.store.subscribe(data => {
+      this.apps = Object.values(data.appointements.Appointements)
+      console.log(" apps=> ", this.apps)
+      this.dataSource = new MatTableDataSource<Appointement>(this.apps);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.selection = new SelectionModel<Appointement>(true, []);
+    })
   }
   openDialog(data) {
     this.dialog.open(DialogComponent, { data })
@@ -59,18 +60,18 @@ export class AppointementComponent implements OnInit {
     this.dialog.open(AddAppointementComponent);
   }
 
- 
+
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    
+
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
 
   }
-  
-  
-  onrowselect(row){
-    console.log("roow",row)
+
+
+  onrowselect(row) {
+    console.log("roow", row)
   }
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: Appointement): string {
@@ -80,6 +81,6 @@ export class AppointementComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
 
   }
-  
+
 
 }
