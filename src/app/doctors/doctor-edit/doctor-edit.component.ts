@@ -42,15 +42,15 @@ export class DoctorEditComponent implements OnInit {
       phone2: new FormControl(''),
       adress2: new FormControl(''),
       whatsApp: new FormControl(''),
-    })
-    
+    });
+
     this.DoctorForm = this.fb.group({
       id: new FormControl(''),
       firstName: new FormControl(''),
       lastName: new FormControl(''),
       sexe: new FormControl('') ,
       ContactForm:this.ContactForm
-    })
+    });
 
   
 
@@ -61,7 +61,10 @@ export class DoctorEditComponent implements OnInit {
     this.objet = eventArgs
   }
   reserve() {
+
+    console.log("docForm",this.DoctorForm.value);// use this "Added by Mohamed"
     // var newApp = this.ContactForm.value
+
     // console.log("objet contact", newApp)
     // if (newApp.id == "00000000-0000-0000-0000-000000000000") {
     //   // console.log("Add")
