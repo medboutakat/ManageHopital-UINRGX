@@ -47,6 +47,7 @@ export class DoctorEditComponent implements OnInit {
       sexe: new FormControl(''),
       ContactForm: new FormGroup({
         email: new FormControl(''),
+        fax: new FormControl(''),
         phone1: new FormControl(''),
         adress1: new FormControl(''),
         cityId: new FormControl(''),

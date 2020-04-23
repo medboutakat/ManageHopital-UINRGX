@@ -2,7 +2,7 @@
   <h3>{{this.title}}</h3>
   <p style="font-weight: lighter;color: gray;font-size: 14px;" class="card-text">to reserve, please fill this
     informations</p>
-  <form [formGroup]="DoctorsForm">
+  <form [formGroup]="DoctorForm">
     
     <div class="form-row">
       <input type="hidden" formControlName="id">
@@ -22,8 +22,47 @@
         <option style="text-align: center;font-size: 14px;" value="Male">Male</option>
       </select>
     </div>
-    <app-contact [ContactForm]="ContactForm"></app-contact>
-  </form>
+  
+    
+    <form formGroupName="ContactForm">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="number" class="form-control" placeholder="phone 1" name="phone1" formControlName="phone1">
+        </div>
+        <div class="form-group col-md-6">
+          <input type="number" class="form-control" placeholder="phone 2" name="phone2" formControlName="phone2">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="number" class="form-control" placeholder="Fax" name="fax" formControlName="fax">
+        </div>
+        <div class="form-group col-md-6">
+          <input type="number" class="form-control" placeholder="whatsApp" name="whatsApp" formControlName="whatsApp">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="text" class="form-control" placeholder="adress1" name="adress1" formControlName="adress1">
+        </div>
+        <div class="form-group col-md-6">
+          <input type="text" class="form-control" placeholder="adress2" name="adress2" formControlName="adress2">
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <select formControlName="cityId" placeholder="City" class="custom-select" id="inputGroupSelect02">
+          <option *ngFor="let item of cities" selected value="{{item.id}}">{{item.name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="email" name="email" formControlName="email">
+      </div>
+    
+    </form>
+
+    
+ 
+</form>
 
   <button type="submit" class="btn btn-info btn-block" (click)="reserve()">Submit</button><br>
 </div>
