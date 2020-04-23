@@ -29,33 +29,31 @@ export class DoctorEditComponent implements OnInit {
     console.log("current Object: ", this._currentObject);
   }
   DoctorForm: FormGroup
-  // ContactForm: FormGroup
-  // DoctorForm: FormGroup = new FormGroup({
-  //   id: new FormControl(''),
-  //   firstName: new FormControl(''),
-  //   lastName: new FormControl(''),
-  //   sexe: new FormControl(''),
-
-
-  // })
+  ContactForm: FormGroup 
 
   ngOnInit() {
+
+    this.ContactForm=this.fb.group({
+      email: new FormControl(''),
+      fax: new FormControl(''),
+      phone1: new FormControl(''),
+      adress1: new FormControl(''),
+      cityId: new FormControl(''),
+      phone2: new FormControl(''),
+      adress2: new FormControl(''),
+      whatsApp: new FormControl(''),
+    })
+    
     this.DoctorForm = this.fb.group({
       id: new FormControl(''),
       firstName: new FormControl(''),
       lastName: new FormControl(''),
-      sexe: new FormControl(''),
-      ContactForm: new FormGroup({
-        email: new FormControl(''),
-        fax: new FormControl(''),
-        phone1: new FormControl(''),
-        adress1: new FormControl(''),
-        cityId: new FormControl(''),
-        phone2: new FormControl(''),
-        adress2: new FormControl(''),
-        whatsApp: new FormControl(''),
-      })
+      sexe: new FormControl('') ,
+      ContactForm:this.ContactForm
     })
+
+  
+
   }
 
   objet
