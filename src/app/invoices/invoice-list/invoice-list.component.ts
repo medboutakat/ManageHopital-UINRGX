@@ -107,8 +107,8 @@ export class InvoiceListComponent implements OnInit {
     this.router.navigate(['/invoice'])
   }
   edit() {
-    console.log("id", this.id)
-    this.router.navigate(['/invoicewithId', this.id])
+    var Invoice = <Invoice>this.selection.selected[0];
+    this.router.navigate(['/invoicewithId', Invoice.id])
   }
 
   delete() {

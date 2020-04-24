@@ -57,10 +57,7 @@ export class DoctorEditComponent implements OnInit {
     })
   }
 
-  objet
-  afficher(eventArgs) {
-    this.objet = eventArgs
-  }
+
   reserve() {
     // var newApp = this.ContactForm.value
     // console.log("objet contact", newApp)
