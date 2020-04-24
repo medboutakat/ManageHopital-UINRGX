@@ -4,7 +4,7 @@ import * as ActionsFile from 'src/app/HospitalCategorie/Store/Action'
 import { Observable } from 'rxjs';
 import { HospitalCat } from 'src/app/HospitalCategorie/hospitalCat.model';
 import * as ActionsFiles from 'src/app/hospital/store/Action'
-import { MatBottomSheet, MatDialog, MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatBottomSheet, MatDialog, MatSort, MatPaginator, MatTableDataSource, MatDialogConfig } from '@angular/material';
 import { HospitalEditComponent } from '../hospital-edit/hospital-edit.component';
 import { DialogComponent } from 'src/app/appointements/dialog/dialog.component';
 import { DialogHospComponent } from '../dialog-hosp/dialog-hosp.component';
@@ -26,23 +26,11 @@ export class HopitalComponent implements OnInit {
   error$: Observable<String>;
   dataSource: any;
   selection: SelectionModel<Hospital>;
-  // iscolled: boolean = true
-  // constructor(private store: Store<any>, private _bottomSheet: MatBottomSheet, public dialog: MatDialog) {
-  //   this.store.dispatch(new ActionsFile.LoadHospitalCat());
-  //   this.store.subscribe(data => {
-  //     this.listhopitalCatValues = data
-  //     console.log(" this.listhopitalCatValues=> ", this.listhopitalCatValues)
-  //   });
-  //   this.store.dispatch(new ActionsFiles.LoadHospital());
-  //   this.store.subscribe(data => {
-  //     this.listHopital = Object.values(data.Hospital)
-  //     console.log(" this.listhopital=> ", this.listHopital),
-  //       this.dataSource = new MatTableDataSource<Hospital>(this.listHopital);
-  //   }
-  iscolled: boolean = true
 
   constructor(private store: Store<any>, private _bottomSheet: MatBottomSheet, public dialog: MatDialog) {
     this.delete=this.delete.bind(this);  
+    this.add=this.add.bind(this);
+    this.edit = this.edit.bind(this);
 
     this.store.dispatch(new ActionsFiles.LoadHospital());
     this.remplir()
@@ -133,4 +121,36 @@ delete() {
     // this.remplir() 
   }
 }
+reload() {
+  this.dialog.afterAllClosed.subscribe(res => this.remplir())
+}
+edit() {
+  console.log("edit");
+  var cat = <HospitalCat>this.selection.selected[0];
+  const dialogConfig = new MatDialogConfig();
+
+  dialogConfig.data = {
+    _currentObject: cat,
+    title: "Update " + cat.name
+  }
+  this.dialog.open(HospitalEditComponent, dialogConfig);
+  console.log('updated');
+  this.reload();
+}
+
+
+add() {
+  
+  // dialogConfig.disableClose = true;
+  // dialogConfig.autoFocus = true;
+
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.data = { 
+    _currentObject: new Hospital(),
+    title:"Add ",
+  }
+
+  this.dialog.open(HospitalEditComponent,dialogConfig);   
+  
+} 
 }

@@ -71,6 +71,7 @@ import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component
 import { InvoiceEditComponent } from './invoices/invoice-edit/invoice-edit.component';
 import { CityReducer } from './cities/store/city.reducer';
 import { CityEffect } from './cities/store/city.effect';
+import { HospitalAddComponent } from './hospital-add/hospital-add.component';
 
 
 @NgModule({
@@ -110,7 +111,8 @@ import { CityEffect } from './cities/store/city.effect';
     MaterialComponent,
     MaterialEditComponent,
     DeleteDoctorComponent,
-    DoctorEditCatComponent
+    DoctorEditCatComponent,
+    HospitalAddComponent
   ],
   entryComponents: [
     DialogComponent,
