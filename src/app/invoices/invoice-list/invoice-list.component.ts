@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import { MatSort } from '@angular/material';
 import { PageConfig } from 'src/app/config';
 
+
+
 /**
  * @title Table with pagination
  */
@@ -22,27 +24,30 @@ import { PageConfig } from 'src/app/config';
 export class InvoiceListComponent implements OnInit {
 
   constructor(private store: Store<any>, private router: Router) {
+
     this.store.dispatch(new invoiceAction.LoadInvoice());
     this.remplir();
     this.add = this.add.bind(this);
     this.edit = this.edit.bind(this);
     this.delete = this.delete.bind(this);
   }
-  ngOnInit() {
 
+
+  ngOnInit() {
   }
 
   /***************************Displayed colmuns****************************************************** */
   displayedColumns: string[] = ['select', 'code', 'date', 'totalAmont', 'expedition', 'livraison', 'remise'];
 
-
   /*******************************Variables declared************************************************ */
+
+  private pageSize = PageConfig.pageSize;
   private rowSelection;
   private IsRowSelected: boolean = false;
   private IsMultple: boolean = false;
+  finalAmount: number = 1;
   invoices: any
   dataSource: any
-  private pageSize = PageConfig.pageSize
   selection: SelectionModel<Invoice>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -74,6 +79,7 @@ export class InvoiceListComponent implements OnInit {
   onrowselect() {
     this.IsMultple = this.selection.selected.length > 1;
     this.IsRowSelected = this.selection.selected.length == 1;
+    this.IsRowSelected ? this.finalAmount = this.selection.selected[0].totalAmont : null;
   }
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -87,13 +93,6 @@ export class InvoiceListComponent implements OnInit {
 
   }
 
-
-  id: string
-  selected(row) {
-    console.log("selected row", row)
-    this.IsRowSelected = true
-    this.id = row.id
-  }
 
   checkboxLabel(row?: Invoice): string {
 
