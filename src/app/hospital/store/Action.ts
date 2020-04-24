@@ -90,11 +90,11 @@ export class DeleteHospital implements Action{
 export class DeleteHospitalSuccess implements Action{
     readonly type = HospitalActionType.DELETE_SUCCESS;
 
- constructor(public payload: string){
-    console.log("Action delete success",payload);
- }
-
+    constructor(public payload: string){
+       console.log("Action delete success",payload);
+    }
 }
+
 export class DeleteHospitalFail implements Action{
     readonly type = HospitalActionType.DELETE_FAIL
     constructor(public payload: string){

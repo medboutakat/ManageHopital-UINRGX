@@ -148,7 +148,7 @@ delete() {
     var cat=<doctorCat>this.selection.selected[0];
     console.log("cat => ",cat);
     this.store.dispatch(new ActionsFile.DeleteDoctorCat(cat.id)); 
-    this.remplir() 
+    // this.remplir() 
   }
 }
 }
