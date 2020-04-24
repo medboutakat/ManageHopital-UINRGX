@@ -20,6 +20,7 @@ import { ContactComponent } from './chat/contact/contact.component'
 import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
 import { MaterialComponent } from './material/material/material.component';
 import { MaterialEditComponent } from './material/material-edit/material-edit.component';
+import { PaymentComponent } from './payment/payment/payment.component';
 
 
 
@@ -47,7 +48,8 @@ const routes: Routes = [
       { path: 'chat', component: ContactComponent, pathMatch: 'full' },
       { path: 'material', component: MaterialComponent, pathMatch: 'full' },
       { path: 'materialedit', component: MaterialEditComponent, pathMatch: 'full' },
-      { path: 'addDoctor', component: DoctorEditComponent, pathMatch: 'full' }
+      { path: 'addDoctor', component: DoctorEditComponent, pathMatch: 'full' },
+      { path: 'payment', component: PaymentComponent, pathMatch: 'full' }
 
 
 
