@@ -32,6 +32,7 @@ export class ContactComponent implements OnInit, ControlValueAccessor {
   }
 
   @Input() ContactForm: FormGroup;
+  
   onChange: any = () => { }
   onTouch: any = () => { }
   set value(val) {
