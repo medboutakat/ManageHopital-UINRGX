@@ -55,6 +55,8 @@ export class HospitalEditComponent implements OnInit {
       phone2:  new FormControl(''),
       whatsApp:  new FormControl(''),
       cityId: new FormControl(''),
+      CovePath: new FormControl(''),
+      PictureProfilePath: new FormControl(''),
     });
 
     this.HospitalForm = this.fb.group({
@@ -93,15 +95,16 @@ export class HospitalEditComponent implements OnInit {
   }
 
 
-  // reserve() {
-  //   var newApp = this.HospitalForm.value as Hospital
-   
-  //   this.store.dispatch(new ActionsFiles.CreateHospital(newApp));
-
-  //   console.log("docForm",this.HospitalForm.value);
-
-  //   this.HospitalForm.reset();
-  //   console.log("success")
-    
-  // }
+  onFileSelectCover(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.HospitalForm.get('CovePath').setValue(file); 
+    }
+  }
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0]; 
+      this.HospitalForm.get('PictureProfilePath').setValue(file); 
+    }
+  }
 }
