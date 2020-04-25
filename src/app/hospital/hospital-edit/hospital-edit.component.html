@@ -4,16 +4,61 @@
      <p style="font-weight: lighter;color: gray;font-size: 14px;" class="card-text">to reserve, please fill this
        informations</p>
        
+<form [formGroup]="HospitalForm">
+    <div class="form-row">
+      <input type="hidden" formControlName="id">
+      <div class="form-group col-md-6">
+        <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="countryHealthId"  
+          placeholder="countryHealthId">
+      </div>
+      <div class="form-group col-md-6">
+        <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="name"  
+          placeholder="name">
+      </div> 
+    
+
+    <div class="form-group col-md-6">
+        <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="remark"  
+          placeholder="REMARK">
+      </div> 
+   
+
+    <div class="form-group col-md-6">
+        <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="history"  
+          placeholder="history">
+      </div> 
+
+
+
+    <div class="form-group col-md-6">
+        <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="categoryName"  
+          placeholder="categoryName">
+      </div> 
+
+      <!-- <div class="form-group">
+        <div class="col-sm-8"> 
+          <app-select label="Select user" display="name" [listObjects]="listhopitalCatValues"></app-select>
+        </div> -->
+        <div class="input-group mb-3">
+            <select formControlName="hospitalCategoryId" placeholder="City" class="custom-select" id="inputGroupSelect02">
+              <option *ngFor="let item of listhopitalCatValues" selected value="{{item.id}}">{{item.remark}}</option>
+            </select>
+          </div>
+ 
+  </div>
+</form>
+
        <app-contact 
        [contactFormControl]="contactFormControl"
        ></app-contact> 
 
        <br>
-     <hospital-add 
+     <!-- <hospital-add 
      [HospitalForm]="HospitalForm"
      [reserveAction]="reserve" 
-     ></hospital-add> 
+     ></hospital-add>  -->
  
+     <button type="submit" class="btn btn-success btn-block" (click)="reserve()">Reserve</button><br>
     
    </div> 
 

@@ -24,13 +24,19 @@ export class HospitalEditComponent implements OnInit {
   title:any;
   emptyGuid="00000000-0000-0000-0000-000000000000";
 
-
+  listhopitalCatValues: unknown[];
   contactFormControl: FormGroup;
 
  _currentContactObject: Contact; 
 
   constructor(private _bottomSheetRef: MatBottomSheetRef<HopitalComponent>, private store: Store<any>,   @Inject(MAT_DIALOG_DATA) data,private fb: FormBuilder,) {
    
+    this.store.dispatch(new ActionsFile.LoadHospitalCat());
+    this.store.subscribe(data => {
+      this.listhopitalCatValues = Object.values(data.HospitalCat.entities)
+      console.log(" this.listhopitalCatValues=> ", this.listhopitalCatValues)
+    }
+    );
     this._currentObject=  data._currentObject;
     this.title=  data.title; 
       console.log("current Object: ", this._currentObject);
