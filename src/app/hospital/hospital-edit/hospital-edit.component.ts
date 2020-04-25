@@ -55,8 +55,8 @@ export class HospitalEditComponent implements OnInit {
       phone2:  new FormControl(''),
       whatsApp:  new FormControl(''),
       cityId: new FormControl(''),
-      CovePath: new FormControl(''),
-      PictureProfilePath: new FormControl(''),
+      CovePathForm: new FormControl(''),
+      PictureProfilePathForm: new FormControl(''),
     });
 
     this.HospitalForm = this.fb.group({
