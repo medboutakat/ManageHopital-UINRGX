@@ -113,7 +113,8 @@ import { HospitalAddComponent } from './hospital-add/hospital-add.component';
     MaterialEditComponent,
     DeleteDoctorComponent,
     DoctorEditCatComponent,
-    HospitalAddComponent
+    HospitalAddComponent,
+    PaymentComponent 
   ],
   entryComponents: [
     DialogComponent,
@@ -129,7 +130,8 @@ import { HospitalAddComponent } from './hospital-add/hospital-add.component';
     DialogComponent,
     MenuComponent,
     DoctorEditComponent,
-    DoctorEditCatComponent
+    DoctorEditCatComponent,
+    PaymentComponent,
   ],
 
 
