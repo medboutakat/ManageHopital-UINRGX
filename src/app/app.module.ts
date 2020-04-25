@@ -72,7 +72,7 @@ import { PaymentComponent } from './payment/payment/payment.component';
 import { InvoiceEditComponent } from './invoices/invoice-edit/invoice-edit.component';
 import { CityReducer } from './cities/store/city.reducer';
 import { CityEffect } from './cities/store/city.effect';
-import { HospitalAddComponent } from './hospital-add/hospital-add.component';
+
 
 
 @NgModule({
@@ -113,7 +113,6 @@ import { HospitalAddComponent } from './hospital-add/hospital-add.component';
     MaterialEditComponent,
     DeleteDoctorComponent,
     DoctorEditCatComponent,
-    HospitalAddComponent,
     PaymentComponent
   ],
   entryComponents: [
