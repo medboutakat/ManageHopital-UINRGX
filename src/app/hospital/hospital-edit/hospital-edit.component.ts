@@ -54,9 +54,7 @@ export class HospitalEditComponent implements OnInit {
       phone1: new FormControl(''),
       phone2:  new FormControl(''),
       whatsApp:  new FormControl(''),
-      cityId: new FormControl(''),
-      CovePathForm: new FormControl(''),
-      PictureProfilePathForm: new FormControl(''),
+      cityId: new FormControl('')
     });
 
     this.HospitalForm = this.fb.group({
@@ -66,7 +64,9 @@ export class HospitalEditComponent implements OnInit {
       remark: [this._currentObject.remark, Validators.required],
       history: [this._currentObject.history, Validators.required],
       hospitalCategoryId: [this._currentObject.hospitalCategoryId, Validators.required],
-      categoryName:  [this._currentObject.categoryName, Validators.required],
+      categoryName:  [this._currentObject.categoryName, Validators.required],      
+      CovePathForm: new FormControl(''),
+      PictureProfilePathForm: new FormControl(''),
       contactFormControl:this.contactFormControl
     });
   }
@@ -82,7 +82,7 @@ export class HospitalEditComponent implements OnInit {
 
   reserve() {
     var newApp = this.HospitalForm.value as Hospital
-    if(newApp.id=="00000000-0000-0000-0000-000000000000"){ 
+    if(newApp.id==this.emptyGuid){ 
       console.log("Add")
       this.store.dispatch( new ActionsFiles.CreateHospital(newApp));
     }
