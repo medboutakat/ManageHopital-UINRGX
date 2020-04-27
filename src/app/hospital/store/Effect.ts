@@ -15,7 +15,7 @@ export class HospitalEffect {
    {
    }
 
-
+   //Create  
    @Effect()
    LoadHospitalCat$: Observable<Action> = this.actions$.pipe(
        ofType<ActionsFile.LoadHospital>(
@@ -33,8 +33,7 @@ export class HospitalEffect {
    )
  
 
-   //Create Hospital Category
-
+   //Create  
    @Effect()
    CreateHospitalCat$: Observable<Action> = this.actions$.pipe(
        ofType<ActionsFile.CreateHospital>(
@@ -71,8 +70,7 @@ export class HospitalEffect {
        )
    )); 
 
-   //Delete Hospital Category
- 
+   //Delete  
    @Effect()
    DeleteHospitalCat$: Observable<Action> = this.actions$.pipe(
        ofType<ActionsFile.DeleteHospital>(

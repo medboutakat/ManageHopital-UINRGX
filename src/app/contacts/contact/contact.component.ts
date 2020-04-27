@@ -15,6 +15,7 @@ export class ContactComponent implements ControlValueAccessor {
 
   @Input()  contactFormControl: FormGroup;   
   @Input() reserveAction: any ; 
+  
  onChange: any = () => {}
  onTouch: any = () => {}
  val= "" // this is the updated value that the class accesses
@@ -43,25 +44,7 @@ export class ContactComponent implements ControlValueAccessor {
   setDisabledState?(isDisabled: boolean): void {
     throw new Error("Method not implemented.");
   }
-
-  // fb: FormBuilder;
-  // showSave: boolean;
-  // contactFormControl: FormGroup = new FormGroup({
-  //   email: new FormControl(''),
-  //   phone1: new FormControl(''),
-  //   adress1: new FormControl(''),
-  //   cityId: new FormControl(''),
-  //   phone2: new FormControl(''),
-  //   fax: new FormControl(''),
-  //   adress2: new FormControl(''),
-  //   whatsApp: new FormControl('')
-  // });
-
-
-
-
-  // //output
-  // @Output() getOutputForm = new EventEmitter();
+ 
 
   cities
   @Input() visible = false

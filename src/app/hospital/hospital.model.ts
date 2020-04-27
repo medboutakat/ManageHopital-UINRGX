@@ -6,6 +6,12 @@ export class Hospital extends GeneratedId{
     name: string;
     remark: string;
     history: string;
-    hospitalCategoryId: string
-    categoryName: string
+    hospitalCategoryId: string;
+    categoryName: string;
+    covePath :  string;
+    pictureProfilePath : string;
+    contactModel:Contact;
+    
 }
+
+ 

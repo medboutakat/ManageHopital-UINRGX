@@ -11,4 +11,4 @@ export class Contact {
     adress2: string;
     other: string;
     cityId: number;
-}
+} 
