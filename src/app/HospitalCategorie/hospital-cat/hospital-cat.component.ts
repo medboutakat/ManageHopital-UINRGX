@@ -8,6 +8,7 @@ import { HospitalCat } from '../hospitalCat.model';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Observable } from 'rxjs';
 import { HospitalCatEditComponent } from '../hospital-cat-edit/hospital-edit-cat.component';
+import { PageConfig } from 'src/app/config';
 
 @Component({
   selector: 'app-hospital-cat',
@@ -26,7 +27,7 @@ export class HospitalCatComponent implements OnInit {
     this.dataSource.filter = filtervalue.trim().toLowerCase();
   }
 
-
+  private pageSize = PageConfig.pageSize;
   private rowSelection;
   private IsRowSelected: boolean = false;
   private IsMultple: boolean = false;

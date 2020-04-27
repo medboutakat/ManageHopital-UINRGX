@@ -1,3 +1,4 @@
-export class PageConfig { 
-  static pageSize=[10,20,30]
+
+export class PageConfig {
+  static pageSize = [10, 20, 30]
 }

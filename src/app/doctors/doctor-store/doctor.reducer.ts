@@ -6,7 +6,7 @@ import { Doctor } from '../doctor.model';
 
 export interface doctorState extends EntityState<Doctor> {
   selectedById: string | null,
-  doctors: Doctor[],
+
   loadSeccess: boolean,
   getting: boolean,
   error: string
@@ -19,7 +19,6 @@ export const DoctorAdapter: EntityAdapter<Doctor> = createEntityAdapter<Doctor>(
 export const DefaultState: doctorState = {
   ids: [],
   entities: {},
-  doctors: [],
   selectedById: null,
   loadSeccess: false,
   getting: false,
@@ -35,19 +34,19 @@ export function doctorReducer(state = initialState, action: doctorActions.Custom
   switch (action.type) {
 
     case doctorActions.DoctorActionTypes.GET_DOCTORS_SECCESS: {
-      return {
+      return DoctorAdapter.addAll(action.payload, {
         ...state,
-        getting: false,
-        loadSeccess: true,
-        doctors: action.payload
-      }
+        loadSeccess: false,
+        getting: true,
+
+      });
     }
-    case doctorActions.DoctorActionTypes.GET_DOCTORS_FAIL: {
+    case doctorActions.DoctorActionTypes.GET_DOCTOR_FAIL: {
       return {
         ...state,
-        doctors: [],
+        entities: {},
         getting: false,
-        loadSeccess: true,
+        loadSeccess: false,
         error: action.payload
       }
     }
@@ -88,26 +87,3 @@ export function doctorReducer(state = initialState, action: doctorActions.Custom
   }
 }
 
-const getDoctorFeautursState = createFeatureSelector<doctorState>(
-  "doctors"
-)
-
-export const getDoctors = createSelector(
-  getDoctorFeautursState,
-  (state: doctorState) => state.doctors
-)
-
-export const getdoctorsGetting = createSelector(
-  getDoctorFeautursState,
-  (state: doctorState) => state.getting
-)
-
-export const getDoctorLoadSuccess = createSelector(
-  getDoctorFeautursState,
-  (state: doctorState) => state.loadSeccess
-)
-
-export const getCurrentDoctorError = createSelector(
-  getDoctorFeautursState,
-  (state: doctorState) => state.error
-);
