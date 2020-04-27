@@ -1,4 +1,4 @@
-import { Contact } from '../contacts/contact.model';
+
 import { GeneratedId } from '../generatedId';
 
 export class Doctor extends GeneratedId {
@@ -6,7 +6,4 @@ export class Doctor extends GeneratedId {
     firstName: string;
     lastName: string;
     sexe: string;
-    contactId: string;
-    contact: Contact;
-    categoryId: number;
 }

@@ -22,16 +22,17 @@ import { PageConfig } from 'src/app/config';
 export class DoctorComponent implements OnInit {
 
 
-  constructor(private router: Router, private store: Store<fromDoctorReducer.AppSate>, public dialog: MatDialog) {
-    this.store.dispatch(new doctorActions.getDoctor());
-    this.remplir();
+  constructor(private router: Router, private store: Store<any>, public dialog: MatDialog) {
     this.add = this.add.bind(this);
     this.edit = this.edit.bind(this);
     this.delete = this.delete.bind(this);
+    this.store.dispatch(new doctorActions.getDoctor());
+    this.remplir()
   }
 
   ngOnInit() {
   }
+
 
   /*****************************Display Colmun***************************************** */
   displayedColumns: string[] = ['select', 'firstName', 'lastName', 'sexe'];
@@ -54,9 +55,19 @@ export class DoctorComponent implements OnInit {
   /**************************Methods(app-Menu)**************************************** */
   /**************************Load Data******************************** */
   remplir() {
+    // this.store.dispatch(new doctorActions.getDoctor());
+    // this.store.subscribe(data => {
+    //   this.doctors = data.doctors.doctors
+    //   console.log(" doctors=> ", this.doctors)
+    //   this.dataSource = new MatTableDataSource<Doctor>(this.doctors);
+    //   this.dataSource.sort = this.sort;
+    //   this.dataSource.paginator = this.paginator;
+    //   this.selection = new SelectionModel<Doctor>(true, []);
+
+    // })
     this.store.subscribe(data => {
-      this.doctors = data.doctors.doctors
-      console.log(" doctors=> ", this.doctors)
+      this.doctors = Object.values(data.doctors.entities)
+      console.log(" doctor=> ", this.doctors)
       this.dataSource = new MatTableDataSource<Doctor>(this.doctors);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -67,11 +78,11 @@ export class DoctorComponent implements OnInit {
   delete() {
     if (confirm("Are You Sure You want to Delete the User?")) {
       var Doctor = <Doctor>this.selection.selected[0];
-      var id = Doctor.id
-      this.store.dispatch(new doctorActions.DeleteDoctor(id));
+      this.store.dispatch(new doctorActions.DeleteDoctor(Doctor.id));
       this.remplir()
     }
   }
+
   /**************************Edit Doctor********************************************** */
   edit() {
     console.log("edit");
