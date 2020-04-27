@@ -24,6 +24,8 @@ export class SelectComponent implements OnInit {
   }
 
   onSelectValue(value){
+    console.log("value",value)
     this.valueSelected.emit(value);
+    
   }
 }

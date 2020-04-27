@@ -2,13 +2,16 @@ import { Contact } from '../contacts/contact.model';
 import { GeneratedId } from '../generatedId';
 
 export class Hospital extends GeneratedId{
-    id:string;
     countryHealthId: string;
     name: string;
     remark: string;
     history: string;
     hospitalCategoryId: string;
     categoryName: string;
-    contactId: string;
-    contact: Contact;
+    covePath :  string;
+    pictureProfilePath : string;
+    contactModel:Contact;
+    
 }
+
+ 

@@ -74,6 +74,7 @@ import { CityReducer } from './cities/store/city.reducer';
 import { CityEffect } from './cities/store/city.effect';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -110,8 +111,8 @@ import { CityEffect } from './cities/store/city.effect';
     HospitalCatEditComponent,
     MaterialComponent,
     MaterialEditComponent,
-    DeleteDoctorComponent  ,
-    DoctorEditCatComponent,
+    DeleteDoctorComponent,
+    DoctorEditCatComponent,  
     PaymentComponent 
   ],
   entryComponents: [
@@ -128,7 +129,8 @@ import { CityEffect } from './cities/store/city.effect';
     DialogComponent,
     MenuComponent,
     DoctorEditComponent,
-    DoctorEditCatComponent
+    DoctorEditCatComponent,
+    PaymentComponent,
   ],
 
 
