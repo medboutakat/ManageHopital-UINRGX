@@ -17,7 +17,7 @@
       {{ val.name }}   
     </option>
   </select>   -->
-
+<!-- 
   <mat-form-field style="width: 400px;">
     <mat-label>Category</mat-label>
     <mat-select #slct (change)="onSelectValue(slct.value)" >
@@ -25,5 +25,9 @@
         {{ val.remark }}   
       </mat-option>
     </mat-select>
-  </mat-form-field>
+  </mat-form-field> -->
 
+
+  <select >
+    <option *ngFor="let val of listObjects" [value]="val.id"> {{ val.remark }}   </option>
+  </select>

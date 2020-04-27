@@ -126,7 +126,7 @@ reload() {
 }
 edit() {
   console.log("edit");
-  var cat = <HospitalCat>this.selection.selected[0];
+  var cat = <Hospital>this.selection.selected[0];
   const dialogConfig = new MatDialogConfig();
 
   dialogConfig.data = {

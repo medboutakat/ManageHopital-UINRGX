@@ -102,10 +102,10 @@ export class HospitalEditComponent implements OnInit {
       console.log("Add")
       this.store.dispatch( new ActionsFiles.CreateHospital(newApp));
     }
-    else{ 
-      console.log("Update")
-      this.store.dispatch(new ActionsFiles.UpdateHospital(newApp));
-    }
+    // else{ 
+    //   console.log("Update")
+    //   this.store.dispatch(new ActionsFiles.UpdateHospital(newApp));
+    // }
     // this.HospitalForm.reset(); 
   }
 
