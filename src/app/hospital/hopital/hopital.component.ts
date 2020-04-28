@@ -54,7 +54,7 @@ export class HopitalComponent implements OnInit {
   }
   remplir() {
     this.store.subscribe((data) => {
-      this.listHopital = Object.values(data.Hospital.hospitals);
+      this.listHopital = Object.values(data.Hospital.entities);
       console.log(" this.listhopital=> ", this.listHopital),
         (this.dataSource = new MatTableDataSource<Hospital>(this.listHopital));
       this.dataSource.sort = this.sort;
@@ -132,7 +132,7 @@ export class HopitalComponent implements OnInit {
   }
   edit() {
     console.log("edit");
-    var cat = <HospitalCat>this.selection.selected[0];
+    var cat = <Hospital>this.selection.selected[0];
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.data = {

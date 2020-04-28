@@ -25,10 +25,10 @@ export class AppointetmentService implements ICrudService<Appointement> {
   add(payload: Appointement): Observable<Appointement> {
     return this.http.post<Appointement>(this.ReponseUrl, payload);
   }
-  update(hospitalCat: Appointement): Observable<Appointement> {
+  update(Appointements: Appointement): Observable<Appointement> {
     return this.http.patch<Appointement>(
-      `${this.ReponseUrl}/${hospitalCat.id}`,
-      hospitalCat
+      `${this.ReponseUrl}/${Appointements.id}`,
+      Appointements
     );
   }
   delete(payload: string) {

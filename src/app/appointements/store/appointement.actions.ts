@@ -13,6 +13,11 @@ export enum AppointementActionTypes {
     CREATE_APPOINTEMENT = "[appointement] Create Appointements",
     CREATE_APPOINTEMENT_SUCCESS = "[appointement] Create Appointements Success",
     CREATE_APPOINTEMENT_FAIL = "[appointement] Create Appointements Fail",
+ 
+    
+  UPDATE = "[appointement] Update Hospital",
+  UPDATE_SUCCESS = "[appointement] Update Hospital Success",
+  UPDATE_FAIL = "[appointement] Update Hospital Fail ",
 
 }
 export class LoadAppointements implements Action {
@@ -63,6 +68,27 @@ export class CreateAppointementFail implements Action {
 
     constructor(public payload: string) { }
 }
+
+//Update
+export class UpdateAppointements implements Action {
+    readonly type = AppointementActionTypes.UPDATE;
+    constructor(public payload: Appointement) {
+      console.log("Action Update", payload);
+    }
+  }
+  export class UpdateAppointementsSuccess implements Action {
+    readonly type = AppointementActionTypes.UPDATE_SUCCESS;
+    constructor(public payload: Appointement) {
+      console.log("Action update success=>", payload);
+    }
+  }
+  
+  export class UpdateAppointementsFail implements Action {
+    readonly type = AppointementActionTypes.UPDATE_FAIL;
+    constructor(public payload: string) {
+      console.log("Action update fail", payload);
+    }
+  }
 export type Action =
     LoadAppointements
     | LoadAppointementsSuccess
@@ -73,3 +99,6 @@ export type Action =
     | CreateAppointement
     | CreateAppointementSuccess
     | CreateAppointementFail
+    | UpdateAppointements
+    | UpdateAppointementsSuccess
+    | UpdateAppointementsFail
