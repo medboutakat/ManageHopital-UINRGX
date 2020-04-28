@@ -8,6 +8,9 @@ import * as ActionsFile from 'src/app/doctors/doctorCategorie/Store/Action';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import * as DoctorActions from '../doctor-store/doctor.action'
 import { Doctor } from '../doctor.model';
+import { ContactHelper } from 'src/app/contacts/contact.helper';
+import { Contact } from 'src/app/contacts/contact.model';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -22,34 +25,37 @@ export class DoctorEditComponent implements OnInit {
   cities
   _currentObject: Doctor;
   title: any;
-  dialogref
+  dialogref; 
+  doctorForm: FormGroup;
+  contactForm: FormGroup; 
+  contactHelper: ContactHelper;
+  _currentContactObject: Contact;
+
   constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) data, private store: Store, private dialog: MatDialog) {
+    
+    this.contactHelper=new ContactHelper(fb);
+     
+    
     this._currentObject = data._currentObject;
+    if(this._currentObject==null)
+    this._currentObject=new Doctor();
+    
+    this._currentContactObject=this._currentObject.contactModel==null?new Contact(): this._currentContactObject;
+
     this.title = data.title;
     console.log("current Object: ", this._currentObject);
   }
-  DoctorForm: FormGroup
-  ContactForm: FormGroup
 
   ngOnInit() {
 
-    // this.ContactForm = this.fb.group({
-    //   id: new FormControl(this._currentObject.contact.id),
-    //   email: new FormControl(this._currentObject.contact.email),
-    //   fax: new FormControl(this._currentObject.contact.fax),
-    //   phone1: new FormControl(this._currentObject.contact.phone1),
-    //   adress1: new FormControl(this._currentObject.contact.phone2),
-    //   cityId: new FormControl(this._currentObject.contact.cityId),
-    //   phone2: new FormControl(this._currentObject.contact.phone2),
-    //   adress2: new FormControl(this._currentObject.contact.adress2),
-    //   whatsApp: new FormControl(this._currentObject.contact.whatsApp),
-    // });
-    this.DoctorForm = this.fb.group({
+    this.contactForm =  this.contactHelper.getFormBuilder(this._currentContactObject);
+
+    this.doctorForm = this.fb.group({
       id: new FormControl(this._currentObject.id),
       firstName: new FormControl(this._currentObject.firstName),
       lastName: new FormControl(this._currentObject.lastName),
       sexe: new FormControl(this._currentObject.sexe),
-      // ContactForm: this.ContactForm
+      contactForm: this.contactForm
     });
 
 
@@ -59,11 +65,11 @@ export class DoctorEditComponent implements OnInit {
 
   reserve() {
 
-    console.log("docForm", this.DoctorForm.value);// use this "Added by Mohamed"
-    var newApp = this.DoctorForm.value
+    console.log("docForm", this.doctorForm.value);// use this "Added by Mohamed"
+    var newApp = this.doctorForm.value
 
     console.log("objet contact", newApp)
-    if (newApp.id == "00000000-0000-0000-0000-000000000000") {
+    if (newApp.id == environment.EmptyGuid) {
       console.log("Add")
       this.store.dispatch(new DoctorActions.CreateDoctor(newApp));
       console.log("contact", newApp)
@@ -74,7 +80,7 @@ export class DoctorEditComponent implements OnInit {
       console.log("id new app", newApp.id)
       this.store.dispatch(new DoctorActions.UpdateDoctor(newApp));
     }
-    this.DoctorForm.reset();
+    this.doctorForm.reset();
     console.log("success")
     this.dialog.closeAll();
   }

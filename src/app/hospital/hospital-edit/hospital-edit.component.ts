@@ -8,6 +8,8 @@ import { Hospital } from '../hospital.model';
 import { Contact } from 'src/app/contacts/contact.model';
 import * as ActionsFiles from 'src/app/hospital/store/Action'
 import { City } from 'src/app/cities/city';
+import { ContactHelper } from 'src/app/contacts/contact.helper';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-hospital-edit',
@@ -22,44 +24,42 @@ export class HospitalEditComponent implements OnInit {
   HospitalForm: FormGroup;
   listhopitalValues: any; 
  _currentObject: Hospital; 
-  title:any;
-  emptyGuid;
+  title:any; 
 
   listhopitalCatValues: unknown[];
-  contactFormControl: FormGroup;
+  contactForm: FormGroup;
 
  _currentContactObject: Contact; 
-  updatePuctureImage: FormGroup;
+ updatePuctureImage: FormGroup;
+ contactHelper: ContactHelper;
 
   constructor(private _bottomSheetRef: MatBottomSheetRef<HopitalComponent>, private store: Store<any>,   @Inject(MAT_DIALOG_DATA) data,private fb: FormBuilder,) {
-   this.emptyGuid="00000000-0000-0000-0000-000000000000";
+   
+    this.contactHelper=new ContactHelper(fb);
 
     this.store.dispatch(new ActionsFile.LoadHospitalCat());
     this.store.subscribe(data => {
       this.listhopitalCatValues = Object.values(data.HospitalCat.entities)
       console.log(" this.listhopitalCatValues=> ", this.listhopitalCatValues)
-    }
-    );
+    });
+
     this._currentObject=  data._currentObject;
+
+    if(this._currentObject==null)
+    this._currentObject=new Hospital();
+    
+    this._currentContactObject=this._currentObject.contactModel==null?new Contact(): this._currentContactObject;
+
     this.title=  data.title; 
-      console.log("current Object: ", this._currentObject);
+  
+    console.log("current Object: ", this._currentObject);
       
     this.reserve=this.reserve.bind(this);      
   }
 
-  ngOnInit() {
-    this.contactFormControl= this.fb.group({
-      id: new FormControl(this.emptyGuid),
-      email: new FormControl(''),
-      phone1: new FormControl(''),
-      phone2:  new FormControl(''),
-      whatsApp:  new FormControl(''),
-      fax:  new FormControl(''),
-      adress1: new FormControl(''),
-      adress2: new FormControl(''),
-      cityId: new FormControl(1)
-    });
-
+  ngOnInit() { 
+ 
+    this.contactForm =  this.contactHelper.getFormBuilder( this._currentContactObject);
 
     this.HospitalForm = this.fb.group({
       id: [this._currentObject.id, Validators.required],
@@ -69,7 +69,7 @@ export class HospitalEditComponent implements OnInit {
       history: [this._currentObject.history, Validators.required],
       hospitalCategoryId: [this._currentObject.hospitalCategoryId, Validators.required],
       categoryName:  [this._currentObject.categoryName, Validators.required],     
-      contactModel:this.contactFormControl
+      contactModel:this.contactForm
     });
 
     this.updatePuctureImage = this.fb.group({    
@@ -95,9 +95,9 @@ export class HospitalEditComponent implements OnInit {
     
     
       console.log("HospitalForm Valid",this.HospitalForm.valid)
-      console.log("contactModel Valid",this.contactFormControl.valid)
+      console.log("contactModel Valid",this.contactForm.valid)
 
-    if(newApp.id==this.emptyGuid){ 
+    if(newApp.id==environment.EmptyGuid){ 
 
       console.log("Add")
       this.store.dispatch( new ActionsFiles.CreateHospital(newApp));
