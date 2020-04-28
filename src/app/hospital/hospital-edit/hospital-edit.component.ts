@@ -30,13 +30,10 @@ export class HospitalEditComponent implements OnInit {
   contactForm: FormGroup;
 
  _currentContactObject: Contact; 
- updatePuctureImage: FormGroup;
- contactHelper: ContactHelper;
+ updatePuctureImage: FormGroup; 
 
   constructor(private _bottomSheetRef: MatBottomSheetRef<HopitalComponent>, private store: Store<any>,   @Inject(MAT_DIALOG_DATA) data,private fb: FormBuilder,) {
-   
-    this.contactHelper=new ContactHelper(fb);
-
+    
     this.store.dispatch(new ActionsFile.LoadHospitalCat());
     this.store.subscribe(data => {
       this.listhopitalCatValues = Object.values(data.HospitalCat.entities)
@@ -59,7 +56,7 @@ export class HospitalEditComponent implements OnInit {
 
   ngOnInit() { 
  
-    this.contactForm =  this.contactHelper.getFormBuilder( this._currentContactObject);
+    this.contactForm =  ContactHelper.getFormBuilder(this.fb, this._currentContactObject);
 
     this.HospitalForm = this.fb.group({
       id: [this._currentObject.id, Validators.required],

@@ -1,10 +1,8 @@
-import * as ActionsFile from 'src/app/doctors/doctorCategorie/Store/Action'
-import * as fromRoot from 'src/app/doctors/doctorCategorie/State/app-state'
+import * as ActionsFile from 'src/app/doctorCategorie/Store/Action'
+import * as fromRoot from 'src/app/doctorCategorie/State/app-state'
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { doctorCat } from '../doctorCat.module';
-import { EntityAdapter, createEntityAdapter, EntityState } from '@ngrx/entity';
-import { doctorState } from '../../doctor-store/doctor.reducer';
-import { state } from '@angular/animations';
+import { EntityAdapter, createEntityAdapter, EntityState } from '@ngrx/entity'; 
 
 export interface DoctorCatState extends EntityState<doctorCat> {
   selectedDoctorbyId: string | null,

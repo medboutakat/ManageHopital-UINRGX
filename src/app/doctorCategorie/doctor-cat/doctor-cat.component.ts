@@ -1,12 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import * as ActionsFile from 'src/app/doctors/doctorCategorie/Store/Action'
+import * as ActionsFile from 'src/app/doctorCategorie/Store/Action'
 import { Observable } from 'rxjs';
 import { doctorCat } from '../doctorCat.module';
-import { ColDef, GridApi, ColumnApi } from 'ag-grid-community';
-import { selectAll, selectOne } from 'src/app/doctors/doctorCategorie/doctorCat.selector';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
-import { PeriodicElement } from 'src/app/modules/dashboard/dashboard.component';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DoctorEditCatComponent } from '../doctor-edit-cat/doctor-edit-cat.component';
 

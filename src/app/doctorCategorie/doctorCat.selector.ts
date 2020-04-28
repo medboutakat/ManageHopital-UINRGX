@@ -1,4 +1,4 @@
-import {IAppState} from 'src/app/doctors/doctorCategorie/State/app-state';
+import {IAppState} from 'src/app/doctorCategorie/State/app-state';
 import {createSelector} from '@ngrx/store'; 
 
 import { doctorCat } from './doctorCat.module';

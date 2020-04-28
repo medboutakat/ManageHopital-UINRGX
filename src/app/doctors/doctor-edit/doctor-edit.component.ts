@@ -3,7 +3,7 @@ import { MatBottomSheetRef, MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@an
 import { DoctorComponent } from '../doctor/doctor.component';
 import { Store } from '@ngrx/store';
 
-import * as ActionsFile from 'src/app/doctors/doctorCategorie/Store/Action';
+import * as ActionsFile from 'src/app/doctorCategorie/Store/Action';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import * as DoctorActions from '../doctor-store/doctor.action'
@@ -27,15 +27,11 @@ export class DoctorEditComponent implements OnInit {
   title: any;
   dialogref; 
   doctorForm: FormGroup;
-  contactForm: FormGroup; 
-  contactHelper: ContactHelper;
+  contactForm: FormGroup;  
   _currentContactObject: Contact;
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) data, private store: Store, private dialog: MatDialog) {
-    
-    this.contactHelper=new ContactHelper(fb);
-     
-    
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) data, private store: Store, private dialog: MatDialog) { 
+   
     this._currentObject = data._currentObject;
     if(this._currentObject==null)
     this._currentObject=new Doctor();
@@ -48,7 +44,7 @@ export class DoctorEditComponent implements OnInit {
 
   ngOnInit() {
 
-    this.contactForm =  this.contactHelper.getFormBuilder(this._currentContactObject);
+    this.contactForm =  ContactHelper.getFormBuilder(this.fb, this._currentContactObject);
 
     this.doctorForm = this.fb.group({
       id: new FormControl(this._currentObject.id),
@@ -56,9 +52,7 @@ export class DoctorEditComponent implements OnInit {
       lastName: new FormControl(this._currentObject.lastName),
       sexe: new FormControl(this._currentObject.sexe),
       contactForm: this.contactForm
-    });
-
-
+    }); 
 
   }
 

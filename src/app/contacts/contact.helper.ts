@@ -9,13 +9,10 @@ import { FormBuilder, FormControl } from '@angular/forms';
   providedIn: 'root'
 })
 export class ContactHelper {
-
-  constructor(private fb: FormBuilder) { 
-  } 
-
-  getFormBuilder(contact:Contact)
+ 
+  static getFormBuilder(fb: FormBuilder,contact:Contact)
   {
-   return this.fb.group({
+   return fb.group({
       id: new FormControl(contact.id),
       email: new FormControl(contact.email),
       fax: new FormControl(contact.fax),
