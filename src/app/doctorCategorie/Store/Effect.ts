@@ -4,7 +4,7 @@ import { map ,mergeMap,catchError, tap} from 'rxjs/operators';
 import {of , Observable} from'rxjs'
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import {Action} from '@ngrx/store'
-import * as ActionsFile from 'src/app/doctors/doctorCategorie/Store/Action'
+import * as ActionsFile from 'src/app/doctorCategorie/Store/Action'
 import { doctorCat } from '../doctorCat.module';
 import { DoctorCatService } from '../doctorCat.service';
 

@@ -1,31 +1,7 @@
-<!-- <form [formGroup]="contactFormControl" (ngSubmit)="Onclick()" *ngIf="showSave">
-  <ng-template matStepLabel>Fill out this informations</ng-template>
-  <mat-form-field>
-    <mat-label>Email</mat-label>
-    <input formControlName="email" matInput placeholder="your email" required>
-  </mat-form-field><br>
-  <mat-form-field>
-    <mat-label>Phone</mat-label>
-    <input formControlName="phone1" matInput placeholder="your Phone number" required>
-  </mat-form-field><br>
-  <mat-form-field>
-    <mat-label>Adress</mat-label>
-    <input formControlName="adress1" matInput placeholder="your adress" required>
-  </mat-form-field><br>
-  <mat-form-field>
-    <mat-label>Select City</mat-label>
-    <mat-select formControlName="cityId">
-      <mat-option>None</mat-option>
-      <mat-option *ngFor="let item of cities" [(value)]="item.id">{{item.name}}</mat-option>
+<form [formGroup]="contactForm">
 
-    </mat-select>
-  </mat-form-field>
-  <div>
-    <button type="submit" mat-button matStepperNext>Next</button>
-  </div>
-</form> -->
-<!-- <form [formGroup]="contactFormControl" (ngSubmit)="Onclick()" *ngIf="showSave">
   <div class="form-row">
+    <input type="hidden" formControlName="id">
     <div class="form-group col-md-6">
       <input type="number" class="form-control" placeholder="phone 1" name="phone1" formControlName="phone1">
     </div>
@@ -51,62 +27,10 @@
   </div>
   <div class="input-group mb-3">
     <select formControlName="cityId" placeholder="City" class="custom-select" id="inputGroupSelect02">
-      <option *ngFor="let item of cities" selected>{{item.name}}</option>
+      <option *ngFor="let item of cities" selected value="{{item.id}}">{{item.name}}</option>
     </select>
   </div>
   <div class="form-group">
     <input type="text" class="form-control" placeholder="email" name="email" formControlName="email">
   </div>
-
-</form>
-<button type="submit" class="btn btn-info">Next</button> -->
-
-
-<form [formGroup]="contactFormControl">
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="phone1"  
-        placeholder="phone1">
-    </div>
-    <div class="form-group col-md-6">
-      <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="phone2"  
-        placeholder="phone2">
-    </div> 
-  
-
-  <div class="form-group col-md-6">
-      <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="fax"  
-        placeholder="fax">
-    </div> 
- 
-
-  <div class="form-group col-md-6">
-      <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="whatsApp"  
-        placeholder="whatsApp">
-    </div> 
-
-
-  <div class="form-group col-md-6">
-      <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="adress1"  
-        placeholder="adress1">
-    </div> 
-
-    <div class="form-group col-md-6">
-      <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="adress2"  
-        placeholder="adress2">
-    </div> 
-
-    <div class="input-group mb-3">
-      <select formControlName="cityId" placeholder="City" class="custom-select" id="inputGroupSelect02">
-        <option *ngFor="let item of cities" selected value="{{item.id}}">{{item.name}}</option>
-      </select>
-    </div>
-
-    <div class="form-group col-md-6">
-      <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="email"  
-        placeholder="email">
-    </div> 
-
-  <!-- <button type="submit" class="btn btn-success btn-block" (click)="reserve()">Reserve</button><br> -->
-</div>
 </form>

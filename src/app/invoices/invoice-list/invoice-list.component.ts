@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { MatSort } from '@angular/material';
 import { PageConfig } from 'src/app/config';
 
- 
+
 
 /**
  * @title Table with pagination
@@ -23,8 +23,8 @@ import { PageConfig } from 'src/app/config';
 })
 export class InvoiceListComponent implements OnInit {
 
-  constructor(private store: Store<any>, private router: Router) {   
-     
+  constructor(private store: Store<any>, private router: Router) {
+
     this.store.dispatch(new invoiceAction.LoadInvoice());
     this.remplir();
     this.add = this.add.bind(this);
@@ -41,11 +41,11 @@ export class InvoiceListComponent implements OnInit {
 
   /*******************************Variables declared************************************************ */
 
-  private pageSize=PageConfig.pageSize;
+  private pageSize = PageConfig.pageSize;
   private rowSelection;
   private IsRowSelected: boolean = false;
   private IsMultple: boolean = false;
-  finalAmount:number = 1;
+  finalAmount: number = 1;
   invoices: any
   dataSource: any
   selection: SelectionModel<Invoice>;
@@ -59,11 +59,11 @@ export class InvoiceListComponent implements OnInit {
   /**************************Methods(app-Menu)**************************************** */
   /**************************Load Data******************************** */
   remplir() {
-    this.add=this.add.bind(this);
-    this.edit=this.edit.bind(this);
-    this.delete=this.delete.bind(this); 
+    this.add = this.add.bind(this);
+    this.edit = this.edit.bind(this);
+    this.delete = this.delete.bind(this);
 
-    this.store.dispatch(new invoiceAction.LoadInvoice());  
+    this.store.dispatch(new invoiceAction.LoadInvoice());
     this.store.subscribe(data => {
       this.invoices = Object.values(data.invoices.entities)
       console.log(" invoices=> ", this.invoices)
@@ -79,7 +79,7 @@ export class InvoiceListComponent implements OnInit {
   onrowselect() {
     this.IsMultple = this.selection.selected.length > 1;
     this.IsRowSelected = this.selection.selected.length == 1;
-    this.IsRowSelected ? this.finalAmount = this.selection.selected[0].totalAmont: null;
+    this.IsRowSelected ? this.finalAmount = this.selection.selected[0].totalAmont : null;
   }
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -92,14 +92,7 @@ export class InvoiceListComponent implements OnInit {
       this.dataSource.data.forEach(row => this.selection.select(row));
 
   }
-  
 
-  id: string
-  selected(row) {
-    console.log("selected row", row)
-    this.IsRowSelected = true
-    this.id = row.id
-  }
 
   checkboxLabel(row?: Invoice): string {
 
@@ -109,16 +102,16 @@ export class InvoiceListComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 
- /****************************Invoice menu commands************************************ */
+  /****************************Invoice menu commands************************************ */
   add() {
     this.router.navigate(['/invoice'])
   }
   edit() {
-    console.log("id", this.id)
-    this.router.navigate(['/invoicewithId', this.id])
+    var Invoice = <Invoice>this.selection.selected[0];
+    this.router.navigate(['/invoicewithId', Invoice.id])
   }
-  
-   delete() {
+
+  delete() {
     if (confirm("Are You Sure You want to Delete the User?")) {
       var Invoice = <Invoice>this.selection.selected[0];
       console.log("invoice deleted", Invoice.id);
@@ -127,7 +120,7 @@ export class InvoiceListComponent implements OnInit {
       this.remplir()
     }
   }
-  
+
 }
 
 

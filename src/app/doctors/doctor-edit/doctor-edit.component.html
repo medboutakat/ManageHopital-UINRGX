@@ -2,8 +2,7 @@
   <h3>{{this.title}}</h3>
   <p style="font-weight: lighter;color: gray;font-size: 14px;" class="card-text">to reserve, please fill this
     informations</p>
-  <app-contact (getOutputForm)="afficher($event)"></app-contact>
-  <form [formGroup]="DoctorForm">
+  <form [formGroup]="doctorForm">
     <div class="form-row">
       <input type="hidden" formControlName="id">
       <div class="form-group col-md-6">
@@ -23,7 +22,7 @@
       </select>
     </div>
 
-    <button type="submit" class="btn btn-info btn-block" (click)="reserve()">Submit</button><br>
   </form>
-
+  <app-contact [contactForm]="contactForm"></app-contact>
+  <button type="submit" class="btn btn-info btn-block" (click)="reserve()">Submit</button><br>
 </div>

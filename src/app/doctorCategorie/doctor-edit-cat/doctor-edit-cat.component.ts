@@ -2,9 +2,10 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { Store } from '@ngrx/store';
-import * as fromDoctorCat from "src/app/doctors/doctorCategorie/Store/reducer";
+import * as fromDoctorCat from "src/app/doctorCategorie/Store/reducer";
 import { doctorCat } from '../doctorCat.module';
-import * as ActionsFile from 'src/app/doctors/doctorCategorie/Store/Action'
+import * as ActionsFile from 'src/app/doctorCategorie/Store/Action'
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'doctor-edit-cat',
   templateUrl: './doctor-edit-cat.component.html',
@@ -14,8 +15,7 @@ export class DoctorEditCatComponent implements OnInit {
   DoctorcAT: FormGroup;
   listdoctorCatValues: any; 
  _currentObject: doctorCat; 
-  title:any;
-  emptyGuid="00000000-0000-0000-0000-000000000000";
+  title:any; 
 
   constructor( private fb: FormBuilder,
     private store: Store<fromDoctorCat.DoctorCatState>,
@@ -38,7 +38,7 @@ export class DoctorEditCatComponent implements OnInit {
 
   reserve() {
     var newApp = this.DoctorcAT.value as doctorCat
-    if(newApp.id=="00000000-0000-0000-0000-000000000000"){ 
+    if(newApp.id==environment.EmptyGuid){ 
       console.log("Add")
       this.store.dispatch(new ActionsFile.CreateDoctorCat(newApp));
     }

@@ -10,8 +10,7 @@ import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-
 import { AppointementComponent } from './appointements/appointement/appointement.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
-import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
-import { SignupComponent } from './connexion/signup/signup.component';
+import { DoctorCatComponent } from './doctorCategorie/doctor-cat/doctor-cat.component';
 import { OperationComponent } from './operations/operation/operation.component';
 import { SigninComponent } from './connexion/signin/signin.component';
 import { InvoiceEditComponent } from './invoices/invoice-edit/invoice-edit.component';

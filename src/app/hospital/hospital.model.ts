@@ -10,8 +10,7 @@ export class Hospital extends GeneratedId{
     categoryName: string;
     covePath :  string;
     pictureProfilePath : string;
-    contactModel:Contact;
-    
+    contactModel:Contact;  
 }
 
  

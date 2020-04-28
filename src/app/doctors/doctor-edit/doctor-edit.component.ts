@@ -1,13 +1,16 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatBottomSheetRef, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatBottomSheetRef, MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { DoctorComponent } from '../doctor/doctor.component';
 import { Store } from '@ngrx/store';
 
-import * as ActionsFile from 'src/app/doctors/doctorCategorie/Store/Action';
+import * as ActionsFile from 'src/app/doctorCategorie/Store/Action';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import * as DoctorActions from '../doctor-store/doctor.action'
 import { Doctor } from '../doctor.model';
+import { ContactHelper } from 'src/app/contacts/contact.helper';
+import { Contact } from 'src/app/contacts/contact.model';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -22,56 +25,58 @@ export class DoctorEditComponent implements OnInit {
   cities
   _currentObject: Doctor;
   title: any;
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) data, private store: Store
-  ) {
+  dialogref; 
+  doctorForm: FormGroup;
+  contactForm: FormGroup;  
+  _currentContactObject: Contact;
+
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) data, private store: Store, private dialog: MatDialog) { 
+   
     this._currentObject = data._currentObject;
+    if(this._currentObject==null)
+    this._currentObject=new Doctor();
+    
+    this._currentContactObject=this._currentObject.contactModel==null?new Contact(): this._currentContactObject;
+
     this.title = data.title;
     console.log("current Object: ", this._currentObject);
   }
-  DoctorForm: FormGroup
-
-  contactFormControl: FormGroup = new FormGroup({
-    email: new FormControl(''),
-    // phone1: new FormControl(''),
-    adress1: new FormControl(''),
-    cityId: new FormControl(''),
-    phone2: new FormControl(''),
-    fax: new FormControl(''),
-    adress2: new FormControl(''),
-    whatsApp: new FormControl('')
-  });
 
   ngOnInit() {
-    this.DoctorForm = this.fb.group({
-      id: [this._currentObject.id, Validators.required],
-      firstName: [this._currentObject.firstName, Validators.required],
-      lastName: [this._currentObject.lastName, Validators.required],
-      sexe: [this._currentObject.sexe, Validators.required],
-      phone1: [, Validators.required]
-    });
 
+    this.contactForm =  ContactHelper.getFormBuilder(this.fb, this._currentContactObject);
+
+    this.doctorForm = this.fb.group({
+      id: new FormControl(this._currentObject.id),
+      firstName: new FormControl(this._currentObject.firstName),
+      lastName: new FormControl(this._currentObject.lastName),
+      sexe: new FormControl(this._currentObject.sexe),
+      contactForm: this.contactForm
+    }); 
 
   }
-  objet
-  afficher(eventArgs) {
-    this.objet = eventArgs
-  }
+
+
   reserve() {
-    var newApp = this.DoctorForm.value as Doctor
-    console.log("objet contact", this.objet)
-    // if (newApp.id == "00000000-0000-0000-0000-000000000000") {
-    //   // console.log("Add")
-    //   // this.store.dispatch(new DoctorActions.CreateDoctor(newApp));
-    //   console.log("contact", newApp)
 
-    // }
-    // else {
-    //   console.log("Update")
-    //   console.log("id new app", newApp.id)
-    //   this.store.dispatch(new DoctorActions.UpdateDoctor(newApp));
-    // }
-    this.DoctorForm.reset();
+    console.log("docForm", this.doctorForm.value);// use this "Added by Mohamed"
+    var newApp = this.doctorForm.value
+
+    console.log("objet contact", newApp)
+    if (newApp.id == environment.EmptyGuid) {
+      console.log("Add")
+      this.store.dispatch(new DoctorActions.CreateDoctor(newApp));
+      console.log("contact", newApp)
+
+    }
+    else {
+      console.log("Update")
+      console.log("id new app", newApp.id)
+      this.store.dispatch(new DoctorActions.UpdateDoctor(newApp));
+    }
+    this.doctorForm.reset();
     console.log("success")
+    this.dialog.closeAll();
   }
 
 
