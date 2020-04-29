@@ -72,6 +72,7 @@ import { PaymentComponent } from './payment/payment/payment.component';
 import { InvoiceEditComponent } from './invoices/invoice-edit/invoice-edit.component';
 import { CityReducer } from './cities/store/city.reducer';
 import { CityEffect } from './cities/store/city.effect';
+import { OperationCatEffect } from './operations/store/category.effects';
 
 
 
@@ -112,8 +113,13 @@ import { CityEffect } from './cities/store/city.effect';
     MaterialComponent,
     MaterialEditComponent,
     DeleteDoctorComponent,
-    DoctorEditCatComponent,  
-    PaymentComponent 
+
+    DoctorEditCatComponent,
+    PaymentComponent
+
+    DoctorEditCatComponent,
+    PaymentComponent
+
   ],
   entryComponents: [
     DialogComponent,
@@ -181,7 +187,7 @@ import { CityEffect } from './cities/store/city.effect';
     StoreModule.forFeature("operations", OperationReducer),
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
     StoreModule.forFeature("cities", CityReducer),
-    EffectsModule.forRoot([CityEffect, HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect]),
+    EffectsModule.forRoot([CityEffect, HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect, OperationCatEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]

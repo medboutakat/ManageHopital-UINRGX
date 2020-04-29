@@ -1,5 +1,6 @@
 import { Operation } from '../operation'
 import { Action } from '@ngrx/store'
+import { Update } from '@ngrx/entity'
 export enum OperationActionTypes {
     LOAD_OPERATIONS = "[operation] Load Operations",
     LOAD_OPERATIONS_SUCCESS = "[operation] Load  Operations Success",
@@ -10,6 +11,9 @@ export enum OperationActionTypes {
     CREATE_OPERATIONS = "[operation] Create Operations",
     CREATE_OPERATIONS_SUCCESS = "[operation] Create Operations Success",
     CREATE_OPERATIONS_FAIL = "[operation] Create Operations Fail",
+    UPDATE_OPERATIONS = "[operation] Update Operations",
+    UPDATE_OPERATIONS_SUCCESS = "[operation] Update Operations Success",
+    UPDATE_OPERATIONS_FAIL = "[operation] Update Operations Fail ",
 }
 export class LoadOperations implements Action {
     readonly type = OperationActionTypes.LOAD_OPERATIONS
@@ -58,6 +62,21 @@ export class CreateOperationFail implements Action {
 
     constructor(public payload: string) { }
 }
+
+export class UpdateOperation implements Action {
+    readonly type = OperationActionTypes.UPDATE_OPERATIONS;
+    constructor(public payload: Operation) { }
+}
+
+export class UpdateOperationSuccess implements Action {
+    readonly type = OperationActionTypes.UPDATE_OPERATIONS_SUCCESS;
+    constructor(public payload: Operation) { }
+}
+
+export class UpdateOperationFail implements Action {
+    readonly type = OperationActionTypes.UPDATE_OPERATIONS_FAIL
+    constructor(public payload: string) { }
+}
 export type Action =
     LoadOperations
     | LoadOperationsSuccess
@@ -68,3 +87,6 @@ export type Action =
     | CreateOperation
     | CreateOperationSuccess
     | CreateOperationFail
+    | UpdateOperation
+    | UpdateOperationSuccess
+    | UpdateOperationFail
