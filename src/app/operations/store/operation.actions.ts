@@ -1,6 +1,7 @@
-import { Operation } from '../operation'
-import { Action } from '@ngrx/store'
+import { Operation } from '../operation'  
+import { Action } from '@ngrx/store' 
 import { Update } from '@ngrx/entity'
+
 export enum OperationActionTypes {
     LOAD_OPERATIONS = "[operation] Load Operations",
     LOAD_OPERATIONS_SUCCESS = "[operation] Load  Operations Success",
@@ -24,7 +25,7 @@ export class LoadOperations implements Action {
 export class LoadOperationsSuccess implements Action {
     readonly type = OperationActionTypes.LOAD_OPERATIONS_SUCCESS
     constructor(public payload: Operation[]) {         
-        console.log("OperationActionTypes",payload)
+        // console.log("OperationActionTypes",payload)
     }
 }
 export class LoadOperationsFailed implements Action {
