@@ -25,7 +25,8 @@ export class OperationService implements ICrudService<Operation> {
     return this.http.post<Operation>(this.ReponseUrl, payload);
   }
   update(operation: Operation): Observable<Operation> {
-    return this.http.patch<Operation>(
+    console.log("service update", operation)
+    return this.http.put<Operation>(
       `${this.ReponseUrl}/${operation.id}`,
       operation
     );
