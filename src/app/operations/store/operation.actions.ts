@@ -17,60 +17,81 @@ export enum OperationActionTypes {
 }
 export class LoadOperations implements Action {
     readonly type = OperationActionTypes.LOAD_OPERATIONS
-    constructor() { }
+    constructor() {        
+        console.log("LoadOperations")
+     }
 }
 export class LoadOperationsSuccess implements Action {
     readonly type = OperationActionTypes.LOAD_OPERATIONS_SUCCESS
-    constructor(public playload: Operation[]) {
+    constructor(public playload: Operation[]) {         
+        console.log("OperationActionTypes")
     }
 }
 export class LoadOperationsFailed implements Action {
     readonly type = OperationActionTypes.LOAD_OPERATIONS_FAILED
-    constructor(public playload: string) { }
+    constructor(public playload: string) { 
+        
+        console.log("LoadOperationsFailed")
+    }
 }
 export class DeleteOperation implements Action {
     readonly type = OperationActionTypes.DELETE_OPERATIONS;
 
-    constructor(public payload) { }
+    constructor(public payload) {        
+        console.log("DeleteOperation")
+     }
 }
 
 export class DeleteOperationSuccess implements Action {
     readonly type = OperationActionTypes.DELETE_OPERATIONS_SUCCESS;
 
-    constructor(public payload) { }
+    constructor(public payload) {         
+        console.log("DeleteOperationSuccess")
+    }
 }
 
 export class DeleteOperationFail implements Action {
     readonly type = OperationActionTypes.DELETE_OPERATIONS_FAIL;
 
-    constructor(public payload: string) { }
+    constructor(public payload: string) {  
+        console.log("DeleteOperationFail")
+    }
 }
 export class CreateOperation implements Action {
     readonly type = OperationActionTypes.CREATE_OPERATIONS;
 
-    constructor(public payload: Operation) { }
+    constructor(public payload: Operation) {                    
+        console.log("CreateOperation")
+     }
 }
 
 export class CreateOperationSuccess implements Action {
     readonly type = OperationActionTypes.CREATE_OPERATIONS_SUCCESS;
 
-    constructor(public payload: Operation) { }
+    constructor(public payload: Operation) {                       
+        console.log("CreateOperationSuccess")
+    }
 }
 
 export class CreateOperationFail implements Action {
     readonly type = OperationActionTypes.CREATE_OPERATIONS_FAIL;
-
-    constructor(public payload: string) { }
+    constructor(public payload: string) {                 
+        console.log("CreateOperationFail")
+    }
 }
 
 export class UpdateOperation implements Action {
     readonly type = OperationActionTypes.UPDATE_OPERATIONS;
-    constructor(public payload: Operation) { }
+    constructor(public payload: Operation) {          
+        console.log("UpdateOperation")
+    }
 }
 
 export class UpdateOperationSuccess implements Action {
     readonly type = OperationActionTypes.UPDATE_OPERATIONS_SUCCESS;
-    constructor(public payload: Operation) { }
+    constructor(public payload: Operation) { 
+        console.log("UpdateOperationSuccess")
+    }
 }
 
 export class UpdateOperationFail implements Action {

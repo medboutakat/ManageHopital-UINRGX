@@ -115,10 +115,7 @@ import { OperationCatEffect } from './operations/store/category.effects';
     DeleteDoctorComponent,
 
     DoctorEditCatComponent,
-    PaymentComponent
-
-    DoctorEditCatComponent,
-    PaymentComponent
+    PaymentComponent 
 
   ],
   entryComponents: [
