@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-hospital-edit',
   templateUrl: './hospital-edit.component.html',
-  styleUrls: ['./hospital-edit.component.scss']
+  styleUrls: ['./hospital-edit.component.scss',"../../app-edit.component.scss"]
 })
 
 

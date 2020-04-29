@@ -1,10 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatBottomSheetRef, MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
-import { DoctorComponent } from '../doctor/doctor.component';
 import { Store } from '@ngrx/store';
-
-import * as ActionsFile from 'src/app/doctorCategorie/Store/Action';
-
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import * as DoctorActions from '../doctor-store/doctor.action'
 import { Doctor } from '../doctor.model';
@@ -16,7 +12,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-doctor-edit',
   templateUrl: './doctor-edit.component.html',
-  styleUrls: ['./doctor-edit.component.scss']
+  styleUrls: ['./doctor-edit.component.scss',"../../app-edit.component.scss"]
 })
 export class DoctorEditComponent implements OnInit {
 
