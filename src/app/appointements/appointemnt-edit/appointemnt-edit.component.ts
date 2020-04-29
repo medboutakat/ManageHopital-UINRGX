@@ -3,16 +3,17 @@ import { Store } from '@ngrx/store';
 import * as ActionsFiles from "src/app/hospital/store/Action";
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Appointement } from '../appointement.model';
-import * as appsAction from '../store/appointement.actions'
-import { MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material';
 
+import * as appsAction from 'src/app/appointements/store/appointement.actions'
+import { Appointement } from '../appointement.model';
+import { MAT_DIALOG_DATA } from '@angular/material';
+import { environment } from 'src/environments/environment';
 @Component({
-  selector: 'app-add-appointement',
-  templateUrl: './add-appointement.component.html',
-  styleUrls: ['./add-appointement.component.scss']
+  selector: 'appointemnt-edit',
+  templateUrl: './appointemnt-edit.component.html',
+  styleUrls: ['./appointemnt-edit.component.scss']
 })
-export class AddAppointementComponent implements OnInit {
+export class AppointemntEditComponent implements OnInit {
   apps
   addForm: FormGroup
 
@@ -52,14 +53,9 @@ export class AddAppointementComponent implements OnInit {
   }
 
   reserve() {
-    // var newApp = this.addForm.value as Appointement
-    // this.store.dispatch(new appsAction.CreateAppointement(newApp));
-    // this.addForm.reset();
-    // console.log("bien faite")
-
 
     var newApp = this.addForm.value as Appointement
-    if(newApp.id=="00000000-0000-0000-0000-000000000000"){ 
+    if(newApp.id==environment.EmptyGuid){ 
       console.log("Add")
       this.store.dispatch(new appsAction.CreateAppointement(newApp));
     }
@@ -71,4 +67,4 @@ export class AddAppointementComponent implements OnInit {
     console.log("success")  
   }
   }
-
+  

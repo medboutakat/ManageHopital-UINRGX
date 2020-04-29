@@ -4,12 +4,11 @@ import { Observable } from 'rxjs';
 import * as actionApps from '../store/appointement.actions'
 import * as fromReducer from '../store/appointement.reducer'
 import { MatDialog, MatSort, MatPaginator, MatTableDataSource, MatDialogConfig } from '@angular/material'
-import { DialogComponent } from '../dialog/dialog.component';
-import { AddAppointementComponent } from '../add-appointement/add-appointement.component';
 import { SavePdfComponent } from '../save-pdf/save-pdf.component';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Appointement } from '../appointement.model';
 import { PageConfig } from 'src/app/config';
+import { AppointemntEditComponent } from 'src/app/appointements/appointemnt-edit/appointemnt-edit.component';
 
 
 @Component({
@@ -19,6 +18,7 @@ import { PageConfig } from 'src/app/config';
 })
 export class AppointementComponent implements OnInit {
   dataSource: any;
+  apps : any;
   selection: SelectionModel<Appointement>;
   private rowSelection;
   private IsRowSelected: boolean = false;
@@ -41,7 +41,6 @@ export class AppointementComponent implements OnInit {
     this.edit = this.edit.bind(this);
 
   }
-  apps;
   remplir(){
     this.store.subscribe(data => {
       this.apps = Object.values(data.appointements.entities)
@@ -56,19 +55,10 @@ export class AppointementComponent implements OnInit {
     this.store.dispatch(new actionApps.LoadAppointements());
     this.remplir();
   }
-  openDialog(data) {
-    this.dialog.open(DialogComponent, { data })
-  }
+
   save(data) {
     this.dialog.open(SavePdfComponent, { data });
   }
-  // add() {
-  //   console.log("hello");
-  //   this.dialog.open(AddAppointementComponent);
-  // }
-
-
-  
   onrowselect() {
     this.IsMultple = this.selection.selected.length > 1;
     this.IsRowSelected = this.selection.selected.length == 1;
@@ -100,29 +90,22 @@ export class AppointementComponent implements OnInit {
 
 
   delete() {
-    // console.log("deleteselection",this.selection.selected);
-    // var RowId = localStorage.getItem("RowId")
     if (confirm("Are You Sure You want to Delete the User?")) {
       var cat = <Appointement>this.selection.selected[0];
       console.log("cat => ", cat);
       this.store.dispatch(new actionApps.DeleteAppointement(cat.id));
-      // this.remplir()
     }
   }
 
 
   
   add() {
-    // dialogConfig.disableClose = true;
-    // dialogConfig.autoFocus = true;
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       _currentObject: new Appointement(),
       title: "Add ",
     };
-
-    this.dialog.open(AddAppointementComponent, dialogConfig);
+    this.dialog.open(AppointemntEditComponent, dialogConfig);
   }
 
   reload() {
@@ -137,7 +120,7 @@ export class AppointementComponent implements OnInit {
       _currentObject: cat,
       title: "Update " + cat.id,
     };
-    this.dialog.open(AddAppointementComponent, dialogConfig);
+    this.dialog.open(AppointemntEditComponent, dialogConfig);
     console.log("updated");
     this.reload();
   }

@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 import { HospitalCat } from "src/app/HospitalCategorie/hospitalCat.model";
 import * as ActionsFiles from "src/app/hospital/store/Action";
 import {
-  MatBottomSheet,
+ MatBottomSheet,
   MatDialog,
   MatSort,
   MatPaginator,
@@ -13,8 +13,6 @@ import {
   MatDialogConfig,
 } from "@angular/material";
 import { HospitalEditComponent } from "../hospital-edit/hospital-edit.component";
-import { DialogComponent } from "src/app/appointements/dialog/dialog.component";
-import { DialogHospComponent } from "../dialog-hosp/dialog-hosp.component";
 import { SelectionModel } from "@angular/cdk/collections";
 import { Hospital } from "../hospital.model";
 
@@ -83,10 +81,7 @@ export class HopitalComponent implements OnInit {
     return this.listhopitalCatValues;
   }
 
-  openBottomSheet(): void {
-    this._bottomSheet.open(HospitalEditComponent);
-    console.log("show bottom sheet ...");
-  }
+ 
 
   onrowselect() {
     this.IsMultple = this.selection.selected.length > 1;
@@ -118,13 +113,12 @@ export class HopitalComponent implements OnInit {
   }
 
   delete() {
-    // console.log("deleteselection",this.selection.selected);
-    // var RowId = localStorage.getItem("RowId")
+
     if (confirm("Are You Sure You want to Delete the User?")) {
       var cat = <Hospital>this.selection.selected[0];
       console.log("cat => ", cat);
       this.store.dispatch(new ActionsFiles.DeleteHospital(cat.id));
-      // this.remplir()
+     
     }
   }
   reload() {
@@ -145,9 +139,6 @@ export class HopitalComponent implements OnInit {
   }
 
   add() {
-    // dialogConfig.disableClose = true;
-    // dialogConfig.autoFocus = true;
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       _currentObject: new Hospital(),

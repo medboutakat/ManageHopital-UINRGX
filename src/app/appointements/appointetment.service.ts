@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Appointement } from './appointement.model';
-import { Hospital } from './hospital';
+
 import { ICrudService } from '../icrud-service';
 import { RootURLS } from '../root-urls';
 import { Observable } from 'rxjs';

@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import * as ActionsFile from 'src/app/HospitalCategorie/Store/Action'
 import { HospitalCat } from '../hospitalCat.model';
 import { MAT_DIALOG_DATA } from '@angular/material'; 
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'hospital-cat-edit',
@@ -40,7 +41,7 @@ export class  HospitalCatEditComponent implements OnInit {
 
   reserve() {
     var newApp = this.HospitalCatForm.value as HospitalCat
-    if(newApp.id=="00000000-0000-0000-0000-000000000000"){ 
+    if(newApp.id==environment.EmptyGuid){ 
       console.log("Add")
       this.store.dispatch(new ActionsFile.CreateHospitalCat(newApp));
     }

@@ -1,17 +1,17 @@
- 
-  <app-menu 
- [IsRowSelected]="IsRowSelected" 
- [addAction]="add" 
- [editAction]="edit" 
- [deleteAction]="delete" 
- [IsMultple]="IsMultple"
- [isNew]="isNew" 
- ></app-menu> 
+<mat-form-field class="example-full-width" style="float: right;">
+  <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
+</mat-form-field>
 
- 
-  <mat-form-field class="example-full-width">
-    <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
-  </mat-form-field>
+<div style="float: left;">
+<app-menu 
+[IsRowSelected]="IsRowSelected" 
+[addAction]="add" 
+[editAction]="edit" 
+[deleteAction]="delete" 
+[IsMultple]="IsMultple"
+[isNew]="isNew" 
+></app-menu>
+</div>
   <table mat-table [dataSource]="(dataSource)"  matSort  class="mat-elevation-z8">
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
@@ -40,9 +40,5 @@
    
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index" (click)="selection.toggle(row);"(click)="onrowselect()"></tr>
-
-   
-
   </table>
-  
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

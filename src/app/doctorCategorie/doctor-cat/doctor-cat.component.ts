@@ -20,26 +20,30 @@ export class DoctorCatComponent implements OnInit {
   private rowSelection;
   private IsRowSelected: boolean = false;
   private IsMultple: boolean = false;
-
-
-
-  listDoctorCat
-  dataSource;
+  listDoctorCat :any;
+  dataSource : any;
   selection: SelectionModel<doctorCat>;
   displayedColumns: string[] = ['select', 'name', 'remark'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  applyFilter(filtervalue: string) {
+    this.dataSource.filter = filtervalue.trim().toLowerCase();
+  }
+
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+  exist: boolean = false;
+
 
   constructor(private store: Store<any>, public dialog: MatDialog) {
 
     this.add = this.add.bind(this);
     this.edit = this.edit.bind(this);
     this.delete = this.delete.bind(this);
-    this.store.dispatch(new ActionsFile.LoadDoctorCat());
-    this.remplir()
-
   }
 
   ngOnInit() {
+    this.store.dispatch(new ActionsFile.LoadDoctorCat());
+    this.remplir()
 
   }
   remplir() {
@@ -84,28 +88,9 @@ export class DoctorCatComponent implements OnInit {
   }
 
 
-  applyFilter(filtervalue: string) {
-    this.dataSource.filter = filtervalue.trim().toLowerCase();
-  }
-
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-
-  exist: boolean = false;
-
-
-
-
-
-
-
-
-
 
 
   add() {
-
-    // dialogConfig.disableClose = true;
-    // dialogConfig.autoFocus = true;
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
@@ -119,7 +104,7 @@ export class DoctorCatComponent implements OnInit {
 
   reload() {
     this.dialog.afterAllClosed.subscribe(res => this.remplir())
-  }//ok wait
+  }
 
   edit() {
     console.log("edit");
