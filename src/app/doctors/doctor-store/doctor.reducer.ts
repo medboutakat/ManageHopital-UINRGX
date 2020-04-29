@@ -6,7 +6,6 @@ import { Doctor } from '../doctor.model';
 
 export interface doctorState extends EntityState<Doctor> {
   selectedById: string | null,
-
   loadSeccess: boolean,
   getting: boolean,
   error: string

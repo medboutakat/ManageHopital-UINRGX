@@ -2,58 +2,52 @@
 import { Operation } from '../operation'
 import * as fromRoot from "./store"
 import * as oppActions from "./operation.actions"
-import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { EntityAdapter, createEntityAdapter, EntityState } from '@ngrx/entity';
 
-export interface OperationState {
-    operations: Operation[],
-    selectedUserId: number | null,
-    loading: boolean,
-    loaded: boolean,
+export interface OperationState extends EntityState<Operation> {
+    selectedById: string | null,
+    loadSeccess: boolean,
+    getting: boolean,
     error: string
 }
-export interface store extends fromRoot.StoreInterface {
-    operations: OperationState
+
+export interface AppState extends fromRoot.StoreInterface {
+    opeartions: OperationState
 }
-export const appsAdapter: EntityAdapter<Operation> = createEntityAdapter<
-    Operation
->();
-const initialStates: OperationState = {
-    operations: [],
-    selectedUserId: null,
-    loaded: false,
-    loading: false,
-    error: ""
+export const OperationAdapter: EntityAdapter<Operation> = createEntityAdapter<Operation>();
+export const DefaultState: OperationState = {
+    ids: [],
+    entities: {},
+    selectedById: null,
+    loadSeccess: false,
+    getting: false,
+    error: " "
 }
-export const initialState = appsAdapter.getInitialState(initialStates);
+
+
+export const initialState = OperationAdapter.getInitialState(DefaultState);
 export function OperationReducer(state = initialState, action: oppActions.Action): OperationState {
     switch (action.type) {
-        case oppActions.OperationActionTypes.LOAD_OPERATIONS:
-            {
-                return {
-                    ...state,
-                    loaded: false,
-                    loading: true
-                }
-            }
         case oppActions.OperationActionTypes.LOAD_OPERATIONS_SUCCESS: {
-            return {
+            return OperationAdapter.addAll(action.payload, {
                 ...state,
-                loading: false,
-                loaded: true,
-                operations: action.playload
-            }
+                loadSeccess: false,
+                getting: true,
+
+            });
         }
         case oppActions.OperationActionTypes.LOAD_OPERATIONS_FAILED: {
             return {
                 ...state,
-                loading: false,
-                loaded: false,
-                error: action.playload
+                entities: {},
+                getting: false,
+                loadSeccess: false,
+                error: action.payload
             }
         }
         /*******************************delete Operation***************************************************** */
         case oppActions.OperationActionTypes.DELETE_OPERATIONS_SUCCESS: {
-            return appsAdapter.removeOne(action.payload, state);
+            return OperationAdapter.removeOne(action.payload, state);
         }
         case oppActions.OperationActionTypes.DELETE_OPERATIONS_FAIL: {
             return {
@@ -61,11 +55,25 @@ export function OperationReducer(state = initialState, action: oppActions.Action
                 error: action.payload
             };
         }
-        /**********************************create appointement********************************************************************* */
+        /**********************************create Operation********************************************************************* */
         case oppActions.OperationActionTypes.CREATE_OPERATIONS_SUCCESS: {
-            return appsAdapter.addOne(action.payload, state);
+            return OperationAdapter.addOne(action.payload, state);
         }
         case oppActions.OperationActionTypes.CREATE_OPERATIONS_FAIL: {
+            return {
+                ...state,
+                error: action.payload
+            };
+        }
+        /************************Update Operation********************************* */
+
+        case oppActions.OperationActionTypes.UPDATE_OPERATIONS_SUCCESS: {
+            const changes = action.payload;
+            const id = changes.id;
+            console.log("updateOne:hello: ", changes)
+            return OperationAdapter.updateOne({ id, changes }, state);
+        }
+        case oppActions.OperationActionTypes.UPDATE_OPERATIONS_FAIL: {
             return {
                 ...state,
                 error: action.payload

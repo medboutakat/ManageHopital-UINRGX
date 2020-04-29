@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import * as appsActions from './operation.actions'
 import { Operation } from '../operation';
-import { map, mergeMap, catchError } from "rxjs/operators";
+import { map, mergeMap, catchError, tap } from "rxjs/operators";
 import { Action } from '@ngrx/store';
 
 @Injectable()
@@ -64,4 +64,24 @@ export class OpEffect {
             )
         )
     );
+    /********************************update operation******************************************* */
+
+    @Effect()
+    UpdateOperation$: Observable<Action> = this.actions$.pipe(
+        ofType<appsActions.UpdateOperation>(
+            appsActions.OperationActionTypes.UPDATE_OPERATIONS
+        ),
+        map((Actions: appsActions.UpdateOperation) => Actions.payload),
+        mergeMap((payload: Operation) =>
+            this.service.update(payload).pipe(
+                map(
+                    (payloadResult: Operation) => new appsActions.UpdateOperationSuccess(payload)
+                ),
+                tap((data) => {
+                    console.log(data);
+                }),
+                catchError(err => of(new appsActions.UpdateOperationFail(err))
+                )
+            )
+        ));
 }
