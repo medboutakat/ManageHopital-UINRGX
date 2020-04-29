@@ -25,11 +25,24 @@ export class InvoiceEditComponent implements OnInit {
     produForm.insert(index+1, this.BuildFormDynamic(detailRow)); 
   } 
 
-  deleteDetail(item, index) { 
+  deleteDetail(index) { 
     var produForm=this.invoiceForm.get("productForm") 
     console.log("produForm",produForm); 
     produForm.removeAt(index);
     this.recalculate();
+  }
+
+  move(index,seed:number){
+    var produForm=this.invoiceForm.get("productForm")    
+
+    var indexSeed=index+seed;
+    
+    console.log("indexSeed",indexSeed)
+
+    if((seed==-1 && indexSeed<=0) ||(seed==1 && indexSeed>=produForm.controls.length))
+     return
+    [produForm.controls[index], produForm.controls[indexSeed]] = [produForm.controls[indexSeed], produForm.controls[index]];   
+    
   }
 
   valueChanged(formDetail) { 
