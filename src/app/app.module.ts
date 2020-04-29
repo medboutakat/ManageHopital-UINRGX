@@ -75,6 +75,7 @@ import { CityEffect } from './cities/store/city.effect';
 import { OperationCatEffect } from './operations/store/category.effects';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -112,8 +113,13 @@ import { OperationCatEffect } from './operations/store/category.effects';
     MaterialComponent,
     MaterialEditComponent,
     DeleteDoctorComponent,
+
     DoctorEditCatComponent,
     PaymentComponent
+
+    DoctorEditCatComponent,
+    PaymentComponent
+
   ],
   entryComponents: [
     DialogComponent,
@@ -129,7 +135,8 @@ import { OperationCatEffect } from './operations/store/category.effects';
     DialogComponent,
     MenuComponent,
     DoctorEditComponent,
-    DoctorEditCatComponent
+    DoctorEditCatComponent,
+    PaymentComponent,
   ],
 
 

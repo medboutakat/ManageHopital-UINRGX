@@ -1,5 +1,7 @@
+import { GeneratedId } from '../generatedId';
+
 export class Contact {
-    id: string;
+    id : string ;
     email: string;
     phone1: string;
     phone2: string;
@@ -9,4 +11,4 @@ export class Contact {
     adress2: string;
     other: string;
     cityId: number;
-}
+} 

@@ -138,14 +138,12 @@ export class DoctorCatComponent implements OnInit {
     this.reload();
   }
 
-  delete() {
-
-    //salam ajghla
+  delete() { 
     if (confirm("Are You Sure You want to Delete the User?")) {
       var cat = <doctorCat>this.selection.selected[0];
       console.log("cat => ", cat);
       this.store.dispatch(new ActionsFile.DeleteDoctorCat(cat.id));
       this.remplir()
-    }
+    } 
   }
 }

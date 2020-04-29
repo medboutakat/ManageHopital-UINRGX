@@ -10,15 +10,45 @@ import { ContactService } from '../contact.service';
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
-})
+}) 
 export class ContactComponent implements OnInit, ControlValueAccessor {
   fb: FormBuilder;
   showSave: boolean;
-  cities
+  cities 
 
+  @Input()  contactFormControl: FormGroup;   
+  @Input() reserveAction: any ; 
+  
+ onChange: any = () => {}
+ onTouch: any = () => {}
+ val= "" // this is the updated value that the class accesses
 
-
-  val = "" // this is the updated value that the class accesses
+  set value(val){ 
+    // this value is updated by programmatic changes 
+    console.log("val",val)
+    if( val !== undefined && this.val !== val){
+      this.val = val
+      this.onChange(val)
+      this.onTouch(val)
+     }
+ }
+  writeValue(value: any): void {
+    console.log("val",value)
+    this.value = value
+  }
+  registerOnChange(fn: any): void {
+    console.log("val",fn)
+    this.onChange = fn;
+  }
+  registerOnTouched(fn: any): void {
+    this.onTouch = fn; 
+     val = "" // this is the updated value that the class accesses
+ 
+  }
+  setDisabledState?(isDisabled: boolean): void {
+    throw new Error("Method not implemented.");
+  }
+  
 
   constructor(private store: Store<any>) {
     this.store.dispatch(new citiesActions.LoadCities());
@@ -26,7 +56,7 @@ export class ContactComponent implements OnInit, ControlValueAccessor {
       this.cities = res.cities.Cities
       console.log("city", this.cities)
     })
-  }
+  } 
   ngOnInit() {
 
   }
@@ -58,7 +88,6 @@ export class ContactComponent implements OnInit, ControlValueAccessor {
   }
   setDisabledState?(isDisabled: boolean): void {
     throw new Error("Method not implemented.");
-  }
-
+  } 
 
 }

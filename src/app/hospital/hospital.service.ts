@@ -46,4 +46,15 @@ export class HospitalService implements ICrudService<Hospital>{
       return this.http.delete(`${this.ReponseUrl}/${payload}`);
     } 
 
+
+    
+    updateImages(payloadId: string,payloadData: FormData): Observable<Hospital> {
+      console.log("service update",payloadId)
+  
+      return this.http.put<Hospital>(
+        `${this.ReponseUrl}/${payloadId}`,
+        payloadData
+      );
+    }
+
 }
