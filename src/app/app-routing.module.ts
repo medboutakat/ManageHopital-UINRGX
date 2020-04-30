@@ -16,7 +16,7 @@ import { SigninComponent } from './connexion/signin/signin.component';
 import { InvoiceEditComponent } from './invoices/invoice-edit/invoice-edit.component';
 import { CategoryComponent } from './category/category.component';
 import { ContactComponent } from './chat/contact/contact.component'
-import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
+import { InvoiceComponent } from './invoices/invoice/invoice.component';
 import { MaterialComponent } from './material/material/material.component';
 import { MaterialEditComponent } from './material/material-edit/material-edit.component';
 import { PaymentComponent } from './payment/payment/payment.component';
@@ -41,7 +41,7 @@ const routes: Routes = [
       { path: 'doctorCategory', component: DoctorCatComponent, pathMatch: 'full' },
       { path: 'invoice', component: InvoiceEditComponent, pathMatch: 'full' },
       { path: 'invoicewithId/:id', component: InvoiceEditComponent, pathMatch: 'full' },
-      { path: 'invoices', component: InvoiceListComponent, pathMatch: 'full' },
+      { path: 'invoices', component: InvoiceComponent, pathMatch: 'full' },
       { path: 'operation', component: OperationComponent, pathMatch: 'full' },
       { path: 'Category', component: CategoryComponent, pathMatch: 'full' },
       { path: 'chat', component: ContactComponent, pathMatch: 'full' },

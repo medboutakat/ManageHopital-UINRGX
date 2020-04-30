@@ -17,11 +17,11 @@ import { PageConfig } from 'src/app/config';
  */
 
 @Component({
-  selector: 'invoice-list',
-  templateUrl: './invoice-list.component.html',
-  styleUrls: ['./invoice-list.component.scss']
+  selector: 'invoice',
+  templateUrl: './invoice.component.html',
+  styleUrls: ['./invoice.component.scss']
 })
-export class InvoiceListComponent implements OnInit {
+export class InvoiceComponent implements OnInit {
 
   constructor(private store: Store<any>, private router: Router) {
 

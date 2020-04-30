@@ -43,7 +43,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 // import { MaterialModule } from './material/material/material.module'; 
 import { DetailsComponent } from './invoices/details/details.component';
-import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
+import { InvoiceComponent } from './invoices/invoice/invoice.component';
 import { MaterialComponent } from './material/material/material.component';
 import { MaterialEditComponent } from './material/material-edit/material-edit.component';
 import { AppointementReducer } from './appointements/store/appointement.reducer';
@@ -106,7 +106,7 @@ import { AppointemntEditComponent } from './appointements/appointemnt-edit/appoi
     DeleteOperationComponent,
     MenuComponent,
     SigninComponent,
-    InvoiceListComponent,
+    InvoiceComponent,
     HospitalCatEditComponent,
     MaterialComponent,
     MaterialEditComponent,
