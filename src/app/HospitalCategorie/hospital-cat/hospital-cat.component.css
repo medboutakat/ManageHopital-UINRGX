@@ -2,20 +2,4 @@ table {
   width: 100%;
   position: relative;
   
-}
-.flotting-btn {
-  font-size: xxx-large;
-  text-decoration: none;
-  /* background-color: #5cb85c; */
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  margin-top: -55px;
-
-  right: 150px;
-  cursor: pointer;
-}
+} 
