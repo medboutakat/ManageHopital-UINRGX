@@ -1,18 +1,19 @@
  
-  <div style="float: right;">
-    <app-menu 
-   [IsRowSelected]="IsRowSelected" 
-   [addAction]="add" 
-   [editAction]="edit" 
-   [deleteAction]="delete" 
-   [IsMultple]="IsMultple"
-   [isNew]="isNew" 
-   ></app-menu>
-    </div>
 
-<mat-form-field class="example-full-width">
+<mat-form-field class="example-full-width" style="float: right;">
   <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
 </mat-form-field>
+
+<div style="float: left;">
+<app-menu 
+[IsRowSelected]="IsRowSelected" 
+[addAction]="add" 
+[editAction]="edit" 
+[deleteAction]="delete" 
+[IsMultple]="IsMultple"
+[isNew]="isNew" 
+></app-menu>
+</div>
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
   <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef>

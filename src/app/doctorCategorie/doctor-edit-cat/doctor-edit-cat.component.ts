@@ -46,8 +46,7 @@ export class DoctorEditCatComponent implements OnInit {
       console.log("Update")
       this.store.dispatch(new ActionsFile.UpdateDoctorCat(newApp));
     }
-    this.DoctorcAT.reset();
-    console.log("success")    
+    this.DoctorcAT.reset();   
   }
 }
 

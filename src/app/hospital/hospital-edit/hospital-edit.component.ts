@@ -103,7 +103,7 @@ export class HospitalEditComponent implements OnInit {
       console.log("Update")
       this.store.dispatch(new ActionsFiles.UpdateHospital(newApp));
     }
-    // this.HospitalForm.reset(); 
+    this.HospitalForm.reset(); 
   }
 
 

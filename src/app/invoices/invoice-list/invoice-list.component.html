@@ -1,9 +1,18 @@
-<app-menu [IsRowSelected]="IsRowSelected" [addAction]="add" [editAction]="edit" [deleteAction]="delete"
-  [IsMultple]="IsMultple" [isNew]="isNew"></app-menu>
-<mat-form-field class="example-full-width">
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+<mat-form-field class="example-full-width" style="float: right;">
+  <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
 </mat-form-field>
+
+<div style="float: left;">
+<app-menu 
+[IsRowSelected]="IsRowSelected" 
+[addAction]="add" 
+[editAction]="edit" 
+[deleteAction]="delete" 
+[IsMultple]="IsMultple"
+[isNew]="isNew" 
+></app-menu>
+</div>
+
 <payment [finalAmount]="finalAmount" *ngIf="IsRowSelected && finalAmount > 0" style="float: right; align-self: flex-end;"></payment>
 <div class="mat-elevation-z8">
 

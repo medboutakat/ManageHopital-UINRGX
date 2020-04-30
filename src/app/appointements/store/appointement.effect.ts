@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import * as appsActions from './appointement.actions'
 import { Appointement } from '../appointement.model';
-import { map, mergeMap, catchError } from "rxjs/operators";
+import { map, mergeMap, catchError, tap } from "rxjs/operators";
 import { Action } from '@ngrx/store';
 
 @Injectable()
@@ -64,4 +64,24 @@ export class AppointementEffect {
             )
         )
     );
+
+
+    @Effect()
+    UpdateAppointement$: Observable<Action> = this.actions$.pipe(
+        ofType<appsActions.UpdateAppointements>(
+            appsActions.AppointementActionTypes.UPDATE
+        ),
+        map((Actions : appsActions.UpdateAppointements)=>Actions.payload),
+        mergeMap((payload : Appointement )=>
+        this.service. update(payload).pipe(
+            map(
+                (payloadResult : Appointement)=>new appsActions.UpdateAppointementsSuccess(payload)
+            ), 
+            tap((data) => {
+                     console.log(data);
+            }),
+           catchError(err =>of(new appsActions.UpdateAppointementsFail(err))
+        )
+        )
+    )); 
 }

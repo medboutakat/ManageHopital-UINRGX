@@ -6,11 +6,10 @@ import { EntityAdapter, createEntityAdapter, EntityState } from '@ngrx/entity';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 export interface AppointementState extends EntityState<Appointement>{
-    selectedUserId: number | null,
-    Appointements : Appointement[]
-    loading: boolean,
-    loaded: boolean,
-    error: string
+    selectedUserId : string | null;
+    loading: boolean;
+    loaded: boolean;
+    error: string;
 }
 
 export interface store extends fromRoot.StoreInterface {
@@ -18,13 +17,12 @@ export interface store extends fromRoot.StoreInterface {
 }
 export const appsAdapter: EntityAdapter<Appointement> = createEntityAdapter< Appointement>();
 const initialStates: AppointementState = {
-    ids :[],
-    entities :{},
-    Appointements :[],
-    selectedUserId: null,
-    loaded: false,
-    loading: false,
-    error: ""
+    ids: [],
+  entities: {},
+  selectedUserId: null,
+  loading: false,
+  loaded: false,
+  error: " ",
 }
 
 
@@ -38,7 +36,7 @@ export function AppointementReducer(state = initialState, action: AppsActions.Ac
                 ...state,
                 loading: false,
                 loaded: true,
-                Appointements:action.playload
+                
                 }) 
         }
         case AppsActions.AppointementActionTypes.LOAD_APPOINTEMENTS_FAILED: {
@@ -70,6 +68,18 @@ export function AppointementReducer(state = initialState, action: AppsActions.Ac
                 error: action.payload
             };
         }
+        case AppsActions.AppointementActionTypes.UPDATE_SUCCESS: { 
+            const changes = action.payload;
+            const id = changes.id;
+            console.log("updateOne:hello: ", changes)
+            return appsAdapter.updateOne({ id,changes } , state);
+          }
+          case AppsActions.AppointementActionTypes.UPDATE_FAIL: {
+            return {
+              ...state,
+              error: action.payload,
+            };
+          }
         default: {
             return state
         }
