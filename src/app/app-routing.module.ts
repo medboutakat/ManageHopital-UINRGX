@@ -20,6 +20,7 @@ import { InvoiceComponent } from './invoices/invoice/invoice.component';
 import { MaterialComponent } from './material/material/material.component';
 import { MaterialEditComponent } from './material/material-edit/material-edit.component';
 import { PaymentComponent } from './payment/payment/payment.component';
+import { ProductCatComponent } from './productCategorie/product-cat/product-cat.component';
 
 
 
@@ -39,6 +40,7 @@ const routes: Routes = [
       { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' },
       { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full' },
       { path: 'doctorCategory', component: DoctorCatComponent, pathMatch: 'full' },
+      { path: 'productCategory', component: ProductCatComponent, pathMatch: 'full' },
       { path: 'invoice', component: InvoiceEditComponent, pathMatch: 'full' },
       { path: 'invoicewithId/:id', component: InvoiceEditComponent, pathMatch: 'full' },
       { path: 'invoices', component: InvoiceComponent, pathMatch: 'full' },
