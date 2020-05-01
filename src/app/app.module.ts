@@ -71,6 +71,8 @@ import { CityReducer } from './cities/store/city.reducer';
 import { CityEffect } from './cities/store/city.effect';
 import { OperationCatEffect } from './operations/store/category.effects';
 import { AppointemntEditComponent } from './appointements/appointemnt-edit/appointemnt-edit.component';
+import { ProductCatComponent } from './productCategorie/product-cat/product-cat.component';
+import { ProductEditCatComponent } from './productCategorie/product-edit-cat/product-edit-cat.component';
 
 
 
@@ -113,7 +115,10 @@ import { AppointemntEditComponent } from './appointements/appointemnt-edit/appoi
     DeleteDoctorComponent,
 
     DoctorEditCatComponent,
-    PaymentComponent 
+    PaymentComponent,
+
+    ProductCatComponent,
+    ProductEditCatComponent
 
   ],
   entryComponents: [
@@ -131,6 +136,9 @@ import { AppointemntEditComponent } from './appointements/appointemnt-edit/appoi
     DoctorEditComponent,
     DoctorEditCatComponent,
     PaymentComponent,
+
+    //ProductEditComponent,
+    ProductEditCatComponent
   ],
 
 
