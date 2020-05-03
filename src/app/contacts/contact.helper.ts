@@ -14,7 +14,7 @@ export class ContactHelper {
 
     return fb.group({
       id: new FormControl(contact.id),
-      email: new FormControl(contact.email, [Validators.required, Validators.email]),
+      email: new FormControl(contact.email, Validators.email),
       fax: new FormControl(contact.fax),
       phone1: new FormControl(contact.phone1),
       adress1: new FormControl(contact.phone2),
