@@ -117,9 +117,6 @@ import { OperationCatEffect } from './operations/store/category.effects';
     DoctorEditCatComponent,
     PaymentComponent
 
-    DoctorEditCatComponent,
-    PaymentComponent
-
   ],
   entryComponents: [
     DialogComponent,
