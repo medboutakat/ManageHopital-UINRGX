@@ -12,7 +12,7 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 import { DoctorCatComponent } from './doctorCategorie/doctor-cat/doctor-cat.component';
 import { OperationComponent } from './operations/operation/operation.component';
-import { SigninComponent } from './connexion/signin/signin.component';
+import { SigninComponent } from './Auth/signin/signin.component';
 import { InvoiceEditComponent } from './invoices/invoice-edit/invoice-edit.component';
 import { CategoryComponent } from './category/category.component';
 import { ContactComponent } from './chat/contact/contact.component'
