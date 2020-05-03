@@ -75,6 +75,8 @@ import { OperationCatEffect } from './operations/store/category.effects';
 import { AppointemntEditComponent } from './appointements/appointemnt-edit/appointemnt-edit.component';
 import { ProductCatComponent } from './productCategorie/product-cat/product-cat.component';
 import { ProductEditCatComponent } from './productCategorie/product-edit-cat/product-edit-cat.component';
+import { ProductComponent } from './products/product/product.component';
+import { ProductEditComponent } from './products/product-edit/product-edit.component';
 
 
 
@@ -120,7 +122,9 @@ import { ProductEditCatComponent } from './productCategorie/product-edit-cat/pro
     PaymentComponent,
 
     ProductCatComponent,
-    ProductEditCatComponent
+    ProductEditCatComponent,
+    ProductComponent,
+    ProductEditComponent
 
   ],
   entryComponents: [

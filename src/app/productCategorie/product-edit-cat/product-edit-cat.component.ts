@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { Store } from '@ngrx/store';
 import * as fromProductCat from "src/app/productCategorie/Store/reducer";
 import { productCat } from '../productCat.module';
@@ -19,7 +19,8 @@ export class ProductEditCatComponent implements OnInit {
 
   constructor( private fb: FormBuilder,
     private store: Store<fromProductCat.ProductCatState>,
-     @Inject(MAT_DIALOG_DATA) data
+     @Inject(MAT_DIALOG_DATA) data,
+     private dialog:MatDialog
      )
    {
     this._currentObject=  data._currentObject;
@@ -47,6 +48,7 @@ export class ProductEditCatComponent implements OnInit {
       console.log("Update")
       this.store.dispatch(new ActionsFile.UpdateProductCat(newApp));
     }
-    this.ProductcAT.reset();   
+    this.ProductcAT.reset();
+    this.dialog.closeAll();
   }
 }
