@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 export class ProductEditCatComponent implements OnInit {
   ProductcAT: FormGroup;
   listProductCatValues: any; 
- _currentObject: productCat; 
+  _currentObject: productCat; 
   title:any; 
 
   constructor( private fb: FormBuilder,
@@ -23,11 +23,12 @@ export class ProductEditCatComponent implements OnInit {
      )
    {
     this._currentObject=  data._currentObject;
-    this.title=  data.title; 
+    this.title=  data.title;
       console.log("current Object: ", this._currentObject);
       
-    this.reserve=this.reserve.bind(this);      
+    this.reserve=this.reserve.bind(this);
    }
+
   ngOnInit() {
     this.ProductcAT = this.fb.group({
       id: [this._currentObject.id, Validators.required],
@@ -49,4 +50,3 @@ export class ProductEditCatComponent implements OnInit {
     this.ProductcAT.reset();   
   }
 }
-

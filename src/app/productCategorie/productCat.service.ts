@@ -15,7 +15,7 @@ export class productCatService implements ICrudService<productCat>{
     RepByDm: productCat[];
   
     constructor(private http: HttpClient) {
-       this.ReponseUrl=RootURLS.getUrl("productCategory");
+       this.ReponseUrl=RootURLS.getUrl("ProductCategory");
       //this.ReponseUrl="144.91.76.98:5000/api/ProductCategories";
     }
     

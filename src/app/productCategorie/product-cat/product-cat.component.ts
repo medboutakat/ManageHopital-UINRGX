@@ -23,7 +23,7 @@ export class ProductCatComponent implements OnInit {
   listProductCat :any;
   dataSource : any;
   selection: SelectionModel<productCat>;
-  displayedColumns: string[] = ['select', 'name', 'description']//['select', 'name', 'remark'];
+  displayedColumns: string[] = ['select', 'name', 'remark'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   applyFilter(filtervalue: string) {
     this.dataSource.filter = filtervalue.trim().toLowerCase();
