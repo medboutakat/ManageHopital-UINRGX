@@ -54,12 +54,14 @@ import { HospitalEffect } from './hospital/store/Effect';
 import { HospitalReducer } from './hospital/store/Reducer';
 import { HospitalCatReducer } from './HospitalCategorie/Store/reducer';
 import { DoctorCatReducer } from './doctorCategorie/Store/reducer';
+import { ProductCatReducer } from './productCategorie/Store/reducer';
 import { doctorReducer } from './doctors/doctor-store/doctor.reducer';
 import { InvoiceReducer } from './invoices/store/Reducer';
 import { OperationCategoryReducer } from './operations/store/category.reducer';
 import { OperationReducer } from './operations/store/operations.reducer';
 import { DoctorsEffect } from './doctors/doctor-store/doctor.effect';
 import { DoctorCatEffect } from './doctorCategorie/Store/Effect';
+import { ProductCatEffect } from './productCategorie/Store/Effect';
 import { OpEffect } from './operations/store/operation.effect';
 import { HospitalCatEditComponent } from './HospitalCategorie/hospital-cat-edit/hospital-edit-cat.component';
 import { InvoiceEffect } from './invoices/store/Effect';
@@ -189,6 +191,7 @@ import { ProductComponent } from './product/product/product.component';
     StoreModule.forFeature("HospitalCat", HospitalCatReducer),
     StoreModule.forFeature("Hospital", HospitalReducer),
     StoreModule.forFeature("DoctorCat", DoctorCatReducer),
+    StoreModule.forFeature("ProductCat", ProductCatReducer),
     StoreModule.forFeature("doctors", doctorReducer),
     StoreModule.forFeature("appointements", AppointementReducer),
     StoreModule.forRoot({"invoices": InvoiceReducer }),
@@ -196,7 +199,7 @@ import { ProductComponent } from './product/product/product.component';
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
     StoreModule.forFeature("cities", CityReducer),
     StoreModule.forFeature("products", ProductReducer),
-    EffectsModule.forRoot([CityEffect, HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect, OperationCatEffect,ProductEffect]),
+    EffectsModule.forRoot([CityEffect, HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect, OperationCatEffect,ProductCatEffect,ProductEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]
