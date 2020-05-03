@@ -185,7 +185,7 @@ import { ProductEditCatComponent } from './productCategorie/product-edit-cat/pro
     StoreModule.forFeature("DoctorCat", DoctorCatReducer),
     StoreModule.forFeature("doctors", doctorReducer),
     StoreModule.forFeature("appointements", AppointementReducer),
-    StoreModule.forRoot({ "invoices": InvoiceReducer }),
+    StoreModule.forRoot({"invoices": InvoiceReducer }),
     StoreModule.forFeature("operations", OperationReducer),
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
     StoreModule.forFeature("cities", CityReducer),
