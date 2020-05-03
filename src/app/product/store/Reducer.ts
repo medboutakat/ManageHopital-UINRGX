@@ -1,5 +1,5 @@
 import * as ActionsFile from 'src/app/Product/store/Action'
-import * as fromRoot from 'src/app/Product/state/app-state'
+import * as fromRoot from 'src/app/product/store/app-state'
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { EntityAdapter ,createEntityAdapter ,EntityState} from '@ngrx/entity';
 import { Product } from '../product.model';

@@ -1,5 +1,5 @@
 import * as ActionsFile from 'src/app/doctorCategorie/Store/Action'
-import * as fromRoot from 'src/app/doctorCategorie/State/app-state'
+import * as fromRoot from 'src/app/doctorCategorie/Store/app-state'
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { doctorCat } from '../doctorCat.module';
 import { EntityAdapter, createEntityAdapter, EntityState } from '@ngrx/entity'; 
