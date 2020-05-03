@@ -191,7 +191,7 @@ import { ProductComponent } from './product/product/product.component';
     StoreModule.forFeature("DoctorCat", DoctorCatReducer),
     StoreModule.forFeature("doctors", doctorReducer),
     StoreModule.forFeature("appointements", AppointementReducer),
-    StoreModule.forRoot({ "invoices": InvoiceReducer }),
+    StoreModule.forRoot({"invoices": InvoiceReducer }),
     StoreModule.forFeature("operations", OperationReducer),
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
     StoreModule.forFeature("cities", CityReducer),
