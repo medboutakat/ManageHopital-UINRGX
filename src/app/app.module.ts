@@ -29,8 +29,7 @@ import { SigninComponent } from './connexion/signin/signin.component';
 import { AppstoreModule } from './appstore/appstore.module';
 
 import { OperationComponent } from './operations/operation/operation.component';
-import { AddOperationComponent } from './operations/add-operation/add-operation.component';
-import { DeleteOperationComponent } from './operations/delete-operation/delete-operation.component';
+import { AddOperationComponent } from './operations/edit-operation/add-operation.component';
 
 import { SavePdfComponent } from './appointements/save-pdf/save-pdf.component';
 
@@ -48,7 +47,6 @@ import { MaterialComponent } from './material/material/material.component';
 import { MaterialEditComponent } from './material/material-edit/material-edit.component';
 import { AppointementReducer } from './appointements/store/appointement.reducer';
 import { AppointementEffect } from './appointements/store/appointement.effect';
-import { DeleteDoctorComponent } from './doctors/delete-doctor/delete-doctor.component';
 
 import { HospitalEffect } from './hospital/store/Effect';
 import { HospitalReducer } from './hospital/store/Reducer';
@@ -108,15 +106,13 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
     AppointemntEditComponent,
     SavePdfComponent,
     HospitalEditComponent,
-
-    DeleteOperationComponent,
     MenuComponent,
     SigninComponent,
     InvoiceComponent,
     HospitalCatEditComponent,
     MaterialComponent,
     MaterialEditComponent,
-    DeleteDoctorComponent,
+
 
     DoctorEditCatComponent,
     PaymentComponent,
@@ -131,11 +127,8 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
 
     HospitalEditComponent,
     AppointemntEditComponent,
-    SavePdfComponent,
 
     AddOperationComponent,
-    DeleteOperationComponent,
-    DeleteDoctorComponent,
     HospitalCatEditComponent,
 
     MenuComponent,
@@ -184,7 +177,6 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([]),
     EffectsModule.forRoot([]),
-
     // StoreModule.forRoot({"Hospital": HospitalReducer}),
     StoreModule.forFeature("HospitalCat", HospitalCatReducer),
     StoreModule.forFeature("Hospital", HospitalReducer),

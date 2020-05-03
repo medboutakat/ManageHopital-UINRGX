@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-doctor-edit',
   templateUrl: './doctor-edit.component.html',
-  styleUrls: ['./doctor-edit.component.scss',"../../app-edit.component.scss"]
+  styleUrls: ['./doctor-edit.component.scss', "../../app-edit.component.scss"]
 })
 export class DoctorEditComponent implements OnInit {
 
@@ -21,18 +21,18 @@ export class DoctorEditComponent implements OnInit {
   cities
   _currentObject: Doctor;
   title: any;
-  dialogref; 
+  dialogref;
   doctorForm: FormGroup;
-  contactForm: FormGroup;  
+  contactForm: FormGroup;
   _currentContactObject: Contact;
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) data, private store: Store, private dialog: MatDialog) { 
-   
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) data, private store: Store, private dialog: MatDialog) {
+
     this._currentObject = data._currentObject;
-    if(this._currentObject==null)
-    this._currentObject=new Doctor();
-    
-    this._currentContactObject=this._currentObject.contactModel==null?new Contact(): this._currentContactObject;
+    if (this._currentObject == null)
+      this._currentObject = new Doctor();
+
+    this._currentContactObject = this._currentObject.contactModel == null ? new Contact() : this._currentContactObject;
 
     this.title = data.title;
     console.log("current Object: ", this._currentObject);
@@ -40,15 +40,16 @@ export class DoctorEditComponent implements OnInit {
 
   ngOnInit() {
 
-    this.contactForm =  ContactHelper.getFormBuilder(this.fb, this._currentContactObject);
+    this.contactForm = ContactHelper.getFormBuilder(this.fb, this._currentContactObject);
 
     this.doctorForm = this.fb.group({
-      id: new FormControl(this._currentObject.id),
-      firstName: new FormControl(this._currentObject.firstName),
-      lastName: new FormControl(this._currentObject.lastName),
-      sexe: new FormControl(this._currentObject.sexe),
+      id: new FormControl(this._currentObject.id, Validators.required),
+      firstName: new FormControl(this._currentObject.firstName, Validators.required),
+      lastName: new FormControl(this._currentObject.lastName, Validators.required),
+      sexe: new FormControl(this._currentObject.sexe, Validators.required),
       contactForm: this.contactForm
-    }); 
+    });
+
 
   }
 

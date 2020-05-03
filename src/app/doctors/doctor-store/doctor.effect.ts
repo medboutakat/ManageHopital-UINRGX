@@ -72,15 +72,15 @@ export class DoctorsEffect {
             doctorActions.DoctorActionTypes.UPDATE_DOCTOR
         ),
         map((Actions: doctorActions.UpdateDoctor) => Actions.payload),
-        mergeMap((doctor: Doctor) =>
-            this.locationServ.update(doctor).pipe(
+        mergeMap((payload: Doctor) =>
+            this.locationServ.update(payload).pipe(
                 map(
-                    (updateDoctor: Doctor) =>
-                        new doctorActions.UpdateDoctorSuccess({
-                            id: updateDoctor.id,
-                            changes: updateDoctor
-                        }),
-                    catchError(err => of(new doctorActions.UpdateDoctorCatFail(err)))
+                    (payloadResult: Doctor) => new doctorActions.UpdateDoctorSuccess(payload)
+                ),
+                tap((data) => {
+                    console.log(data);
+                }),
+                catchError(err => of(new doctorActions.UpdateDoctorCatFail(err))
                 )
             )
         ));

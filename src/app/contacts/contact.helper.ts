@@ -3,18 +3,18 @@ import { ICrudService } from '../icrud-service';
 import { Contact } from './contact.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RootURLS } from '../root-urls';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactHelper {
- 
-  static getFormBuilder(fb: FormBuilder,contact:Contact)
-  {
-   return fb.group({
+
+  static getFormBuilder(fb: FormBuilder, contact: Contact) {
+
+    return fb.group({
       id: new FormControl(contact.id),
-      email: new FormControl(contact.email),
+      email: new FormControl(contact.email, [Validators.required, Validators.email]),
       fax: new FormControl(contact.fax),
       phone1: new FormControl(contact.phone1),
       adress1: new FormControl(contact.phone2),
@@ -22,6 +22,8 @@ export class ContactHelper {
       phone2: new FormControl(contact.phone2),
       adress2: new FormControl(contact.adress2),
       whatsApp: new FormControl(contact.whatsApp),
-    }); 
+    });
   }
+
+
 }
