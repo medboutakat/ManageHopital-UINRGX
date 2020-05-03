@@ -29,7 +29,7 @@ export const initialState = OperationAdapter.getInitialState(DefaultState);
 export function OperationReducer(state = initialState, action: oppActions.Action): OperationState {
     switch (action.type) {
         case oppActions.OperationActionTypes.LOAD_OPERATIONS_SUCCESS: {
-            return OperationAdapter.addAll(action.playload, {
+            return OperationAdapter.addAll(action.payload, {
                 ...state,
                 loadSeccess: false,
                 getting: true,
@@ -42,7 +42,7 @@ export function OperationReducer(state = initialState, action: oppActions.Action
                 entities: {},
                 getting: false,
                 loadSeccess: false,
-                error: action.playload
+                error: action.payload
             }
         }
         /*******************************delete Operation***************************************************** */

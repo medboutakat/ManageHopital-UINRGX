@@ -10,17 +10,17 @@ import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-
 import { AppointementComponent } from './appointements/appointement/appointement.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
-import { DoctorCatComponent } from './doctors/doctorCategorie/doctor-cat/doctor-cat.component';
-import { SignupComponent } from './connexion/signup/signup.component';
+import { DoctorCatComponent } from './doctorCategorie/doctor-cat/doctor-cat.component';
 import { OperationComponent } from './operations/operation/operation.component';
 import { SigninComponent } from './connexion/signin/signin.component';
 import { InvoiceEditComponent } from './invoices/invoice-edit/invoice-edit.component';
 import { CategoryComponent } from './category/category.component';
 import { ContactComponent } from './chat/contact/contact.component'
-import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
+import { InvoiceComponent } from './invoices/invoice/invoice.component';
 import { MaterialComponent } from './material/material/material.component';
 import { MaterialEditComponent } from './material/material-edit/material-edit.component';
 import { PaymentComponent } from './payment/payment/payment.component';
+import { ProductCatComponent } from './productCategorie/product-cat/product-cat.component';
 
 
 
@@ -40,9 +40,10 @@ const routes: Routes = [
       { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' },
       { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full' },
       { path: 'doctorCategory', component: DoctorCatComponent, pathMatch: 'full' },
+      { path: 'productCategory', component: ProductCatComponent, pathMatch: 'full' },
       { path: 'invoice', component: InvoiceEditComponent, pathMatch: 'full' },
       { path: 'invoicewithId/:id', component: InvoiceEditComponent, pathMatch: 'full' },
-      { path: 'invoices', component: InvoiceListComponent, pathMatch: 'full' },
+      { path: 'invoices', component: InvoiceComponent, pathMatch: 'full' },
       { path: 'operation', component: OperationComponent, pathMatch: 'full' },
       { path: 'Category', component: CategoryComponent, pathMatch: 'full' },
       { path: 'chat', component: ContactComponent, pathMatch: 'full' },

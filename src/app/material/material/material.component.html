@@ -1,4 +1,19 @@
-<p>material works!</p>
+
+<mat-form-field class="example-full-width" style="float: right;">
+  <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
+</mat-form-field>
+
+<div style="float: left;">
+<app-menu 
+[IsRowSelected]="IsRowSelected" 
+[addAction]="add" 
+[editAction]="edit" 
+[deleteAction]="delete" 
+[IsMultple]="IsMultple"
+[isNew]="isNew" 
+></app-menu>
+</div>
+
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
   

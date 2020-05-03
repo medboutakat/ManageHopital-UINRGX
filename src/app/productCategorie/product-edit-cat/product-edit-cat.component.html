@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>{{title}}</h1>
+   <p style="font-weight: lighter;color: gray;font-size: 14px;" class="card-text">to reserve, please fill this
+     informations</p>
+      
+       <form [formGroup]="ProductcAT">
+        <div class="form-row">
+          <input type="hidden" formControlName="id">
+          <div class="form-group col-md-6">
+            <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="name"  
+              placeholder="NAME">
+          </div>
+          <div class="form-group col-md-6">
+            <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="remark"  
+              placeholder="REMARK">
+          </div> 
+        </div>
+        <button type="submit" class="btn btn-success btn-block" (click)="reserve()">Reserve</button><br>
+      </form>
+   </div> 

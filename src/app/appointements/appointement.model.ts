@@ -1,5 +1,7 @@
-export class Appointement {
-    id: string;
+import { GeneratedId } from '../generatedId';
+
+export class Appointement  extends GeneratedId{
+
     identityNo: string;
     assurance: string;
     callTimeStamp: string;
