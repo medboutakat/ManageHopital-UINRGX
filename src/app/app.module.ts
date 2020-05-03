@@ -73,6 +73,10 @@ import { OperationCatEffect } from './operations/store/category.effects';
 import { AppointemntEditComponent } from './appointements/appointemnt-edit/appointemnt-edit.component';
 import { ProductCatComponent } from './productCategorie/product-cat/product-cat.component';
 import { ProductEditCatComponent } from './productCategorie/product-edit-cat/product-edit-cat.component';
+import { ProductEffect } from './product/store/Effect';
+import { ProductReducer } from './product/store/Reducer';
+import { ProductEditComponent } from './product/product-edit/product-edit.component';
+import { ProductComponent } from './product/product/product.component';
 
 
 
@@ -118,7 +122,10 @@ import { ProductEditCatComponent } from './productCategorie/product-edit-cat/pro
     PaymentComponent,
 
     ProductCatComponent,
-    ProductEditCatComponent
+    ProductEditCatComponent,
+    ProductComponent,
+    ProductEditComponent,
+
 
   ],
   entryComponents: [
@@ -136,9 +143,8 @@ import { ProductEditCatComponent } from './productCategorie/product-edit-cat/pro
     DoctorEditComponent,
     DoctorEditCatComponent,
     PaymentComponent,
-
-    //ProductEditComponent,
-    ProductEditCatComponent
+    ProductEditCatComponent,    
+    ProductEditComponent,
   ],
 
 
@@ -189,7 +195,8 @@ import { ProductEditCatComponent } from './productCategorie/product-edit-cat/pro
     StoreModule.forFeature("operations", OperationReducer),
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
     StoreModule.forFeature("cities", CityReducer),
-    EffectsModule.forRoot([CityEffect, HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect, OperationCatEffect]),
+    StoreModule.forFeature("products", ProductReducer),
+    EffectsModule.forRoot([CityEffect, HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect, OperationCatEffect,ProductEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]

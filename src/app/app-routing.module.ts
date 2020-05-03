@@ -21,6 +21,7 @@ import { MaterialComponent } from './material/material/material.component';
 import { MaterialEditComponent } from './material/material-edit/material-edit.component';
 import { PaymentComponent } from './payment/payment/payment.component';
 import { ProductCatComponent } from './productCategorie/product-cat/product-cat.component';
+import { ProductComponent } from './product/product/product.component';
 
 
 
@@ -48,6 +49,7 @@ const routes: Routes = [
       { path: 'Category', component: CategoryComponent, pathMatch: 'full' },
       { path: 'chat', component: ContactComponent, pathMatch: 'full' },
       { path: 'material', component: MaterialComponent, pathMatch: 'full' },
+      { path: 'product', component: ProductComponent, pathMatch: 'full' },
       { path: 'materialedit', component: MaterialEditComponent, pathMatch: 'full' },
       { path: 'addDoctor', component: DoctorEditComponent, pathMatch: 'full' },
       { path: 'payment', component: PaymentComponent, pathMatch: 'full' }
