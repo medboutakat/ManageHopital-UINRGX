@@ -75,10 +75,10 @@ import { OperationCatEffect } from './operations/store/category.effects';
 import { AppointemntEditComponent } from './appointements/appointemnt-edit/appointemnt-edit.component';
 import { ProductCatComponent } from './productCategorie/product-cat/product-cat.component';
 import { ProductEditCatComponent } from './productCategorie/product-edit-cat/product-edit-cat.component';
-import { ProductEffect } from './product/store/Effect';
-import { ProductReducer } from './product/store/Reducer';
-import { ProductEditComponent } from './product/product-edit/product-edit.component';
-import { ProductComponent } from './product/product/product.component';
+import { ProductEffect } from './products/store/Effect';
+import { ProductReducer } from './products/store/Reducer';
+import { ProductEditComponent } from './products/product-edit/product-edit.component';
+import { ProductComponent } from './products/product/product.component';
 
 
 
