@@ -98,18 +98,18 @@ export class DeleteProductCatFail implements Action{
 }
 
 export type ProductCatction=
- LoadProductCat | 
- LoadProductCatSuccess |
-LoadProductCatFail
+ LoadProductCat 
+|LoadProductCatSuccess 
+|LoadProductCatFail
 // CreateHospitalCat
 |CreateProductCat
 | CreateProductCatSuccess
 |CreateProductCatFail
  // DeleteHospitalCat
- |DeleteProductCat
- |DeleteProductCatSuccess
- |DeleteProductCatFail
- //  UpdateHospitalCat
- |UpdateProductCat
- |UpdateProductCatSuccess
- |UpdateProductCatFail
+|DeleteProductCat
+|DeleteProductCatSuccess
+|DeleteProductCatFail
+//  UpdateHospitalCat
+|UpdateProductCat
+|UpdateProductCatSuccess
+|UpdateProductCatFail
