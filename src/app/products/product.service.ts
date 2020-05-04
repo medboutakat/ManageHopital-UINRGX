@@ -35,11 +35,11 @@ export class ProductService implements ICrudService<Product>{
 
     const params = new HttpParams().set('ID', payload.id+'');
     const headers = new HttpHeaders().set('content-type', 'application/json');
-    var body = {
-      product: payload.product, description: payload.description, qte: payload.qte, price: payload.price,
-      tax: payload.tax, toal:payload.total,id: payload.id
-    }
-    return this.http.put<Product>(`${this.ReponseUrl}/${payload.id}`, body, { headers, params })
+    // var body = {
+    //   product: payload.product, description: payload.description, qte: payload.qte, price: payload.price,
+    //   tax: payload.tax, toal:payload.total,id: payload.id
+    // }
+    return this.http.put<Product>(`${this.ReponseUrl}/${payload.id}`, payload, { headers, params })
   }
 
   delete(payload: string) {

@@ -25,8 +25,7 @@ import { DoctorComponent } from './doctors/doctor/doctor.component';
 import { CategoryComponent } from './category/category.component';
 import { HospitalEditComponent } from './hospital/hospital-edit/hospital-edit.component';
 import { SignupComponent } from './connexion/signup/signup.component';
-import { SigninComponent } from './connexion/signin/signin.component';
-import { AppstoreModule } from './appstore/appstore.module';
+import { SigninComponent } from './connexion/signin/signin.component'; 
 
 import { OperationComponent } from './operations/operation/operation.component';
 import { AddOperationComponent } from './operations/edit-operation/add-operation.component';
@@ -73,8 +72,11 @@ import { OperationCatEffect } from './operations/store/category.effects';
 import { AppointemntEditComponent } from './appointements/appointemnt-edit/appointemnt-edit.component';
 import { ProductCatComponent } from './productCategorie/product-cat/product-cat.component';
 import { ProductEditCatComponent } from './productCategorie/product-edit-cat/product-edit-cat.component';
-import { ProductComponent } from './products/product/product.component';
+import { ProductEffect } from './products/store/Effect';
+import { ProductReducer } from './products/store/Reducer';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
+import { ProductComponent } from './products/product/product.component';
+import { AppStoreModule } from './app-store.module';
 
 
 
@@ -120,8 +122,8 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
 
     ProductCatComponent,
     ProductEditCatComponent,
-    ProductComponent,
-    ProductEditComponent
+    ProductComponent, 
+    ProductEditComponent 
   ],
   entryComponents: [
 
@@ -135,60 +137,27 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
     DoctorEditComponent,
     DoctorEditCatComponent,
     PaymentComponent,
-
-    //ProductEditComponent,
-    ProductEditCatComponent
+    ProductEditCatComponent,    
+    ProductEditComponent,
   ],
 
 
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
-
-    AgGridModule.withComponents([DoctorCatComponent]),
-
+    ReactiveFormsModule, 
+    AgGridModule.withComponents([DoctorCatComponent]), 
     AppRoutingModule,
     BrowserAnimationsModule,
-    DefaultModule,
-
-    [MatDialogModule],
-
-
-    // AppstoreModule,
-    HttpClientModule,
-
-    // MaterialModule,
-
-    StoreDevtoolsModule.instrument(),
-
+    DefaultModule, 
+    [MatDialogModule], 
+    HttpClientModule, 
     ChatModule,
     AngularMaterialModule,
     MatBottomSheetModule,
     MatTooltipModule,
-    StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([]),
-    HttpClientModule,
-    StoreModule.forRoot({}),
-    StoreModule.forRoot({ router: routerReducer }),
-    StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
-    StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([]),
-    EffectsModule.forRoot([]),
-    // StoreModule.forRoot({"Hospital": HospitalReducer}),
-    StoreModule.forFeature("HospitalCat", HospitalCatReducer),
-    StoreModule.forFeature("Hospital", HospitalReducer),
-    StoreModule.forFeature("DoctorCat", DoctorCatReducer),
-    StoreModule.forFeature("ProductCat", ProductCatReducer),
-    StoreModule.forFeature("doctors", doctorReducer),
-    StoreModule.forFeature("appointements", AppointementReducer),
-    StoreModule.forRoot({ "invoices": InvoiceReducer }),
-    StoreModule.forFeature("operations", OperationReducer),
-    StoreModule.forFeature("operationsCat", OperationCategoryReducer),
-    StoreModule.forFeature("cities", CityReducer),
-    EffectsModule.forRoot([CityEffect, HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect, OperationCatEffect, ProductCatEffect]),
+    HttpClientModule, 
+    AppStoreModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

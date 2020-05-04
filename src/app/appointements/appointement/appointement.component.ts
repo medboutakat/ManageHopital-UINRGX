@@ -9,6 +9,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Appointement } from '../appointement.model';
 import { PageConfig } from 'src/app/config';
 import { AppointemntEditComponent } from 'src/app/appointements/appointemnt-edit/appointemnt-edit.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -35,7 +36,7 @@ export class AppointementComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
 
-  constructor(private store: Store<any>, public dialog: MatDialog) {
+  constructor(private store: Store<any>, public dialog: MatDialog,private router: Router) {
     this.delete = this.delete.bind(this);
     this.add = this.add.bind(this);
     this.edit = this.edit.bind(this);
@@ -118,10 +119,11 @@ export class AppointementComponent implements OnInit {
 
     dialogConfig.data = {
       _currentObject: cat,
-      title: "Update " + cat.id,
+      title: "Update " + cat.identityNo,
     };
     this.dialog.open(AppointemntEditComponent, dialogConfig);
     console.log("updated");
     this.reload();
   }
+
 }
