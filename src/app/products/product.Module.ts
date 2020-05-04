@@ -2,10 +2,12 @@ import { GeneratedId } from 'src/app/generatedId';
 
 export class Product extends GeneratedId{
      id: string;
-     product: string;
-     description: string;
-     qte: number;
-     price: number;
-     tax: number;
-     total: number;
+     name: string;
+     quantityPerUnit: string;
+     unitPrice: string;
+     unitsInStock: number;
+     unitsOnOrder: number;
+     reorderLevel: number;
+     discontinued: number; 
+     productCategoryId:string;
 }

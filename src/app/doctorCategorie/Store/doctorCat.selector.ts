@@ -1,7 +1,7 @@
-import {IAppState} from 'src/app/doctorCategorie/State/app-state';
+import {IAppState} from 'src/app/doctorCategorie/Store/app-state';
 import {createSelector} from '@ngrx/store'; 
 
-import { doctorCat } from './doctorCat.module';
+import { doctorCat } from '../doctorCat.module';
 
 const _selectAll = (state: IAppState<doctorCat>) => state.all; 
 

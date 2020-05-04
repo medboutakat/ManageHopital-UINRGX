@@ -16,32 +16,32 @@ export class ProductEffect {
 
     @Effect()
     LoadProduct$: Observable<Action> = this.actions$.pipe(
-        ofType<ActionsFile.LoadProduct>(
+        ofType<ActionsFile.Load>(
             ActionsFile.ProductActionType.LOAD
         ),
-        mergeMap((Actions: ActionsFile.LoadProduct) =>
+        mergeMap((Actions: ActionsFile.Load) =>
             this.ProductServ.getAll().pipe(
                 map(
                     (ProductCats: Product[]) =>
-                        new ActionsFile.LoadProductSuccess(ProductCats)
+                        new ActionsFile.LoadSuccess(ProductCats)
                 ),
-                catchError(err => of(new ActionsFile.LoadProductFail(err)))
+                catchError(err => of(new ActionsFile.LoadFail(err)))
             )
         )
     )
 
     @Effect()
     LoadOneProduct$: Observable<Action> = this.actions$.pipe(
-        ofType<ActionsFile.LoadOneProduct>(
+        ofType<ActionsFile.LoadOne>(
             ActionsFile.ProductActionType.LOAD_ONE
         ),
-        mergeMap((action: ActionsFile.LoadOneProduct) =>
+        mergeMap((action: ActionsFile.LoadOne) =>
             this.ProductServ.getById(action.payload).pipe(
                 map(
                     (Product: Product) =>
-                        new ActionsFile.LoadOneProductSuccess(Product)
+                        new ActionsFile.LoadOneSuccess(Product)
                 ),
-                catchError(err => of(new ActionsFile.LoadOneProductFail(err)))
+                catchError(err => of(new ActionsFile.LoadOneFail(err)))
             )
         )
     )
@@ -50,17 +50,17 @@ export class ProductEffect {
 
     @Effect()
     CreateProduct$: Observable<Action> = this.actions$.pipe(
-        ofType<ActionsFile.CreateProduct>(
+        ofType<ActionsFile.Create>(
             ActionsFile.ProductActionType.CREATE
         ),
-        map((Actions: ActionsFile.CreateProduct) => Actions.payload),
+        map((Actions: ActionsFile.Create) => Actions.payload),
         mergeMap((ProductCateg: Product) =>
             this.ProductServ.add(ProductCateg).pipe(
                 map(
                     (NewProductCats: Product) =>
-                        new ActionsFile.CreateProductSuccess(NewProductCats)
+                        new ActionsFile.CreateSuccess(NewProductCats)
                 ),
-                catchError(err => of(new ActionsFile.CreateProductFail(err)))
+                catchError(err => of(new ActionsFile.CreateFail(err)))
             )
         )
     );
@@ -69,19 +69,19 @@ export class ProductEffect {
 
     @Effect()
     UpdateProduct$: Observable<Action> = this.actions$.pipe(
-        ofType<ActionsFile.UpdateProduct>(
+        ofType<ActionsFile.Update>(
             ActionsFile.ProductActionType.UPDATE
         ),
-        map((Actions: ActionsFile.UpdateProduct) => Actions.payload),
+        map((Actions: ActionsFile.Update) => Actions.payload),
         mergeMap((Product: Product) =>
             this.ProductServ.update(Product).pipe(
                 map(
                     (updateProduct: Product) =>
-                        new ActionsFile.UpdateProductSuccess({
+                        new ActionsFile.UpdateSuccess({
                             id: updateProduct.id,
                             changes: updateProduct
                         }),
-                    catchError(err => of(new ActionsFile.UpdateProductFail(err)))
+                    catchError(err => of(new ActionsFile.UpdateFail(err)))
                 )
             )
         ));
@@ -90,14 +90,14 @@ export class ProductEffect {
 
     @Effect()
     DeleteProduct$: Observable<Action> = this.actions$.pipe(
-        ofType<ActionsFile.DeleteProduct>(
+        ofType<ActionsFile.Delete>(
             ActionsFile.ProductActionType.DELETE
         ),
-        map((Actions: ActionsFile.DeleteProduct) => Actions.payload),
+        map((Actions: ActionsFile.Delete) => Actions.payload),
         mergeMap((id: string) =>
             this.ProductServ.delete(id).pipe(
-                map(() => new ActionsFile.DeleteProductSuccess(id)),
-                catchError(err => of(new ActionsFile.DeleteProductFail(err)))
+                map(() => new ActionsFile.DeleteSuccess(id)),
+                catchError(err => of(new ActionsFile.DeleteFail(err)))
             )
         )
     );

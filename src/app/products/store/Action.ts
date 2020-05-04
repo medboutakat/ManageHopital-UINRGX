@@ -1,125 +1,127 @@
 
 import { Store, Action } from '@ngrx/store' 
-import { Update } from '@ngrx/entity';
-import { Product } from '../product.Module';
+import { Update as EntityUpdate  } from '@ngrx/entity';
+import { Product as Model } from '../product.Module';
  
 export enum ProductActionType {
-    LOAD = "[Product] load Product",
-    LOAD_SUCCESS = "[Product] LOAD Product Success",
-    LOAD_FAIL = "[Product] Load Product Fail ",
+    LOAD = "[Model] load Product",
+    LOAD_SUCCESS = "[Model] LOAD Product Success",
+    LOAD_FAIL = "[Model] Load Product Fail ",
     AddAll = "AddAll", 
 
-    LOAD_ONE = "[Product] Load One Product",
-    LOAD_ONE_SUCCESS = "[Product] Load One Product Success",
-    LOAD_ONE_FAIL = "[Product] Load One Product Fail",
+    LOAD_ONE = "[Model] Load One Product",
+    LOAD_ONE_SUCCESS = "[Model] Load One Product Success",
+    LOAD_ONE_FAIL = "[Model] Load One Product Fail",
 
-    CREATE = "[Product] Create Product",
-    CREATE_SUCCESS = "[Product] Create Product Success",
-    CREATE_FAIL = "[Product] Create Product Fail ",
+    CREATE = "[Model] Create Product",
+    CREATE_SUCCESS = "[model] Create Product Success",
+    CREATE_FAIL = "[Model] Create Product Fail ",
 
-    UPDATE = "[Product] Update Product",
-    UPDATE_SUCCESS = "[Product] Update Product Success",
-    UPDATE_FAIL = "[Product] Update Product Fail ",
+    UPDATE = "[Model] Update Product",
+    UPDATE_SUCCESS = "[Model] Update Product Success",
+    UPDATE_FAIL = "[Model] Update Product Fail ",
 
-    DELETE = "[Product] Delete Product",
-    DELETE_SUCCESS = "[Product] Delete Product Success",
-    DELETE_FAIL = "[Product] Delete Product Fail ",
+    DELETE = "[Model] Delete Product",
+    DELETE_SUCCESS = "[Model] Delete Product Success",
+    DELETE_FAIL = "[Model] Delete Product Fail ",
 }
 
-export class LoadProduct implements Action{
+export class Load implements Action{
     readonly type = ProductActionType.LOAD
 }
-export class LoadProductSuccess implements Action{
+export class LoadSuccess implements Action{
     readonly type = ProductActionType.LOAD_SUCCESS;
 
- constructor(public payload: Product[]){ }
+ constructor(public payload: Model[]){ }
 
 }
-export class LoadProductFail implements Action{
+export class LoadFail implements Action{
     readonly type = ProductActionType.LOAD_FAIL
     constructor(public payload: string){}
 }
 
-export class LoadOneProduct implements Action {
+export class LoadOne implements Action {
     readonly type = ProductActionType.LOAD_ONE;
     constructor(public payload: string) {}
 }
   
-export class LoadOneProductSuccess implements Action {
+export class LoadOneSuccess implements Action {
     readonly type = ProductActionType.LOAD_ONE_SUCCESS;
-    constructor(public payload: Product) {}
+    constructor(public payload: Model) {}
 }
 
-export class LoadOneProductFail implements Action {
+export class LoadOneFail implements Action {
     readonly type = ProductActionType.LOAD_ONE_FAIL;
     constructor(public payload: string) {}
 }
 
 // Add Productegory
-export class CreateProduct implements Action{
+export class Create implements Action{
     readonly type = ProductActionType.CREATE;
-    constructor(public payload: Product){}
+    constructor(public payload: Model){}
 }
-export class CreateProductSuccess implements Action{
+export class CreateSuccess implements Action{
     readonly type = ProductActionType.CREATE_SUCCESS;
-    constructor(public payload: Product){}
+    constructor(public payload: Model){}
 }
-export class CreateProductFail implements Action{
+export class CreateFail implements Action{
     readonly type = ProductActionType.CREATE_FAIL
     constructor(public payload: string){}
 }
-
-//Update Productegory
-export class UpdateProduct implements Action{
+ 
+//Update
+export class Update implements Action {
     readonly type = ProductActionType.UPDATE;
-    constructor(public payload: Product){}
+    constructor(public payload: Model) {
+      console.log("Action Update", payload);
+    }
 }
 
-export class UpdateProductSuccess implements Action{
+export class UpdateSuccess implements Action{
     readonly type = ProductActionType.UPDATE_SUCCESS;
-    constructor(public payload: Update<Product>){}
+    constructor(public payload: EntityUpdate<Model>){}
 }
 
-export class UpdateProductFail implements Action{
+export class UpdateFail implements Action{
     readonly type = ProductActionType.UPDATE_FAIL
     constructor(public payload: string){}
 }
 
 // delete Productegory
 
-export class DeleteProduct implements Action{
+export class Delete implements Action{
     readonly type = ProductActionType.DELETE;
  constructor(public payload: string){}
 
 }
-export class DeleteProductSuccess implements Action{
+export class DeleteSuccess implements Action{
     readonly type = ProductActionType.DELETE_SUCCESS;
     constructor(public payload: string) {}
 }
 
-export class DeleteProductFail implements Action{
+export class DeleteFail implements Action{
     readonly type = ProductActionType.DELETE_FAIL
     constructor(public payload: string){}
 }
 
 export type ProductAction=
 // LoadProduct
-LoadProduct 
-|LoadProductSuccess  
-|LoadProductFail
+Load
+|LoadSuccess  
+|LoadFail
 // LoadProduct
-|LoadOneProduct 
-|LoadOneProductSuccess  
-|LoadOneProductFail
+|LoadOne 
+|LoadOneSuccess  
+|LoadOneFail
 // CreateProduct
- |CreateProduct
- |CreateProductSuccess
- |CreateProductFail
+ |Create
+ |CreateSuccess
+ |CreateFail
 //  UpdateProduct
- |UpdateProduct
- |UpdateProductSuccess
- |UpdateProductFail
+ |Update
+ |UpdateSuccess
+ |UpdateFail
  // DeleteProduct
- |DeleteProduct
- |DeleteProductSuccess
- |DeleteProductFail;
+ |Delete
+ |DeleteSuccess
+ |DeleteFail;
