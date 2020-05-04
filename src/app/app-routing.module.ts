@@ -4,7 +4,7 @@ import { DefaultComponent } from './layouts/default/default.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { PostsComponent } from './modules/posts/posts.component';
 import { DoctorComponent } from './doctors/doctor/doctor.component';
-import { HopitalComponent } from './hospital/hopital/hopital.component';
+import { HopitalComponent } from './hospitals/hopital/hopital.component';
 import { HomeComponent } from './home/home.component';
 import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-cat.component';
 import { AppointementComponent } from './appointements/appointement/appointement.component';

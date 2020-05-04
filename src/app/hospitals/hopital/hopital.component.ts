@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { Store } from "@ngrx/store";
-import * as ActionsFile from "src/app/HospitalCategorie/Store/Action";
-import { Observable } from "rxjs";
-import { HospitalCat } from "src/app/HospitalCategorie/hospitalCat.model";
-import * as ActionsFiles from "src/app/hospital/store/Action";
+import * as ActionsFile from "../../HospitalCategorie/Store/Action";
+import { Observable } from "rxjs"; 
+import * as ActionsFiles from "../../hospitals/store/Action";
 import {
  MatBottomSheet,
   MatDialog,

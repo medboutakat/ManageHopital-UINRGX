@@ -5,10 +5,10 @@ import { Store } from '@ngrx/store';
 import * as ActionsFile from 'src/app/HospitalCategorie/Store/Action'
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Hospital } from '../hospital.model';
-import { Contact } from 'src/app/contacts/contact.model';
-import * as ActionsFiles from 'src/app/hospital/store/Action'
-import { City } from 'src/app/cities/city';
-import { ContactHelper } from 'src/app/contacts/contact.helper';
+import { Contact } from '../../contacts/contact.model';
+import * as ActionsFiles from '../../hospitals/store/Action'
+import { City } from '../../cities/city';
+import { ContactHelper } from '../../contacts/contact.helper';
 import { environment } from 'src/environments/environment';
 
 @Component({

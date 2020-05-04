@@ -5,20 +5,26 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultModule } from './layouts/default/default.module'; 
 import { AppointementComponent } from './appointements/appointement/appointement.component';
-import { HopitalComponent } from './hospital/hopital/hopital.component';
+
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
-import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-cat.component';
 import { SelectComponent } from './select/select.component';
 
 import { ContactComponent } from './contacts/contact/contact.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatBottomSheetModule, MatTooltipModule, MatCellDef } from '@angular/material'
-import { DoctorCatComponent } from './doctorCategorie/doctor-cat/doctor-cat.component';
+
+import { CategoryComponent } from './category/category.component';
 
 import { DoctorComponent } from './doctors/doctor/doctor.component';
-import { CategoryComponent } from './category/category.component';
-import { HospitalEditComponent } from './hospital/hospital-edit/hospital-edit.component';
+import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
+import { DoctorCatComponent } from './doctorCategorie/doctor-cat/doctor-cat.component';
+import { DoctorEditCatComponent } from './doctorCategorie/doctor-edit-cat/doctor-edit-cat.component';
+
+import { HopitalComponent } from './hospitals/hopital/hopital.component';
+import { HospitalEditComponent } from './hospitals/hospital-edit/hospital-edit.component';
+import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-cat.component';
+
 import { SignupComponent } from './Auth/signup/signup.component';
 import { SigninComponent } from './Auth/signin/signin.component'; 
 
@@ -40,8 +46,6 @@ import { MaterialComponent } from './material/material/material.component';
 import { MaterialEditComponent } from './material/material-edit/material-edit.component';   
 import { HospitalCatEditComponent } from './HospitalCategorie/hospital-cat-edit/hospital-edit-cat.component'; 
  
-import { DoctorEditCatComponent } from './doctorCategorie/doctor-edit-cat/doctor-edit-cat.component';
-import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 import { PaymentComponent } from './payment/payment/payment.component';
 import { InvoiceEditComponent } from './invoices/invoice-edit/invoice-edit.component'; 
 import { AppointemntEditComponent } from './appointements/appointemnt-edit/appointemnt-edit.component';

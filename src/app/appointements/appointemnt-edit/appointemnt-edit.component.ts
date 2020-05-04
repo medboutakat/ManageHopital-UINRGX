@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as ActionsFiles from "src/app/hospital/store/Action";
+import * as ActionsFiles from "src/app/hospitals/store/Action";
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -18,8 +18,7 @@ export class AppointemntEditComponent implements OnInit {
   addForm: FormGroup
 
   _currentObject: Appointement; 
-  title:any;
-  emptyGuid="00000000-0000-0000-0000-000000000000";
+  title:any; 
     
      constructor(private store: Store<any>, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) data) {
     this.store.dispatch(new ActionsFiles.LoadHospital());
