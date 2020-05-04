@@ -1,14 +1,24 @@
 <form [formGroup]="HospitalCatForm">
-    <div class="form-row">
-      <input type="hidden" formControlName="id">
-      <div class="form-group col-md-6">
-        <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="name"  
-          placeholder="NAME">
+  <div class="form-row">
+    <input type="hidden" formControlName="id">
+    <div class="form-group col-md-6">
+      <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="name"
+        placeholder="NAME" minlength="3" required>
+      <div
+        *ngIf="HospitalCatForm.controls['name'].invalid && (HospitalCatForm.controls['name'].dirty || HospitalCatForm.controls['name'].touched) "
+        class="alert alert-danger">
+        <div *ngIf="HospitalCatForm.controls['name'].errors.required">
+          <p class="p1">Name is required</p>
+        </div>
+        <div *ngIf="HospitalCatForm.controls['name'].errors.minlength">
+          <p class="p2">Name must be at least 3 characters long.</p>
+        </div>
       </div>
-      <div class="form-group col-md-6">
-        <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="remark"  
-          placeholder="REMARK">
-      </div> 
     </div>
-    <button type="submit" class="btn btn-success btn-block" (click)="reserve()">Reserve</button><br>
-  </form>
+    <div class="form-group col-md-6">
+      <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="remark"
+        placeholder="REMARK">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-success btn-block" (click)="reserve()">Reserve</button><br>
+</form>

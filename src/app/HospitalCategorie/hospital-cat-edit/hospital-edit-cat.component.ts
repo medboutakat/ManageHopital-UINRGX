@@ -4,7 +4,7 @@ import * as fromHospitalCat from "src/app/HospitalCategorie/Store/reducer";
 import { Store } from '@ngrx/store';
 import * as ActionsFile from 'src/app/HospitalCategorie/Store/Action'
 import { HospitalCat } from '../hospitalCat.model';
-import { MAT_DIALOG_DATA } from '@angular/material'; 
+import { MAT_DIALOG_DATA } from '@angular/material';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -12,25 +12,24 @@ import { environment } from 'src/environments/environment';
   templateUrl: './hospital-cat-edit.component.html',
   styleUrls: ['./hospital-cat-edit.component.scss']
 })
-export class  HospitalCatEditComponent implements OnInit {
+export class HospitalCatEditComponent implements OnInit {
 
   HospitalCatForm: FormGroup;
-  listhopitalCatValues: any; 
- _currentObject: HospitalCat; 
-  title:any;
-  emptyGuid="00000000-0000-0000-0000-000000000000";
+  listhopitalCatValues: any;
+  _currentObject: HospitalCat;
+  title: any;
+  emptyGuid = "00000000-0000-0000-0000-000000000000";
 
-  constructor( private fb: FormBuilder,
+  constructor(private fb: FormBuilder,
     private store: Store<fromHospitalCat.HospitalCatState>,
-     @Inject(MAT_DIALOG_DATA) data
-     )
-   {
-    this._currentObject=  data._currentObject;
-    this.title=  data.title; 
-      console.log("current Object: ", this._currentObject);
-      
-    this.reserve=this.reserve.bind(this);      
-   }
+    @Inject(MAT_DIALOG_DATA) data
+  ) {
+    this._currentObject = data._currentObject;
+    this.title = data.title;
+    console.log("current Object: ", this._currentObject);
+
+    this.reserve = this.reserve.bind(this);
+  }
   ngOnInit() {
     this.HospitalCatForm = this.fb.group({
       id: [this._currentObject.id, Validators.required],
@@ -41,15 +40,15 @@ export class  HospitalCatEditComponent implements OnInit {
 
   reserve() {
     var newApp = this.HospitalCatForm.value as HospitalCat
-    if(newApp.id==environment.EmptyGuid){ 
+    if (newApp.id == environment.EmptyGuid) {
       console.log("Add")
       this.store.dispatch(new ActionsFile.CreateHospitalCat(newApp));
     }
-    else{ 
+    else {
       console.log("Update")
       this.store.dispatch(new ActionsFile.UpdateHospitalCat(newApp));
     }
     this.HospitalCatForm.reset();
-    console.log("success")    
+    console.log("success")
   }
 }
