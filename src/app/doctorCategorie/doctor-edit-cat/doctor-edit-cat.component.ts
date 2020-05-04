@@ -6,6 +6,7 @@ import * as fromDoctorCat from "src/app/doctorCategorie/Store/reducer";
 import { doctorCat } from '../doctorCat.module';
 import * as ActionsFile from 'src/app/doctorCategorie/Store/Action'
 import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'doctor-edit-cat',
   templateUrl: './doctor-edit-cat.component.html',
