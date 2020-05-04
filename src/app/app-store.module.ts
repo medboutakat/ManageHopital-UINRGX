@@ -53,3 +53,27 @@ import { ProductEffect } from './products/store/Effect';
   ]
 })
 export class AppStoreModule { }
+
+
+
+/**
+ *     StoreModule.forRoot({}),
+    StoreModule.forRoot({ router: routerReducer }),
+    StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([]),
+    // StoreModule.forRoot({"Hospital": HospitalReducer}),
+    StoreModule.forFeature("HospitalCat", HospitalCatReducer),
+    StoreModule.forFeature("Hospital", HospitalReducer),
+    StoreModule.forFeature("DoctorCat", DoctorCatReducer),
+    StoreModule.forFeature("ProductCat", ProductCatReducer),
+    StoreModule.forFeature("doctors", doctorReducer),
+    StoreModule.forFeature("appointements", AppointementReducer),
+    StoreModule.forRoot({ "invoices": InvoiceReducer }),
+    StoreModule.forFeature("operations", OperationReducer),
+    StoreModule.forFeature("operationsCat", OperationCategoryReducer),
+    StoreModule.forFeature("cities", CityReducer),
+    EffectsModule.forRoot([CityEffect, HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect, OperationCatEffect, ProductCatEffect]),
+    
+ */
