@@ -1,36 +1,36 @@
 
 import { Store, Action } from '@ngrx/store'
-import { productCat } from '../productCat.Module';
+import { productCat as Model } from '../productCat.Module';
  
 export enum ProductCatActionType {
-    LOAD = "[ProductCat] load ProductCat",
-    LOAD_SUCCESS = "[ProductCat] LOAD ProductCat Success",
-    LOAD_FAIL = "[ProductCat] Load ProductCat Fail ",
+    LOAD = "[Model] load ProductCat",
+    LOAD_SUCCESS = "[Model] LOAD ProductCat Success",
+    LOAD_FAIL = "[Model] Load ProductCat Fail ",
     AddAll = "AddAll",
      
-    CREATE = "[ProductCat] Create ProductCat",
-    CREATE_SUCCESS = "[ProductCat] Create ProductCat Success",
-    CREATE_FAIL = "[ProductCat] Create ProductCat Fail ",
+    CREATE = "[Model] Create ProductCat",
+    CREATE_SUCCESS = "[Model] Create ProductCat Success",
+    CREATE_FAIL = "[Model] Create ProductCat Fail ",
 
-    UPDATE = "[ProductCat] Update ProductCat",
-    UPDATE_SUCCESS = "[ProductCat] Update ProductCat Success",
-    UPDATE_FAIL = "[ProductCat] Update ProductCat Fail ",
+    UPDATE = "[Model] Update ProductCat",
+    UPDATE_SUCCESS = "[Model] Update ProductCat Success",
+    UPDATE_FAIL = "[Model] Update ProductCat Fail ",
 
-    DELETE= "[ProductCat] Delete ProductCat",
-    DELETE_SUCCESS = "[ProductCat] Delete ProductCat Success",
-    DELETE_FAIL = "[ProductCat] Delete ProductCat Fail ",
+    DELETE= "[Model] Delete ProductCat",
+    DELETE_SUCCESS = "[Model] Delete ProductCat Success",
+    DELETE_FAIL = "[Model] Delete ProductCat Fail ",
 }
 
-export class LoadProductCat implements Action{
+export class Load implements Action{
     readonly type = ProductCatActionType.LOAD
 }
-export class LoadProductCatSuccess implements Action{
+export class LoadSuccess implements Action{
     readonly type = ProductCatActionType.LOAD_SUCCESS;
 
- constructor(public payload: productCat[]){ }
+ constructor(public payload: Model[]){ }
 
 }
-export class LoadProductCatFail implements Action{
+export class LoadFail implements Action{
     readonly type = ProductCatActionType.LOAD_FAIL
     constructor(public payload: string){}
 }
@@ -39,36 +39,36 @@ export class LoadProductCatFail implements Action{
 
 // Add HospitalCategory
 
-export class CreateProductCat implements Action{
+export class Create implements Action{
     readonly type = ProductCatActionType.CREATE;
- constructor(public payload: productCat){}
+ constructor(public payload: Model){}
 
 }
-export class CreateProductCatSuccess implements Action{
+export class CreateSuccess implements Action{
     readonly type = ProductCatActionType.CREATE_SUCCESS;
-    constructor(public payload: productCat){}
+    constructor(public payload: Model){}
 }
-export class CreateProductCatFail implements Action{
+export class CreateFail implements Action{
     readonly type = ProductCatActionType.CREATE_FAIL
     constructor(public payload: string){}
 }
 
 //Update hospitalCategory
-export class UpdateProductCat implements Action{
+export class Update implements Action{
     readonly type = ProductCatActionType.UPDATE;
-    constructor(public payload: productCat){     
+    constructor(public payload: Model){     
        console.log("Action Update",payload);
     }
    }
    
-   export class UpdateProductCatSuccess implements Action{
+   export class UpdateSuccess implements Action{
     readonly type = ProductCatActionType.UPDATE_SUCCESS;
-    constructor(public payload: productCat){        
+    constructor(public payload: Model){        
        console.log("Action update success=>",payload);
     }
    }
    
-   export class UpdateProductCatFail implements Action{
+   export class UpdateFail implements Action{
     readonly type = ProductCatActionType.UPDATE_FAIL
     constructor(public payload: string){
        console.log("Action update fail",payload);
@@ -78,11 +78,11 @@ export class UpdateProductCat implements Action{
 
 // delete HospitalCategory
 
-export class DeleteProductCat implements Action{
+export class Delete implements Action{
     readonly type = ProductCatActionType.DELETE;
     constructor(public payload: string){}
 }
-export class DeleteProductCatSuccess implements Action{
+export class DeleteSuccess implements Action{
     readonly type = ProductCatActionType.DELETE_SUCCESS;
 
     constructor(public payload: string){
@@ -90,7 +90,7 @@ export class DeleteProductCatSuccess implements Action{
     }
 }
 
-export class DeleteProductCatFail implements Action{
+export class DeleteFail implements Action{
     readonly type = ProductCatActionType.DELETE_FAIL
     constructor(public payload: string){
         console.log("Action delete fail",payload);
@@ -98,18 +98,18 @@ export class DeleteProductCatFail implements Action{
 }
 
 export type ProductCatction=
- LoadProductCat 
-|LoadProductCatSuccess 
-|LoadProductCatFail
+ Load 
+|LoadSuccess 
+|LoadFail
 // CreateHospitalCat
-|CreateProductCat
-| CreateProductCatSuccess
-|CreateProductCatFail
+|Create
+|CreateSuccess
+|CreateFail
  // DeleteHospitalCat
-|DeleteProductCat
-|DeleteProductCatSuccess
-|DeleteProductCatFail
+|Delete
+|DeleteSuccess
+|DeleteFail
 //  UpdateHospitalCat
-|UpdateProductCat
-|UpdateProductCatSuccess
-|UpdateProductCatFail
+|Update
+|UpdateSuccess
+|UpdateFail

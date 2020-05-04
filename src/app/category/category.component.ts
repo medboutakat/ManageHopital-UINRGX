@@ -10,12 +10,12 @@ import { HospitalCatComponent } from '../HospitalCategorie/hospital-cat/hospital
 })
 export class CategoryComponent implements ControlValueAccessor {
 
-  @Input()  category: FormGroup;  
-
+  @Input()  categoryForm: FormGroup;   
   @Input() reserveAction: any ; 
- onChange: any = () => {}
- onTouch: any = () => {}
- val= "" // this is the updated value that the class accesses
+
+  onChange: any = () => {}
+  onTouch: any = () => {}
+  val= "" // this is the updated value that the class accesses
 
   constructor() { }
   set value(val){ 

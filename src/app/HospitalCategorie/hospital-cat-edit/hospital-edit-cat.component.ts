@@ -41,11 +41,11 @@ export class  HospitalCatEditComponent implements OnInit {
     var newApp = this._categoryForm.value as HospitalCat
     if(newApp.id==environment.EmptyGuid){ 
       console.log("Add")
-      this.store.dispatch(new ActionsFile.CreateHospitalCat(newApp));
+      this.store.dispatch(new ActionsFile.Create(newApp));
     }
     else{ 
       console.log("Update")
-      this.store.dispatch(new ActionsFile.UpdateHospitalCat(newApp));
+      this.store.dispatch(new ActionsFile.Update(newApp));
     }
     this._categoryForm.reset();
     console.log("success")    

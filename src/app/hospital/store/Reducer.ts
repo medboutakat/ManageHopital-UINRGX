@@ -100,12 +100,11 @@ export function HospitalReducer(state = initialState, action : ActionsFile.Hospi
   const getHospitalsFeatursState = createFeatureSelector<HospitalState>(
       "Hospitals"
   )
-   export const getHospitals = createSelector(
+export const getHospitals = createSelector(
        getHospitalsFeatursState,
-    //    (state : HospitalCatState)=>state.HospitalCats
       HospitalAdapter.getSelectors().selectAll
-   )
-   export const getHospitalsLoading = createSelector(
+)
+export const getHospitalsLoading = createSelector(
     getHospitalsFeatursState,
     (state : HospitalState)=>state.loading
 )

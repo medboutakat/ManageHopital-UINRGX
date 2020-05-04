@@ -42,7 +42,7 @@ export class ProductCatComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new ActionsFile.LoadProductCat());
+    this.store.dispatch(new ActionsFile.Load());
     this.remplir()
 
   }
@@ -124,7 +124,7 @@ export class ProductCatComponent implements OnInit {
     if (confirm("Are You Sure You want to Delete the User?")) {
       var cat = <productCat>this.selection.selected[0];
       console.log("cat => ", cat);
-      this.store.dispatch(new ActionsFile.DeleteProductCat(cat.id));
+      this.store.dispatch(new ActionsFile.Delete(cat.id));
       this.remplir()
     } 
   }

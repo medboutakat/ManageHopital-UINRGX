@@ -33,7 +33,7 @@ export class ProductEditComponent implements OnInit {
 
   constructor(private _bottomSheetRef: MatBottomSheetRef<ProductComponent>, private store: Store<any>,   @Inject(MAT_DIALOG_DATA) data,private fb: FormBuilder,) {
     
-    this.store.dispatch(new ActionsFile.LoadProductCat());
+    this.store.dispatch(new ActionsFile.Load());
     this.store.subscribe(data => {
       this.listhopitalCatValues = Object.values(data.HospitalCat.entities)
       console.log(" this.listhopitalCatValues=> ", this.listhopitalCatValues)

@@ -34,7 +34,7 @@ export class HospitalEditComponent implements OnInit {
 
   constructor(private _bottomSheetRef: MatBottomSheetRef<HopitalComponent>, private store: Store<any>,   @Inject(MAT_DIALOG_DATA) data,private fb: FormBuilder,) {
     
-    this.store.dispatch(new ActionsFile.LoadHospitalCat());
+    this.store.dispatch(new ActionsFile.Load());
     this.store.subscribe(data => {
       this.listhopitalCatValues = Object.values(data.HospitalCat.entities)
       console.log(" this.listhopitalCatValues=> ", this.listhopitalCatValues)

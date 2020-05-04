@@ -31,9 +31,9 @@ export class DoctorEditCatComponent implements OnInit {
    }
   ngOnInit() {
     this._categoryForm = this.fb.group({
-      id: [this._currentObject.id, Validators.required],
-      name: [this._currentObject.name, Validators.required],
-      remark: [this._currentObject.remark, Validators.required],
+      id: [this._currentObject.id],
+      name: [this._currentObject.name],
+      remark: [this._currentObject.remark],
     });
   }
 
@@ -41,11 +41,11 @@ export class DoctorEditCatComponent implements OnInit {
     var newApp = this._categoryForm.value as doctorCat
     if(newApp.id==environment.EmptyGuid){ 
       console.log("Add")
-      this.store.dispatch(new ActionsFile.CreateDoctorCat(newApp));
+      this.store.dispatch(new ActionsFile.Create(newApp));
     }
     else{ 
       console.log("Update")
-      this.store.dispatch(new ActionsFile.UpdateDoctorCat(newApp));
+      this.store.dispatch(new ActionsFile.Update(newApp));
     }
     this._categoryForm.reset();   
   }

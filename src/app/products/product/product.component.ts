@@ -43,7 +43,7 @@ export class ProductComponent implements OnInit {
     this.store.dispatch(new ActionsFiles.Load());
     this.remplir();
 
-    this.store.dispatch(new ActionsFile.LoadProductCat());
+    this.store.dispatch(new ActionsFile.Load());
     this.store.subscribe((data) => {
       this.listhopitalCatValues = Object.values(data.HospitalCat.entities);
       console.log(" this.listhopitalCatValues=> ", this.listhopitalCatValues);

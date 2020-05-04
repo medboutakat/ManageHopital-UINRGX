@@ -44,7 +44,7 @@ export class HopitalComponent implements OnInit {
     this.store.dispatch(new ActionsFiles.LoadHospital());
     this.remplir();
 
-    this.store.dispatch(new ActionsFile.LoadHospitalCat());
+    this.store.dispatch(new ActionsFile.Load());
     this.store.subscribe((data) => {
       this.listhopitalCatValues = Object.values(data.HospitalCat.entities);
       console.log(" this.listhopitalCatValues=> ", this.listhopitalCatValues);

@@ -42,11 +42,11 @@ export class ProductEditCatComponent implements OnInit {
     var newApp = this._categoryForm.value as productCat
     if(newApp.id==environment.EmptyGuid){ 
       console.log("Add")
-      this.store.dispatch(new ActionsFile.CreateProductCat(newApp));
+      this.store.dispatch(new ActionsFile.Create(newApp));
     }
     else{ 
       console.log("Update")
-      this.store.dispatch(new ActionsFile.UpdateProductCat(newApp));
+      this.store.dispatch(new ActionsFile.Update(newApp));
     }
     this._categoryForm.reset();
     this.dialog.closeAll();

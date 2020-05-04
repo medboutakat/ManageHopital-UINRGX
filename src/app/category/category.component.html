@@ -1,14 +1,14 @@
-<form [formGroup]="category">
+<form [formGroup]="categoryForm">
     <div class="form">
-      <input type="hidden" formControlName="id">
+      <input type="hidden" formControlName="id" required>
       <div class="form-group">
-        <input  type="text" class="form-control" minlength="3" formControlName="name" placeholder="NAME">
-          <div *ngIf="category.controls['name'].invalid && (category.controls['name'].dirty || category.controls['name'].touched) "
+        <input  type="text" class="form-control" minlength="3" formControlName="name" placeholder="NAME" required>
+          <div *ngIf="categoryForm.controls['name'].invalid && (categoryForm.controls['name'].dirty || categoryForm.controls['name'].touched) "
           class="alert alert-danger">
-          <div *ngIf="category.controls['name'].errors.required">
+          <div *ngIf="categoryForm.controls['name'].errors.required">
             <p class="p1">Name is required</p>
           </div>
-          <div *ngIf="category.controls['name'].errors.minlength">
+          <div *ngIf="categoryForm.controls['name'].errors.minlength">
             <p class="p2">Name must be at least 3 characters long.</p>
           </div>
         </div> 
@@ -18,5 +18,5 @@
           <textarea name="remark" id="remark" cols="30" rows="10"  class="form-control" formControlName="remark"   placeholder="REMARK"></textarea>
       </div> 
     </div>
-    <button type="submit" class="btn btn-success btn-block" [disabled]='!(category.valid)' (click)="reserve()">Reserve</button><br>
+    <button type="submit" class="btn btn-success btn-block" [disabled]='!(categoryForm.valid)' (click)="reserve()">Reserve</button><br>
   </form>
