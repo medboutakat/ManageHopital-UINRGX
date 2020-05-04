@@ -1,12 +1,12 @@
 import { GeneratedId } from '../generatedId';
 
 export class Contact {
-    id : string ;
+    id: string;
     email: string;
-    phone1: string;
-    phone2: string;
-    whatsApp: string;
-    fax: string;
+    phone1: number;
+    phone2: number;
+    whatsApp: number;
+    fax: number;
     adress1: string;
     adress2: string;
     other: string;

@@ -23,8 +23,7 @@ import { SignupComponent } from './Auth/signup/signup.component';
 import { SigninComponent } from './Auth/signin/signin.component'; 
 
 import { OperationComponent } from './operations/operation/operation.component';
-import { AddOperationComponent } from './operations/add-operation/add-operation.component';
-import { DeleteOperationComponent } from './operations/delete-operation/delete-operation.component';
+import { AddOperationComponent } from './operations/edit-operation/add-operation.component';
 
 import { SavePdfComponent } from './appointements/save-pdf/save-pdf.component';
 
@@ -37,11 +36,10 @@ import { AgGridModule } from 'ag-grid-angular';
 import { AngularMaterialModule } from './angular-material/angular-material.module'; 
 import { DetailsComponent } from './invoices/details/details.component';
 import { InvoiceComponent } from './invoices/invoice/invoice.component';
-import { MaterialComponent } from './material/material/material.component';
-import { MaterialEditComponent } from './material/material-edit/material-edit.component'; 
-import { DeleteDoctorComponent } from './doctors/delete-doctor/delete-doctor.component';
- 
+import { MaterialComponent } from './material/material/material.component'; 
+import { MaterialEditComponent } from './material/material-edit/material-edit.component';   
 import { HospitalCatEditComponent } from './HospitalCategorie/hospital-cat-edit/hospital-edit-cat.component'; 
+ 
 import { DoctorEditCatComponent } from './doctorCategorie/doctor-edit-cat/doctor-edit-cat.component';
 import { DoctorEditComponent } from './doctors/doctor-edit/doctor-edit.component';
 import { PaymentComponent } from './payment/payment/payment.component';
@@ -89,37 +87,31 @@ const config = {
     AppointemntEditComponent,
     SavePdfComponent,
     HospitalEditComponent,
-    
-    DeleteOperationComponent,
     MenuComponent,
     SigninComponent,
     InvoiceComponent,
     HospitalCatEditComponent,
     MaterialComponent,
     MaterialEditComponent,
-    DeleteDoctorComponent,
+
 
     DoctorEditCatComponent,
     PaymentComponent,
 
+
     ProductCatComponent,
     ProductEditCatComponent,
-    ProductComponent,
-    ProductEditComponent,
-
-
+    ProductComponent, 
+    ProductEditComponent 
   ],
   entryComponents: [
-    
+
     HospitalEditComponent,
     AppointemntEditComponent,
-    SavePdfComponent,
-  
+
     AddOperationComponent,
-    DeleteOperationComponent,
-    DeleteDoctorComponent,
     HospitalCatEditComponent,
-  
+
     MenuComponent,
     DoctorEditComponent,
     DoctorEditCatComponent,
@@ -143,8 +135,8 @@ const config = {
     AngularMaterialModule,
     MatBottomSheetModule,
     MatTooltipModule,
-    HttpClientModule,
-    AppStoreModule
+    HttpClientModule, 
+    AppStoreModule 
   ],
   providers: [
     // SugarLevelService,
