@@ -2,6 +2,7 @@
 import { Store, Action } from '@ngrx/store'
 import { HospitalCat } from '../hospitalCat.model';
 import { Update } from '@ngrx/entity';
+
 export enum HospitalCatActionType {
     LOAD = "[HospitalCat] load HospitalCat",
     LOAD_SUCCESS = "[HospitalCat] LOAD HospitalCat Success",

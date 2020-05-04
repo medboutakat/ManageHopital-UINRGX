@@ -12,8 +12,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./product-edit-cat.component.scss']
 })
 export class ProductEditCatComponent implements OnInit {
-  ProductcAT: FormGroup;
-  listProductCatValues: any; 
+
+  _categoryForm: FormGroup; 
   _currentObject: productCat; 
   title:any; 
 
@@ -31,7 +31,7 @@ export class ProductEditCatComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.ProductcAT = this.fb.group({
+    this._categoryForm = this.fb.group({
       id: [this._currentObject.id, Validators.required],
       name: [this._currentObject.name, Validators.required],
       remark: [this._currentObject.remark, Validators.required],
@@ -39,7 +39,7 @@ export class ProductEditCatComponent implements OnInit {
   }
 
   reserve() {
-    var newApp = this.ProductcAT.value as productCat
+    var newApp = this._categoryForm.value as productCat
     if(newApp.id==environment.EmptyGuid){ 
       console.log("Add")
       this.store.dispatch(new ActionsFile.CreateProductCat(newApp));
@@ -48,7 +48,7 @@ export class ProductEditCatComponent implements OnInit {
       console.log("Update")
       this.store.dispatch(new ActionsFile.UpdateProductCat(newApp));
     }
-    this.ProductcAT.reset();
+    this._categoryForm.reset();
     this.dialog.closeAll();
   }
 }

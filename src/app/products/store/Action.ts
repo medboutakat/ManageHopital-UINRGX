@@ -14,7 +14,7 @@ export enum ProductActionType {
     LOAD_ONE_FAIL = "[Model] Load One Product Fail",
 
     CREATE = "[Model] Create Product",
-    CREATE_SUCCESS = "[model] Create Product Success",
+    CREATE_SUCCESS = "[Model] Create Product Success",
     CREATE_FAIL = "[Model] Create Product Fail ",
 
     UPDATE = "[Model] Update Product",
