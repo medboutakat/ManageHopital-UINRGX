@@ -14,11 +14,9 @@ import { environment } from 'src/environments/environment';
 })
 export class  HospitalCatEditComponent implements OnInit {
 
-  HospitalCatForm: FormGroup;
-  listhopitalCatValues: any; 
- _currentObject: HospitalCat; 
-  title:any;
-  emptyGuid="00000000-0000-0000-0000-000000000000";
+  _categoryForm: FormGroup; 
+  _currentObject: HospitalCat; 
+  title:any; 
 
   constructor( private fb: FormBuilder,
     private store: Store<fromHospitalCat.HospitalCatState>,
@@ -32,7 +30,7 @@ export class  HospitalCatEditComponent implements OnInit {
     this.reserve=this.reserve.bind(this);      
    }
   ngOnInit() {
-    this.HospitalCatForm = this.fb.group({
+    this._categoryForm = this.fb.group({
       id: [this._currentObject.id, Validators.required],
       name: [this._currentObject.name, Validators.required],
       remark: [this._currentObject.remark, Validators.required],
@@ -40,7 +38,7 @@ export class  HospitalCatEditComponent implements OnInit {
   }
 
   reserve() {
-    var newApp = this.HospitalCatForm.value as HospitalCat
+    var newApp = this._categoryForm.value as HospitalCat
     if(newApp.id==environment.EmptyGuid){ 
       console.log("Add")
       this.store.dispatch(new ActionsFile.CreateHospitalCat(newApp));
@@ -49,7 +47,7 @@ export class  HospitalCatEditComponent implements OnInit {
       console.log("Update")
       this.store.dispatch(new ActionsFile.UpdateHospitalCat(newApp));
     }
-    this.HospitalCatForm.reset();
+    this._categoryForm.reset();
     console.log("success")    
   }
 }

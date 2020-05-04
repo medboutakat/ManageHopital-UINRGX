@@ -12,8 +12,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./doctor-edit-cat.component.scss']
 })
 export class DoctorEditCatComponent implements OnInit {
-  DoctorcAT: FormGroup;
-  listdoctorCatValues: any; 
+
+ _categoryForm: FormGroup;  
  _currentObject: doctorCat; 
   title:any; 
 
@@ -29,7 +29,7 @@ export class DoctorEditCatComponent implements OnInit {
     this.reserve=this.reserve.bind(this);      
    }
   ngOnInit() {
-    this.DoctorcAT = this.fb.group({
+    this._categoryForm = this.fb.group({
       id: [this._currentObject.id, Validators.required],
       name: [this._currentObject.name, Validators.required],
       remark: [this._currentObject.remark, Validators.required],
@@ -37,7 +37,7 @@ export class DoctorEditCatComponent implements OnInit {
   }
 
   reserve() {
-    var newApp = this.DoctorcAT.value as doctorCat
+    var newApp = this._categoryForm.value as doctorCat
     if(newApp.id==environment.EmptyGuid){ 
       console.log("Add")
       this.store.dispatch(new ActionsFile.CreateDoctorCat(newApp));
@@ -46,7 +46,7 @@ export class DoctorEditCatComponent implements OnInit {
       console.log("Update")
       this.store.dispatch(new ActionsFile.UpdateDoctorCat(newApp));
     }
-    this.DoctorcAT.reset();   
+    this._categoryForm.reset();   
   }
 }
 
