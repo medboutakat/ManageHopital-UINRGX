@@ -4,7 +4,7 @@ import * as ActionsFile from 'src/app/ProductCategorie/Store/Action'
 import { Observable } from 'rxjs';
 import { productCat } from '../productCat.module';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
-import { SelectionModel } from '@angular/cdk/collections';
+import { SelectionModel } from '@angular/cdk/collections'; 
 import { ProductEditCatComponent } from '../product-edit-cat/product-edit-cat.component';
 
 @Component({

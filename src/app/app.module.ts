@@ -49,12 +49,12 @@ import { HospitalCatEditComponent } from './HospitalCategorie/hospital-cat-edit/
 import { PaymentComponent } from './payment/payment/payment.component';
 import { InvoiceEditComponent } from './invoices/invoice-edit/invoice-edit.component'; 
 import { AppointemntEditComponent } from './appointements/appointemnt-edit/appointemnt-edit.component';
-import { ProductCatComponent } from './productCategorie/product-cat/product-cat.component';
-import { ProductEditCatComponent } from './productCategorie/product-edit-cat/product-edit-cat.component'; 
+import { ProductCatComponent } from './productCategorie/product-cat/product-cat.component'; 
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { ProductComponent } from './products/product/product.component';
 import { AppStoreModule } from './app-store.module';
 import { AuthInterceptor } from './Auth/auth.interceptor';
+import { ProductEditCatComponent } from './productCategorie/product-edit-cat/product-edit-cat.component';
 
 const config = {
   issuer: 'https://okta.okta.com/oauth2/default',

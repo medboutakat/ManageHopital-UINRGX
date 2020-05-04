@@ -17,7 +17,7 @@ export class DoctorEditCatComponent implements OnInit {
 
  _categoryForm: FormGroup;  
  _currentObject: doctorCat; 
-  title:any; 
+ _title:string; 
 
   constructor( private fb: FormBuilder,
     private store: Store<fromDoctorCat.DoctorCatState>,
@@ -26,7 +26,7 @@ export class DoctorEditCatComponent implements OnInit {
      )
    {
     this._currentObject=  data._currentObject;
-    this.title=  data.title; 
+    this._title=  data.title; 
       console.log("current Object: ", this._currentObject);
       
     this.reserve=this.reserve.bind(this);      
@@ -38,7 +38,7 @@ export class DoctorEditCatComponent implements OnInit {
   reserve() {
     var newApp = this._categoryForm.value as doctorCat
     var actionName=CategoryHelper.getActionName(newApp); 
-    console.log("actionName",actionName)
+    
     this.store.dispatch(new ActionsFile[actionName](newApp));
     this._categoryForm.reset();
     this.dialog.closeAll();

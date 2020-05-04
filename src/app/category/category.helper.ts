@@ -21,7 +21,9 @@ export class CategoryHelper {
   }
 
   static getActionName(formData: any):string{  
-      return formData['id']==environment.EmptyGuid? 'Create':"Update";   
+      var actionName= formData['id']==environment.EmptyGuid? 'Create':"Update";   
+      console.log("actionName",actionName)
+      return actionName;
   } 
 
 }

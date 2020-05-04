@@ -17,7 +17,7 @@ export class  HospitalCatEditComponent implements OnInit {
 
   _categoryForm: FormGroup; 
   _currentObject: HospitalCat; 
-  title:any; 
+  _title:string; 
 
   constructor( private fb: FormBuilder,
     private store: Store<fromHospitalCat.HospitalCatState>,
@@ -26,10 +26,10 @@ export class  HospitalCatEditComponent implements OnInit {
      )
    {
     this._currentObject=  data._currentObject;
-    this.title=  data.title; 
-      console.log("current Object: ", this._currentObject);
-      
-    this.reserve=this.reserve.bind(this);      
+    this._title=  data.title; 
+    console.log("current Object: ", this._currentObject);
+       
+    this.reserve=this.reserve.bind(this); 
    }
   ngOnInit() {
     this._categoryForm = CategoryHelper.getFormBuilder(this.fb,this._currentObject); 
@@ -38,7 +38,6 @@ export class  HospitalCatEditComponent implements OnInit {
   reserve() {
     var newApp = this._categoryForm.value as HospitalCat
     var actionName=CategoryHelper.getActionName(newApp); 
-    console.log("actionName",actionName)
     this.store.dispatch(new ActionsFile[actionName](newApp));
     this._categoryForm.reset(); 
     this.dialog.closeAll();
