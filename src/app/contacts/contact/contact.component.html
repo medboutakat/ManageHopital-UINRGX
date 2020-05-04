@@ -1,25 +1,27 @@
-<form [formGroup]="contactForm">
+<form [formGroup]="contactForm" novalidate>
 
   <div class="form-row">
     <input type="hidden" formControlName="id">
     <div class="form-group col-md-6">
-      <input type="text" class="form-control" placeholder="phone 1" name="phone1" formControlName="phone1">
+      <input type="number" class="form-control" placeholder="phone 1" name="phone1" formControlName="phone1">
+
     </div>
     <div class="form-group col-md-6">
-      <input type="text" class="form-control" placeholder="phone 2" name="phone2" formControlName="phone2">
+      <input type="number" class="form-control" placeholder="phone 2" name="phone2" formControlName="phone2">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <input type="text" class="form-control" placeholder="Fax" name="fax" formControlName="fax">
+      <input type="number" class="form-control" placeholder="Fax" name="fax" formControlName="fax">
     </div>
     <div class="form-group col-md-6">
-      <input type="text" class="form-control" placeholder="whatsApp" name="whatsApp" formControlName="whatsApp">
+      <input type="number" class="form-control" placeholder="whatsApp" name="whatsApp" formControlName="whatsApp">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <input type="text" class="form-control" placeholder="adress1" name="adress1" formControlName="adress1">
+
     </div>
     <div class="form-group col-md-6">
       <input type="text" class="form-control" placeholder="adress2" name="adress2" formControlName="adress2">
@@ -31,6 +33,9 @@
     </select>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="email" name="email" formControlName="email">
+    <input type="email" class="form-control" placeholder="email" name="email" formControlName="email" email>
+    <div *ngIf="contactForm.controls['email'].invalid " class="alert alert-danger">
+      wrong email
+    </div>
   </div>
 </form>

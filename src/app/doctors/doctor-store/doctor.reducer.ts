@@ -71,8 +71,12 @@ export function doctorReducer(state = initialState, action: doctorActions.Custom
       };
     }
     /************************Update Doctor********************************* */
+
+
     case doctorActions.DoctorActionTypes.UPDATE_DOCTOR_SUCCESS: {
-      return DoctorAdapter.updateOne(action.payload, state);
+      const changes = action.payload;
+      const id = changes.id;
+      return DoctorAdapter.updateOne({ id, changes }, state);
     }
     case doctorActions.DoctorActionTypes.UPDATE_DOCTOR_FAIL: {
       return {

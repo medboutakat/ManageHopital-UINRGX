@@ -28,8 +28,7 @@ import { SignupComponent } from './connexion/signup/signup.component';
 import { SigninComponent } from './connexion/signin/signin.component'; 
 
 import { OperationComponent } from './operations/operation/operation.component';
-import { AddOperationComponent } from './operations/add-operation/add-operation.component';
-import { DeleteOperationComponent } from './operations/delete-operation/delete-operation.component';
+import { AddOperationComponent } from './operations/edit-operation/add-operation.component';
 
 import { SavePdfComponent } from './appointements/save-pdf/save-pdf.component';
 
@@ -47,7 +46,6 @@ import { MaterialComponent } from './material/material/material.component';
 import { MaterialEditComponent } from './material/material-edit/material-edit.component';
 import { AppointementReducer } from './appointements/store/appointement.reducer';
 import { AppointementEffect } from './appointements/store/appointement.effect';
-import { DeleteDoctorComponent } from './doctors/delete-doctor/delete-doctor.component';
 
 import { HospitalEffect } from './hospital/store/Effect';
 import { HospitalReducer } from './hospital/store/Reducer';
@@ -110,37 +108,31 @@ import { AppStoreModule } from './app-store.module';
     AppointemntEditComponent,
     SavePdfComponent,
     HospitalEditComponent,
-    
-    DeleteOperationComponent,
     MenuComponent,
     SigninComponent,
     InvoiceComponent,
     HospitalCatEditComponent,
     MaterialComponent,
     MaterialEditComponent,
-    DeleteDoctorComponent,
+
 
     DoctorEditCatComponent,
     PaymentComponent,
 
+
     ProductCatComponent,
     ProductEditCatComponent,
-    ProductComponent,
-    ProductEditComponent,
-
-
+    ProductComponent, 
+    ProductEditComponent 
   ],
   entryComponents: [
-    
+
     HospitalEditComponent,
     AppointemntEditComponent,
-    SavePdfComponent,
-  
+
     AddOperationComponent,
-    DeleteOperationComponent,
-    DeleteDoctorComponent,
     HospitalCatEditComponent,
-  
+
     MenuComponent,
     DoctorEditComponent,
     DoctorEditCatComponent,
@@ -164,8 +156,8 @@ import { AppStoreModule } from './app-store.module';
     AngularMaterialModule,
     MatBottomSheetModule,
     MatTooltipModule,
-    HttpClientModule,
-    AppStoreModule
+    HttpClientModule, 
+    AppStoreModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

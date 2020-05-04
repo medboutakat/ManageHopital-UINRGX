@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store'
 import { Doctor } from '../doctor.model'
 import { Update } from '@ngrx/entity'
+import { Operation } from 'src/app/operations/operation'
 
 export enum DoctorActionTypes {
     //get all
@@ -93,7 +94,7 @@ export class UpdateDoctor implements Action {
 
 export class UpdateDoctorSuccess implements Action {
     readonly type = DoctorActionTypes.UPDATE_DOCTOR_SUCCESS;
-    constructor(public payload: Update<Doctor>) { }
+    constructor(public payload: Doctor) { }
 }
 
 export class UpdateDoctorCatFail implements Action {
