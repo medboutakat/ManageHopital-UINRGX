@@ -10,8 +10,7 @@ import { HospitalCatComponent } from '../HospitalCategorie/hospital-cat/hospital
 })
 export class CategoryComponent implements ControlValueAccessor {
 
-  @Input()  HospitalCatForm: FormGroup;   
- @Input() DoctorcAT :FormGroup;
+  @Input()  category: FormGroup;  
 
   @Input() reserveAction: any ; 
  onChange: any = () => {}
