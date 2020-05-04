@@ -6,6 +6,7 @@ import * as fromProductCat from "src/app/productCategorie/Store/reducer";
 import { productCat } from '../productCat.module';
 import * as ActionsFile from 'src/app/productCategorie/Store/Action'
 import { environment } from 'src/environments/environment';
+import { CategoryHelper } from 'src/app/category/category.helper';
 @Component({
   selector: 'product-edit-cat',
   templateUrl: './product-edit-cat.component.html',
@@ -30,24 +31,15 @@ export class ProductEditCatComponent implements OnInit {
     this.reserve=this.reserve.bind(this);
    }
 
-  ngOnInit() {
-    this._categoryForm = this.fb.group({
-      id: [this._currentObject.id, Validators.required],
-      name: [this._currentObject.name, Validators.required],
-      remark: [this._currentObject.remark, Validators.required],
-    });
+  ngOnInit() {    
+    this._categoryForm = CategoryHelper.getFormBuilder(this.fb,this._currentObject);  
   }
 
   reserve() {
     var newApp = this._categoryForm.value as productCat
-    if(newApp.id==environment.EmptyGuid){ 
-      console.log("Add")
-      this.store.dispatch(new ActionsFile.Create(newApp));
-    }
-    else{ 
-      console.log("Update")
-      this.store.dispatch(new ActionsFile.Update(newApp));
-    }
+    var actionName=CategoryHelper.getActionName(newApp); 
+    console.log("actionName",actionName)
+    this.store.dispatch(new ActionsFile[actionName](newApp));
     this._categoryForm.reset();
     this.dialog.closeAll();
   }

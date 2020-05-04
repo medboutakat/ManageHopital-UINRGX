@@ -1,11 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { Store } from '@ngrx/store';
 import * as fromDoctorCat from "src/app/doctorCategorie/Store/reducer";
 import { doctorCat } from '../doctorCat.module';
 import * as ActionsFile from 'src/app/doctorCategorie/Store/Action'
 import { environment } from 'src/environments/environment';
+import { CategoryHelper } from 'src/app/category/category.helper';
 
 @Component({
   selector: 'doctor-edit-cat',
@@ -20,7 +21,8 @@ export class DoctorEditCatComponent implements OnInit {
 
   constructor( private fb: FormBuilder,
     private store: Store<fromDoctorCat.DoctorCatState>,
-     @Inject(MAT_DIALOG_DATA) data
+     @Inject(MAT_DIALOG_DATA) data,     
+     private dialog:MatDialog
      )
    {
     this._currentObject=  data._currentObject;
@@ -30,24 +32,16 @@ export class DoctorEditCatComponent implements OnInit {
     this.reserve=this.reserve.bind(this);      
    }
   ngOnInit() {
-    this._categoryForm = this.fb.group({
-      id: [this._currentObject.id],
-      name: [this._currentObject.name],
-      remark: [this._currentObject.remark],
-    });
+    this._categoryForm = CategoryHelper.getFormBuilder(this.fb,this._currentObject); 
   }
 
   reserve() {
     var newApp = this._categoryForm.value as doctorCat
-    if(newApp.id==environment.EmptyGuid){ 
-      console.log("Add")
-      this.store.dispatch(new ActionsFile.Create(newApp));
-    }
-    else{ 
-      console.log("Update")
-      this.store.dispatch(new ActionsFile.Update(newApp));
-    }
-    this._categoryForm.reset();   
+    var actionName=CategoryHelper.getActionName(newApp); 
+    console.log("actionName",actionName)
+    this.store.dispatch(new ActionsFile[actionName](newApp));
+    this._categoryForm.reset();
+    this.dialog.closeAll();
   }
 }
 

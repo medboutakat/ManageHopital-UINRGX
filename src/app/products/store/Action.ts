@@ -2,6 +2,7 @@
 import { Store, Action } from '@ngrx/store' 
 import { Update as EntityUpdate  } from '@ngrx/entity';
 import { Product as Model } from '../product.Module';
+import { environment } from 'src/environments/environment';
  
 export enum ProductActionType {
     LOAD = "[Model] load Product",
@@ -12,6 +13,8 @@ export enum ProductActionType {
     LOAD_ONE = "[Model] Load One Product",
     LOAD_ONE_SUCCESS = "[Model] Load One Product Success",
     LOAD_ONE_FAIL = "[Model] Load One Product Fail",
+
+    UPSERT = "[Model] Upsert Product",
 
     CREATE = "[Model] Create Product",
     CREATE_SUCCESS = "[Model] Create Product Success",
@@ -54,6 +57,8 @@ export class LoadOneFail implements Action {
     readonly type = ProductActionType.LOAD_ONE_FAIL;
     constructor(public payload: string) {}
 }
+
+ 
 
 // Add Productegory
 export class Create implements Action{
