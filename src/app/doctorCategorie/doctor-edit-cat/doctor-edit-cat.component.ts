@@ -7,41 +7,33 @@ import { doctorCat } from '../doctorCat.module';
 import * as ActionsFile from 'src/app/doctorCategorie/Store/Action'
 import { environment } from 'src/environments/environment';
 import { CategoryHelper } from 'src/app/category/category.helper';
+import { CategoryBaseComponent } from 'src/app/category/category-base.component';
 
 @Component({
   selector: 'doctor-edit-cat',
   templateUrl: './doctor-edit-cat.component.html',
   styleUrls: ['./doctor-edit-cat.component.scss']
-})
-export class DoctorEditCatComponent implements OnInit {
+}) 
+export class DoctorEditCatComponent extends CategoryBaseComponent<doctorCat>   { 
 
- _categoryForm: FormGroup;  
- _currentObject: doctorCat; 
- _title:string; 
-
-  constructor( private fb: FormBuilder,
-    private store: Store<fromDoctorCat.DoctorCatState>,
-     @Inject(MAT_DIALOG_DATA) data,     
-     private dialog:MatDialog
+  constructor(protected fb: FormBuilder,
+    protected store: Store<fromDoctorCat.DoctorCatState>,
+     @Inject(MAT_DIALOG_DATA) data,
+     protected dialog:MatDialog
      )
    {
-    this._currentObject=  data._currentObject;
-    this._title=  data.title; 
-      console.log("current Object: ", this._currentObject);
-      
-    this.reserve=this.reserve.bind(this);      
+      super(fb,store,data,dialog);        
+      this.reserve=this.reserve.bind(this);
    }
-  ngOnInit() {
-    this._categoryForm = CategoryHelper.getFormBuilder(this.fb,this._currentObject); 
+
+  ngOnInit() {    
+    this._categoryForm = CategoryHelper.getFormBuilder(this.fb,this._currentObject);  
   }
 
-  reserve() {
-    var newApp = this._categoryForm.value as doctorCat
-    var actionName=CategoryHelper.getActionName(newApp); 
-    
-    this.store.dispatch(new ActionsFile[actionName](newApp));
-    this._categoryForm.reset();
-    this.dialog.closeAll();
+  reserve() {   
+    var formValue= this.getFormValue();
+    var actionName=this.getActionName(); 
+    this.store.dispatch(new ActionsFile[actionName](formValue));
+    this.end();
   }
 }
-

@@ -11,10 +11,9 @@ import { Store } from '@ngrx/store';
     _title : string;    
      
      
-    constructor(private fb: FormBuilder,
-      private store: Store,
-       @Inject(MAT_DIALOG_DATA) data,
-       private dialog:MatDialog) {
+    constructor(protected fb: FormBuilder,
+      protected store: Store, @Inject(MAT_DIALOG_DATA) data,
+       protected dialog:MatDialog) {
                    
       this._currentObject=  data._currentObject;
       this._title=  data.title;
@@ -24,7 +23,18 @@ import { Store } from '@ngrx/store';
     ngOnInit() {
       this._categoryForm = CategoryHelper.getFormBuilder(this.fb,this._currentObject);
     };
-    
+
+    getFormValue(){
+     return this._categoryForm.value as T; 
+    }
+
+
+    getActionName(){
+      var newApp = this.getFormValue();
+      var actionName=CategoryHelper.getActionName(newApp); 
+      return actionName;
+    }
+
     end(){
       this._categoryForm.reset();
       this.dialog.closeAll();

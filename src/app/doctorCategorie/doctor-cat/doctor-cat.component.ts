@@ -4,7 +4,7 @@ import * as ActionsFile from 'src/app/doctorCategorie/Store/Action'
 import { Observable } from 'rxjs';
 import { doctorCat } from '../doctorCat.module';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
-import { SelectionModel } from '@angular/cdk/collections';
+import { SelectionModel } from '@angular/cdk/collections'; 
 import { DoctorEditCatComponent } from '../doctor-edit-cat/doctor-edit-cat.component';
 
 @Component({
