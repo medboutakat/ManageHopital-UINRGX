@@ -22,6 +22,7 @@ import { MaterialEditComponent } from './material/material-edit/material-edit.co
 import { PaymentComponent } from './payment/payment/payment.component';
 import { ProductCatComponent } from './productCategorie/product-cat/product-cat.component';
 import { ProductComponent } from './products/product/product.component';
+import { SignupComponent } from './Auth/signup/signup.component';
 
 
 
@@ -57,7 +58,9 @@ const routes: Routes = [
 
     ]
   },
-  { path: 'signin', component: SigninComponent },
+  { path: 'signin', component: SigninComponent }, 
+  { path: 'signup', component: SignupComponent },
+
   // { path: 'material', loadChildren: () => import('./material/material/material.module').then(m => m.MaterialModule) } 
 ];
 @NgModule({

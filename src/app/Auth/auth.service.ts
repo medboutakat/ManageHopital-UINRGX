@@ -5,12 +5,14 @@ import { Router } from '@angular/router';
 import { NgForm, FormGroup } from '@angular/forms';
 import { tap, catchError } from 'rxjs/operators';
 import { Register } from './register';
+import { User } from './auth';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   url = "http://144.91.76.98:5002/api/Users/authenticate"
   url2 = "http://144.91.76.98:5002/api/Users/register"
+  BASE_URL: any;
 
 
   private handleError<T>(operation = 'operation', result?: T) {
@@ -65,5 +67,10 @@ export class AuthService {
     if (this.isloggedIn) {
       return JSON.parse(localStorage.getItem('currentUser'));
     }
+  }
+
+  getStatus(): Observable<User> {
+    const url = `${this.BASE_URL}/status`;
+    return this.http.get<User>(url);
   }
 }
