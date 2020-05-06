@@ -7,6 +7,7 @@ import { productCat } from '../productCat.module';
 import * as ActionsFile from 'src/app/productCategorie/Store/Action' 
 import { CategoryHelper } from 'src/app/category/category.helper';
 import { CategoryBaseComponent } from 'src/app/category/category-base.component';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'product-edit-cat',
   templateUrl: './product-edit-cat.component.html',
@@ -17,10 +18,13 @@ export class ProductEditCatComponent extends CategoryBaseComponent<productCat>  
   constructor(protected fb: FormBuilder,
     protected store: Store<fromProductCat.ProductCatState>,
      @Inject(MAT_DIALOG_DATA) data,
-     protected dialog:MatDialog
+     protected dialog:MatDialog,
+     private titleService: Title
      )
    {
-      super(fb,store,data,dialog);        
+      super(fb,store,data,dialog);              
+      this.titleService.setTitle('Product category'+this._currentObject.name);   
+
       this.reserve=this.reserve.bind(this);
    }
 

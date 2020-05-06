@@ -7,6 +7,7 @@ import { HospitalCat } from '../hospitalCat.model';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material';  
 import { CategoryHelper } from 'src/app/category/category.helper';
 import { CategoryBaseComponent } from 'src/app/category/category-base.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'hospital-cat-edit',
@@ -19,10 +20,12 @@ export class HospitalCatEditComponent extends CategoryBaseComponent<HospitalCat>
   constructor(protected fb: FormBuilder,
     protected store: Store<fromHospitalCat.HospitalCatState>,
      @Inject(MAT_DIALOG_DATA) data,
-     protected dialog:MatDialog
+     protected dialog:MatDialog,
+     private titleService: Title
      )
    {
-      super(fb,store,data,dialog);        
+      super(fb,store,data,dialog);              
+      this.titleService.setTitle('Hospital category '+this._currentObject.name);       
       this.reserve=this.reserve.bind(this);
    }
 

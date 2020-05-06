@@ -35,7 +35,7 @@ const routes: Routes = [
       { path: '', component: DashboardComponent },
       { path: 'posts', component: PostsComponent },
       { path: 'appointement', component: AppointementComponent },
-      { path: 'hospitals', component: HopitalComponent },
+      { path: 'Hospitals', component: HopitalComponent },
       { path: 'doctors', component: DoctorComponent },
       { path: 'home', component: HomeComponent },
       { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' },
@@ -52,8 +52,7 @@ const routes: Routes = [
       { path: 'products', component: ProductComponent, pathMatch: 'full' },
       { path: 'materialedit', component: MaterialEditComponent, pathMatch: 'full' },
       { path: 'addDoctor', component: DoctorEditComponent, pathMatch: 'full' },
-      { path: 'payment', component: PaymentComponent, pathMatch: 'full' }
-
+      { path: 'payment', component: PaymentComponent, pathMatch: 'full' } 
 
 
     ]

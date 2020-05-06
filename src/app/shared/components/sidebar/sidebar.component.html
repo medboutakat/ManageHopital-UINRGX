@@ -17,21 +17,8 @@
 
   <h2 matSubheader>Pages</h2>
 
-  <a mat-list-item routerLinkActive="list-item" routerLink="/">Dashboard</a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/appointement">Appointements</a>  
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/hospitals">Hospitals</a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/hospitalcat">Hospital category</a> 
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/doctors">Doctors</a>  
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/doctorCategory">Doctor category</a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/products">Products</a> 
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/productCategory">Product category</a>
+  <a *ngFor="let link of links;" mat-list-item routerLinkActive="list-item-active" routerLink="{{link.path}}">{{link.text}}</a> 
 
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/invoices">Invoices</a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/invoice">Create invoice</a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/operation">Operations</a>  
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/material">Materials</a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/materialedit">Create material</a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/payment">Payment</a>
 
  
 
