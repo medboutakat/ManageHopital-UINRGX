@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,11 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
   user = localStorage.getItem("user");
-  constructor(
+  
+	private activatedRoute: ActivatedRoute;
+  constructor(activatedRoute: ActivatedRoute) { 
 
-  ) { }
-
-  ngOnInit() {
+		this.activatedRoute = activatedRoute;
   }
 
+  ngOnInit() {
+
+    this.activatedRoute.paramMap.subscribe(
+			( paramMap: ParamMap ) : void => {
+
+
+           console.log("hello")
+				// this.id = +paramMap.get( "id" );
+				// this.mode = paramMap.get( "mode" );
+
+			}
+    );
+    
+  }
+ 
 }

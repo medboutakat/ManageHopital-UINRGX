@@ -36,6 +36,7 @@ export class HopitalComponent implements OnInit {
     private _bottomSheet: MatBottomSheet,
     public dialog: MatDialog
   ) {
+    
     this.delete = this.delete.bind(this);
     this.add = this.add.bind(this);
     this.edit = this.edit.bind(this);
