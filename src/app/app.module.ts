@@ -127,8 +127,6 @@ import { AppStoreModule } from './app-store.module';
     ProductEditCatComponent,
     ProductComponent,
     ProductEditComponent,
-
-
   ],
   entryComponents: [
     
@@ -165,7 +163,7 @@ import { AppStoreModule } from './app-store.module';
     MatBottomSheetModule,
     MatTooltipModule,
     HttpClientModule,
-    AppStoreModule
+    AppStoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

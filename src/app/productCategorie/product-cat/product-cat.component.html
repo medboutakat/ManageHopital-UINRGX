@@ -12,7 +12,7 @@
 [isNew]="isNew" 
 ></app-menu>
 </div>
-  <table mat-table [dataSource]="(dataSource)"  matSort  class="mat-elevation-z8">
+  <table #tbl mat-table [dataSource]="(dataSource)"  matSort  class="mat-elevation-z8">
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
         <mat-checkbox (change)="$event ? masterToggle() : null; onrowselect()" [checked]="selection.hasValue() && isAllSelected()"
@@ -37,9 +37,10 @@
       <td mat-cell *matCellDef="let element"> {{element.remark}} </td>
     </ng-container>
     
-  
+    
    
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index" (click)="selection.toggle(row);"(click)="onrowselect()"></tr>
   </table>
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <mat-spinner class="spinner" *ngIf="showSpinner" color="accent"></mat-spinner>
