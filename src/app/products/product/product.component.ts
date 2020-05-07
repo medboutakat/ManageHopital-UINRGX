@@ -39,14 +39,13 @@ export class ProductComponent implements OnInit {
     this.add = this.add.bind(this);
     this.edit = this.edit.bind(this);
 
-    this.store.dispatch(new ActionsFile.Load());
-    this.remplir();
     
-    this.store.dispatch(new ActionsFile.Load());
-    this.store.subscribe((data) => {
-      this.productValues = Object.values(data.products.entities);
-      console.log(" this.productValues=> ", this.productValues);
-    });
+    
+    // this.store.dispatch(new ActionsFile.Load());
+    // this.store.subscribe((data) => {
+    //   this.productValues = Object.values(data.products.entities);
+    //   console.log(" this.productValues=> ", this.productValues);
+    // });
   }
 
   remplir() {
@@ -79,6 +78,8 @@ export class ProductComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   ngOnInit() {
+    //this.remplir();
+    this.store.dispatch(new ActionsFile.Load());
     this.remplir();
   }
   get product() {
@@ -137,9 +138,11 @@ export class ProductComponent implements OnInit {
       _currentObject: cat,
       title: "Update " + cat.name,
     };
-    this.dialog.open(ProductEditComponent, dialogConfig);
+    this.dialog.open(ProductEditComponent, dialogConfig).afterClosed().subscribe(result => {
+      this.store.dispatch(new ActionsFile.Load());
+      this.remplir();
+    });;
     console.log("updated");
-    this.reload();
   }
 
   add() {
@@ -149,6 +152,9 @@ export class ProductComponent implements OnInit {
       title: "Add ",
     };
 
-    this.dialog.open(ProductEditComponent, dialogConfig);
+    this.dialog.open(ProductEditComponent, dialogConfig).afterClosed().subscribe(result => {
+      this.store.dispatch(new ActionsFile.Load());
+      this.remplir();
+    });
   }
 }

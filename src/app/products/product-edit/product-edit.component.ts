@@ -102,6 +102,7 @@ export class ProductEditComponent implements OnInit {
       this.store.dispatch(new ActionsFiles.Update(newApp));
     }
     this.MainForm.reset();
+    this._dialog.closeAll();
   }
 
 
