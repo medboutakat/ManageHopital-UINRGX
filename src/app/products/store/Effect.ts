@@ -22,8 +22,8 @@ export class ProductEffect {
         mergeMap((Actions: ActionsFile.Load) =>
             this.ProductServ.getAll().pipe(
                 map(
-                    (ProductCats: Product[]) =>
-                        new ActionsFile.LoadSuccess(ProductCats)
+                    (Products: Product[]) =>
+                        new ActionsFile.LoadSuccess(Products)
                 ),
                 catchError(err => of(new ActionsFile.LoadFail(err)))
             )
