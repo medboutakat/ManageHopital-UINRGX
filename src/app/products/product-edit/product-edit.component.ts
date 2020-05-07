@@ -38,7 +38,7 @@ export class ProductEditComponent implements OnInit {
  
   constructor(private _dialog: MatDialog, private store: Store<any>,  @Inject(MAT_DIALOG_DATA) private data,private fb: FormBuilder,) {
     //Category works
-    this.store.dispatch(new ActionsFile.LoadProductCat());
+    this.store.dispatch(new ActionsFile.Load());
  
     this.store.subscribe(data => {
       this.productCatValues = Object.values(data.ProductCat.entities)

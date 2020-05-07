@@ -42,7 +42,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' },
       { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full' },      
-      { path: 'productedit', component: ProductEditComponent, pathMatch: 'full' }
+      { path: 'productedit', component: ProductEditComponent, pathMatch: 'full' },
       { path: 'doctorCategory', component: DoctorCatComponent, pathMatch: 'full' },
       { path: 'productCategory', component: ProductCatComponent, pathMatch: 'full' },
       { path: 'invoice', component: InvoiceEditComponent, pathMatch: 'full' },
