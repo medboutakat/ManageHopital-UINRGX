@@ -19,16 +19,16 @@ export class ProductCatEffect {
 
    @Effect()
    LoadProductCat$: Observable<Action> = this.actions$.pipe(
-       ofType<ActionsFile.LoadProductCat>(
+       ofType<ActionsFile.Load>(
            ActionsFile.ProductCatActionType.LOAD
        ),
-       mergeMap((Actions : ActionsFile.LoadProductCat)=>
+       mergeMap((Actions : ActionsFile.Load)=>
        this.ProductCatServ.getAll().pipe(
            map(
                (ProductCats : productCat[])=>
-               new ActionsFile.LoadProductCatSuccess(ProductCats)
+               new ActionsFile.LoadSuccess(ProductCats)
            ),
-           catchError(err =>of(new ActionsFile.LoadProductCatFail(err)))
+           catchError(err =>of(new ActionsFile.LoadFail(err)))
        )
        )
    )
@@ -38,50 +38,50 @@ export class ProductCatEffect {
 
      @Effect()
    CreateProductCat$: Observable<Action> = this.actions$.pipe(
-       ofType<ActionsFile.CreateProductCat>(
+       ofType<ActionsFile.Create>(
            ActionsFile.ProductCatActionType.CREATE
        ),
-       map((Actions : ActionsFile.CreateProductCat)=>Actions.payload),
+       map((Actions : ActionsFile.Create)=>Actions.payload),
        mergeMap((ProductCateg : productCat )=>
        this.ProductCatServ.add(ProductCateg ).pipe(
            map(
                (NewProductCats : productCat)=>
-               new ActionsFile.CreateProductCatSuccess(NewProductCats)
+               new ActionsFile.CreateSuccess(NewProductCats)
            ),
-           catchError(err =>of(new ActionsFile.CreateProductCatFail(err)))
+           catchError(err =>of(new ActionsFile.CreateFail(err)))
        )
        )
    );
   
    @Effect()
    UpdateProductCat$: Observable<Action> = this.actions$.pipe(
-       ofType<ActionsFile.UpdateProductCat>(
+       ofType<ActionsFile.Update>(
            ActionsFile.ProductCatActionType.UPDATE
        ),
-       map((Actions : ActionsFile.UpdateProductCat)=>Actions.payload),
+       map((Actions : ActionsFile.Update)=>Actions.payload),
        mergeMap((payload : productCat )=>
        this.ProductCatServ.update(payload).pipe(
            map(
-               (payloadResult : productCat)=>new ActionsFile.UpdateProductCatSuccess(payload)
+               (payloadResult : productCat)=>new ActionsFile.UpdateSuccess(payload)
            ), 
            tap((data) => {
                     console.log(data);
            }),
-          catchError(err =>of(new ActionsFile.UpdateProductCatFail(err))
+          catchError(err =>of(new ActionsFile.UpdateFail(err))
        )
        )
    ));  
 
    @Effect()
    DeleteProductCat$: Observable<Action> = this.actions$.pipe(
-       ofType<ActionsFile.DeleteProductCat>(
+       ofType<ActionsFile.Delete>(
            ActionsFile.ProductCatActionType.DELETE
        ),
-       map((Actions : ActionsFile.DeleteProductCat)=>Actions.payload),
+       map((Actions : ActionsFile.Delete)=>Actions.payload),
        mergeMap((id:string)=>
        this.ProductCatServ.delete(id ).pipe(
-           map(()=>new ActionsFile.DeleteProductCatSuccess(id)),
-           catchError(err =>of(new ActionsFile.DeleteProductCatFail(err)))
+           map(()=>new ActionsFile.DeleteSuccess(id)),
+           catchError(err =>of(new ActionsFile.DeleteFail(err)))
        )
        )
    );

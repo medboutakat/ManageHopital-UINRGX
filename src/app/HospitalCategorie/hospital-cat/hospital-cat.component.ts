@@ -39,7 +39,7 @@ export class HospitalCatComponent implements OnInit {
     this.edit = this.edit.bind(this);
     this.delete = this.delete.bind(this);
     console.log('bind action')
-    this.store.dispatch(new ActionsFile.LoadHospitalCat());
+    this.store.dispatch(new ActionsFile.Load());
     this.remplir()
     // this.hospitalCat$ = this.store.pipe(select(fromHospitalCat.getHospitalCats));
 
@@ -136,7 +136,7 @@ export class HospitalCatComponent implements OnInit {
     if (confirm("Are You Sure You want to Delete the User?")) {
       var cat = <HospitalCat>this.selection.selected[0];
       console.log("cat => ", cat);
-      this.store.dispatch(new ActionsFile.DeleteHospitalCat(cat.id));
+      this.store.dispatch(new ActionsFile.Delete(cat.id));
       this.remplir()
     }
   }

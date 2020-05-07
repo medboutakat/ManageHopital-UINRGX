@@ -1,5 +1,5 @@
-import * as ActionsFile from 'src/app/hospital/store/Action'  
-import * as fromRoot from "src/app/hospital/Store/app-state";
+import * as ActionsFile from 'src/app/hospitals/store/Action'  
+import * as fromRoot from "src/app/hospitals/Store/app-state";
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { EntityAdapter ,createEntityAdapter ,EntityState} from '@ngrx/entity';
 import { Hospital } from '../hospital.model';
@@ -100,12 +100,11 @@ export function HospitalReducer(state = initialState, action : ActionsFile.Hospi
   const getHospitalsFeatursState = createFeatureSelector<HospitalState>(
       "Hospitals"
   )
-   export const getHospitals = createSelector(
+export const getHospitals = createSelector(
        getHospitalsFeatursState,
-    //    (state : HospitalCatState)=>state.HospitalCats
       HospitalAdapter.getSelectors().selectAll
-   )
-   export const getHospitalsLoading = createSelector(
+)
+export const getHospitalsLoading = createSelector(
     getHospitalsFeatursState,
     (state : HospitalState)=>state.loading
 )

@@ -4,7 +4,7 @@ import * as ActionsFile from 'src/app/doctorCategorie/Store/Action'
 import { Observable } from 'rxjs';
 import { doctorCat } from '../doctorCat.module';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
-import { SelectionModel } from '@angular/cdk/collections';
+import { SelectionModel } from '@angular/cdk/collections'; 
 import { DoctorEditCatComponent } from '../doctor-edit-cat/doctor-edit-cat.component';
 
 @Component({
@@ -42,7 +42,7 @@ export class DoctorCatComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new ActionsFile.LoadDoctorCat());
+    this.store.dispatch(new ActionsFile.Load());
     this.remplir()
 
   }
@@ -124,7 +124,7 @@ export class DoctorCatComponent implements OnInit {
     if (confirm("Are You Sure You want to Delete the User?")) {
       var cat = <doctorCat>this.selection.selected[0];
       console.log("cat => ", cat);
-      this.store.dispatch(new ActionsFile.DeleteDoctorCat(cat.id));
+      this.store.dispatch(new ActionsFile.Delete(cat.id));
       this.remplir()
     } 
   }

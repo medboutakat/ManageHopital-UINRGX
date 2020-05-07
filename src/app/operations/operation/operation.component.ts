@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource, MatDialogConfig } from '@angular/material';
-import { AddOperationComponent } from '../add-operation/add-operation.component';
+import { AddOperationComponent } from '../edit-operation/add-operation.component';
 import { Store } from '@ngrx/store';
 import * as opp from '../store/operation.actions'
-import { DeleteOperationComponent } from '../delete-operation/delete-operation.component';
 import { Router } from '@angular/router';
 import { PageConfig } from 'src/app/config';
 import { Operation } from '../operation';

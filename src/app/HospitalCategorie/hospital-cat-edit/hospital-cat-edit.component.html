@@ -1,10 +1,10 @@
  <div class="container">
-   <h1>{{title}}</h1>
+   <h1>{{_title}}</h1>
     <p style="font-weight: lighter;color: gray;font-size: 14px;" class="card-text">to reserve, please fill this
       informations</p>
       
     <app-category 
-    [HospitalCatForm]="HospitalCatForm"
+    [categoryForm]="_categoryForm"
     [reserveAction]="reserve" 
     ></app-category> 
 

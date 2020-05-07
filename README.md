@@ -2,12 +2,6 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.4.
 
-# Making of
-
-# Buy me a drink? :)
-
-[Donate](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=soufianosse@gmail.com&lc=US&no_note=0&item_name=Buy+me+a+bear&cn=&curency_code=USD&bn=PP-DonationsBF:btn_donateCC_LG.gif:NonHosted)
-
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

@@ -8,9 +8,6 @@ import { Doctor } from '../doctor.model';
 import { DoctorEditComponent } from '../doctor-edit/doctor-edit.component';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
-import { DeleteAppointement } from 'src/app/appointements/store/appointement.actions';
-import { Invoice } from 'src/app/invoices/invoice-model';
-import { DeleteDoctorComponent } from '../delete-doctor/delete-doctor.component';
 import { Router } from '@angular/router';
 import { PageConfig } from 'src/app/config';
 

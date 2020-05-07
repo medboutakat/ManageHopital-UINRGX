@@ -1,52 +1,42 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { Store } from '@ngrx/store';
 import * as fromDoctorCat from "src/app/doctorCategorie/Store/reducer";
 import { doctorCat } from '../doctorCat.module';
 import * as ActionsFile from 'src/app/doctorCategorie/Store/Action'
 import { environment } from 'src/environments/environment';
+import { CategoryHelper } from 'src/app/category/category.helper';
+import { CategoryBaseComponent } from 'src/app/category/category-base.component';
+import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'doctor-edit-cat',
   templateUrl: './doctor-edit-cat.component.html',
   styleUrls: ['./doctor-edit-cat.component.scss']
-})
-export class DoctorEditCatComponent implements OnInit {
-  DoctorcAT: FormGroup;
-  listdoctorCatValues: any; 
- _currentObject: doctorCat; 
-  title:any; 
+}) 
+export class DoctorEditCatComponent extends CategoryBaseComponent<doctorCat>   { 
 
-  constructor( private fb: FormBuilder,
-    private store: Store<fromDoctorCat.DoctorCatState>,
-     @Inject(MAT_DIALOG_DATA) data
+  constructor(protected fb: FormBuilder,
+    protected store: Store<fromDoctorCat.DoctorCatState>,
+     @Inject(MAT_DIALOG_DATA) data,
+     protected dialog:MatDialog,
+     private titleService: Title
      )
    {
-    this._currentObject=  data._currentObject;
-    this.title=  data.title; 
-      console.log("current Object: ", this._currentObject);
-      
-    this.reserve=this.reserve.bind(this);      
+      super(fb,store,data,dialog);              
+      this.titleService.setTitle('Hospital category'+this._currentObject.name);          
+      this.reserve=this.reserve.bind(this);
    }
-  ngOnInit() {
-    this.DoctorcAT = this.fb.group({
-      id: [this._currentObject.id, Validators.required],
-      name: [this._currentObject.name, Validators.required],
-      remark: [this._currentObject.remark, Validators.required],
-    });
+
+  ngOnInit() {    
+    this._categoryForm = CategoryHelper.getFormBuilder(this.fb,this._currentObject);  
   }
 
-  reserve() {
-    var newApp = this.DoctorcAT.value as doctorCat
-    if(newApp.id==environment.EmptyGuid){ 
-      console.log("Add")
-      this.store.dispatch(new ActionsFile.CreateDoctorCat(newApp));
-    }
-    else{ 
-      console.log("Update")
-      this.store.dispatch(new ActionsFile.UpdateDoctorCat(newApp));
-    }
-    this.DoctorcAT.reset();   
+  reserve() {   
+    var formValue= this.getFormValue();
+    var actionName=this.getActionName(); 
+    this.store.dispatch(new ActionsFile[actionName](formValue));
+    this.end();
   }
 }
-

@@ -39,13 +39,7 @@ export class ProductComponent implements OnInit {
     this.add = this.add.bind(this);
     this.edit = this.edit.bind(this);
 
-    
-    
-    // this.store.dispatch(new ActionsFile.Load());
-    // this.store.subscribe((data) => {
-    //   this.productValues = Object.values(data.products.entities);
-    //   console.log(" this.productValues=> ", this.productValues);
-    // });
+ 
   }
 
   remplir() {

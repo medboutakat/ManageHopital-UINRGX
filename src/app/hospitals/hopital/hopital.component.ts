@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { Store } from "@ngrx/store";
-import * as ActionsFile from "src/app/HospitalCategorie/Store/Action";
-import { Observable } from "rxjs";
-import { HospitalCat } from "src/app/HospitalCategorie/hospitalCat.model";
-import * as ActionsFiles from "src/app/hospital/store/Action";
+import * as ActionsFile from "../../HospitalCategorie/Store/Action";
+import { Observable } from "rxjs"; 
+import * as ActionsFiles from "../../hospitals/store/Action";
 import {
  MatBottomSheet,
   MatDialog,
@@ -37,6 +36,7 @@ export class HopitalComponent implements OnInit {
     private _bottomSheet: MatBottomSheet,
     public dialog: MatDialog
   ) {
+    
     this.delete = this.delete.bind(this);
     this.add = this.add.bind(this);
     this.edit = this.edit.bind(this);
@@ -44,7 +44,7 @@ export class HopitalComponent implements OnInit {
     this.store.dispatch(new ActionsFiles.LoadHospital());
     this.remplir();
 
-    this.store.dispatch(new ActionsFile.LoadHospitalCat());
+    this.store.dispatch(new ActionsFile.Load());
     this.store.subscribe((data) => {
       this.listhopitalCatValues = Object.values(data.HospitalCat.entities);
       console.log(" this.listhopitalCatValues=> ", this.listhopitalCatValues);
