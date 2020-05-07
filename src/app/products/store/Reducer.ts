@@ -42,7 +42,6 @@ export function ProductReducer(state = initialState, action: ActionsFile.Product
         ...state,
         loading: false,
         loaded: true,
-
       });
     }
     case ActionsFile.ProductActionType.LOAD_FAIL: {

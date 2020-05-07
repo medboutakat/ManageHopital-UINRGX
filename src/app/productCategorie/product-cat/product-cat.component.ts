@@ -22,6 +22,7 @@ export class ProductCatComponent implements OnInit {
   private IsMultple: boolean = false;
   listProductCat :any;
   dataSource : any;
+  showSpinner:boolean = true;
   selection: SelectionModel<productCat>;
   displayedColumns: string[] = ['select', 'name', 'remark'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -47,6 +48,7 @@ export class ProductCatComponent implements OnInit {
 
   }
   remplir() {
+    this.showSpinner=true;
     this.store.subscribe(data => {
       this.listProductCat = Object.values(data.ProductCat.entities)
       console.log(" listProductCat=> ", this.listProductCat)
@@ -54,6 +56,7 @@ export class ProductCatComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.selection = new SelectionModel<productCat>(true, []);
+      this.showSpinner=false;
     })
 
   }

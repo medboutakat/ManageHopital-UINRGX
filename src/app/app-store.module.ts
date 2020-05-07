@@ -48,6 +48,7 @@ import { ProductEffect } from './products/store/Effect';
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
     StoreModule.forFeature("cities", CityReducer),
     StoreModule.forFeature("products", ProductReducer),
+    
     EffectsModule.forRoot([CityEffect, HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect, OperationCatEffect,ProductCatEffect,ProductEffect]),
 
   ]

@@ -5,48 +5,58 @@
      
 
 <mat-horizontal-stepper labelPosition="bottom" #stepper>
-    <mat-step [stepControl]="HospitalForm"> 
+    <mat-step [stepControl]="MainForm"> 
 
-    <form [formGroup]="HospitalForm">
+    <form [formGroup]="MainForm">
       <div class="form-row">
         <input type="hidden" formControlName="id">
         <div class="form-group col-md-6">
-          <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="countryHealthId"  
-            placeholder="countryHealthId">
+          <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="name"  
+            placeholder="product name">
         </div>
         <div class="form-group col-md-6">
-          <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="name"  
-            placeholder="name">
+          <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="quantityPerUnit"  
+            placeholder="quantity">
         </div>  
 
       <div class="form-group col-md-6">
-          <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="remark"  
-            placeholder="REMARK">
+          <input style="text-align: center;font-size: 14px;" type="number" class="form-control" formControlName="unitPrice"  
+            placeholder="price">
         </div> 
     
 
-      <div class="form-group col-md-6">
-          <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="history"  
-            placeholder="history">
+        <div class="form-group col-md-6">
+          <input style="text-align: center;font-size: 14px;" type="number" class="form-control" formControlName="unitsInStock"  
+            placeholder="units in stock">
         </div>  
+        <div class="form-group col-md-6">
+          <input style="text-align: center;font-size: 14px;" type="number" class="form-control" formControlName="unitsOnOrder"  
+            placeholder="units on order">
+        </div>  
+        <div class="form-group col-md-6">
+            <input style="text-align: center;font-size: 14px;" type="number" class="form-control" formControlName="reorderLevel"  
+              placeholder="reorder level">
+        </div>
+        <div class="form-group col-md-6">
+            <mat-checkbox formControlName="discontinued" >Discontinued</mat-checkbox>
+        </div>
  
        <div class="input-group mb-3">
-              <select formControlName="hospitalCategoryId" placeholder="City" class="custom-select" id="inputGroupSelect02">
-                <option *ngFor="let item of listhopitalCatValues" selected value="{{item.id}}">{{item.remark}}</option>
+              <select formControlName="productCategoryId" placeholder="City" class="custom-select" id="inputGroupSelect02">
+                <option *ngFor="let item of productCatValues" selected value="{{item.id}}">{{item.remark}}</option>
               </select>
         </div> 
 
-    </div>
+      </div>
     </form>
-
 
      <br> 
 
-   <button type="submit" class="btn btn-success btn-block" [disabled]='!(this.HospitalForm.valid && this.contactForm.valid)' (click)="reserve()">Reserve</button><br>
+   <button type="submit" class="btn btn-success btn-block" (click)="reserve()">Reserve</button><br>
 
     <div>
-          <button mat-button matStepperNext disabled="true" >Next</button>
-      </div>
+        <button mat-button matStepperNext disabled="true" >Next</button>
+    </div>
     </mat-step>
 
     <mat-step [stepControl]="updatePuctureImage" optional > 

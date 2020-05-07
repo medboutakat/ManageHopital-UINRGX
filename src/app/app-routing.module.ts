@@ -22,6 +22,7 @@ import { MaterialEditComponent } from './material/material-edit/material-edit.co
 import { PaymentComponent } from './payment/payment/payment.component';
 import { ProductCatComponent } from './productCategorie/product-cat/product-cat.component';
 import { ProductComponent } from './products/product/product.component';
+import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { SignupComponent } from './Auth/signup/signup.component';
 
 
@@ -40,7 +41,8 @@ const routes: Routes = [
       { path: 'doctors', component: DoctorComponent },
       { path: 'home', component: HomeComponent },
       { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' },
-      { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full' },
+      { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full' },      
+      { path: 'productedit', component: ProductEditComponent, pathMatch: 'full' },
       { path: 'doctorCategory', component: DoctorCatComponent, pathMatch: 'full' },
       { path: 'productCategory', component: ProductCatComponent, pathMatch: 'full' },
       { path: 'invoice', component: InvoiceEditComponent, pathMatch: 'full' },
@@ -52,8 +54,8 @@ const routes: Routes = [
       { path: 'material', component: MaterialComponent, pathMatch: 'full' }, 
       { path: 'products', component: ProductComponent, pathMatch: 'full' },
       { path: 'materialedit', component: MaterialEditComponent, pathMatch: 'full' },
-      { path: 'addDoctor', component: DoctorEditComponent, pathMatch: 'full' },
-      { path: 'payment', component: PaymentComponent, pathMatch: 'full' } 
+      { path: 'addDoctor', component: DoctorEditComponent, pathMatch: 'full' }, 
+      { path: 'payment', component: PaymentComponent, pathMatch: 'full' },
 
 
     ]

@@ -104,9 +104,9 @@ const config = {
 
 
     ProductCatComponent,
-    ProductEditCatComponent,
+    ProductEditCatComponent, 
     ProductComponent, 
-    ProductEditComponent 
+    ProductEditComponent  
   ],
   entryComponents: [
 
@@ -138,13 +138,13 @@ const config = {
     ChatModule,
     AngularMaterialModule,
     MatBottomSheetModule,
-    MatTooltipModule,
+    MatTooltipModule, 
     HttpClientModule, 
     AppStoreModule 
   ],
   providers: [
     // SugarLevelService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } 
   ],
   bootstrap: [AppComponent]
 })
