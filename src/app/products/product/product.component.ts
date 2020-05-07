@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { Store } from "@ngrx/store";
-import * as ActionsFile from "src/app/ProductCategorie/Store/Action";
-import { Observable } from "rxjs"; 
-import * as ActionsFiles from "src/app/products/store/Action";
+import * as ActionsFile from "src/app/products/Store/Action";
+import { Observable } from "rxjs";
 import {
  MatBottomSheet,
   MatDialog,
@@ -21,9 +20,9 @@ import { Product } from '../product.Module';
   styleUrls: ["./product.component.scss"],
 })
 export class ProductComponent implements OnInit {
-  hospitals: Product[];
-  listhopitalCatValues: any;
-  listHopital: any;
+  products: Product[];
+  productValues: any;
+  listProducts: any;
   private rowSelection;
   private IsRowSelected: boolean = false;
   private IsMultple: boolean = false;
@@ -40,20 +39,14 @@ export class ProductComponent implements OnInit {
     this.add = this.add.bind(this);
     this.edit = this.edit.bind(this);
 
-    this.store.dispatch(new ActionsFiles.Load());
-    this.remplir();
-
-    this.store.dispatch(new ActionsFile.Load());
-    this.store.subscribe((data) => {
-      this.listhopitalCatValues = Object.values(data.HospitalCat.entities);
-      console.log(" this.listhopitalCatValues=> ", this.listhopitalCatValues);
-    });
+ 
   }
+
   remplir() {
     this.store.subscribe((data) => {
-      this.listHopital = Object.values(data.Product.entities);
-      console.log(" this.listhopital=> ", this.listHopital),
-        (this.dataSource = new MatTableDataSource<Product>(this.listHopital));
+      this.listProducts = Object.values(data.products.entities);
+      console.log(" Products list : ", this.listProducts),
+        (this.dataSource = new MatTableDataSource<Product>(this.listProducts));
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.selection = new SelectionModel<Product>(true, []);
@@ -78,9 +71,13 @@ export class ProductComponent implements OnInit {
   ];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  ngOnInit() {}
-  get hospitalcat() {
-    return this.listhopitalCatValues;
+  ngOnInit() {
+    //this.remplir();
+    this.store.dispatch(new ActionsFile.Load());
+    this.remplir();
+  }
+  get product() {
+    return this.productValues;
   }
 
  
@@ -119,7 +116,7 @@ export class ProductComponent implements OnInit {
     if (confirm("Are You Sure You want to Delete the User?")) {
       var cat = <Product>this.selection.selected[0];
       console.log("cat => ", cat);
-      this.store.dispatch(new ActionsFiles.Delete(cat.id));
+      this.store.dispatch(new ActionsFile.Delete(cat.id));
      
     }
   }
@@ -135,9 +132,11 @@ export class ProductComponent implements OnInit {
       _currentObject: cat,
       title: "Update " + cat.name,
     };
-    this.dialog.open(ProductEditComponent, dialogConfig);
+    this.dialog.open(ProductEditComponent, dialogConfig).afterClosed().subscribe(result => {
+      this.store.dispatch(new ActionsFile.Load());
+      this.remplir();
+    });;
     console.log("updated");
-    this.reload();
   }
 
   add() {
@@ -147,6 +146,9 @@ export class ProductComponent implements OnInit {
       title: "Add ",
     };
 
-    this.dialog.open(ProductEditComponent, dialogConfig);
+    this.dialog.open(ProductEditComponent, dialogConfig).afterClosed().subscribe(result => {
+      this.store.dispatch(new ActionsFile.Load());
+      this.remplir();
+    });
   }
 }
