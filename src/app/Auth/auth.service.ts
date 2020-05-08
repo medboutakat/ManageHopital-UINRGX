@@ -27,15 +27,9 @@ export class AuthService {
   }
 
   constructor(private http: HttpClient, private router: Router) { }
-  register(user: Register) {
-    const headers = new HttpHeaders().set('content-type', 'application/json');
-    var body = {
-      id: user.id, firstName: user.firstName, lastname: user.lastName,
-      sexe: user.sexe, username: user.username, password: user.password,
-    }
-    return this.http.post<Register>(this.url2, body, { headers })
+  register(user: Register): Observable<Register> {
+    return this.http.post<Register>(this.url2, user);
   }
-
   login(formData: NgForm) {
     return this.http.post<any>(`${this.url}`, formData).pipe(
       tap(user => {
