@@ -60,8 +60,8 @@
                         <!-- body -->
                         <div class="col-12"> 
                                 <div class="row details">
-                                    <div class="col-1"></div>  
-                                    <input formControlName="product" class="form-control col-7" type="text"> 
+                                    <div class="col-1"></div>   
+                                    <app-autocomplete fcName="product" class="form-control col-7" ></app-autocomplete>
                                     <input formControlName="qte" class="form-control col-1" type="text"   (change)="valueChanged(detail)" /> 
                                     <input formControlName="price" class="form-control col-1" type="text"  (change)="valueChanged(detail)" />
                                     <input formControlName="tax" class="form-control col-1" type="text"   (change)="valueChanged(detail)" />

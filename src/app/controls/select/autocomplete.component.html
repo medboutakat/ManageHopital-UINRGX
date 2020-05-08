@@ -1,0 +1,14 @@
+<!--  
+  <select class="select" formControlName="fcName">
+    <option *ngFor="let val of listObjects" [value]="val.id"> {{ val.remark }}   </option>
+  </select> -->
+
+
+  <mat-form-field>
+    <input type="text" placeholder="Enter City" matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
