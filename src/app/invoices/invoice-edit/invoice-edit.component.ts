@@ -22,7 +22,18 @@ export class InvoiceEditComponent implements OnInit {
   addDetail(index) {
     var detailRow=this.invoice.newEmptyRow();
     var produForm=this.invoiceForm.get("productForm") 
-    produForm.insert(index+1, this.buildFormDynamic(detailRow)); 
+
+
+    var detailForm=this.buildFormDynamic(detailRow);
+ 
+
+    detailForm.get("product").valueChanges.subscribe(x => {
+      console.log('firstname value changed')
+      console.log(x)
+   })
+ 
+
+    produForm.insert(index+1,detailForm ); 
   } 
 
   deleteDetail(index) { 
@@ -149,7 +160,7 @@ buildFormDynamic(detail:InvoiceDetail):FormGroup{
       price:new FormControl(detail.price),
       tax: new FormControl(detail.tax),
       total:new FormControl(detail.total),
-     })   
+     })     
    }  
   
  
