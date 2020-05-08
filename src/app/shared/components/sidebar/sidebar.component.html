@@ -1,25 +1,27 @@
 <mat-nav-list>
   <div class="profile-card">
-    <div class="header">
-      <h2>{{user}}</h2>
-    </div>
-    <!-- <img src="assets/img/test9.png" alt="Manage Hospital"> -->
-   
-
-    <a routerLink="/">
-      <img src="assets/img/testnouveau.png" alt="Manage Hospital"> 
-    </a>
+    <img src="assets/img/testnouveau.png" alt="Manage Hospital">
   </div>
 
 
   <mat-divider></mat-divider>
 
 
-  <h2 matSubheader>Pages</h2> 
- 
-  <a *ngFor="let link of links;" mat-list-item routerLinkActive="list-item-active" routerLink="{{link.path}}">{{link.text}}</a> 
+  <h2 matSubheader>Pages</h2>
 
- 
+  <table cdkDropList (cdkDropListDropped)="drop($event)">
+    <tr *ngFor="let link of links" cdkDrag>
+      <td>
+        <a mat-list-item routerLinkActive="list-item-active" [routerLink]="link.url" >{{link.txt}}</a>
+      </td>
+      <td>
+        <span mat-list-item class="material-icons" id="move-span"  >
+          unfold_more
+        </span>
+      </td>
+    </tr>
+  </table>
+  
 
   <mat-divider></mat-divider>
 

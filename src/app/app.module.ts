@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,7 +12,7 @@ import { SelectComponent } from './select/select.component';
 
 import { ContactComponent } from './contacts/contact/contact.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatBottomSheetModule, MatTooltipModule, MatCellDef } from '@angular/material'
+import { MatBottomSheetModule, MatTooltipModule, MatCellDef, MatAutocompleteModule } from '@angular/material'
 
 import { CategoryComponent } from './category/category.component';
 
@@ -55,6 +55,8 @@ import { ProductComponent } from './products/product/product.component';
 import { AppStoreModule } from './app-store.module';
 import { AuthInterceptor } from './Auth/auth.interceptor';
 import { ProductEditCatComponent } from './productCategorie/product-edit-cat/product-edit-cat.component';
+import { AutoCompleteComponent } from './controls/select/autocomplete.component';
+ 
 
 const config = {
   issuer: 'https://okta.okta.com/oauth2/default',
@@ -96,26 +98,20 @@ const config = {
     InvoiceComponent,
     HospitalCatEditComponent,
     MaterialComponent,
-    MaterialEditComponent,
-
-
+    MaterialEditComponent, 
     DoctorEditCatComponent,
-    PaymentComponent,
-
-
+    PaymentComponent, 
     ProductCatComponent,
     ProductEditCatComponent, 
     ProductComponent, 
-    ProductEditComponent  
+    ProductEditComponent,
+    AutoCompleteComponent
   ],
   entryComponents: [
-
     HospitalEditComponent,
     AppointemntEditComponent,
-
     AddOperationComponent,
     HospitalCatEditComponent,
-
     MenuComponent,
     DoctorEditComponent,
     DoctorEditCatComponent,
@@ -136,9 +132,10 @@ const config = {
     [MatDialogModule], 
     HttpClientModule, 
     ChatModule,
-    AngularMaterialModule,
-    MatBottomSheetModule,
-    MatTooltipModule, 
+    AngularMaterialModule,    
+    // MatAutocompleteModule,
+    // MatBottomSheetModule,
+    // MatTooltipModule, 
     HttpClientModule, 
     AppStoreModule 
   ],
@@ -146,6 +143,7 @@ const config = {
     // SugarLevelService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } 
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

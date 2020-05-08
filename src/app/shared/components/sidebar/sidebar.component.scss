@@ -16,10 +16,15 @@
     }
   }
 }
- 
-.mat-list-item.list-item-active{
-  background-color: #2482A9 ;
-  
-  font-size: 20px;
- }
-  
+table , tr, td{
+  width: 100%;
+}
+
+#move-span{
+  visibility: hidden;
+  color: gray;
+}
+
+tr:hover td #move-span{
+  visibility: visible;
+}

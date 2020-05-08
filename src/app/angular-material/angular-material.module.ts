@@ -6,19 +6,16 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-
+import { MatIconModule } from '@angular/material/icon'; 
 import { MatGridListModule } from '@angular/material/grid-list';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule, MatCellDef } from '@angular/material/table';
-import { MatPaginatorModule, MatSortModule, MatCheckbox, MatCheckboxModule, MatProgressSpinnerModule } from '@angular/material';
-import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
-import { AgGridModule } from 'ag-grid-angular';
+import { MatPaginatorModule, MatSortModule, MatCheckbox, MatCheckboxModule, MatProgressSpinnerModule, MatAutocompleteModule, MatTooltip, MatTooltipModule } from '@angular/material';
+import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatStepperModule } from '@angular/material/stepper';
 const Materiallist = [
   MatButtonModule,
@@ -43,6 +40,19 @@ const Materiallist = [
   MatProgressSpinnerModule,
   MatFormFieldModule,
   MatInputModule,
+  MatAutocompleteModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatTableModule,
+  MatIconModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatTableModule,
+  MatSortModule,
+  MatCheckboxModule,
+  MatTooltipModule,
+  MatBottomSheetModule
 ]
 
 @NgModule({
@@ -50,23 +60,10 @@ const Materiallist = [
 
   ],
   imports: [
-    Materiallist,
-    MatToolbarModule,
-    MatIconModule,
-    MatTableModule,
-    MatIconModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatTableModule,
-    MatSortModule,
-    MatCheckboxModule,
+    Materiallist,  
   ],
   exports: [
-    Materiallist,
-    MatToolbarModule,
-    MatTableModule,
-
+    Materiallist, 
   ],
   providers: [{ provide: MatBottomSheetRef, useValue: {} },
   { provide: MAT_BOTTOM_SHEET_DATA, useValue: {} }],

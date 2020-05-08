@@ -11,6 +11,7 @@ import { AreaComponent } from './widgets/area/area.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { CardComponent } from './widgets/card/card.component';
 import { PieComponent } from './widgets/pie/pie.component';
+import { DragDropModule} from '@angular/cdk/drag-drop'
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { PieComponent } from './widgets/pie/pie.component';
     MatMenuModule,
     MatListModule,
     RouterModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    DragDropModule
   ],
   exports: [
     HeaderComponent,
