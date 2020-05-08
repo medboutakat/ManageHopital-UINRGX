@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Title } from '@angular/platform-browser';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+
+ interface link{
+  txt:string;
+  url:string
+}
 
 @Component({
   selector: 'app-sidebar',
@@ -9,51 +13,32 @@ import { Title } from '@angular/platform-browser';
 })
 export class SidebarComponent implements OnInit {
   user = localStorage.getItem("user");
-  
-	private activatedRoute: ActivatedRoute;
-  constructor(activatedRoute: ActivatedRoute,private titleService: Title) { 
+  links: link[] = [
+    {txt:'Dashboard',url:'/'},
+    {txt:'Appointements',url:'/appointement'},
+    {txt:'Articles',url:'/articles'},
+    {txt:'Hospital',url:'/hospitals'},
+    {txt:'Hospital category',url:'/hospitalcat'},
+    {txt:'DoctorCategory',url:'/doctorCategory'},
+    {txt:'ProductCategory',url:'/productCategory'},
+    {txt:'Doctors',url:'/doctors'},
+    {txt:'Invoices',url:'/invoices'},
+    {txt:'Invoice',url:'/invoice'},
+    {txt:'Operations',url:'/operation'},
+    {txt:'Product',url:'/product'},
+    {txt:'material',url:'/material'},
+    {txt:'material edit',url:'/materialedit'},
+    {txt:'Payment',url:'/payment'},
+  ]
+  constructor(
 
-		this.activatedRoute = activatedRoute;
+  ) { }
+
+  ngOnInit() {
   }
 
-
-
-  links=[
-    { path: '/', text: "Dashboard" }, 
-    { path: '/appointement', text: "Appointements" }, 
-    { path: '/Hospitals', text: "Hospitals" }, 
-    { path: '/hospitalcat', text: "Hospital category" }, 
-    { path: '/doctors', text: "Doctors" }, 
-    { path: '/doctorCategory', text: "Doctor category" }, 
-    { path: '/products', text: "Products" }, 
-    { path: '/productCategory', text: "Product category" }, 
-    { path: '/invoices', text: "Invoices" }, 
-    { path: '/invoice', text: "Create invoice" }, 
-    { path: '/operation', text: "Operations" }, 
-    { path: '/material', text: "Materials" }, 
-    { path: '/materialedit', text: "Create material" }, 
-    { path: '/payment', text: "Payment" }
-  ];
-
-  setTitle( newTitle: string) {
-    this.titleService.setTitle( newTitle );
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.links, event.previousIndex, event.currentIndex);
   }
 
-  ngOnInit() { 
-  
-    this.setTitle("Please set title");
-
-    console.log(this.links)
-    this.activatedRoute.params.subscribe(
-			( paramMap: ParamMap ) : void => {
-
-
-     
-				// this.id = +paramMap.get( "id" );
-				// this.mode = paramMap.get( "mode" );
-
-			}
-    ); 
-  }
- 
 }
