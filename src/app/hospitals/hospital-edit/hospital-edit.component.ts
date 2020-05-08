@@ -10,6 +10,7 @@ import * as ActionsFiles from '../../hospitals/store/Action'
 import { City } from '../../cities/city';
 import { ContactHelper } from '../../contacts/contact.helper';
 import { environment } from 'src/environments/environment';
+import { HospitalService } from '../hospital.service';
 
 @Component({
   selector: 'app-hospital-edit',
@@ -20,7 +21,8 @@ import { environment } from 'src/environments/environment';
 
 
 export class HospitalEditComponent implements OnInit {
-
+  fileToUpload=null;  
+  imageUrl:string="/assets/img/";
   HospitalForm: FormGroup;
   listhopitalValues: any; 
  _currentObject: Hospital; 
@@ -32,7 +34,7 @@ export class HospitalEditComponent implements OnInit {
  _currentContactObject: Contact; 
  updatePuctureImage: FormGroup; 
 
-  constructor(private _bottomSheetRef: MatBottomSheetRef<HopitalComponent>, private store: Store<any>,   @Inject(MAT_DIALOG_DATA) data,private fb: FormBuilder,) {
+  constructor(private _bottomSheetRef: MatBottomSheetRef<HopitalComponent>, private store: Store<any>,public hossrvice: HospitalService,  @Inject(MAT_DIALOG_DATA) data,private fb: FormBuilder,) {
     
     this.store.dispatch(new ActionsFile.Load());
     this.store.subscribe(data => {
@@ -66,6 +68,7 @@ export class HospitalEditComponent implements OnInit {
       history: [this._currentObject.history, Validators.required],
       hospitalCategoryId: [this._currentObject.hospitalCategoryId, Validators.required],
       categoryName:  [this._currentObject.categoryName, Validators.required],     
+      pictureProfilePath:[this._currentObject.pictureProfilePath,Validators.required],
       contactModel:this.contactForm
     });
 
@@ -110,7 +113,7 @@ export class HospitalEditComponent implements OnInit {
   updateImages(){
     
     var newApp = this.HospitalForm.value;
-    // this.store.dispatch(new ActionsFiles.UpdateHospitalPictures(newApp));
+    this.store.dispatch(new ActionsFiles.UpdateHospital(newApp));
   }
 
   onFileSelectCover(event) {
@@ -125,4 +128,22 @@ export class HospitalEditComponent implements OnInit {
       this.updatePuctureImage.get('PictureProfilePath').setValue(file); 
     }
   }
+
+  // IMG:string;
+  // onFileSelectCover(event)
+  // {
+  //   this.fileToUpload = event.target.files[0];
+  //   //show image preview here
+  //   var reader = new FileReader();
+  //   reader.onload =(event : any)=>{
+  //     this.imageUrl =event.target.result.replace('data:image/jpeg;base64,','data:image/png;base64,')
+  //     var ret = this.imageUrl.replace('data:image/png;base64,','');
+  //     this.hossrvice.RepByDmm.pictureProfilePath = ret
+  //     console.log("imageUrl : ",this.imageUrl)
+  //     console.log("ret : ",ret)
+  //   }
+    
+  //   reader.readAsDataURL(this.fileToUpload);
+  //   console.log("file : ",reader) 
+  // }
 }
