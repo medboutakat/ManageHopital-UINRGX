@@ -1,7 +1,7 @@
 import { GeneratedId } from '../generatedId';
 
-export class Contact {
-    id: string;
+export class Contact extends GeneratedId{
+    
     email: string;
     phone1: number;
     phone2: number;

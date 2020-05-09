@@ -16,7 +16,6 @@ export class HospitalService implements ICrudService<Hospital>{
   ReponseUrl: string;
 
   RepByDm: Hospital[];
-  RepByDmm: Hospital;
 
     constructor( private  http : HttpClient ){
     this.ReponseUrl=RootURLS.getUrl("Hospital");

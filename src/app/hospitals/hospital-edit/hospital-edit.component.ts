@@ -68,7 +68,7 @@ export class HospitalEditComponent implements OnInit {
       history: [this._currentObject.history, Validators.required],
       hospitalCategoryId: [this._currentObject.hospitalCategoryId, Validators.required],
       categoryName:  [this._currentObject.categoryName, Validators.required],     
-      pictureProfilePath:[this._currentObject.pictureProfilePath,Validators.required],
+      pictureProfilePath: null,   
       contactModel:this.contactForm
     });
 
@@ -111,39 +111,41 @@ export class HospitalEditComponent implements OnInit {
 
 
   updateImages(){
-    
+ this.HospitalForm.get("pictureProfilePath")
     var newApp = this.HospitalForm.value;
-    this.store.dispatch(new ActionsFiles.UpdateHospital(newApp));
+    newApp.pictureProfilePath=this.IMG
+    console.log("hospImageeeee",newApp.pictureProfilePath)
+    this.store.dispatch(new ActionsFiles.CreateHospital(newApp));
   }
 
-  onFileSelectCover(event) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.updatePuctureImage.get('CovePath').setValue(file); 
-    }
-  }
+  // onFileSelectCover(event) {
+  //   if (event.target.files.length > 0) {
+  //     const file = event.target.files[0];
+  //     this.updatePuctureImage.get('CovePath').setValue(file); 
+  //   }
+  // }
   onFileSelect(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0]; 
       this.updatePuctureImage.get('PictureProfilePath').setValue(file); 
     }
   }
+  RepByDmm: Hospital;
 
-  // IMG:string;
-  // onFileSelectCover(event)
-  // {
-  //   this.fileToUpload = event.target.files[0];
-  //   //show image preview here
-  //   var reader = new FileReader();
-  //   reader.onload =(event : any)=>{
-  //     this.imageUrl =event.target.result.replace('data:image/jpeg;base64,','data:image/png;base64,')
-  //     var ret = this.imageUrl.replace('data:image/png;base64,','');
-  //     this.hossrvice.RepByDmm.pictureProfilePath = ret
-  //     console.log("imageUrl : ",this.imageUrl)
-  //     console.log("ret : ",ret)
-  //   }
-    
-  //   reader.readAsDataURL(this.fileToUpload);
-  //   console.log("file : ",reader) 
-  // }
+  IMG:string;
+  onFileSelectCover(event)
+  {
+    this.fileToUpload = event.target.files[0];
+    //show image preview here
+    var reader = new FileReader();
+    reader.onload =(event : any)=>{
+      this.imageUrl =event.target.result.replace('data:image/jpeg;base64,','data:image/png;base64,')
+      var ret = this.imageUrl.replace('data:image/png;base64,','');
+      this.IMG = ret
+      console.log("imageUrl : ",this.imageUrl)
+      console.log("ret : ",this.IMG)
+    } 
+    reader.readAsDataURL(this.fileToUpload);
+    console.log("file : ",reader) 
+  }
 }
