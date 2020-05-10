@@ -73,10 +73,8 @@
             <span class="btn btn-primary" onclick="$(this).parent().find('input[type=file]').click();">Browse</span>
             <input type="file"  onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file"
             name="CovePathForm" id="file" #image accept="images/*" (change)="onFileSelectCover($event)"  >
-          </span>
-          
+          </span> 
         </div> -->
-        
         <div class="form-group col-md-6">  
           <label for="exampleFormControlFile1">Example file input</label><br>
           <!-- <input type="file" name="PictureProfilePathForm" (change)="onFileSelect($event)"  class="form-control-file" id="exampleFormControlFile1">  -->
@@ -85,7 +83,6 @@
             <input  onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file"
             type="file" name="pictureProfilePath" (change)="onFileSelect($event)" id="pictureProfilePath" formControlName="covePath" >
           </span>
-        
         </div> 
 
         
