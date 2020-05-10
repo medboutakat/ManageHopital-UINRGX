@@ -1,11 +1,12 @@
 # Autors
+
+[Imane slague](https://github.com/ImaneSlague)  :  software developper
+
 [Mohamed boutakat](https://github.com/medboutakat/ ) : Lead software developper
 
 [Abdelwahed kourrour](https://github.com/AbdelwahedK) : software developper
 
 [Raja kacimi](https://github.com/elqasemyrajaa) :  software developper
-
-[Imane slague](https://github.com/ImaneSlague)  :  software developper
 
 
 # Dashboard
