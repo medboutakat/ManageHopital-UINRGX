@@ -25,6 +25,8 @@ import { ProductReducer } from './products/store/Reducer';
 import { OperationCatEffect } from './operations/store/category.effects';
 import { ProductCatEffect } from './productCategorie/Store/Effect';
 import { ProductEffect } from './products/store/Effect';
+import { featureReducer } from './hospitals/upload-file-store/reducer';
+import { UploadFileEffects } from './hospitals/upload-file-store/effect';
 
 
 @NgModule({
@@ -48,8 +50,9 @@ import { ProductEffect } from './products/store/Effect';
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
     StoreModule.forFeature("cities", CityReducer),
     StoreModule.forFeature("products", ProductReducer),
-    
-    EffectsModule.forRoot([CityEffect, HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect, OperationCatEffect,ProductCatEffect,ProductEffect]),
+    StoreModule.forFeature('uploadFile', featureReducer),
+   
+    EffectsModule.forRoot([UploadFileEffects,CityEffect, HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect, OperationCatEffect,ProductCatEffect,ProductEffect]),
 
   ]
 })
