@@ -59,7 +59,7 @@ export class HospitalEditComponent implements OnInit {
   ngOnInit() { 
  
     this.contactForm =  ContactHelper.getFormBuilder(this.fb, this._currentContactObject);
-
+  console.log("contact",this._currentContactObject)
     this.HospitalForm = this.fb.group({
       id: [this._currentObject.id, Validators.required],
       countryHealthId:  [this._currentObject.countryHealthId, Validators.required],
@@ -69,6 +69,7 @@ export class HospitalEditComponent implements OnInit {
       hospitalCategoryId: [this._currentObject.hospitalCategoryId, Validators.required],
       categoryName:  [this._currentObject.categoryName, Validators.required],     
       pictureProfilePath: null,   
+      covePath : null,
       contactModel:this.contactForm
     });
 
@@ -92,8 +93,12 @@ export class HospitalEditComponent implements OnInit {
   reserve() {
     var newApp = <Hospital>this.HospitalForm.value    
     newApp.contactModel.cityId=+ newApp.contactModel.cityId;
-    
-    
+ 
+    newApp.pictureProfilePath=this.IMG
+    console.log("pictureProfilePath",newApp.pictureProfilePath)
+    newApp.covePath=this.IMG
+    console.log("covePath",newApp.covePath)
+
       console.log("HospitalForm Valid",this.HospitalForm.valid)
       console.log("contactModel Valid",this.contactForm.valid)
 
@@ -110,13 +115,13 @@ export class HospitalEditComponent implements OnInit {
   }
 
 
-  updateImages(){
- this.HospitalForm.get("pictureProfilePath")
-    var newApp = this.HospitalForm.value;
-    newApp.pictureProfilePath=this.IMG
-    console.log("hospImageeeee",newApp.pictureProfilePath)
-    this.store.dispatch(new ActionsFiles.CreateHospital(newApp));
-  }
+//   updateImages(){
+//  this.HospitalForm.get("pictureProfilePath")
+//     var newApp = this.HospitalForm.value;
+//     newApp.pictureProfilePath=this.IMG
+//     console.log("hospImageeeee",newApp.pictureProfilePath)
+//     this.store.dispatch(new ActionsFiles.CreateHospital(newApp));
+//   }
 
   // onFileSelectCover(event) {
   //   if (event.target.files.length > 0) {
@@ -124,16 +129,30 @@ export class HospitalEditComponent implements OnInit {
   //     this.updatePuctureImage.get('CovePath').setValue(file); 
   //   }
   // }
-  onFileSelect(event) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0]; 
-      this.updatePuctureImage.get('PictureProfilePath').setValue(file); 
-    }
-  }
-  RepByDmm: Hospital;
-
+  // onFileSelect(event) {
+  //   if (event.target.files.length > 0) {
+  //     const file = event.target.files[0]; 
+  //     this.updatePuctureImage.get('PictureProfilePath').setValue(file); 
+  //   }
+  // }
+  
   IMG:string;
   onFileSelectCover(event)
+  {
+    this.fileToUpload = event.target.files[0];
+    //show image preview here
+    var reader = new FileReader();
+    reader.onload =(event : any)=>{
+      this.imageUrl =event.target.result.replace('data:image/jpeg;base64,','data:image/png;base64,')
+      var ret = this.imageUrl.replace('data:image/png;base64,','');
+      this.IMG = ret
+      console.log("imageUrl : ",this.imageUrl)
+      console.log("ret : ",this.IMG)
+    } 
+    reader.readAsDataURL(this.fileToUpload);
+    console.log("file : ",reader) 
+  }
+  onFileSelect(event)
   {
     this.fileToUpload = event.target.files[0];
     //show image preview here

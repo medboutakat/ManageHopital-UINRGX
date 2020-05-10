@@ -4,6 +4,7 @@ import { Contact } from './contact.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RootURLS } from '../root-urls';
 import { FormBuilder, FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,11 @@ export class ContactService implements ICrudService<Contact> {
     }
     return this.http.post<Contact>(this.ReponseUrl, body, { headers })
   }
+  // add(payload: Contact): Observable<Contact> {
+
+  //   console.log("service Add",payload)
+  //   return this.http.post<Contact>(this.ReponseUrl, payload);
+  // }
   update(hospitalCat: Contact): import("rxjs").Observable<Contact> {
     throw new Error("Method not implemented.");
   }
