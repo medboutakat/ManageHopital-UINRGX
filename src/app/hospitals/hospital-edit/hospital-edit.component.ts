@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatBottomSheetRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatBottomSheetRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { HopitalComponent } from '../hopital/hopital.component';
 import { Store } from '@ngrx/store';
 import * as ActionsFile from 'src/app/HospitalCategorie/Store/Action'
@@ -34,7 +34,7 @@ export class HospitalEditComponent implements OnInit {
  _currentContactObject: Contact; 
  updatePuctureImage: FormGroup; 
 
-  constructor(private _bottomSheetRef: MatBottomSheetRef<HopitalComponent>, private store: Store<any>,public hossrvice: HospitalService,  @Inject(MAT_DIALOG_DATA) data,private fb: FormBuilder,) {
+  constructor( private dialog: MatDialog, private store: Store<any>,  @Inject(MAT_DIALOG_DATA) data,private fb: FormBuilder,) {
     
     this.store.dispatch(new ActionsFile.Load());
     this.store.subscribe(data => {
@@ -77,13 +77,7 @@ export class HospitalEditComponent implements OnInit {
       CovePathForm: new FormControl(''),
       PictureProfilePathForm: new FormControl(''), 
     });
-
     
-  }
-
-  openLink(event: MouseEvent): void {
-    this._bottomSheetRef.dismiss();
-    event.preventDefault();
   }
 
   getContact(contact) {
@@ -112,6 +106,7 @@ export class HospitalEditComponent implements OnInit {
       this.store.dispatch(new ActionsFiles.UpdateHospital(newApp));
     }
     this.HospitalForm.reset(); 
+    this.dialog.closeAll();
   }
 
 
