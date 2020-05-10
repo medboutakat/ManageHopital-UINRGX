@@ -1,3 +1,10 @@
+# Autors
+Mohamed boutakat : Lead software developper
+Abdelwahed kourrour : software developper
+Raja kacimi :  software developper
+Imane slague  :  software developper
+
+
 # Dashboard
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.4.
