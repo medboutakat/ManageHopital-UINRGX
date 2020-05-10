@@ -1,3 +1,14 @@
+# Autors
+
+[Imane slague](https://github.com/ImaneSlague)  :  software developer
+
+[Mohamed boutakat](https://github.com/medboutakat/ ) : Lead software developer
+
+[Abdelwahed kourrour](https://github.com/AbdelwahedK) : software developer
+
+[Raja kacimi](https://github.com/elqasemyrajaa) :  software developer
+
+
 # Dashboard
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.4.

@@ -17,10 +17,30 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 })
 export class SidebarComponent implements OnInit {
   user = localStorage.getItem("user");
+<<<<<<< HEAD
 
 
   links: link[];
 
+=======
+  links: link[] = [
+    {txt:'Dashboard',url:'/'},
+    {txt:'Appointements',url:'/appointement'},
+    {txt:'Articles',url:'/articles'},
+    {txt:'Hospital',url:'/hospitals'},
+    {txt:'Hospital category',url:'/hospitalcat'},
+    {txt:'DoctorCategory',url:'/doctorCategory'},
+    {txt:'ProductCategory',url:'/productCategory'},
+    {txt:'Doctors',url:'/doctors'},
+    {txt:'Invoices',url:'/invoices'},
+    {txt:'Invoice',url:'/invoice'},
+    {txt:'Operations',url:'/operation'},
+    {txt:'Product',url:'/products'},
+    {txt:'material',url:'/material'},
+    {txt:'material edit',url:'/materialedit'},
+    {txt:'Payment',url:'/payment'},
+  ]
+>>>>>>> 2545df00961b244bf028c6b539273b5b856d0b29
   constructor(
 
   ) { 
