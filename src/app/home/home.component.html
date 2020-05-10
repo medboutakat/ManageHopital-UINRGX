@@ -1,44 +1,14 @@
+ 
+
 <div class="home">
   <div class="container">
-    <div class="row">
-      <div class="col-*-3">
-        <button class="btn btn-warning"><i class="fa fa-user"></i> Patients</button>
-      </div>
-      <div class="col-*-3">
-        <button class="btn btn-info"><i class="fa fa-heartbeat"></i> Hospitals</button>
-      </div>
-      <div class="col-*-3">
-        <button class="btn btn-dark"><i class="fa fa-calendar"></i> Appointements</button>
-      </div>
-      <div class="col-*-3">
-        <button class="btn btn-warning"><i class="fa fa-user"></i> Patients</button>
-      </div>
-      <div class="col-*-3">
-        <button class="btn btn-info"><i class="fa fa-heartbeat"></i> Hospitals</button>
-      </div>
-      <div class="col-*-3">
-        <button class="btn btn-dark"><i class="fa fa-calendar"></i> Appointements</button>
-      </div>
-
-
-      <div class="col-*-3">
-        <button class="btn btn-warning"><i class="fa fa-user"></i> Patients</button>
-      </div>
-      <div class="col-*-3">
-        <button class="btn btn-info"><i class="fa fa-heartbeat"></i> Hospitals</button>
-      </div>
-      <div class="col-*-3">
-        <button class="btn btn-dark"><i class="fa fa-calendar"></i> Appointements</button>
-      </div>
-      <div class="col-*-3">
-        <button class="btn btn-warning"><i class="fa fa-user"></i> Patients</button>
-      </div>
-      <div class="col-*-3">
-        <button class="btn btn-info"><i class="fa fa-heartbeat"></i> Hospitals</button>
-      </div>
-      <div class="col-*-3">
-        <button class="btn btn-dark"><i class="fa fa-calendar"></i> Appointements</button>
-      </div>
+    <div class="row" cdkDropList (cdkDropListDropped)="drop($event)"> 
+          <div class="col-*-3"  *ngFor="let link of links" cdkDrag> 
+            <a  class="btn btn-dark"  [routerLink]="link.Url"  > <i class="link.class"></i> {{link.txt}}   </a>  
+          </div>   
+          <span mat-list-item class="material-icons" id="move-span"  >
+            unfold_more
+          </span>
     </div>
   </div>
 </div>
