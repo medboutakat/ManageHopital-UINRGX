@@ -17,7 +17,9 @@ export enum ActionTypes {
 } 
 export class UploadRequestAction implements Action {
   readonly type = ActionTypes.UPLOAD_REQUEST;
-  constructor(public payload: { file: File }) {}
+  constructor(public payload: { file: File,productId:string }) {
+    console.log("Update image for product "+payload.productId)
+  }
 }
 
 export class UploadCancelAction implements Action {

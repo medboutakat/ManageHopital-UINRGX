@@ -14,7 +14,7 @@ export class FileUploadService {
     this.ReponseUrl=RootURLS.getUrl("Hospital/UpdateImages");
   }
 
-  public uploadFile(file: File): Observable<HttpEvent<{}>> {
+  public uploadFile(file: File,productId:string): Observable<HttpEvent<{}>> {
 
     const formData = new FormData();
 
@@ -27,19 +27,19 @@ export class FileUploadService {
 
     const req = new HttpRequest(
       'PUT',
-      `${this.ReponseUrl}`,
+      `${this.ReponseUrl}/`+productId,
       formData,
       options
     );
     return this.httpClient.request(req);
   }
 
-  updateImages(payloadId: string,payloadData: FormData): Observable<Hospital> {
-    console.log("service update",payloadId)
+  // updateImages(payloadId: string,payloadData: FormData): Observable<Hospital> {
+  //   console.log("service update",payloadId)
 
-    return this.httpClient.put<Hospital>(
-      `${this.ReponseUrl}/${payloadId}`,
-      payloadData
-    );
-  }
+  //   return this.httpClient.put<Hospital>(
+  //     `${this.ReponseUrl}/${payloadId}`,
+  //     payloadData
+  //   );
+  // }
 }

@@ -5,12 +5,11 @@ import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { catchError, concatMap, map, takeUntil, mergeMap, tap } from 'rxjs/operators';
 import * as fromFileUploadActions from 'src/app/hospitals/upload-file-store/Action';
-import { FileUploadService } from './file-service/file.service';
-import { Hospital } from '../hospital.model';
+import { FileUploadService } from './file-service/file.service'; 
 
 @Injectable()
 export class UploadFileEffects {
-  
+
   constructor(
     private fileUploadService:FileUploadService,
     private actions$: Actions<fromFileUploadActions.Actions>
@@ -21,7 +20,7 @@ export class UploadFileEffects {
   uploadRequestEffect$: Observable<Action> = this.actions$.pipe(
     ofType(fromFileUploadActions.ActionTypes.UPLOAD_REQUEST),
     concatMap(action =>
-      this.fileUploadService.uploadFile(action.payload.file).pipe(
+      this.fileUploadService.uploadFile(action.payload.file,action.payload.productId).pipe(
         takeUntil(
           this.actions$.pipe(
             ofType(fromFileUploadActions.ActionTypes.UPLOAD_CANCEL)
