@@ -15,7 +15,10 @@ export class FileUploadService {
   }
 
   public uploadFile(file: File): Observable<HttpEvent<{}>> {
+
     const formData = new FormData();
+
+    formData.append('ImageProfileForm', file, file.name);
     formData.append('ImageCoverForm', file, file.name);
 
     const options = {
@@ -23,7 +26,7 @@ export class FileUploadService {
     };
 
     const req = new HttpRequest(
-      'POST',
+      'PUT',
       `${this.ReponseUrl}`,
       formData,
       options
