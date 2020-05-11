@@ -7,6 +7,10 @@ import * as fromInvoice from "../store/Reducer";
 import * as invoiceActions from "../store/Action";
 import { Invoice, InvoiceDetail } from "../invoice-model"; 
 import { ActivatedRoute, Router } from "@angular/router"; 
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
+import { Product } from 'src/app/products/product.Module';
+import * as ActionsProductFile from "src/app/products/Store/Action";
 
 @Component({
   selector: "app-invoice",
@@ -18,10 +22,19 @@ export class InvoiceEditComponent implements OnInit {
   total = 0;
   show: boolean = false;
 
-   
+
+   ManageNameControl(index: number) {
+    var arrayControl = this.invoiceForm.get('productForm') as FormArray;
+    this.filteredOptions[index] = arrayControl.at(index).get('name').valueChanges
+      .pipe(
+      startWith<string | Product>(''),
+      map(value => typeof value === 'string' ? value : value.name),
+      map(name => name ? this._filter(name) : this.options.slice())
+      );
+  }
   addDetail(index) {
     var detailRow=this.invoice.newEmptyRow();
-    var produForm=this.invoiceForm.get("productForm") 
+    var produForm=this.invoiceForm.get("productForm")
 
 
     var detailForm=this.buildFormDynamic(detailRow);
@@ -33,7 +46,8 @@ export class InvoiceEditComponent implements OnInit {
    })
  
 
-    produForm.insert(index+1,detailForm ); 
+    produForm.insert(index+1,detailForm );
+    this.ManageNameControl(produForm.length-1)
   } 
 
   deleteDetail(index) { 
@@ -94,17 +108,39 @@ export class InvoiceEditComponent implements OnInit {
   TotalAmount: number = 0;
   isNew: boolean;
 
-
+  myControl = new FormControl() ;
+  product$:Product[]
+  options: string[] = [];
+  filteredOptions: Observable<string[]>;
 
   constructor(
     private store: Store<fromInvoice.AppState>,
+    private storeProduct: Store<any>,
     private routeValue: ActivatedRoute,
     private router: Router,private fb :FormBuilder
   ) {
-    this.routeValue.paramMap.subscribe(
-      (params) => (this.id = params.get("id"))
-    );
+    
+    this.storeProduct.dispatch(new ActionsProductFile.Load());
+    this.storeProduct.subscribe((data) => {
+      this.product$ = Object.values(data.products.entities);
+      // console.log(" Products list : ", this.product$)
+      this.product$.forEach(item=>{
+        this.options.push(item.name)
+      });
+      // console.log('options : ',this.options)
+    });
+
+      this.routeValue.paramMap.subscribe(
+        (params) => (this.id = params.get("id"))
+      );
     //this.id =  "214b787f-1bec-4b98-e21b-08d7df1b978e"
+  }
+
+  //autocomplite method
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
 
   invoice: Invoice = null;
@@ -147,7 +183,16 @@ export class InvoiceEditComponent implements OnInit {
       remise: new FormControl(this.invoice.remise),
       totalAmont: new FormControl(this.invoice.totalAmont), 
       productForm:this.fb.array(arr)  
-    })  
+    })
+    
+    //this.myControl = this.invoiceForm.controls.productForm.get('product');
+    console.log('myControl :',this.myControl)
+    //autocomplite code
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+    this.ManageNameControl(0);
 
     console.log("Invoice form: ",this.invoiceForm)
   }

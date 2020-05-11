@@ -1,3 +1,7 @@
+*{
+   transition:all .3s;
+}
+
 .details>.form-control:focus {
    border-left :3pt solid #1C63B7 ;  
 } 
@@ -33,11 +37,17 @@ nav{
    margin: 0%;
 }
 
-
- 
-
 .addDetail:hover{
    height: 40px;
    background-color:green;
 }
-   
+
+.example-form {
+   min-width: 150px;
+   max-width: 500px;
+   width: 100%;
+ }
+ 
+ .example-full-width {
+   width: 100%;
+ }

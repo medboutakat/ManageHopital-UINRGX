@@ -17,7 +17,7 @@ export class SidebarComponent implements OnInit {
     {txt:'Dashboard',url:'/'},
     {txt:'Appointements',url:'/appointement'},
     {txt:'Articles',url:'/articles'},
-    {txt:'Hospital',url:'/hospitals'},
+    {txt:'Hospital',url:'/Hospitals'},
     {txt:'Hospital category',url:'/hospitalcat'},
     {txt:'DoctorCategory',url:'/doctorCategory'},
     {txt:'ProductCategory',url:'/productCategory'},
