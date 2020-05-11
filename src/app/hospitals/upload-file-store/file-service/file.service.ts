@@ -16,7 +16,7 @@ export class FileUploadService {
 
   public uploadFile(file: File): Observable<HttpEvent<{}>> {
     const formData = new FormData();
-    formData.append('files', file, file.name);
+    formData.append('ImageCoverForm', file, file.name);
 
     const options = {
       reportProgress: true

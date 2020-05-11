@@ -14,29 +14,7 @@ export enum ActionTypes {
   UPDATE_SUCCESS = "[image] Update image Success",
   UPDAT_FAIL = "[image] Update image Fail ",
 
-}
-
-export class UpdateHospital implements Action {
-  readonly type = ActionTypes.UPDATE;
-  constructor(public payloadId: Hospital) {
-    console.log("Action Update", payloadId);
-  }
-}
-export class UpdateHospitalSuccess implements Action {
-  readonly type = ActionTypes.UPDATE_SUCCESS;
-  constructor(public payloadId: Hospital) {
-    console.log("Action update success=>", payloadId);
-  }
-}
-
-export class UpdateHospitalFail implements Action {
-  readonly type = ActionTypes.UPDAT_FAIL;
-  constructor(public payload: string) {
-    console.log("Action update fail", payload);
-  }
-}
-
-
+} 
 export class UploadRequestAction implements Action {
   readonly type = ActionTypes.UPLOAD_REQUEST;
   constructor(public payload: { file: File }) {}
@@ -75,7 +53,4 @@ export type Actions =
   | UploadStartedAction
   | UploadProgressAction
   | UploadFailureAction
-  | UploadCompletedAction
-  | UpdateHospital
-  | UpdateHospitalSuccess
-  | UpdateHospitalFail;
+  | UploadCompletedAction; 
