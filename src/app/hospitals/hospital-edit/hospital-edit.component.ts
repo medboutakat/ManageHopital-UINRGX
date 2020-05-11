@@ -211,8 +211,7 @@ resetUpload() {
       this.imageUrl =event.target.result.replace('data:image/jpeg;base64,','data:image/png;base64,')
       var ret = this.imageUrl.replace('data:image/png;base64,','');
       this.IMG = ret
-      console.log("imageUrl : ",this.imageUrl)
-      console.log("ret : ",this.IMG)
+    
     } 
     reader.readAsDataURL(this.fileToUpload);
     console.log("file : ",reader) 
@@ -226,8 +225,7 @@ resetUpload() {
       this.imageUrl =event.target.result.replace('data:image/jpeg;base64,','data:image/png;base64,')
       var ret = this.imageUrl.replace('data:image/png;base64,','');
       this.IMG = ret
-      console.log("imageUrl : ",this.imageUrl)
-      console.log("ret : ",this.IMG)
+     
     } 
     reader.readAsDataURL(this.fileToUpload);
     console.log("file : ",reader) 
