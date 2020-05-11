@@ -150,41 +150,56 @@ export class HospitalEditComponent implements OnInit {
 //     console.log("hospImageeeee",newApp.pictureProfilePath)
 //  this.HospitalForm.get("pictureProfilePath")
 
-var newApp = this.HospitalForm.value;
-this.store.dispatch(new fromFileUploadActions.UpdateHospital(newApp));
+var newApp = this.PuctureImage.value;
+    newApp.pictureProfilePath=this.IMG
+    newApp.covePath=this.IMG
+if(newApp.id!=environment.EmptyGuid){ 
 
-
+  console.log("Add")
+  this.store.dispatch( new fromFileUploadActions.UploadResetAction());
+}
+else{ 
+  console.log("Update")
+  this.store.dispatch(new fromFileUploadActions.UpdateHospital(newApp));
+}
+this.PuctureImage.reset(); 
 
   }
 
-uploadFile(event: any) {
-  const files: FileList = event.target.files;
-  const file = files.item(0);
+// uploadFile(event: any) {
+//   const files: FileList = event.target.files;
+//   const file = files.item(0);
 
-  this.store$.dispatch(
-    new fromFileUploadActions.UploadRequestAction({
-      file
-    })
-  );
+//   this.store$.dispatch(
+//     new fromFileUploadActions.UploadRequestAction({
+//       file
+//     })
+//   );
 
-  // clear the input form
-  event.srcElement.value = null;
-}
+
+//   event.srcElement.value = null;
+// }
 resetUpload() {
   this.store$.dispatch(new fromFileUploadActions.UploadResetAction());
 }
-  // onFileSelectCover(event) {
-  //   if (event.target.files.length > 0) {
-  //     const file = event.target.files[0];
-  //     this.updatePuctureImage.get('CovePath').setValue(file); 
-  //   }
-  // }
-  // onFileSelect(event) {
-  //   if (event.target.files.length > 0) {
-  //     const file = event.target.files[0]; 
-  //     this.updatePuctureImage.get('PictureProfilePath').setValue(file); 
-  //   }
-  // }
+// uploadFile(event) {
+//     if (event.target.files.length > 0) {
+//       const file = event.target.files[0];
+//       this.updatePuctureImage.get('CovePath').setValue(file); 
+//     }
+//   }
+// uploadFile(event) {
+
+
+//     if (event.target.files.length > 0) {
+//       const file = event.target.files[0]; 
+//       this.PuctureImage.get('PictureProfilePath').patchValue(file); 
+//            var newApp = this.PuctureImage.value;
+//         newApp.pictureProfilePath=this.IMG
+//        console.log("hospImageeeee",newApp.pictureProfilePath)
+//       this.HospitalForm.get("pictureProfilePath")
+//     }
+//   }
   
   IMG:string;
   onFileSelectCover(event)

@@ -48,7 +48,7 @@
 
      <br> 
 
-   <button type="submit" class="btn btn-success btn-block" [disabled]='!(this.HospitalForm.valid && this.contactForm.valid)' (click)="reserve()">Reserve</button><br>
+   <button type="submit" class="btn btn-success btn-block" [disabled]='!(this.HospitalForm.valid && this.contactForm.valid)' mat-button matStepperNext (click)="reserve()">Reserve</button><br>
 
     <div>
           <button mat-button matStepperNext disabled="true" >Next</button>
@@ -65,7 +65,7 @@
           <span class="input-group-btn" style="margin-top: -45px; ">
             <span class="btn btn-primary" onclick="$(this).parent().find('input[type=file]').click();">Browse</span>
             <input type="file"  onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file"
-            name="CovePathForm" id="exampleFormControlFile1"  (change)="uploadFile($event)" formControlName="pictureProfilePath">
+            name="CovePathForm" id="exampleFormControlFile1"  (change)="onFileSelectCover($event)" formControlName="pictureProfilePath">
           </span>
         </div> 
     
@@ -81,7 +81,7 @@
         </div> 
 
         
-       <button type="submit" class="btn btn-success btn-block" (click)="resetUpload()">UpdateImages</button><br>
+       <button type="submit" class="btn btn-success btn-block" (click)="updateImages()">UpdateImages</button><br>
 
         <div>
           <button mat-button matStepperPrevious>Back</button>
