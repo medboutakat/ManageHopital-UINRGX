@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
- class link{
+ class Link{
   txt:string;
-  url:string;
-
-  get path(){
-    return '/'+this.url;
-  }
+  url:string; 
 }
 
 @Component({

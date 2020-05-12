@@ -68,7 +68,7 @@ export class HospitalEditComponent implements OnInit {
   ngOnInit() { 
  
     this.contactForm =  ContactHelper.getFormBuilder(this.fb, this._currentContactObject);
-  console.log("contact",this._currentContactObject)
+        
     this.HospitalForm = this.fb.group({
       id: [this._currentObject.id, Validators.required],
       countryHealthId:  [this._currentObject.countryHealthId, Validators.required],
@@ -76,8 +76,7 @@ export class HospitalEditComponent implements OnInit {
       remark: [this._currentObject.remark, Validators.required],
       history: [this._currentObject.history, Validators.required],
       hospitalCategoryId: [this._currentObject.hospitalCategoryId, Validators.required],
-      categoryName:  [this._currentObject.categoryName, Validators.required],     
-   
+      categoryName:  [this._currentObject.categoryName, Validators.required],  
       contactModel:this.contactForm
     });
 
@@ -153,16 +152,11 @@ export class HospitalEditComponent implements OnInit {
 var newApp = this.PuctureImage.value;
     newApp.pictureProfilePath=this.IMG
     newApp.covePath=this.IMG
-if(newApp.id!=environment.EmptyGuid){ 
 
-  console.log("Add")
-  this.store.dispatch( new fromFileUploadActions.UploadResetAction());
-}
-else{ 
-  console.log("Update")
-  this.store.dispatch(new fromFileUploadActions.UpdateHospital(newApp));
-}
-this.PuctureImage.reset(); 
+    if(newApp.id!=environment.EmptyGuid){  
+      this.store.dispatch( new fromFileUploadActions.UploadResetAction());
+    } 
+    this.PuctureImage.reset(); 
 
   }
 
@@ -182,25 +176,7 @@ this.PuctureImage.reset();
 resetUpload() {
   this.store$.dispatch(new fromFileUploadActions.UploadResetAction());
 }
-// uploadFile(event) {
-//     if (event.target.files.length > 0) {
-//       const file = event.target.files[0];
-//       this.updatePuctureImage.get('CovePath').setValue(file); 
-//     }
-//   }
-// uploadFile(event) {
 
-
-//     if (event.target.files.length > 0) {
-//       const file = event.target.files[0]; 
-//       this.PuctureImage.get('PictureProfilePath').patchValue(file); 
-//            var newApp = this.PuctureImage.value;
-//         newApp.pictureProfilePath=this.IMG
-//        console.log("hospImageeeee",newApp.pictureProfilePath)
-//       this.HospitalForm.get("pictureProfilePath")
-//     }
-//   }
-  
   IMG:string;
   onFileSelectCover(event)
   {

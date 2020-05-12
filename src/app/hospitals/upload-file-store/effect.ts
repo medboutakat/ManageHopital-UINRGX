@@ -5,16 +5,22 @@ import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { catchError, concatMap, map, takeUntil, mergeMap, tap } from 'rxjs/operators';
 import * as fromFileUploadActions from 'src/app/hospitals/upload-file-store/Action';
-import { FileUploadService } from './file-service/file.service';
-import { Hospital } from '../hospital.model';
+import { FileUploadService } from './file-service/file.service'; 
 
 @Injectable()
 export class UploadFileEffects {
+
+  constructor(
+    private fileUploadService:FileUploadService,
+    private actions$: Actions<fromFileUploadActions.Actions>
+  ) {}
+
+
   @Effect()
   uploadRequestEffect$: Observable<Action> = this.actions$.pipe(
     ofType(fromFileUploadActions.ActionTypes.UPLOAD_REQUEST),
     concatMap(action =>
-      this.fileUploadService.uploadFile(action.payload.file).pipe(
+      this.fileUploadService.uploadFile(action.payload.file,action.payload.productId).pipe(
         takeUntil(
           this.actions$.pipe(
             ofType(fromFileUploadActions.ActionTypes.UPLOAD_CANCEL)
@@ -25,29 +31,26 @@ export class UploadFileEffects {
       )
     )
   );
-  @Effect()
-  UpdateHospitalCat$: Observable<Action> = this.actions$.pipe(
-      ofType<fromFileUploadActions.UpdateHospital>(
-          fromFileUploadActions.ActionTypes.UPDATE
-      ),
-      map((Actions : fromFileUploadActions.UpdateHospital)=>Actions.payloadId),
-      mergeMap((payloadId : any ,payloadData :any)=>
-      this.fileUploadService.updateImages(payloadId,payloadData).pipe(
-          map(
-              (payloadId : Hospital)=>new fromFileUploadActions.UpdateHospitalSuccess(payloadId)
-          ), 
-          tap((data) => {
-                   console.log(data);
-          }),
-         catchError(err =>of(new fromFileUploadActions.UpdateHospitalFail(err))
-      )
-      )
-  )); 
-  constructor(
-    private fileUploadService:FileUploadService,
-    private actions$: Actions<fromFileUploadActions.Actions>
-  ) {}
 
+  // @Effect()
+  // UpdateHospitalCat$: Observable<Action> = this.actions$.pipe(
+  //     ofType<fromFileUploadActions.UpdateHospital>(
+  //         fromFileUploadActions.ActionTypes.UPDATE
+  //     ),
+  //     map((Actions : fromFileUploadActions.UpdateHospital)=>Actions.payloadId),
+  //     mergeMap((payloadId : any ,payloadData :any)=>
+  //     this.fileUploadService.updateImages(payloadId,payloadData).pipe(
+  //         map(
+  //             (payloadId : Hospital)=>new fromFileUploadActions.UpdateHospitalSuccess(payloadId)
+  //         ), 
+  //         tap((data) => {
+  //                  console.log(data);
+  //         }),
+  //        catchError(err =>of(new fromFileUploadActions.UpdateHospitalFail(err))
+  //     )
+  //     )
+  // )); 
+ 
   private getActionFromHttpEvent(event: HttpEvent<any>) {
     switch (event.type) {
       case HttpEventType.Sent: {

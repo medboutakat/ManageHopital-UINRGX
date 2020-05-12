@@ -14,29 +14,32 @@ export class FileUploadService {
     this.ReponseUrl=RootURLS.getUrl("Hospital/UpdateImages");
   }
 
-  public uploadFile(file: File): Observable<HttpEvent<{}>> {
+  public uploadFile(file: File,productId:string): Observable<HttpEvent<{}>> {
+
     const formData = new FormData();
-    formData.append('files', file, file.name);
+
+    formData.append('ImageProfileForm', file, file.name);
+    formData.append('ImageCoverForm', file, file.name);
 
     const options = {
       reportProgress: true
     };
 
     const req = new HttpRequest(
-      'POST',
-      `${this.ReponseUrl}`,
+      'PUT',
+      `${this.ReponseUrl}/`+productId,
       formData,
       options
     );
     return this.httpClient.request(req);
   }
 
-  updateImages(payloadId: string,payloadData: FormData): Observable<Hospital> {
-    console.log("service update",payloadId)
+  // updateImages(payloadId: string,payloadData: FormData): Observable<Hospital> {
+  //   console.log("service update",payloadId)
 
-    return this.httpClient.put<Hospital>(
-      `${this.ReponseUrl}/${payloadId}`,
-      payloadData
-    );
-  }
+  //   return this.httpClient.put<Hospital>(
+  //     `${this.ReponseUrl}/${payloadId}`,
+  //     payloadData
+  //   );
+  // }
 }
