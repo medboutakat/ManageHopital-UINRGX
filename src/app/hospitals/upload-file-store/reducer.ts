@@ -1,0 +1,75 @@
+import { Actions, ActionTypes } from 'src/app/hospitals/upload-file-store/Action';
+import { initialState, State, UploadStatus } from 'src/app/hospitals/upload-file-store/state';
+
+export function featureReducer(state = initialState, action: Actions): State {
+  switch (action.type) {
+    case ActionTypes.UPLOAD_REQUEST: {
+      return {
+        ...state,
+        status: UploadStatus.Requested,
+        progress: null,
+        error: null
+      };
+    }
+    case ActionTypes.UPLOAD_CANCEL: {
+      return {
+        ...state,
+        status: UploadStatus.Ready,
+        progress: null,
+        error: null
+      };
+    }
+    case ActionTypes.UPLOAD_RESET: {
+      return {
+        ...state,
+        status: UploadStatus.Ready,
+        progress: null,
+        error: null
+      };
+    }
+    case ActionTypes.UPLOAD_FAILURE: {
+      return {
+        ...state,
+        status: UploadStatus.Failed,
+        error: action.payload.error,
+        progress: null
+      };
+    }
+    case ActionTypes.UPLOAD_STARTED: {
+      return {
+        ...state,
+        status: UploadStatus.Started,
+        progress: 0
+      };
+    }
+    case ActionTypes.UPLOAD_PROGRESS: {
+      return {
+        ...state,
+        progress: action.payload.progress
+      };
+    }
+    case ActionTypes.UPLOAD_COMPLETED: {
+      return {
+        ...state,
+        status: UploadStatus.Completed,
+        progress: 100,
+        error: null
+      };
+    }
+    // case ActionTypes.UPDATE_SUCCESS: { 
+    //   const changes = action.payloadId;
+    //   const id = changes.id;
+    //   console.log("updateOne:hello: ", changes)
+    //   return UploadStatus.updateOne({ id,changes } , state);
+    // }
+    // case ActionsFile.HospitalActionType.UPDATE_FAIL: {
+    //   return {
+    //     ...state,
+    //     error: action.payload,
+    //   };
+    // }
+    default: {
+      return state;
+    }
+  }
+}
