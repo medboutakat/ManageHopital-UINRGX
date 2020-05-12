@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { NgForm, FormGroup } from '@angular/forms';
 import { tap, catchError } from 'rxjs/operators';
 import { Register } from './register';
-import { User } from './auth';
+import { Auth } from './auth';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,50 +27,78 @@ export class AuthService {
   }
 
   constructor(private http: HttpClient, private router: Router) { }
-  register(user: Register) {
-    const headers = new HttpHeaders().set('content-type', 'application/json');
-    var body = {
-      id: user.id, firstName: user.firstName, lastname: user.lastName,
-      sexe: user.sexe, username: user.username, password: user.password,
-    }
-    return this.http.post<Register>(this.url2, body, { headers })
+
+
+  getToken(): string {
+    return localStorage.getItem('token');
   }
 
-  login(formData: NgForm) {
-    return this.http.post<any>(`${this.url}`, formData).pipe(
-      tap(user => {
-        if (user && user.token) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
-        }
-
-      }),
-      catchError(this.handleError('login', []))
-    );
+  logIn(username: string, password: string): Observable<any> {
+    const url = `${this.url}`;
+    return this.http.post<Auth>(url, { username, password });
   }
 
-  logout() {
-    if (localStorage.getItem('currentUser')) {
-      localStorage.removeItem('currentUser');
-      this.router.navigate(['/home']);
-    }
+  signUp(payload: Register): Observable<Auth> {
+    const url = `${this.url2}`;
+    return this.http.post<Auth>(url, { payload });
   }
+  getStatus(): Observable<Auth> {
+    const url = `${this.url}`;
+    return this.http.get<Auth>(url);
+  }
+  // register(payload: Register): Observable<Register> {
+  //   const headers = new HttpHeaders().set('content-type', 'application/json');
+  //   var body = {
+  //     firstName: payload.firstName, lastName: payload.lastName, sexe: payload.sexe, userType: payload.userType,
+  //     username: payload.username, password: payload.password, contactModel: payload.contactModel, id: payload.id
+  //   }
+  //   return this.http.post<Register>(`${this.url2}`, body, { headers })
+  // }
+  // login(formData: NgForm) {
+  //   return this.http.post<any>(`${this.url}`, formData).pipe(
+  //     tap(user => {
+  //       if (user && user.token) {
+  //         localStorage.setItem('currentUser', JSON.stringify(user));
+  //       }
 
-  isloggedIn() {
-    if (localStorage.getItem('currentUser')) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  //     }),
+  //     catchError(this.handleError('login', []))
+  //   );
+  // }
+  // postUserLogin(user: User) {
+  //   return this.http.post<any>(`${this.url}`, user)
+  //     .pipe(
+  //       tap(user => {
+  //         if (user && user.token) {
+  //           localStorage.setItem('currentUser', JSON.stringify(user));
+  //         }
+  //       }),
+  //       catchError(this.handleError('login', []))
+  //     );
+  // }
+  // logout() {
+  //   if (localStorage.getItem('currentUser')) {
+  //     localStorage.removeItem('currentUser');
+  //     this.router.navigate(['/home']);
+  //   }
+  // }
 
-  getUser() {
-    if (this.isloggedIn) {
-      return JSON.parse(localStorage.getItem('currentUser'));
-    }
-  }
+  // isloggedIn() {
+  //   if (localStorage.getItem('currentUser')) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
-  getStatus(): Observable<User> {
-    const url = `${this.BASE_URL}/status`;
-    return this.http.get<User>(url);
-  }
+  // getUser() {
+  //   if (this.isloggedIn) {
+  //     return JSON.parse(localStorage.getItem('currentUser'));
+  //   }
+  // }
+
+  // getStatus(): Observable<User> {
+  //   const url = `${this.BASE_URL}/status`;
+  //   return this.http.get<User>(url);
+  // }
 }

@@ -21,11 +21,6 @@ export class DoctorService implements ICrudService<Doctor>{
     return this.http.get<Doctor>(`${this.ReponseUrl}/${payload}`);
   }
   add(payload: Doctor): Observable<Doctor> {
-    // const headers = new HttpHeaders().set('content-type', 'application/json');
-    // var body = {
-    //   id: payload.id, firstName: payload.firstName, lastName: payload.lastName, sexe: payload.sexe
-    // }
-    // return this.http.post<Doctor>(this.ReponseUrl, body, { headers })
     return this.http.post<Doctor>(this.ReponseUrl, payload);
   }
   update(payload: Doctor): Observable<Doctor> {

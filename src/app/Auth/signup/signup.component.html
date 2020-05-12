@@ -7,13 +7,14 @@
           the platforme.</p><br>
         <form [formGroup]="signupForm">
           <div class="form-row">
+            <input type="hidden" formControlName="id">
             <div class="form-group col-md-6">
               <input style="text-align: center;font-size: 14px;" type="text" class="form-control"
-                placeholder="First Name" name="firstname" formControlName="firstName">
+                placeholder="First Name" name="firstname" formControlName="firstName" required>
             </div>
             <div class="form-group col-md-6">
               <input style="text-align: center;font-size: 14px;" type="text" class="form-control"
-                placeholder="Last Name" name="lastname" formControlName="lastName">
+                placeholder="Last Name" name="lastname" formControlName="lastName" required>
             </div>
           </div>
           <div class="input-group mb-3">
@@ -23,18 +24,28 @@
               <option style="text-align: center;font-size: 14px;" value="Male">Male</option>
             </select>
           </div>
+
           <div class="form-group">
             <input style="text-align: center;font-size: 14px;" type="text" class="form-control" placeholder="Username"
-              name="username" formControlName="username">
+              name="username" formControlName="username" required>
           </div>
           <div class="form-group">
             <input style="text-align: center;font-size: 14px;" type="password" class="form-control"
-              placeholder="Password" name="password" formControlName="password">
+              placeholder="Password" name="password" formControlName="password" required>
           </div>
-          <button type="submit" class="btn btn-info btn-block" (click)="Register()">Create</button><br>
-          <p style="color: gray;font-weight: lighter;font-size: 13px;">connexion <a href="/signin">SignIn</a>
-          </p>
+          <div class="input-group mb-3">
+            <select formControlName="userType" placeholder="userType" class="custom-select" id="inputGroupSelect03">
+              <option style="text-align: center;font-size: 14px;" selected>Choose...</option>
+              <option style="text-align: center;font-size: 14px;" value="Patient">Patient</option>
+              <option style="text-align: center;font-size: 14px;" value="Visiteur">Visiteur</option>
+            </select>
+          </div>
+
         </form>
+        <app-contact [contactForm]="contactForm"></app-contact>
+        <button type="submit" class="btn btn-info btn-block" (click)="Register()">Create</button><br>
+        <p style="color: gray;font-weight: lighter;font-size: 13px;">connexion <a href="/signin">SignIn</a>
+        </p>
       </div>
 
     </div>
