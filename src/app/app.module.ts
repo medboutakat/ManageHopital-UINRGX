@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DefaultModule } from './layouts/default/default.module'; 
+import { DefaultModule } from './layouts/default/default.module';
 import { AppointementComponent } from './appointements/appointement/appointement.component';
 
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
@@ -26,7 +26,7 @@ import { HospitalEditComponent } from './hospitals/hospital-edit/hospital-edit.c
 import { HospitalCatComponent } from './HospitalCategorie/hospital-cat/hospital-cat.component';
 
 import { SignupComponent } from './Auth/signup/signup.component';
-import { SigninComponent } from './Auth/signin/signin.component'; 
+import { SigninComponent } from './Auth/signin/signin.component';
 
 import { OperationComponent } from './operations/operation/operation.component';
 import { AddOperationComponent } from './operations/edit-operation/add-operation.component';
@@ -39,24 +39,27 @@ import { MenuComponent } from './menu/menu.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ChatModule } from './chat/chat.module'
 import { AgGridModule } from 'ag-grid-angular';
-import { AngularMaterialModule } from './angular-material/angular-material.module'; 
+import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { DetailsComponent } from './invoices/details/details.component';
 import { InvoiceComponent } from './invoices/invoice/invoice.component';
-import { MaterialComponent } from './material/material/material.component'; 
-import { MaterialEditComponent } from './material/material-edit/material-edit.component';   
-import { HospitalCatEditComponent } from './HospitalCategorie/hospital-cat-edit/hospital-edit-cat.component'; 
- 
+import { MaterialComponent } from './material/material/material.component';
+import { MaterialEditComponent } from './material/material-edit/material-edit.component';
+import { HospitalCatEditComponent } from './HospitalCategorie/hospital-cat-edit/hospital-edit-cat.component';
+
 import { PaymentComponent } from './payment/payment/payment.component';
-import { InvoiceEditComponent } from './invoices/invoice-edit/invoice-edit.component'; 
+import { InvoiceEditComponent } from './invoices/invoice-edit/invoice-edit.component';
 import { AppointemntEditComponent } from './appointements/appointemnt-edit/appointemnt-edit.component';
-import { ProductCatComponent } from './productCategorie/product-cat/product-cat.component'; 
+import { ProductCatComponent } from './productCategorie/product-cat/product-cat.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { ProductComponent } from './products/product/product.component';
 import { AppStoreModule } from './app-store.module';
 import { AuthInterceptor } from './Auth/auth.interceptor';
 import { ProductEditCatComponent } from './productCategorie/product-edit-cat/product-edit-cat.component';
 import { AutoCompleteComponent } from './controls/select/autocomplete.component';
- 
+import { AuthService } from './Auth/auth.service';
+import { TokenInterceptor, ErrorInterceptor } from './Auth/token.interceptor';
+import { AuthGuardService } from './Auth/auth-guard.service';
+
 
 const config = {
   issuer: 'https://okta.okta.com/oauth2/default',
@@ -98,12 +101,12 @@ const config = {
     InvoiceComponent,
     HospitalCatEditComponent,
     MaterialComponent,
-    MaterialEditComponent, 
+    MaterialEditComponent,
     DoctorEditCatComponent,
-    PaymentComponent, 
+    PaymentComponent,
     ProductCatComponent,
-    ProductEditCatComponent, 
-    ProductComponent, 
+    ProductEditCatComponent,
+    ProductComponent,
     ProductEditComponent,
     AutoCompleteComponent
   ],
@@ -116,7 +119,7 @@ const config = {
     DoctorEditComponent,
     DoctorEditCatComponent,
     PaymentComponent,
-    ProductEditCatComponent,    
+    ProductEditCatComponent,
     ProductEditComponent,
   ],
 
@@ -124,24 +127,45 @@ const config = {
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule, 
-    AgGridModule.withComponents([DoctorCatComponent]), 
+    ReactiveFormsModule,
+    AgGridModule.withComponents([DoctorCatComponent]),
     AppRoutingModule,
     BrowserAnimationsModule,
-    DefaultModule, 
-    [MatDialogModule], 
-    HttpClientModule, 
+    DefaultModule,
+    [MatDialogModule],
+    HttpClientModule,
     ChatModule,
-    AngularMaterialModule,    
+    AngularMaterialModule,
     // MatAutocompleteModule,
     // MatBottomSheetModule,
     // MatTooltipModule, 
-    HttpClientModule, 
-    AppStoreModule 
+    HttpClientModule,
+    AppStoreModule
   ],
   providers: [
     // SugarLevelService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } 
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    AuthService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    },
+    AuthGuardService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

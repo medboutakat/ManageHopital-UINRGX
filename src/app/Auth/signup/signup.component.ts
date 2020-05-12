@@ -6,6 +6,10 @@ import { Register } from '../register';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContactHelper } from 'src/app/contacts/contact.helper';
 import { Contact } from 'src/app/contacts/contact.model';
+import { environment } from 'src/environments/environment';
+import { AppState } from '../store/app.state'
+import { Store } from '@ngrx/store';
+import { SignUp } from '../store/auth.actions';
 
 @Component({
   selector: 'app-signup',
@@ -19,12 +23,13 @@ export class SignupComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private auth: AuthService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private store: Store<AppState>) { }
 
   ngOnInit() {
 
     this.contactForm = this.fb.group({
-      id: new FormControl(''),
+      id: new FormControl(environment.EmptyGuid),
       email: new FormControl(''),
       phone1: new FormControl(''),
       phone2: new FormControl(''),
@@ -35,10 +40,11 @@ export class SignupComponent implements OnInit {
       cityId: new FormControl(''),
     })
     this.signupForm = this.fb.group({
-      id: new FormControl(''),
+      id: new FormControl(environment.EmptyGuid),
       firstName: new FormControl(''),
       lastName: new FormControl(''),
       sexe: new FormControl(''),
+      userType: new FormControl(''),
       username: new FormControl(''),
       password: new FormControl(''),
       contactModel: this.contactForm
@@ -47,13 +53,7 @@ export class SignupComponent implements OnInit {
   }
 
   Register() {
-    var a = this.signupForm.value
-    console.log("user", a)
-    this.auth.register(a).subscribe(res => {
-      // localStorage.setItem("username", a.username);
-      // localStorage.setItem("password", a.password);
-      // this.router.navigate(['/signin']);
-      console.log("bien faite")
-    })
+    var payload = this.signupForm.value as Register
+    this.store.dispatch(new SignUp(payload));
   }
 }

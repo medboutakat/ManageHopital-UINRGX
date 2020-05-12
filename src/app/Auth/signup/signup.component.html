@@ -33,6 +33,13 @@
             <input style="text-align: center;font-size: 14px;" type="password" class="form-control"
               placeholder="Password" name="password" formControlName="password" required>
           </div>
+          <div class="input-group mb-3">
+            <select formControlName="userType" placeholder="userType" class="custom-select" id="inputGroupSelect03">
+              <option style="text-align: center;font-size: 14px;" selected>Choose...</option>
+              <option style="text-align: center;font-size: 14px;" value="Patient">Patient</option>
+              <option style="text-align: center;font-size: 14px;" value="Visiteur">Visiteur</option>
+            </select>
+          </div>
 
         </form>
         <app-contact [contactForm]="contactForm"></app-contact>

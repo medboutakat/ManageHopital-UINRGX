@@ -8,5 +8,6 @@ export class Register extends GeneratedId {
     sexe: string;
     username: string;
     password: string;
+    userType: string;
     contactModel: Contact;
 }
