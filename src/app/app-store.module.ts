@@ -24,10 +24,12 @@ import { ProductCatReducer } from './productCategorie/Store/reducer';
 import { ProductReducer } from './products/store/Reducer';
 import { OperationCatEffect } from './operations/store/category.effects';
 import { ProductCatEffect } from './productCategorie/Store/Effect';
-import { ProductEffect } from './products/store/Effect';
+import { ProductEffect } from './products/store/Effect'; 
 import { AuthEffects } from './Auth/store/auth.effect';
 import { reducers } from './Auth/store/app.state';
-import { reducerRegister } from './Auth/store/auth.reducer';
+import { reducerRegister } from './Auth/store/auth.reducer'; 
+import { featureReducer } from './hospitals/upload-file-store/reducer';
+import { UploadFileEffects } from './hospitals/upload-file-store/effect'; 
 
 
 @NgModule({
@@ -50,10 +52,11 @@ import { reducerRegister } from './Auth/store/auth.reducer';
     StoreModule.forFeature("operations", OperationReducer),
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
     StoreModule.forFeature("cities", CityReducer),
-    StoreModule.forFeature("products", ProductReducer),
-    StoreModule.forRoot(reducers, {}),
-
-    EffectsModule.forRoot([AuthEffects, CityEffect, HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect, OperationCatEffect, ProductCatEffect, ProductEffect]),
+    StoreModule.forFeature("products", ProductReducer), 
+    StoreModule.forRoot(reducers, {}), 
+    StoreModule.forFeature('uploadFile', featureReducer),   
+    EffectsModule.forRoot([UploadFileEffects,AuthEffects,CityEffect, HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect, OperationCatEffect,ProductCatEffect,ProductEffect]),
+ 
 
   ]
 })

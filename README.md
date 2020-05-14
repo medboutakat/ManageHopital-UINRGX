@@ -1,3 +1,20 @@
+# Autors
+
+We are a group of software developer, we build better technology for better life :)
+
+[Imane slague](https://github.com/ImaneSlague)  :  software developer
+
+[Abdelwahed kourrour](https://github.com/AbdelwahedK) : software developer
+
+[Raja kacimi](https://github.com/elqasemyrajaa) :  software developer
+
+[Mohamed boutakat](https://github.com/medboutakat/ ) : Lead software developer
+
+Contact one of our team boutakatmohamed@gmail.com
+
+Get a task from leader and contribute in this project
+
+
 # Dashboard
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.4.

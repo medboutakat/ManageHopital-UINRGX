@@ -1,7 +1,7 @@
 import { Contact } from '../contacts/contact.model';
 import { GeneratedId } from '../generatedId';
-
-export class Register extends GeneratedId {
+ 
+export class Register extends GeneratedId {  
     firstName: string;
     lastName: string;
     sexe: string;
