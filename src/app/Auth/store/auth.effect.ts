@@ -45,6 +45,7 @@ export class AuthEffects {
             this.router.navigateByUrl('/');
         })
     );
+
     @Effect({ dispatch: false })
     LogInFailure$: Observable<any> = this.actions$.pipe(
         ofType(AuthActionTypes.LOGIN_FAILURE)
@@ -85,6 +86,8 @@ export class AuthEffects {
     public LogOut: Observable<any> = this.actions$.pipe(
         ofType(AuthActionTypes.LOGOUT),
         tap((user) => {
+
+            console.log("logged out")
             localStorage.removeItem('token');
         })
     );
