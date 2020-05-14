@@ -24,6 +24,7 @@ import { ProductCatComponent } from './productCategorie/product-cat/product-cat.
 import { ProductComponent } from './products/product/product.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { SignupComponent } from './Auth/signup/signup.component';
+import { AuthGuardService } from './Auth/auth-guard.service';
 
 
 
@@ -41,7 +42,7 @@ const routes: Routes = [
       { path: 'doctors', component: DoctorComponent },
       { path: 'home', component: HomeComponent },
       { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' },
-      { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full' },      
+      { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full' },
       { path: 'productedit', component: ProductEditComponent, pathMatch: 'full' },
       { path: 'doctorCategory', component: DoctorCatComponent, pathMatch: 'full' },
       { path: 'productCategory', component: ProductCatComponent, pathMatch: 'full' },
@@ -51,17 +52,18 @@ const routes: Routes = [
       { path: 'operation', component: OperationComponent, pathMatch: 'full' },
       { path: 'Category', component: CategoryComponent, pathMatch: 'full' },
       { path: 'chat', component: ContactComponent, pathMatch: 'full' },
-      { path: 'material', component: MaterialComponent, pathMatch: 'full' }, 
+      { path: 'material', component: MaterialComponent, pathMatch: 'full' },
       { path: 'products', component: ProductComponent, pathMatch: 'full' },
       { path: 'materialedit', component: MaterialEditComponent, pathMatch: 'full' },
-      { path: 'addDoctor', component: DoctorEditComponent, pathMatch: 'full' }, 
+      { path: 'addDoctor', component: DoctorEditComponent, pathMatch: 'full' },
       { path: 'payment', component: PaymentComponent, pathMatch: 'full' },
 
 
     ]
   },
-  { path: 'signin', component: SigninComponent }, 
+  { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] }
 
   // { path: 'material', loadChildren: () => import('./material/material/material.module').then(m => m.MaterialModule) } 
 ];
