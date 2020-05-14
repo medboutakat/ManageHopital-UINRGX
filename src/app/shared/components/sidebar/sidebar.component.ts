@@ -15,8 +15,7 @@ export class SidebarComponent implements OnInit {
   user = localStorage.getItem("user");
   links: Link[] = [
     {txt:'Dashboard',url:'/'},
-    {txt:'Appointements',url:'/appointement'},
-    {txt:'Articles',url:'/articles'},
+    {txt:'Appointements',url:'/appointement'}, 
     {txt:'Hospital',url:'/Hospitals'},
     {txt:'Hospital category',url:'/hospitalcat'},
     {txt:'DoctorCategory',url:'/doctorCategory'},

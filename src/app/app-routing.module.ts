@@ -38,7 +38,7 @@ const routes: Routes = [
       { path: '', component: DashboardComponent  , canActivate: [AuthGuardService]},
       { path: 'posts', component: PostsComponent , canActivate: [AuthGuardService] },
       { path: 'appointement', component: AppointementComponent  , canActivate: [AuthGuardService]  },
-      { path: 'hospitals', component: HopitalComponent },
+      { path: 'hospitals', component: HopitalComponent ,canActivate: [AuthGuardService]},
       { path: 'doctors', component: DoctorComponent  , canActivate: [AuthGuardService]},
       { path: 'home', component: HomeComponent  , canActivate: [AuthGuardService]},
       { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' , canActivate: [AuthGuardService] },
@@ -49,15 +49,12 @@ const routes: Routes = [
       { path: 'invoice', component: InvoiceEditComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]},
       { path: 'invoicewithId/:id', component: InvoiceEditComponent, pathMatch: 'full' , canActivate: [AuthGuardService] },
       { path: 'invoices', component: InvoiceComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]},
-      { path: 'operation', component: OperationComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]},
-      { path: 'Category', component: CategoryComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]},
-      { path: 'chat', component: ContactComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]},
+      { path: 'operation', component: OperationComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]},  
       { path: 'material', component: MaterialComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]},
       { path: 'products', component: ProductComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]},
       { path: 'materialedit', component: MaterialEditComponent, pathMatch: 'full' , canActivate: [AuthGuardService] },
       { path: 'addDoctor', component: DoctorEditComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]},
-      { path: 'payment', component: PaymentComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]},
-
+      { path: 'payment', component: PaymentComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]}, 
 
     ]
    
