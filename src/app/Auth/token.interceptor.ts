@@ -34,7 +34,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
         return next.handle(request).pipe(
             catchError((response: any) => {
-                if (response instanceof HttpErrorResponse && response.status === 400) {
+                if (response instanceof HttpErrorResponse && response.status === 401) {
                     localStorage.removeItem('token');
                     this.router.navigateByUrl('/signin');
                 }
