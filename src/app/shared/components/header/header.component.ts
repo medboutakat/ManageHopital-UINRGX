@@ -1,4 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/doctors/doctor-store/app-state';
+import { LogOut } from 'src/app/Auth/store/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +12,12 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
-
-  constructor() { }
+  getState: Observable<any>;
+  constructor( 
+    private store: Store<AppState>
+  ) {
+     
+  }
 
   ngOnInit() { }
 
@@ -21,8 +29,8 @@ export class HeaderComponent implements OnInit {
       );
     }, 300);
   }
-  logout() {
-    localStorage.removeItem("user");
+  logout() { 
+    this.store.dispatch(new LogOut())
   }
 
 }
