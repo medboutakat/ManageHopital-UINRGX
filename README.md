@@ -10,6 +10,10 @@ We are a group of software developer, we build better technology for better life
 
 [Mohamed boutakat](https://github.com/medboutakat/ ) : Lead software developer
 
+Contact one of our team boutakatmohamed@gmail.com
+
+Get a task from leader and contribute in this project
+
 
 # Dashboard
 
