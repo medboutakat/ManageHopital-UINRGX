@@ -1,5 +1,7 @@
 # Autors
 
+We are a group of software developer, we build better technology for better life :)
+
 [Imane slague](https://github.com/ImaneSlague)  :  software developer
 
 [Abdelwahed kourrour](https://github.com/AbdelwahedK) : software developer
