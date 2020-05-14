@@ -35,7 +35,6 @@ const routes: Routes = [
     component: DefaultComponent,
 
     children: [
-<<<<<<< HEAD
       { path: '', component: DashboardComponent },
       { path: 'posts', component: PostsComponent },
       { path: 'appointement', component: AppointementComponent },
@@ -59,28 +58,6 @@ const routes: Routes = [
       { path: 'addDoctor', component: DoctorEditComponent, pathMatch: 'full' }, 
       { path: 'payment', component: PaymentComponent, pathMatch: 'full' },
 
-=======
-      { path: '', component: DashboardComponent  , canActivate: [AuthGuardService]},
-      { path: 'posts', component: PostsComponent , canActivate: [AuthGuardService] },
-      { path: 'appointement', component: AppointementComponent  , canActivate: [AuthGuardService]  },
-      { path: 'hospitals', component: HopitalComponent ,canActivate: [AuthGuardService]},
-      { path: 'doctors', component: DoctorComponent  , canActivate: [AuthGuardService]},
-      { path: 'home', component: HomeComponent  , canActivate: [AuthGuardService]},
-      { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' , canActivate: [AuthGuardService] },
-      { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]},
-      { path: 'productedit', component: ProductEditComponent, pathMatch: 'full' , canActivate: [AuthGuardService] },
-      { path: 'doctorCategory', component: DoctorCatComponent, pathMatch: 'full' , canActivate: [AuthGuardService] },
-      { path: 'productCategory', component: ProductCatComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]},
-      { path: 'invoice', component: InvoiceEditComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]},
-      { path: 'invoicewithId/:id', component: InvoiceEditComponent, pathMatch: 'full' , canActivate: [AuthGuardService] },
-      { path: 'invoices', component: InvoiceComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]},
-      { path: 'operation', component: OperationComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]},  
-      { path: 'material', component: MaterialComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]},
-      { path: 'products', component: ProductComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]},
-      { path: 'materialedit', component: MaterialEditComponent, pathMatch: 'full' , canActivate: [AuthGuardService] },
-      { path: 'addDoctor', component: DoctorEditComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]},
-      { path: 'payment', component: PaymentComponent, pathMatch: 'full'  , canActivate: [AuthGuardService]}, 
->>>>>>> 18cb5e7c385c03ba294dda89550a024c32469516
 
     ]
    
