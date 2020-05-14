@@ -69,6 +69,8 @@ const config = {
 };
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -142,7 +144,8 @@ const config = {
     // MatBottomSheetModule,
     // MatTooltipModule, 
     HttpClientModule,
-    AppStoreModule
+    AppStoreModule,
+
   ],
   providers: [
     // SugarLevelService,
@@ -168,8 +171,13 @@ const config = {
       useClass: ErrorInterceptor,
       multi: true
     }
+
   ],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
 })
-export class AppModule { }
+
+export class AppModule {
+
+}

@@ -11,6 +11,8 @@ export class AuthGuardService implements CanActivate {
     public router: Router
   ) { }
   canActivate(): boolean {
+
+    console.log("gaurd service")
     if (!this.auth.getToken()) {
       this.router.navigateByUrl('/signin');
       return false;

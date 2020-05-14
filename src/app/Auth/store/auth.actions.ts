@@ -13,15 +13,21 @@ export enum AuthActionTypes {
 }
 export class LogIn implements Action {
     readonly type = AuthActionTypes.LOGIN;
-    constructor(public payload: any) { }
+    constructor(public payload: any) {
+        console.log("login action", payload)
+     }
 }
 export class LogInSuccess implements Action {
     readonly type = AuthActionTypes.LOGIN_SUCCESS;
-    constructor(public payload: any) { }
+    constructor(public payload: any) {  
+        console.log("LogInSuccess action", payload)
+    }
 }
 export class LogInFailure implements Action {
     readonly type = AuthActionTypes.LOGIN_FAILURE;
-    constructor(public payload: any) { }
+    constructor(public payload: any) {  
+        console.log("LogInFailure action", payload)
+    }
 }
 export class SignUp implements Action {
     readonly type = AuthActionTypes.SIGNUP;

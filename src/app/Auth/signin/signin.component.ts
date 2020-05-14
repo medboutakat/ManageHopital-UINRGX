@@ -42,26 +42,8 @@ export class SigninComponent implements OnInit {
   login(formData: NgForm) {
 
     var payload = this.loginForm.value as Auth
-    this.store.dispatch(new LogIn(payload));
-    // return this.auth.login(formData).subscribe(
-    //   (user) => {
-    //     if (user.id != null) {
-    //       console.log("user", user);
-    //       localStorage.setItem("user", user.username);
-    //       this.router.navigate(['/home']);
-    //     } else {
-    //       console.log("erreur");
-    //       this.test = true
-    //     }
-
-
-    //   });
+    this.store.dispatch(new LogIn(payload)); 
+    
   }
-
-
-
-
-
-
-
+  
 }

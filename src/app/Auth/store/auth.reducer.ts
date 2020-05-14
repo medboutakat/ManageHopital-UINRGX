@@ -77,9 +77,7 @@ export function reducerRegister(state = initialState2, action: All): StateRegist
         }
         default: {
             return state
-        }
-
-
+        }  
 
     }
 }

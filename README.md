@@ -1,12 +1,18 @@
 # Autors
 
-[Imane slague](https://github.com/ImaneSlague)  :  software developer
+We are a group of software developer, we build better technology for better life :)
 
-[Mohamed boutakat](https://github.com/medboutakat/ ) : Lead software developer
+[Imane slague](https://github.com/ImaneSlague)  :  software developer
 
 [Abdelwahed kourrour](https://github.com/AbdelwahedK) : software developer
 
 [Raja kacimi](https://github.com/elqasemyrajaa) :  software developer
+
+[Mohamed boutakat](https://github.com/medboutakat/ ) : Lead software developer
+
+Contact one of our team boutakatmohamed@gmail.com
+
+Get a task from leader and contribute in this project
 
 
 # Dashboard
