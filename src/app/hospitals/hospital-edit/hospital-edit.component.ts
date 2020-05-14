@@ -132,7 +132,6 @@ export class HospitalEditComponent implements OnInit {
       this.store.dispatch(new ActionsFiles.UpdateHospital(newApp));
     }
     this.HospitalForm.reset(); 
-    this.dialog.closeAll();
   }
 
 
@@ -145,6 +144,7 @@ var newApp = this.PuctureImage.value;
       this.store.dispatch( new fromFileUploadActions.UploadResetAction(newApp));
     } 
     this.PuctureImage.reset(); 
+    this.dialog.closeAll();
 
   }
 
@@ -172,7 +172,7 @@ var newApp = this.PuctureImage.value;
       this.imageUrl =event.target.result.replace('data:image/jpeg;base64,','data:image/png;base64,')
       var ret = this.imageUrl.replace('data:image/png;base64,','');
       this.IMG = ret
-     
+     console.log("ret",this.IMG)
     } 
     reader.readAsDataURL(this.fileToUpload);
     console.log("file : ",reader) 
