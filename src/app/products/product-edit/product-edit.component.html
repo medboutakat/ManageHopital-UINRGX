@@ -63,7 +63,7 @@
       <form [formGroup]="updatePuctureImage">
         <ng-template matStepLabel  >Fill out your images</ng-template>
      
-        <div class="form-group col-md-6">  
+        <!-- <div class="form-group col-md-6">  
           <label for="exampleFormControlFile1">Example file input</label>
           <input type="file" name="CovePathForm" (change)="onFileSelectCover($event)"  class="form-control-file" id="exampleFormControlFile1"> 
         </div> 
@@ -72,9 +72,27 @@
         <div class="form-group col-md-6">  
           <label for="exampleFormControlFile1">Example file input</label>
           <input type="file" name="PictureProfilePathForm" (change)="onFileSelect($event)"  class="form-control-file" id="exampleFormControlFile1"> 
-        </div> 
+        </div>  -->
 
+        <div class="form-group col-md-6">  
+          <label for="exampleFormControlFile1">Example file input</label><br>
+          <span class="input-group-btn" style="margin-top: -45px; ">
+            <span class="btn btn-primary" onclick="$(this).parent().find('input[type=file]').click();">Browse</span>
+            <input type="file"  onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file"
+            name="CovePathForm" id="exampleFormControlFile1"  (change)="onFileSelectCover($event)" formControlName="pictureProfilePath">
+          </span>
+        </div> 
+    
+        <div class="form-group col-md-6">  
+          <label for="exampleFormControlFile1">Example file input</label><br>
+      
+          <span class="input-group-btn" style="margin-top: -45px; ">
+            <span class="btn btn-primary" onclick="$(this).parent().find('input[type=file]').click();">Browse</span>
+            <input  onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file"
+            type="file" name="CovePath" (change)="onFileSelect($event)"  id="CovePath" >
+          </span>
         
+        </div> 
        <button type="submit" class="btn btn-success btn-block" (click)="updateImages()">UpdateImages</button><br>
 
         <div>
