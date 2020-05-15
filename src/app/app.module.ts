@@ -59,6 +59,8 @@ import { AutoCompleteComponent } from './controls/select/autocomplete.component'
 import { AuthService } from './Auth/auth.service';
 import { TokenInterceptor, ErrorInterceptor } from './Auth/token.interceptor';
 import { AuthGuardService } from './Auth/auth-guard.service';
+import { ProductimageComponent } from './productimages/productimage/productimage.component';
+import { OurTeamComponent } from './our-team/our-team.component';
 
 
 const config = {
@@ -110,7 +112,9 @@ const config = {
     ProductEditCatComponent,
     ProductComponent,
     ProductEditComponent,
-    AutoCompleteComponent
+    AutoCompleteComponent,
+    ProductimageComponent,
+    OurTeamComponent
   ],
   entryComponents: [
     HospitalEditComponent,

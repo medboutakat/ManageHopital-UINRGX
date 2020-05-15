@@ -25,7 +25,7 @@ import { Observable } from 'rxjs';
 
 export class HospitalEditComponent implements OnInit {
   fileToUpload=null;  
-  imageUrl:string="/assets/img/";
+  imageUrl:string="";
   HospitalForm: FormGroup;
   listhopitalValues: any; 
  _currentObject: Hospital; 
@@ -119,63 +119,34 @@ export class HospitalEditComponent implements OnInit {
   reserve() {
     var newApp = <Hospital>this.HospitalForm.value    
     newApp.contactModel.cityId=+ newApp.contactModel.cityId;
- 
-    // newApp.pictureProfilePath=this.IMG
-    // console.log("pictureProfilePath",newApp.pictureProfilePath)
-    // newApp.covePath=this.IMG
-    // console.log("covePath",newApp.covePath)
-
       console.log("HospitalForm Valid",this.HospitalForm.valid)
       console.log("contactModel Valid",this.contactForm.valid)
 
     if(newApp.id==environment.EmptyGuid){ 
 
-      console.log("Add")
+      
       this.store.dispatch( new ActionsFiles.CreateHospital(newApp));
     }
     else{ 
-      console.log("Update")
+      
       this.store.dispatch(new ActionsFiles.UpdateHospital(newApp));
     }
     this.HospitalForm.reset(); 
-    this.dialog.closeAll();
   }
 
 
   updateImages(){
-//  this.HospitalForm.get("pictureProfilePath")
-//     var newApp = this.HospitalForm.value;
-//     newApp.pictureProfilePath=this.IMG
-//     console.log("hospImageeeee",newApp.pictureProfilePath)
-//  this.HospitalForm.get("pictureProfilePath")
-
 var newApp = this.PuctureImage.value;
     newApp.pictureProfilePath=this.IMG
     newApp.covePath=this.IMG
 
     if(newApp.id!=environment.EmptyGuid){  
-      this.store.dispatch( new fromFileUploadActions.UploadResetAction());
+      this.store.dispatch( new fromFileUploadActions.UploadResetAction(newApp));
     } 
     this.PuctureImage.reset(); 
+    this.dialog.closeAll();
 
   }
-
-// uploadFile(event: any) {
-//   const files: FileList = event.target.files;
-//   const file = files.item(0);
-
-//   this.store$.dispatch(
-//     new fromFileUploadActions.UploadRequestAction({
-//       file
-//     })
-//   );
-
-
-//   event.srcElement.value = null;
-// }
-resetUpload() {
-  this.store$.dispatch(new fromFileUploadActions.UploadResetAction());
-}
 
   IMG:string;
   onFileSelectCover(event)
@@ -187,8 +158,7 @@ resetUpload() {
       this.imageUrl =event.target.result.replace('data:image/jpeg;base64,','data:image/png;base64,')
       var ret = this.imageUrl.replace('data:image/png;base64,','');
       this.IMG = ret
-      console.log("imageUrl : ",this.imageUrl)
-      console.log("ret : ",this.IMG)
+    
     } 
     reader.readAsDataURL(this.fileToUpload);
     console.log("file : ",reader) 
@@ -202,8 +172,7 @@ resetUpload() {
       this.imageUrl =event.target.result.replace('data:image/jpeg;base64,','data:image/png;base64,')
       var ret = this.imageUrl.replace('data:image/png;base64,','');
       this.IMG = ret
-      console.log("imageUrl : ",this.imageUrl)
-      console.log("ret : ",this.IMG)
+     console.log("ret",this.IMG)
     } 
     reader.readAsDataURL(this.fileToUpload);
     console.log("file : ",reader) 
