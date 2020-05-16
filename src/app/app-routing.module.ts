@@ -25,6 +25,7 @@ import { ProductComponent } from './products/product/product.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { SignupComponent } from './Auth/signup/signup.component';
 import { AuthGuardService } from './Auth/auth-guard.service';
+import { OurTeamComponent } from './our-team/our-team.component';
 
 
 
@@ -57,7 +58,7 @@ const routes: Routes = [
       { path: 'materialedit', component: MaterialEditComponent, pathMatch: 'full' },
       { path: 'addDoctor', component: DoctorEditComponent, pathMatch: 'full' }, 
       { path: 'payment', component: PaymentComponent, pathMatch: 'full' },
-
+      {path : 'ourteam',component:OurTeamComponent, pathMatch:'full'},
 
     ]
    
