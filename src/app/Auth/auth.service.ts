@@ -11,8 +11,8 @@ import { RootURLS } from '../root-urls';
   providedIn: 'root'
 })
 export class AuthService {
-  urlAuthenticate ;
-  urlRegister;
+  ReponseUrl = "http://144.91.76.98:5002/api/Users/authenticate"
+  url2 = "http://144.91.76.98:5002/api/Users/register"
   BASE_URL: any;
 
 
@@ -27,10 +27,11 @@ export class AuthService {
   //   };
   // }
 
-  constructor(private http: HttpClient, private router: Router) {
-    this.urlAuthenticate=RootURLS.getUrl("Users/authenticate");
-    this.urlRegister=RootURLS.getUrl("Users/register");
-   }
+  constructor(private http: HttpClient, private router: Router) {  
+    this.ReponseUrl=RootURLS.getUrl("Users/authenticate"); 
+    this.url2=RootURLS.getUrl("Users/register"); 
+
+  }
 
 
   getToken(): string {
@@ -39,7 +40,7 @@ export class AuthService {
 
   logIn(username: string,  password: string): Observable<Auth> {
     console.log("service:login")
-    const url = `${this.urlAuthenticate}`;
+    const url = `${this.ReponseUrl}`;
 
     var body= { 
       "username" : username,
@@ -48,14 +49,15 @@ export class AuthService {
    
     return this.http.post<Auth>(url, body);
   }
-
-  signUp(payload: Register): Observable<Auth> {
-    const url = `${this.urlRegister}`;
-    return this.http.post<Auth>(url, { payload });
-  }
   getStatus(): Observable<Auth> {
-    const url = `${this.urlAuthenticate}`;
+    const url = `${this.ReponseUrl}`;
     return this.http.get<Auth>(url);
   }  
  
+  
+  signUp(payload: Register): Observable<Auth> {
+    const url = `${this.url2}`;
+    return this.http.post<Auth>(url, { payload });
+  }
+
 }
