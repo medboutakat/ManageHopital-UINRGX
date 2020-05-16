@@ -62,12 +62,13 @@
                                 <!--  [formControl]="myControl"-->
                                 <input 
                                     class="form-control col-7"
-                                    type="text"
+                                    type="text"#productInput
                                     (change)="valueChanged(detail)"
+                                    (keyup)="keuUp(productInput.value,detail)"
                                     formControlName="product"
                                     [matAutocomplete]="auto">
                                 <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                <mat-option *ngFor="let option of filteredOptions[i] | async" [value]="option">
                                     {{option}}
                                 </mat-option>
                                 </mat-autocomplete>

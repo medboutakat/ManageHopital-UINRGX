@@ -46,6 +46,22 @@ export class ProductEffect {
         )
     )
 
+    @Effect()
+    LoadProductByName$: Observable<Action> = this.actions$.pipe(
+        ofType<ActionsFile.LoadOneByName>(
+            ActionsFile.ProductActionType.LOAD_ONE_BY_NAME
+        ),
+        mergeMap((action: ActionsFile.LoadOneByName) =>
+            this.ProductServ.getByName(action.payload).pipe(
+                map(
+                    (product: Product) =>
+                        new ActionsFile.LoadOneByNameSuccess(product)
+                ),
+                catchError(err => of(new ActionsFile.LoadOneByNameFail(err)))
+            )
+        )
+    )
+
     //Create Product Category
 
     @Effect()

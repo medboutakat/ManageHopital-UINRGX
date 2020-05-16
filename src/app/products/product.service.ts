@@ -26,6 +26,11 @@ export class ProductService implements ICrudService<Product>{
     return this.http.get<Product>(this.ReponseUrl+'/'+payload);
   }
 
+  getByName(payload: string): Observable<Product> {
+    console.log("URL : ",this.ReponseUrl+'/name/'+payload)
+    return this.http.get<Product>(this.ReponseUrl+'/name/'+payload);
+  }
+
   add(payload: Product): Observable<Product> {
     return this.http.post<Product>(this.ReponseUrl, payload);
   }
