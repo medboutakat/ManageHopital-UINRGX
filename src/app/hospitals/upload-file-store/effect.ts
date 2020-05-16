@@ -31,25 +31,6 @@ export class UploadFileEffects {
       )
     )
   );
-
-  // @Effect()
-  // UpdateHospitalCat$: Observable<Action> = this.actions$.pipe(
-  //     ofType<fromFileUploadActions.UpdateHospital>(
-  //         fromFileUploadActions.ActionTypes.UPDATE
-  //     ),
-  //     map((Actions : fromFileUploadActions.UpdateHospital)=>Actions.payloadId),
-  //     mergeMap((payloadId : any ,payloadData :any)=>
-  //     this.fileUploadService.updateImages(payloadId,payloadData).pipe(
-  //         map(
-  //             (payloadId : Hospital)=>new fromFileUploadActions.UpdateHospitalSuccess(payloadId)
-  //         ), 
-  //         tap((data) => {
-  //                  console.log(data);
-  //         }),
-  //        catchError(err =>of(new fromFileUploadActions.UpdateHospitalFail(err))
-  //     )
-  //     )
-  // )); 
  
   private getActionFromHttpEvent(event: HttpEvent<any>) {
     switch (event.type) {

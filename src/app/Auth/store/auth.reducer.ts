@@ -1,4 +1,4 @@
-import { Auth } from '../auth';
+import { Auth } from '../auth.model';
 import { AuthActionTypes, All } from './auth.actions';
 import { Register } from '../register';
 

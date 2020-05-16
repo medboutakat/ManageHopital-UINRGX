@@ -1,4 +1,6 @@
- import { Action } from '@ngrx/store';
+import { Action } from '@ngrx/store';
+import { ProductImage } from './productImg.module';
+
 
 export enum ActionTypes {
   UPLOAD_REQUEST = '[File Upload Form] Request',
@@ -7,13 +9,17 @@ export enum ActionTypes {
   UPLOAD_STARTED = '[File Upload API] Started',
   UPLOAD_PROGRESS = '[File Upload API] Progress',
   UPLOAD_FAILURE = '[File Upload API] Failure',
-  UPLOAD_COMPLETED = '[File Upload API] Completed'
-}
+  UPLOAD_COMPLETED = '[File Upload API] Completed',
 
+  UPDATE= "[image] Update image",
+  UPDATE_SUCCESS = "[image] Update image Success",
+  UPDAT_FAIL = "[image] Update image Fail ",
+
+} 
 export class UploadRequestAction implements Action {
   readonly type = ActionTypes.UPLOAD_REQUEST;
-  constructor(public payload: { file: File,productId:string}) {
-    console.log("UploadRequestAction",payload)
+  constructor(public payload: { file: File,productId:string }) {
+    console.log("Update image for product "+payload.productId)
   }
 }
 
@@ -23,6 +29,9 @@ export class UploadCancelAction implements Action {
 
 export class UploadResetAction implements Action {
   readonly type = ActionTypes.UPLOAD_RESET;
+  constructor(public payload: ProductImage) { 
+    console.log("Action Create success=>", payload);
+  }
 }
 
 export class UploadStartedAction implements Action {
@@ -31,23 +40,16 @@ export class UploadStartedAction implements Action {
 
 export class UploadProgressAction implements Action {
   readonly type = ActionTypes.UPLOAD_PROGRESS;
-  constructor(public payload: { progress: number }) {
-    console.log("UploadProgressAction",payload)
-  }
+  constructor(public payload: { progress: number }) {}
 }
 
 export class UploadFailureAction implements Action {
   readonly type = ActionTypes.UPLOAD_FAILURE;
-  constructor(public payload: { error: string }) {
-      console.log("UploadFailureAction",payload)
-  }
+  constructor(public payload: { error: string }) {}
 }
 
 export class UploadCompletedAction implements Action {
-  readonly type = ActionTypes.UPLOAD_COMPLETED;  
-  constructor() {    
-      console.log("UploadCompletedAction")    
-  }
+  readonly type = ActionTypes.UPLOAD_COMPLETED;
 }
 
 export type Actions =
@@ -57,4 +59,4 @@ export type Actions =
   | UploadStartedAction
   | UploadProgressAction
   | UploadFailureAction
-  | UploadCompletedAction;
+  | UploadCompletedAction; 

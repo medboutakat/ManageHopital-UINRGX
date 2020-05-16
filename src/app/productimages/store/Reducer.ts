@@ -1,6 +1,5 @@
- 
-import { initialState, State, UploadStatus } from './state';
-import { ActionTypes, Actions } from './Action';
+import { Actions, ActionTypes } from 'src/app/hospitals/upload-file-store/Action';
+import { initialState, State, UploadStatus } from 'src/app/hospitals/upload-file-store/state';
 
 export function featureReducer(state = initialState, action: Actions): State {
   switch (action.type) {
