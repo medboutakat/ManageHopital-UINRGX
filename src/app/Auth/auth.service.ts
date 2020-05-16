@@ -3,15 +3,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { NgForm, FormGroup } from '@angular/forms';
-import { tap, catchError } from 'rxjs/operators';
-import { Register } from './register';
-import { Auth } from './auth';
+import { tap, catchError } from 'rxjs/operators';  
+import { Register } from './register.model';
+import { Auth } from './auth.model';
+import { RootURLS } from '../root-urls';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  url = "http://144.91.76.98:5002/api/Users/authenticate"
-  url2 = "http://144.91.76.98:5002/api/Users/register"
+  urlAuthenticate ;
+  urlRegister;
   BASE_URL: any;
 
 
@@ -26,7 +27,10 @@ export class AuthService {
   //   };
   // }
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+    this.urlAuthenticate=RootURLS.getUrl("Users/authenticate");
+    this.urlRegister=RootURLS.getUrl("Users/register");
+   }
 
 
   getToken(): string {
@@ -35,7 +39,7 @@ export class AuthService {
 
   logIn(username: string,  password: string): Observable<Auth> {
     console.log("service:login")
-    const url = `${this.url}`;
+    const url = `${this.urlAuthenticate}`;
 
     var body= { 
       "username" : username,
@@ -46,11 +50,11 @@ export class AuthService {
   }
 
   signUp(payload: Register): Observable<Auth> {
-    const url = `${this.url2}`;
+    const url = `${this.urlRegister}`;
     return this.http.post<Auth>(url, { payload });
   }
   getStatus(): Observable<Auth> {
-    const url = `${this.url}`;
+    const url = `${this.urlAuthenticate}`;
     return this.http.get<Auth>(url);
   }  
  

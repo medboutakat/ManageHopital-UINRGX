@@ -3,7 +3,7 @@ import { FormBuilder, NgForm, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Store } from '@ngrx/store';
-import { Auth } from '../auth';
+import { Auth } from '../auth.model';
 import { AppState, selectAuthState } from '../store/app.state'
 import { LogIn } from '../store/auth.actions';
 import { Observable } from 'rxjs';

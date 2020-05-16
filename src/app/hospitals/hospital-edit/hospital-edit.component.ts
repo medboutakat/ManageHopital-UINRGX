@@ -135,46 +135,47 @@ export class HospitalEditComponent implements OnInit {
   }
 
 
-  updateImages(){
-var newApp = this.PuctureImage.value;
-    newApp.pictureProfilePath=this.IMG
-    newApp.covePath=this.IMG
+  // updateImages(){
+  //   var newApp = this.PuctureImage.value;
+  //   newApp.pictureProfilePath=this.IMG
+  //   newApp.covePath=this.IMG
 
-    if(newApp.id!=environment.EmptyGuid){  
-      this.store.dispatch( new fromFileUploadActions.UploadResetAction(newApp));
-    } 
-    this.PuctureImage.reset(); 
-    this.dialog.closeAll();
+  //   console.log('newApp=>',newApp)
+  //   if(newApp.id!=environment.EmptyGuid){  
+  //     this.store.dispatch( new fromFileUploadActions.UploadResetAction(newApp));
+  //   } 
+  //   this.PuctureImage.reset(); 
+  //   this.dialog.closeAll();
 
+  // }
+
+  
+  
+  uploadFile(event: any) {
+    const files: FileList = event.target.files;
+    const file = files.item(0); 
+
+    var payload= 
+    { 
+      file: file,
+      productId:this._currentObject.id 
+    }
+    console.log('Component : uploadFile', payload)
+
+    this.store$.dispatch(
+      new fromFileUploadActions.UploadRequestAction(payload)
+    );
+
+    // clear the input form
+    event.srcElement.value = null;
   }
 
-  IMG:string;
-  onFileSelectCover(event)
-  {
-    this.fileToUpload = event.target.files[0];
-    //show image preview here
-    var reader = new FileReader();
-    reader.onload =(event : any)=>{
-      this.imageUrl =event.target.result.replace('data:image/jpeg;base64,','data:image/png;base64,')
-      var ret = this.imageUrl.replace('data:image/png;base64,','');
-      this.IMG = ret
-    
-    } 
-    reader.readAsDataURL(this.fileToUpload);
-    console.log("file : ",reader) 
+  resetUpload() {
+    this.store$.dispatch(new fromFileUploadActions.UploadResetAction());
   }
-  onFileSelect(event)
-  {
-    this.fileToUpload = event.target.files[0];
-    //show image preview here
-    var reader = new FileReader();
-    reader.onload =(event : any)=>{
-      this.imageUrl =event.target.result.replace('data:image/jpeg;base64,','data:image/png;base64,')
-      var ret = this.imageUrl.replace('data:image/png;base64,','');
-      this.IMG = ret
-     console.log("ret",this.IMG)
-    } 
-    reader.readAsDataURL(this.fileToUpload);
-    console.log("file : ",reader) 
+
+  cancelUpload() {
+    this.store$.dispatch(new fromFileUploadActions.UploadCancelAction());
   }
+
 }

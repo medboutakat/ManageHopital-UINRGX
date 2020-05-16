@@ -26,9 +26,6 @@ import * as fromFileUploadActions from  'src/app/productimages/store/Action'
     }
   }]
 })
-
-
-
 export class ProductEditComponent implements OnInit {
   fileToUpload=null;  
   imageUrl:string="";
