@@ -19,12 +19,14 @@ import * as fromFileUploadActions from  'src/app/productimages/store/Action'
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
   styleUrls: ['./product-edit.component.scss',"../../app-edit.component.scss"],
-  providers:[{
-    provide: MatDialogRef,
-    useValue: {
-      close: (dialogResult: any) => { }
-    }
-  }]
+  providers:[
+  //   {
+  //   provide: MatDialogRef,
+  //   useValue: {
+  //     close: (dialogResult: any) => { }
+  //   }
+  // }
+]
 })
 export class ProductEditComponent implements OnInit {
   fileToUpload=null;  
@@ -32,10 +34,8 @@ export class ProductEditComponent implements OnInit {
   MainForm: FormGroup;
   listhopitalValues: any; 
  _currentObject: Product; 
-  title:any;
-
-  productCatValues: unknown[];
-
+  title:any; 
+  productCatValues: unknown[]; 
   updatePuctureImage: FormGroup; 
  completed$: Observable<boolean>;
  progress$: Observable<number>;
