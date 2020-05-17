@@ -51,3 +51,13 @@ nav{
  .example-full-width {
    width: 100%;
  }
+
+.material-icons{
+   color: #C3C4C9;
+   visibility: hidden;
+   cursor: all-scroll;
+}
+
+.detail-parent:hover div .details div span{
+   visibility: visible;
+}
