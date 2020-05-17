@@ -14,13 +14,13 @@ export class SavePdfComponent implements OnInit {
     console.log("objet 2", data)
   }
   nb = 1;
-  // download() {
+  download() {
   //   var data = document.getElementById("content");
   //   const doc = new jspdf();
   //   doc.fromHTML(data.innerHTML, 15, 15);
   //   doc.save("convocation n°" + this.nb + '.pdf');
   //   this.nb = this.nb + 1;
-  // }
+  }
   ngOnInit() {
   }
 

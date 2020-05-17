@@ -18,8 +18,9 @@ export class MaterialComponent extends AppListViewBaseComponent<Material>  imple
 
   constructor(private store: Store<any>, private fb: FormBuilder) {
     super();
-
+    super.bindMethods("add", "edit", "delete");
     this.store.dispatch(new ActionsFile.LoadMaterial());
+
     this.store.subscribe((data) => {
       this.materials = Object.values(data.Materials.entities); 
       this.dataSource = new MatTableDataSource<Material>( this.materials);     
@@ -32,6 +33,9 @@ export class MaterialComponent extends AppListViewBaseComponent<Material>  imple
     this.dataSource.paginator = this.paginator;
   }
 
+  add(){}
+  edit(){}
+  delete(){}
 }
 
 

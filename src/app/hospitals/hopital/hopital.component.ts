@@ -14,33 +14,33 @@ import {
 import { HospitalEditComponent } from "../hospital-edit/hospital-edit.component";
 import { SelectionModel } from "@angular/cdk/collections";
 import { Hospital } from "../hospital.model";
+import { AppListViewBaseComponent } from 'src/app/app-list-view-base.component';
 
 @Component({
   selector: "app-hopital",
   templateUrl: "./hopital.component.html",
   styleUrls: ["./hopital.component.css"],
 })
-export class HopitalComponent implements OnInit {
+export class HopitalComponent extends AppListViewBaseComponent<Hospital> implements OnInit {
   hospitals: Hospital[];
   listhopitalCatValues: any;
-  listHopital: any;
-  private rowSelection;
-  private IsRowSelected: boolean = false;
-  private IsMultple: boolean = false;
-  error$: Observable<String>;
-  dataSource: any;
-  selection: SelectionModel<Hospital>;
-
+  listHopital: any; 
   constructor(
     private store: Store<any>,
     private _bottomSheet: MatBottomSheet,
     public dialog: MatDialog
   ) {
     
-    this.delete = this.delete.bind(this);
-    this.add = this.add.bind(this);
-    this.edit = this.edit.bind(this);
+    super();
 
+    super.bindMethods("add", "edit", "delete"); 
+    this.displayedColumns = [
+    "select",
+    "countryHealthId",
+    "name",
+    "remark",
+    "history",
+   ];
     this.store.dispatch(new ActionsFiles.LoadHospital());
     this.remplir();
 
@@ -60,21 +60,7 @@ export class HopitalComponent implements OnInit {
       this.selection = new SelectionModel<Hospital>(true, []);
     });
   }
-
-  applyFilter(filtervalue: string) {
-    this.dataSource.filter = filtervalue.trim().toLowerCase();
-  }
-
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-
-  displayedColumns: string[] = [
-    "select",
-    "countryHealthId",
-    "name",
-    "remark",
-    "history",
-  ];
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+ 
 
   ngOnInit() {}
   get hospitalcat() {
@@ -82,35 +68,7 @@ export class HopitalComponent implements OnInit {
   }
 
  
-
-  onrowselect() {
-    this.IsMultple = this.selection.selected.length > 1;
-    this.IsRowSelected = this.selection.selected.length == 1;
-  }
-
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected()
-      ? this.selection.clear()
-      : this.dataSource.data.forEach((row) => this.selection.select(row));
-  }
-
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: Hospital): string {
-    if (!row) {
-      return `${this.isAllSelected() ? "select" : "deselect"} all`;
-    }
-    return `${this.selection.isSelected(row) ? "deselect" : "select"} row ${
-      row.id + 1
-    }`;
-  }
+ 
 
   delete() {
 
