@@ -12,7 +12,7 @@ export enum ActionTypes {
 
 export class UploadRequestAction implements Action {
   readonly type = ActionTypes.UPLOAD_REQUEST;
-  constructor(public payload: { file: File,productId:string}) {
+  constructor(public payload: { file: File,name:string,productId:string}) {
     console.log("UploadRequestAction",payload)
   }
 }

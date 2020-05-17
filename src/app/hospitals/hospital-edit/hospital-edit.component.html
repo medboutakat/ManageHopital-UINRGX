@@ -58,29 +58,14 @@
     <mat-step [stepControl]="PuctureImage" optional > 
       <form [formGroup]="PuctureImage"> 
        
-        <div class="message" *ngIf="(isReady$ | async) || (hasFailed$ | async)">
-          <input #file type="file" multiple (change)="uploadFile($event)" />
+         <div class="card">   
+              <app-upload-file [objectId]="this._currentObject.id" [fileName]="'ImageProfileForm'"></app-upload-file> 
         </div>
-        
-        <div class="message" *ngIf="(isInProgress$ | async)">
-          <div style="margin-bottom: 14px;">Uploading... {{ progress$ | async }}%</div>
+        <div class="card">   
+          <app-upload-file [objectId]="this._currentObject.id" [fileName]="'ImageCoverForm'"></app-upload-file> 
         </div>
-        
-        <div class="message" *ngIf="(isInProgress$ | async)">
-          <button (click)="cancelUpload()">Cancel Upload</button>
-        </div>
-        
-        <div class="message" *ngIf="(completed$ | async)">
-          <h4>
-            File has been uploaded successfully!
-          </h4>
-          <button (click)="resetUpload()">UpdateImages</button>
-        </div>
-        
-        <div class="message error" *ngIf="(hasFailed$ | async)">
-          Error: {{ error$ | async }}
-        </div> 
-
+  
+       
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>

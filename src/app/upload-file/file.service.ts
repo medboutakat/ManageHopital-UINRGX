@@ -1,9 +1,7 @@
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { RootURLS } from 'src/app/root-urls';
-import { Hospital } from '../../hospital.model';
+import { Observable } from 'rxjs'; 
+import { RootURLS } from 'src/app/root-urls'; 
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +12,10 @@ export class FileUploadService {
     this.ReponseUrl=RootURLS.getUrl("Hospital/UpdateImages");
   }
   
-  public uploadFile(file: File,productId:string): Observable<HttpEvent<{}>> {
+  public uploadFile(file: File,name:string,productId:string): Observable<HttpEvent<{}>> {
 
     const formData = new FormData();
-    formData.append('ImageCoverForm', file, file.name);  
+    formData.append(name, file, file.name);  
 
     const options = {
       reportProgress: true, 

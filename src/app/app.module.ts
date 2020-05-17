@@ -59,6 +59,7 @@ import { AuthGuard } from './Auth/auth-guard';
 import { ProductimageComponent } from './productimages/productimage/productimage.component';
 import { OurTeamComponent } from './our-team/our-team.component';
 import { AuthInterceptor, ErrorInterceptor, TokenInterceptor } from './app.interceptors';
+import { UploadFileComponent } from './upload-file/upload-file/upload-file.component';
 
 
 const config = {
@@ -111,7 +112,8 @@ const config = {
     ProductEditComponent,
     AutoCompleteComponent,
     ProductimageComponent,
-    OurTeamComponent
+    OurTeamComponent,
+    UploadFileComponent
   ],
   entryComponents: [
     HospitalEditComponent,
@@ -124,6 +126,7 @@ const config = {
     PaymentComponent,
     ProductEditCatComponent,
     ProductEditComponent,
+    UploadFileComponent
   ],
 
 
