@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultModule } from './layouts/default/default.module';
+import { DragDropModule} from '@angular/cdk/drag-drop'
 import { AppointementComponent } from './appointements/appointement/appointement.component';
 
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
@@ -144,7 +145,7 @@ const config = {
     AngularMaterialModule, 
     HttpClientModule,
     AppStoreModule,
-
+    DragDropModule
   ],
   providers: [
      AuthService,

@@ -14,6 +14,7 @@ import * as ActionsProductFile from "src/app/products/Store/Action";
 import * as fromProduct from "../../products/store/Reducer";
 import { selectOne } from 'src/app/doctorCategorie/Store/doctorCat.selector';
 import { ProductService } from 'src/app/products/Product.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: "app-invoice",
@@ -110,6 +111,10 @@ export class InvoiceEditComponent implements OnInit {
   Amount(remise, exp, liv) {
     this.TotalAmount =
       this.subtotal + Number(exp.value) + Number(liv.value) + remise;
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.invoiceForm.controls.productForm.controls, event.previousIndex, event.currentIndex);
   }
   //end detail code
 

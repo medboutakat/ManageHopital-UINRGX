@@ -43,71 +43,72 @@
 
             <div class="body">
 
-                <div class="row">  
-                    <div class="col-1"> </div>  
+                <div class="row">
                     <div class="col-7">Description</div>
                     <div class="col-1">Quantity </div>
                     <div class="col-1">Price</div>
                     <div class="col-1">Tax</div> 
                     <div class="col-1">Amount</div>  
                 </div>
-
-                <div formArrayName="productForm"  *ngFor="let detail of invoiceForm.controls.productForm.controls ;let i=index;">       
-            
-                    <div [formGroupName]="i" class="row" style="padding: 5px; background-color:snow" >           
-                        <!-- body -->
-                        <div class="col-12"> 
-                            <div class="row details">
-                                <div class="col-1"></div>   
-                                <!--  [formControl]="myControl"-->
-                                <input 
-                                    class="form-control col-7"
-                                    type="text"#productInput
-                                    (change)="valueChanged(detail)"
-                                    (keyup)="keuUp(productInput.value,detail)"
-                                    formControlName="product"
-                                    [matAutocomplete]="auto">
-                                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                                <mat-option *ngFor="let option of filteredOptions[i] | async" [value]="option">
-                                    {{option}}
-                                </mat-option>
-                                </mat-autocomplete>
-
-                                <input formControlName="qte" class="form-control col-1" type="text"   (change)="valueChanged(detail)" /> 
-                                <input formControlName="price" class="form-control col-1" type="text"  (change)="valueChanged(detail)" />
-                                <input formControlName="tax" class="form-control col-1" type="text"   (change)="valueChanged(detail)" />
-                                <input formControlName="tax" class="form-control col-1" type="text" /> 
-                                
-                            </div>                                 
-                            <div class="row details">
-                                <div class="col-1"> 
-                                    <input type="button" class="btn-success" value="up"  (click)="move(i,-1)"  > 
-                                    {{i}}
-                                    <input type="button" class="btn-success" value="down" (click)="move(i,1)" > 
-                                
-                                </div>  
-                                <textarea class="form-control col-11" style="height: 35px;"  aria-readonly="true" formControlName="description" placeholder="description" ></textarea>                                 
-                              
-                            </div>     
-                                <div class="row">
+                
+                <div cdkDropList (cdkDropListDropped)="drop($event)">
+                    <div formArrayName="productForm" cdkDrag *ngFor="let detail of invoiceForm.controls.productForm.controls ;let i=index;">
+                        <div [formGroupName]="i" class="row" class="detail-parent" style="padding: 5px; background-color:snow" >
+                            <!-- body -->
+                            <div class="col-12"> 
+                                <div class="row details">
                                     
-                                    <div class="col-1"> </div>  
-                                    <nav class="div-add col-9 btn addDetail"  (click)="addDetail(i)">
-                                        <svg class="bi bi-plus-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                        Add details
-                                    </nav> 
-                                    <input class="form-control col-2 btn-danger" style="height: 35px;"   (click)="deleteDetail(i)" type="button" value="delete">  
-                                </div>                
+                                    <!--  [formControl]="myControl"-->
+                                    <input 
+                                        class="form-control col-7"
+                                        type="text"#productInput
+                                        (change)="valueChanged(detail)"
+                                        (keyup)="keuUp(productInput.value,detail)"
+                                        formControlName="product"
+                                        [matAutocomplete]="auto">
+                                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                    <mat-option *ngFor="let option of filteredOptions[i] | async" [value]="option">
+                                        {{option}}
+                                    </mat-option>
+                                    </mat-autocomplete>
+    
+                                    <input formControlName="qte" class="form-control col-1" type="text"   (change)="valueChanged(detail)" /> 
+                                    <input formControlName="price" class="form-control col-1" type="text"  (change)="valueChanged(detail)" />
+                                    <input formControlName="tax" class="form-control col-1" type="text"   (change)="valueChanged(detail)" />
+                                    <input formControlName="tax" class="form-control col-1" type="text" /> 
+                                    <div class="col-1">
+                                        <span class="material-icons">
+                                            drag_indicator
+                                        </span>
+                                    </div>
+                                </div>                                 
+                                <div class="row details">
+                                    <!-- <div class="col-1">
+                                        <input type="button" class="btn-success" value="up"  (click)="move(i,-1)"  > 
+                                        {{i}}
+                                        <input type="button" class="btn-success" value="down" (click)="move(i,1)" > 
+                                    </div> -->
+                                    <textarea class="form-control col-11" style="height: 35px;"  aria-readonly="true" formControlName="description" placeholder="description" ></textarea>                                 
+                                  
+                                </div>     
+                                    <div class="row">
+                                        <nav class="div-add col-9 btn addDetail"  (click)="addDetail(i)">
+                                            <svg class="bi bi-plus-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                            Add details
+                                        </nav> 
+                                        <input class="form-control col-2 btn-danger" style="height: 35px;"   (click)="deleteDetail(i)" type="button" value="delete">  
+                                    </div>                
+                            </div> 
+                                    <!-- {{detail[].get('total').value}} -->              
+                                   
                         </div> 
-                                <!-- {{detail[].get('total').value}} -->              
-                               
-                    </div> 
-                </div> 
+                    </div>
+                </div>
 
             </div>
     
