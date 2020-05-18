@@ -15,21 +15,25 @@ export class SidebarComponent implements OnInit {
   user = localStorage.getItem("user");
 
 
+<<<<<<< HEAD
   links: Link[];
+=======
+  links;
+>>>>>>> 14602dbd7c18705c6390e7e4a4e10897ffb9fb3b
 
   constructor(
 
   ) { 
 
 
-    let menulinks = localStorage.getItem("links");
+    let menulinks = localStorage.getItem("links"); 
     if(menulinks==null){
      var defaultMenu = [
         {txt:'home',url:'home'},
         {txt:'Dashboard',url:''},
         {txt:'Appointements',url:'appointement'},
         {txt:'Articles',url:'articles'},
-        {txt:'Hospital',url:'/Hospitals'},
+        {txt:'Hospital',url:'/hospitals'},
         {txt:'Hospital category',url:'hospitalcat'},
         {txt:'DoctorCategory',url:'doctorCategory'},
         {txt:'ProductCategory',url:'productCategory'},
@@ -37,7 +41,7 @@ export class SidebarComponent implements OnInit {
         {txt:'Invoices',url:'invoices'},
         {txt:'Invoice',url:'invoice'},
         {txt:'Operations',url:'operation'},
-        {txt:'Product',url:'products'},
+        {txt:'Products',url:'products'},
         {txt:'material',url:'material'},
         {txt:'material edit',url:'materialedit'},
         {txt:'Payment',url:'payment'},

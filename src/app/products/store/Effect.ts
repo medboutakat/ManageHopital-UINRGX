@@ -1,10 +1,9 @@
-import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { of, Observable } from 'rxjs'
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store'
-import * as ActionsFile from 'src/app/Products/store/Action'
+import * as ActionsFile from '../store/Action'
 import { ProductService } from '../Product.service';
 import { Product } from '../product.Module';
 
@@ -42,6 +41,22 @@ export class ProductEffect {
                         new ActionsFile.LoadOneSuccess(Product)
                 ),
                 catchError(err => of(new ActionsFile.LoadOneFail(err)))
+            )
+        )
+    )
+
+    @Effect()
+    LoadProductByName$: Observable<Action> = this.actions$.pipe(
+        ofType<ActionsFile.LoadOneByName>(
+            ActionsFile.ProductActionType.LOAD_ONE_BY_NAME
+        ),
+        mergeMap((action: ActionsFile.LoadOneByName) =>
+            this.ProductServ.getByName(action.payload).pipe(
+                map(
+                    (product: Product) =>
+                        new ActionsFile.LoadOneByNameSuccess(product)
+                ),
+                catchError(err => of(new ActionsFile.LoadOneByNameFail(err)))
             )
         )
     )

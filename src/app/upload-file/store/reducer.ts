@@ -1,5 +1,6 @@
-import { Actions, ActionTypes } from 'src/app/hospitals/upload-file-store/Action';
-import { initialState, State, UploadStatus } from 'src/app/hospitals/upload-file-store/state';
+ 
+import { initialState, State, UploadStatus } from './state';
+import { ActionTypes, Actions } from './Action';
 
 export function featureReducer(state = initialState, action: Actions): State {
   switch (action.type) {
@@ -56,18 +57,6 @@ export function featureReducer(state = initialState, action: Actions): State {
         error: null
       };
     }
-    // case ActionTypes.UPDATE_SUCCESS: { 
-    //   const changes = action.payloadId;
-    //   const id = changes.id;
-    //   console.log("updateOne:hello: ", changes)
-    //   return UploadStatus.updateOne({ id,changes } , state);
-    // }
-    // case ActionsFile.HospitalActionType.UPDATE_FAIL: {
-    //   return {
-    //     ...state,
-    //     error: action.payload,
-    //   };
-    // }
     default: {
       return state;
     }

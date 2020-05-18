@@ -28,8 +28,8 @@ import { ProductEffect } from './products/store/Effect';
 import { AuthEffects } from './Auth/store/auth.effect';
 import { reducers } from './Auth/store/app.state';
 import { reducerRegister } from './Auth/store/auth.reducer'; 
-import { featureReducer } from './hospitals/upload-file-store/reducer';
-import { UploadFileEffects } from './hospitals/upload-file-store/effect'; 
+import { featureReducer } from './upload-file/store/reducer';
+import { UploadFileEffects } from './upload-file/store/effect'; 
 
 
 @NgModule({

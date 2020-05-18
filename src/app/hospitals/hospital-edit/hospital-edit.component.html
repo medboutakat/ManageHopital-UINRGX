@@ -56,32 +56,16 @@
     </mat-step>
 
     <mat-step [stepControl]="PuctureImage" optional > 
-      <form [formGroup]="PuctureImage">
-        <ng-template matStepLabel  >Fill out your images</ng-template>
-     
-        <div class="form-group col-md-6">  
-          <label for="exampleFormControlFile1">Example file input</label><br>
-          <span class="input-group-btn" style="margin-top: -45px; ">
-            <span class="btn btn-primary" onclick="$(this).parent().find('input[type=file]').click();">Browse</span>
-            <input type="file"  onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file"
-            name="CovePathForm" id="exampleFormControlFile1"  (change)="onFileSelectCover($event)" formControlName="pictureProfilePath">
-          </span>
-        </div> 
-    
-        <div class="form-group col-md-6">  
-          <label for="exampleFormControlFile1">Example file input</label><br>
-      
-          <span class="input-group-btn" style="margin-top: -45px; ">
-            <span class="btn btn-primary" onclick="$(this).parent().find('input[type=file]').click();">Browse</span>
-            <input  onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file"
-            type="file" name="pictureProfilePath" (change)="onFileSelect($event)" id="pictureProfilePath" >
-          </span>
-        
-        </div> 
-
-        
-       <button type="submit" class="btn btn-success btn-block" (click)="updateImages()">UpdateImages</button><br>
-
+      <form [formGroup]="PuctureImage"> 
+       
+         <div class="card">   
+              <app-upload-file [objectId]="this._currentObject.id" [fileName]="'ImageProfileForm'"></app-upload-file> 
+        </div>
+        <div class="card">   
+          <app-upload-file [objectId]="this._currentObject.id" [fileName]="'ImageCoverForm'"></app-upload-file> 
+        </div>
+  
+       
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>

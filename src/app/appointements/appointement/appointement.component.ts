@@ -10,6 +10,7 @@ import { Appointement } from '../appointement.model';
 import { PageConfig } from 'src/app/config';
 import { AppointemntEditComponent } from 'src/app/appointements/appointemnt-edit/appointemnt-edit.component';
 import { Router } from '@angular/router';
+import { AppListViewBaseComponent } from 'src/app/app-list-view-base.component';
 
 
 @Component({
@@ -17,39 +18,23 @@ import { Router } from '@angular/router';
   templateUrl: './appointement.component.html',
   styleUrls: ['./appointement.component.css']
 })
-export class AppointementComponent implements OnInit {
-  dataSource: any;
-  apps : any;
-  selection: SelectionModel<Appointement>;
-  private rowSelection;
-  private IsRowSelected: boolean = false;
-  private IsMultple: boolean = false;
-  private pageSize = PageConfig.pageSize
+export class AppointementComponent   extends AppListViewBaseComponent<Appointement> implements OnInit {
+ 
 
-  applyFilter(filtervalue: string) {
-    this.dataSource.filter = filtervalue.trim().toLowerCase();
-  }
-
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   displayedColumns: string[] = ['select', 'assurance', 'reservationTimeStamp', 'subject'];
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
 
   constructor(private store: Store<any>, public dialog: MatDialog,private router: Router) {
+    super();
     this.delete = this.delete.bind(this);
     this.add = this.add.bind(this);
-    this.edit = this.edit.bind(this);
-
+    this.edit = this.edit.bind(this); 
   }
   remplir(){
     this.store.subscribe(data => {
       this.apps = Object.values(data.appointements.entities)
       console.log(" apps=> ", this.apps)
-      this.dataSource = new MatTableDataSource<Appointement>(this.apps);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-      this.selection = new SelectionModel<Appointement>(true, []);
+      this.fillData(this.apps)  
     })
   }
   ngOnInit() {
@@ -60,34 +45,7 @@ export class AppointementComponent implements OnInit {
   save(data) {
     this.dialog.open(SavePdfComponent, { data });
   }
-  onrowselect() {
-    this.IsMultple = this.selection.selected.length > 1;
-    this.IsRowSelected = this.selection.selected.length == 1;
-  }
-
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected()
-      ? this.selection.clear()
-      : this.dataSource.data.forEach((row) => this.selection.select(row));
-  }
-
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: Appointement): string {
-    if (!row) {
-      return `${this.isAllSelected() ? "select" : "deselect"} all`;
-    }
-    return `${this.selection.isSelected(row) ? "deselect" : "select"} row ${
-      row.id + 1
-    }`;
-  }
+  
 
 
   delete() {

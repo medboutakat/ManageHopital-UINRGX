@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultModule } from './layouts/default/default.module';
+import { DragDropModule} from '@angular/cdk/drag-drop'
 import { AppointementComponent } from './appointements/appointement/appointement.component';
 
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
@@ -39,8 +40,7 @@ import { MenuComponent } from './menu/menu.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ChatModule } from './chat/chat.module'
 import { AgGridModule } from 'ag-grid-angular';
-import { AngularMaterialModule } from './angular-material/angular-material.module';
-import { DetailsComponent } from './invoices/details/details.component';
+import { AngularMaterialModule } from './angular-material/angular-material.module'; 
 import { InvoiceComponent } from './invoices/invoice/invoice.component';
 import { MaterialComponent } from './material/material/material.component';
 import { MaterialEditComponent } from './material/material-edit/material-edit.component';
@@ -52,15 +52,15 @@ import { AppointemntEditComponent } from './appointements/appointemnt-edit/appoi
 import { ProductCatComponent } from './productCategorie/product-cat/product-cat.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { ProductComponent } from './products/product/product.component';
-import { AppStoreModule } from './app-store.module';
-import { AuthInterceptor } from './Auth/auth.interceptor';
+import { AppStoreModule } from './app-store.module'; 
 import { ProductEditCatComponent } from './productCategorie/product-edit-cat/product-edit-cat.component';
 import { AutoCompleteComponent } from './controls/select/autocomplete.component';
-import { AuthService } from './Auth/auth.service';
-import { TokenInterceptor, ErrorInterceptor } from './Auth/token.interceptor';
-import { AuthGuardService } from './Auth/auth-guard.service';
+import { AuthService } from './Auth/auth.service'; 
+import { AuthGuard } from './Auth/auth-guard';
 import { ProductimageComponent } from './productimages/productimage/productimage.component';
 import { OurTeamComponent } from './our-team/our-team.component';
+import { AuthInterceptor, ErrorInterceptor, TokenInterceptor } from './app.interceptors';
+import { UploadFileComponent } from './upload-file/upload-file/upload-file.component';
 
 
 const config = {
@@ -93,8 +93,7 @@ const config = {
     ContactComponent,
     SigninComponent,
     SignupComponent,
-    InvoiceEditComponent,
-    DetailsComponent,
+    InvoiceEditComponent, 
     OperationComponent,
     AddOperationComponent,
     AppointemntEditComponent,
@@ -114,7 +113,8 @@ const config = {
     ProductEditComponent,
     AutoCompleteComponent,
     ProductimageComponent,
-    OurTeamComponent
+    OurTeamComponent,
+    UploadFileComponent
   ],
   entryComponents: [
     HospitalEditComponent,
@@ -127,6 +127,7 @@ const config = {
     PaymentComponent,
     ProductEditCatComponent,
     ProductEditComponent,
+    UploadFileComponent
   ],
 
 
@@ -141,18 +142,16 @@ const config = {
     [MatDialogModule],
     HttpClientModule,
     ChatModule,
-    AngularMaterialModule,
-    // MatAutocompleteModule,
-    // MatBottomSheetModule,
-    // MatTooltipModule, 
+    AngularMaterialModule, 
     HttpClientModule,
     AppStoreModule,
-
+    DragDropModule
   ],
   providers: [
-    // SugarLevelService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    AuthService, {
+     AuthService,
+   
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, 
+    AuthGuard,{
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
@@ -162,17 +161,7 @@ const config = {
       useClass: ErrorInterceptor,
       multi: true
     },
-    AuthGuardService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
-      multi: true
-    }
+    
 
   ],
   bootstrap: [AppComponent],

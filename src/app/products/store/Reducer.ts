@@ -6,25 +6,23 @@ import * as ActionsFile from 'src/app/Products/store/Action'
 
 export interface ProductState extends EntityState<Product> {
   selectedById: string | null,
-  Products: Product[],
   loading: boolean,
   loaded: boolean,
   error: string
 }
 
 export interface AppState extends fromRoot.AppState {
-  Products: ProductState
+  products: ProductState,
 }
 
 export const ProductAdapter: EntityAdapter<Product> = createEntityAdapter<Product>();
 export const DefaultState: ProductState = {
   ids: [],
   entities: {},
-  Products: [],
   selectedById: null,
   loading: false,
   loaded: false,
-  error: ' ',
+  error: '',
 }
 // export const initialState : HospitalCatState ={
 //     HospitalCats :[],
@@ -61,6 +59,19 @@ export function ProductReducer(state = initialState, action: ActionsFile.Product
       });
     }
     case ActionsFile.ProductActionType.LOAD_ONE_FAIL: {
+      return {
+        ...state,
+        error: action.payload
+      };
+    }
+
+    case ActionsFile.ProductActionType.LOAD_ONE_BY_NAME_SUCCESS: {
+      return ProductAdapter.addOne(action.payload, {
+        ...state,
+        selectedCustomerId: action.payload.name
+      });
+    }
+    case ActionsFile.ProductActionType.LOAD_ONE_BY_NAME_FAIL: {
       return {
         ...state,
         error: action.payload
@@ -109,8 +120,8 @@ const getProductFeatursState = createFeatureSelector<ProductState>(
 )
 export const getProducts = createSelector(
   getProductFeatursState,
-  //    (state : HospitalCatState)=>state.HospitalCats
-  ProductAdapter.getSelectors().selectAll
+  (state : ProductState)=>state.entities
+  //ProductAdapter.getSelectors().selectAll
 )
 export const getProductsLoading = createSelector(
   getProductFeatursState,

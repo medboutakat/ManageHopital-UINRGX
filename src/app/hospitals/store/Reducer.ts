@@ -26,13 +26,8 @@ export const DefaulttHospital : HospitalState={
     loading: false,
     loaded : false,
     error : ' ',
-}
-// export const initialState : HospitalCatState ={
-//     HospitalCats :[],
-//     loading: false,
-//     loaded : false,
-//     error : ' ',
-// }
+} 
+
 export const initialState = HospitalAdapter.getInitialState(DefaulttHospital)
 
 export function HospitalReducer(state = initialState, action : ActionsFile.HospitalAction) : HospitalState{

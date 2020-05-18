@@ -87,6 +87,7 @@ export class AuthEffects {
         tap((user) => { 
             console.log("logged out",user)
             localStorage.removeItem('token');
+            localStorage.removeItem("links");
         })
     );
     /**************************get Status************************************ */

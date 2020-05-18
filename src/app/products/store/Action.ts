@@ -14,6 +14,10 @@ export enum ProductActionType {
     LOAD_ONE_SUCCESS = "[Model] Load One Product Success",
     LOAD_ONE_FAIL = "[Model] Load One Product Fail",
 
+    LOAD_ONE_BY_NAME = "[Model] Load One Product by name",
+    LOAD_ONE_BY_NAME_SUCCESS = "[Model] Load One Product by name Success",
+    LOAD_ONE_BY_NAME_FAIL = "[Model] Load One Product by name Fail",
+
     UPSERT = "[Model] Upsert Product",
 
     CREATE = "[Model] Create Product",
@@ -58,7 +62,20 @@ export class LoadOneFail implements Action {
     constructor(public payload: string) {}
 }
 
- 
+export class LoadOneByName implements Action {
+    readonly type = ProductActionType.LOAD_ONE_BY_NAME;
+    constructor(public payload: string) {}
+}
+  
+export class LoadOneByNameSuccess implements Action {
+    readonly type = ProductActionType.LOAD_ONE_BY_NAME_SUCCESS;
+    constructor(public payload: Model) {}
+}
+
+export class LoadOneByNameFail implements Action {
+    readonly type = ProductActionType.LOAD_ONE_BY_NAME_FAIL;
+    constructor(public payload: string) {}
+} 
 
 // Add Productegory
 export class Create implements Action{
@@ -118,6 +135,10 @@ Load
 |LoadOne 
 |LoadOneSuccess  
 |LoadOneFail
+// Load by name
+|LoadOneByName
+|LoadOneByNameSuccess
+|LoadOneByNameFail
 // CreateProduct
  |Create
  |CreateSuccess
