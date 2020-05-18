@@ -21,8 +21,7 @@ export class AppListViewBaseComponent<T> {
   public displayedColumns: string[];
 
   constructor() {
-   
-    console.log("bind action");
+    
   }
 
   bindMethods(...params:string[]){
