@@ -12,7 +12,7 @@
 }
 
 
-nav{
+.footerDetail{
    height: 35px;
    background-color: rgb(135,206,250,0.1);
    border: .5pt solid rgb(135,206,250,1);
@@ -20,6 +20,12 @@ nav{
    margin-top: 2px;
    padding: 5px; 
    font-family: Arial, Helvetica, sans-serif; 
+}
+
+.footerDetail:hover{
+   height: 40px; 
+   font-size: large;
+   border-color: 2px #1E90FF solid;
 }
 
 
@@ -37,11 +43,6 @@ nav{
    margin: 0%;
 }
 
-.addDetail:hover{
-   height: 40px;
-   background-color:green;
-}
-
 .example-form {
    min-width: 150px;
    max-width: 500px;
@@ -51,3 +52,24 @@ nav{
  .example-full-width {
    width: 100%;
  }
+
+.material-icons{
+   color: #C3C4C9;
+   visibility: hidden;
+   cursor: all-scroll;
+}
+
+.detail-parent:hover div .details div span{
+   visibility: visible;
+}
+
+
+.icon-align {
+   /* vertical-align:text-top;  */
+   text-align: center;
+}
+
+
+.icon-align:hover { 
+   background-color: aliceblue;
+}

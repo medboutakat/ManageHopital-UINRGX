@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
-import { Register } from '../register';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContactHelper } from 'src/app/contacts/contact.helper';
 import { Contact } from 'src/app/contacts/contact.model';
@@ -10,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { AppState } from '../store/app.state'
 import { Store } from '@ngrx/store';
 import { SignUp } from '../store/auth.actions';
+import { Register } from '../register.model';
 
 @Component({
   selector: 'app-signup',

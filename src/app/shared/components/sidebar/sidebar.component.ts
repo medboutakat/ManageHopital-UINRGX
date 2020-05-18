@@ -13,36 +13,23 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 })
 export class SidebarComponent implements OnInit {
   user = localStorage.getItem("user");
-  links: Link[] = [
-    {txt:'Dashboard',url:'/'},
-    {txt:'Appointements',url:'/appointement'}, 
-    {txt:'Hospital',url:'/Hospitals'},
-    {txt:'Hospital category',url:'/hospitalcat'},
-    {txt:'DoctorCategory',url:'/doctorCategory'},
-    {txt:'ProductCategory',url:'/productCategory'},
-    {txt:'Doctors',url:'/doctors'},
-    {txt:'Invoices',url:'/invoices'},
-    {txt:'Invoice',url:'/invoice'},
-    {txt:'Operations',url:'/operation'},
-    {txt:'Product',url:'/products'},
-    {txt:'material',url:'/material'},
-    {txt:'material edit',url:'/materialedit'},
-    {txt:'Payment',url:'/payment'},
-  ]
+
+
+  links;
 
   constructor(
 
   ) { 
 
 
-    let menulinks = localStorage.getItem("links");
+    let menulinks = localStorage.getItem("links"); 
     if(menulinks==null){
      var defaultMenu = [
         {txt:'home',url:'home'},
         {txt:'Dashboard',url:''},
         {txt:'Appointements',url:'appointement'},
         {txt:'Articles',url:'articles'},
-        {txt:'Hospital',url:'hospitals'},
+        {txt:'Hospital',url:'/hospitals'},
         {txt:'Hospital category',url:'hospitalcat'},
         {txt:'DoctorCategory',url:'doctorCategory'},
         {txt:'ProductCategory',url:'productCategory'},
@@ -50,7 +37,7 @@ export class SidebarComponent implements OnInit {
         {txt:'Invoices',url:'invoices'},
         {txt:'Invoice',url:'invoice'},
         {txt:'Operations',url:'operation'},
-        {txt:'Product',url:'product'},
+        {txt:'Products',url:'products'},
         {txt:'material',url:'material'},
         {txt:'material edit',url:'materialedit'},
         {txt:'Payment',url:'payment'},

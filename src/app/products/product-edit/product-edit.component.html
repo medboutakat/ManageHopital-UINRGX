@@ -1,89 +1,76 @@
 <div class="container">
   <h1>{{title}}</h1>
-   <p style="font-weight: lighter;color: gray;font-size: 14px;" class="card-text">to reserve, please fill this
-     informations</p>
-     
+  <p style="font-weight: lighter;color: gray;font-size: 14px;" class="card-text">to reserve, please fill this
+    informations</p>
 
-<mat-horizontal-stepper labelPosition="bottom" #stepper>
-    <mat-step [stepControl]="MainForm"> 
 
-    <form [formGroup]="MainForm">
-      <div class="form-row">
-        <input type="hidden" formControlName="id">
-        <div class="form-group col-md-6">
-          <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="name"  
-            placeholder="product name">
+  <mat-horizontal-stepper labelPosition="bottom" #stepper>
+    <mat-step [stepControl]="MainForm">
+
+      <form [formGroup]="MainForm">
+        <div class="form-row">
+          <input type="hidden" formControlName="id">
+          <div class="form-group col-md-6">
+            <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="name"
+              placeholder="product name">
+          </div>
+          <div class="form-group col-md-6">
+            <input style="text-align: center;font-size: 14px;" type="text" class="form-control"
+              formControlName="quantityPerUnit" placeholder="quantity">
+          </div> 
+          <div class="form-group col-md-6">
+            <input style="text-align: center;font-size: 14px;" type="number" class="form-control"
+              formControlName="unitPrice" placeholder="price">
+          </div> 
+          <div class="form-group col-md-6">
+            <input style="text-align: center;font-size: 14px;" type="number" class="form-control"
+              formControlName="unitsInStock" placeholder="units in stock">
+          </div>
+          <div class="form-group col-md-6">
+            <input style="text-align: center;font-size: 14px;" type="number" class="form-control"
+              formControlName="unitsOnOrder" placeholder="units on order">
+          </div>
+          <div class="form-group col-md-6">
+            <input style="text-align: center;font-size: 14px;" type="number" class="form-control"
+              formControlName="reorderLevel" placeholder="reorder level">
+          </div>
+          <div class="form-group col-md-6">
+            <mat-checkbox formControlName="discontinued">Discontinued</mat-checkbox>
+          </div>
+
+          <div class="input-group mb-3">
+            <select formControlName="productCategoryId" placeholder="City" class="custom-select"
+              id="inputGroupSelect02">
+              <option *ngFor="let item of productCatValues" selected value="{{item.id}}">{{item.remark}}</option>
+            </select>
+          </div>
+
         </div>
-        <div class="form-group col-md-6">
-          <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="quantityPerUnit"  
-            placeholder="quantity">
-        </div>  
+      </form>
 
-      <div class="form-group col-md-6">
-          <input style="text-align: center;font-size: 14px;" type="number" class="form-control" formControlName="unitPrice"  
-            placeholder="price">
-        </div> 
-    
+      <br>
 
-        <div class="form-group col-md-6">
-          <input style="text-align: center;font-size: 14px;" type="number" class="form-control" formControlName="unitsInStock"  
-            placeholder="units in stock">
-        </div>  
-        <div class="form-group col-md-6">
-          <input style="text-align: center;font-size: 14px;" type="number" class="form-control" formControlName="unitsOnOrder"  
-            placeholder="units on order">
-        </div>  
-        <div class="form-group col-md-6">
-            <input style="text-align: center;font-size: 14px;" type="number" class="form-control" formControlName="reorderLevel"  
-              placeholder="reorder level">
-        </div>
-        <div class="form-group col-md-6">
-            <mat-checkbox formControlName="discontinued" >Discontinued</mat-checkbox>
-        </div>
- 
-       <div class="input-group mb-3">
-              <select formControlName="productCategoryId" placeholder="City" class="custom-select" id="inputGroupSelect02">
-                <option *ngFor="let item of productCatValues" selected value="{{item.id}}">{{item.remark}}</option>
-              </select>
-        </div> 
+      <button type="submit" class="btn btn-success btn-block" (click)="reserve()">Reserve</button><br>
 
+      <div>
+        <button mat-button matStepperNext disabled="true">Next</button>
       </div>
-    </form>
-
-     <br> 
-
-   <button type="submit" class="btn btn-success btn-block" (click)="reserve()">Reserve</button><br>
-
-    <div>
-        <button mat-button matStepperNext disabled="true" >Next</button>
-    </div>
     </mat-step>
 
-    <mat-step [stepControl]="updatePuctureImage" optional > 
+    <mat-step [stepControl]="updatePuctureImage" optional>
       <form [formGroup]="updatePuctureImage">
-        <ng-template matStepLabel  >Fill out your images</ng-template>
-     
-        <div class="form-group col-md-6">  
-          <label for="exampleFormControlFile1">Example file input</label>
-          <input type="file" name="CovePathForm" (change)="onFileSelectCover($event)"  class="form-control-file" id="exampleFormControlFile1"> 
-        </div> 
+        <ng-template matStepLabel>Fill out your images</ng-template> 
 
         
-        <div class="form-group col-md-6">  
-          <label for="exampleFormControlFile1">Example file input</label>
-          <input type="file" name="PictureProfilePathForm" (change)="onFileSelect($event)"  class="form-control-file" id="exampleFormControlFile1"> 
-        </div> 
-
-        
-       <button type="submit" class="btn btn-success btn-block" (click)="updateImages()">UpdateImages</button><br>
+  
 
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
         </div>
       </form>
-    </mat-step> 
+    </mat-step>
 
   </mat-horizontal-stepper>
-    
- </div>  
+
+</div>

@@ -1,6 +1,6 @@
-import { Auth } from '../auth';
+import { Auth } from '../auth.model';
 import { AuthActionTypes, All } from './auth.actions';
-import { Register } from '../register';
+import { Register } from '../register.model';
 
 export interface State {
     // is a user authenticated?

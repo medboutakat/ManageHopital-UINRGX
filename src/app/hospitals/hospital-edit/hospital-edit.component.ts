@@ -9,11 +9,10 @@ import { Contact } from '../../contacts/contact.model';
 import * as ActionsFiles from '../../hospitals/store/Action'
 import { City } from '../../cities/city';
 import { ContactHelper } from '../../contacts/contact.helper';
-import { environment } from 'src/environments/environment';
-import { HospitalService } from '../hospital.service';
-import * as fromFileUploadState from  'src/app/hospitals/upload-file-store/state'
-import * as fromFileUploadActions from  'src/app/hospitals/upload-file-store/Action'
-import * as fromFileUploadSelectors from 'src/app/hospitals/upload-file-store/selector'
+import { environment } from 'src/environments/environment'; 
+import * as fromFileUploadState from  'src/app/upload-file/store/state'
+import * as fromFileUploadActions from  'src/app/upload-file/store/Action'
+import * as fromFileUploadSelectors from 'src/app/upload-file/store/selector'
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-hospital-edit',
@@ -25,7 +24,7 @@ import { Observable } from 'rxjs';
 
 export class HospitalEditComponent implements OnInit {
   fileToUpload=null;  
-  imageUrl:string="/assets/img/";
+  imageUrl:string="";
   HospitalForm: FormGroup;
   listhopitalValues: any; 
  _currentObject: Hospital; 
@@ -36,14 +35,8 @@ export class HospitalEditComponent implements OnInit {
 
  _currentContactObject: Contact; 
  PuctureImage: FormGroup; 
- completed$: Observable<boolean>;
- progress$: Observable<number>;
- error$: Observable<string>;
- isInProgress$: Observable<boolean>;
- isReady$: Observable<boolean>;
- hasFailed$: Observable<boolean>;
-  constructor( private dialog: MatDialog, private store: Store<any>,  @Inject(MAT_DIALOG_DATA) data,private fb: FormBuilder,
-  private store$: Store<fromFileUploadState.State>) {
+ 
+  constructor( private dialog: MatDialog, private store: Store<any>,  @Inject(MAT_DIALOG_DATA) data,private fb: FormBuilder ) {
     
     this.store.dispatch(new ActionsFile.Load());
     this.store.subscribe(data => {
@@ -84,32 +77,7 @@ export class HospitalEditComponent implements OnInit {
       pictureProfilePath: null,   
       covePath : null,
     });
-
-
-    this.completed$ = this.store$.pipe(
-      select(fromFileUploadSelectors.selectUploadFileCompleted)
-    );
-
-    this.progress$ = this.store$.pipe(
-      select(fromFileUploadSelectors.selectUploadFileProgress)
-    );
-
-    this.error$ = this.store$.pipe(
-      select(fromFileUploadSelectors.selectUploadFileError)
-    );
-
-    this.isInProgress$ = this.store$.pipe(
-      select(fromFileUploadSelectors.selectUploadFileInProgress)
-    );
-
-    this.isReady$ = this.store$.pipe(
-      select(fromFileUploadSelectors.selectUploadFileReady)
-    );
-
-    this.hasFailed$ = this.store$.pipe(
-      select(fromFileUploadSelectors.selectUploadFileFailed)
-    );
-  
+ 
   }
 
   getContact(contact) {
@@ -119,93 +87,17 @@ export class HospitalEditComponent implements OnInit {
   reserve() {
     var newApp = <Hospital>this.HospitalForm.value    
     newApp.contactModel.cityId=+ newApp.contactModel.cityId;
- 
-    // newApp.pictureProfilePath=this.IMG
-    // console.log("pictureProfilePath",newApp.pictureProfilePath)
-    // newApp.covePath=this.IMG
-    // console.log("covePath",newApp.covePath)
-
       console.log("HospitalForm Valid",this.HospitalForm.valid)
       console.log("contactModel Valid",this.contactForm.valid)
 
-    if(newApp.id==environment.EmptyGuid){ 
-
-      console.log("Add")
+    if(newApp.id==environment.EmptyGuid){   
       this.store.dispatch( new ActionsFiles.CreateHospital(newApp));
     }
     else{ 
-      console.log("Update")
+      
       this.store.dispatch(new ActionsFiles.UpdateHospital(newApp));
     }
     this.HospitalForm.reset(); 
-    this.dialog.closeAll();
-  }
+  } 
 
-
-  updateImages(){
-//  this.HospitalForm.get("pictureProfilePath")
-//     var newApp = this.HospitalForm.value;
-//     newApp.pictureProfilePath=this.IMG
-//     console.log("hospImageeeee",newApp.pictureProfilePath)
-//  this.HospitalForm.get("pictureProfilePath")
-
-var newApp = this.PuctureImage.value;
-    newApp.pictureProfilePath=this.IMG
-    newApp.covePath=this.IMG
-
-    if(newApp.id!=environment.EmptyGuid){  
-      this.store.dispatch( new fromFileUploadActions.UploadResetAction());
-    } 
-    this.PuctureImage.reset(); 
-
-  }
-
-// uploadFile(event: any) {
-//   const files: FileList = event.target.files;
-//   const file = files.item(0);
-
-//   this.store$.dispatch(
-//     new fromFileUploadActions.UploadRequestAction({
-//       file
-//     })
-//   );
-
-
-//   event.srcElement.value = null;
-// }
-resetUpload() {
-  this.store$.dispatch(new fromFileUploadActions.UploadResetAction());
-}
-
-  IMG:string;
-  onFileSelectCover(event)
-  {
-    this.fileToUpload = event.target.files[0];
-    //show image preview here
-    var reader = new FileReader();
-    reader.onload =(event : any)=>{
-      this.imageUrl =event.target.result.replace('data:image/jpeg;base64,','data:image/png;base64,')
-      var ret = this.imageUrl.replace('data:image/png;base64,','');
-      this.IMG = ret
-      console.log("imageUrl : ",this.imageUrl)
-      console.log("ret : ",this.IMG)
-    } 
-    reader.readAsDataURL(this.fileToUpload);
-    console.log("file : ",reader) 
-  }
-  onFileSelect(event)
-  {
-    this.fileToUpload = event.target.files[0];
-    //show image preview here
-    var reader = new FileReader();
-    reader.onload =(event : any)=>{
-      this.imageUrl =event.target.result.replace('data:image/jpeg;base64,','data:image/png;base64,')
-      var ret = this.imageUrl.replace('data:image/png;base64,','');
-      this.IMG = ret
-      console.log("imageUrl : ",this.imageUrl)
-      console.log("ret : ",this.IMG)
-    } 
-    reader.readAsDataURL(this.fileToUpload);
-    console.log("file : ",reader) 
-  }
 }

@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
-import { Hospital } from '../hospital.model';
+import { ProductImage } from './productImg.module';
+
 
 export enum ActionTypes {
   UPLOAD_REQUEST = '[File Upload Form] Request',
@@ -28,6 +29,9 @@ export class UploadCancelAction implements Action {
 
 export class UploadResetAction implements Action {
   readonly type = ActionTypes.UPLOAD_RESET;
+  constructor(public payload: ProductImage) { 
+    console.log("Action Create success=>", payload);
+  }
 }
 
 export class UploadStartedAction implements Action {
