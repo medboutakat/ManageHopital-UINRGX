@@ -15,11 +15,7 @@ export class SidebarComponent implements OnInit {
   user = localStorage.getItem("user");
 
 
-<<<<<<< HEAD
   links: Link[];
-=======
-  links;
->>>>>>> 14602dbd7c18705c6390e7e4a4e10897ffb9fb3b
 
   constructor(
 
