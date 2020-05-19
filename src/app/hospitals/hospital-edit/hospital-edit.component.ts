@@ -36,7 +36,8 @@ export class HospitalEditComponent implements OnInit {
  _currentContactObject: Contact; 
  PuctureImage: FormGroup; 
  
-  constructor( private dialog: MatDialog, private store: Store<any>,  @Inject(MAT_DIALOG_DATA) data,private fb: FormBuilder ) {
+  constructor( private dialog: MatDialog, private store: Store<any>,  @Inject(MAT_DIALOG_DATA) data,private fb: FormBuilder ,
+  private store$: Store<fromFileUploadState.State>) {
     
     this.store.dispatch(new ActionsFile.Load());
     this.store.subscribe(data => {
@@ -100,4 +101,5 @@ export class HospitalEditComponent implements OnInit {
     this.HospitalForm.reset(); 
   } 
 
-}
+  }
+

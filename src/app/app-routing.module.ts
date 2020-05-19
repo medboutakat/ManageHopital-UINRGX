@@ -24,7 +24,7 @@ import { ProductCatComponent } from './productCategorie/product-cat/product-cat.
 import { ProductComponent } from './products/product/product.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { SignupComponent } from './Auth/signup/signup.component';
-import { AuthGuardService } from './Auth/auth-guard.service';
+// import { AuthGuardService } from './Auth/auth-guard.service';
 import { OurTeamComponent } from './our-team/our-team.component';
 
 
