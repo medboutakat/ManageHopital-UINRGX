@@ -75,6 +75,7 @@ const routes: Routes = [
       { path: 'Category', component: CategoryComponent, pathMatch: 'full', canActivate: [AuthGuard] },
       { path: 'material', component: MaterialComponent, pathMatch: 'full', canActivate: [AuthGuard] },
       { path: 'materialedit', component: MaterialEditComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'product', component:ProductComponent, pathMatch: 'full', canActivate: [AuthGuard] },
       { path: 'payment', component: PaymentComponent, pathMatch: 'full', canActivate: [AuthGuard] },
       { path: 'chat', component: ContactComponent, pathMatch: 'full', canActivate: [AuthGuard] },
 

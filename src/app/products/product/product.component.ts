@@ -20,92 +20,13 @@ import { AppListViewBaseComponent } from "src/app/app-list-view-base.component";
   templateUrl: "./product.component.html",
   styleUrls: ["./product.component.scss"],
 })
-export class ProductComponent extends AppListViewBaseComponent<Product>
-  implements OnInit {
-  products: Product[];
-  productValues: any;
-  listProducts: any; 
+export class ProductComponent implements OnInit {
 
-  constructor(
-    private store: Store<any>,
-    private _bottomSheet: MatBottomSheet,
-    public dialog: MatDialog
-  ) {
-    super();
+  constructor() { }
 
-    super.bindMethods("add", "edit", "delete");
-  }
-
-  remplir() {
-    this.store.subscribe((data) => {
-      this.listProducts = Object.values(data.products.entities);
-      console.log(" Products list : ", this.listProducts);
-      this.fillData(this.listProducts);
-    });
-  }
-
-  displayedColumns: string[] = [
-    "select",
-    "name",
-    "quantityPerUnit",
-    "unitPrice",
-    "unitsInStock",
-    "unitsOnOrder",
-    "reorderLevel",
-    "discontinued",
-  ];
 
   ngOnInit() {
-    //this.remplir();
-    this.store.dispatch(new ActionsFile.Load());
-    this.remplir();
-  }
-  get product() {
-    return this.productValues;
+
   }
 
-  delete() {
-    if (confirm("Are You Sure You want to Delete the User?")) {
-      var cat = <Product>this.selection.selected[0];
-      console.log("cat => ", cat);
-      this.store.dispatch(new ActionsFile.Delete(cat.id));
-    }
-  }
-  reload() {
-    this.dialog.afterAllClosed.subscribe((res) => this.remplir());
-  }
-  edit() {
-    console.log("edit");
-    var cat = <Product>this.selection.selected[0];
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.data = {
-      _currentObject: cat,
-      title: "Update " + cat.name,
-    };
-    this.dialog
-      .open(ProductEditComponent, dialogConfig)
-      .afterClosed()
-      .subscribe((result) => {
-        this.store.dispatch(new ActionsFile.Load());
-        this.remplir();
-      });
-    console.log("updated");
-  }
-
-  add() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = {
-      _currentObject: new Product(),
-      title: "Add ",
-    };
-
-    this.dialog
-      .open(ProductEditComponent, dialogConfig)
-      .afterClosed()
-      .subscribe((result) => {
-        this.store.dispatch(new ActionsFile.Load());
-        this.remplir();
-      });
-  }
 }

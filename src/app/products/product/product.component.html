@@ -1,102 +1,98 @@
- 
-<!-- 
-<ng-container>
-  <h4>List of Products</h4>
+<!-- <ng-container>
+  <h2>NOUVEAUX
+  </h2>
   <div class="card-deck">
-
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
+    <div class="card" style="width: 5rem;">
+      <img src="assets/img/51WCCdSLJtL._SY879_.jpg" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build </p>
       </div>
     </div>
-    <div class="card">
+    <div class="card" style="width: 5rem;">
       <img src="..." class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build </p>
+      </div>
+    </div>
+    <div class="card" style="width: 5rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <p class="card-text">Some quick example text to build </p>
+      </div>
+    </div>
+    <div class="card" style="width: 5rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <p class="card-text">Some quick example text to build </p>
+      </div>
+    </div>
+    <div class="card" style="width: 5rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <p class="card-text">Some quick example text to build </p>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+</ng-container> -->
+<div class="container">
+  <h4>NOUVEAUX
+    <hr class="ab">
+  </h4>
+  <div class="row text-center">
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card">
+        <img class="card-img-top" src="assets/img/51WCCdSLJtL._SY879_.jpg" alt="">
+        <div class="card-body">
+          <h4 class="card-title">ISIS</h4>
+          <p class="text">UNITONE 4 Reveal gel </p>
+          <hr>
+          <p class="prix">149 DH</p>
+        </div>
+        <button mat-raised-button color="primary"><i class="fa fa-shopping-cart"></i> panier</button>
 
       </div>
     </div>
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
+
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card">
+        <img class="card-img-top" src="assets/img/51WCCdSLJtL._SY879_.jpg" alt="">
+        <div class="card-body">
+          <h4 class="card-title">ISIS</h4>
+          <p class="text">UNITONE 4 Reveal gel </p>
+          <hr>
+          <p class="prix">149 DH</p>
+        </div>
+        <button mat-raised-button color="primary"><i class="fa fa-shopping-cart"></i> panier</button>
+
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card">
+        <img class="card-img-top" src="assets/img/51WCCdSLJtL._SY879_.jpg" alt="">
+        <div class="card-body">
+          <h4 class="card-title">ISIS</h4>
+          <p class="text">UNITONE 4 Reveal gel </p>
+          <hr>
+          <p class="prix">149 DH</p>
+        </div>
+        <button mat-raised-button color="primary"><i class="fa fa-shopping-cart"></i> panier</button>
+
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card">
+        <img class="card-img-top" src="assets/img/51WCCdSLJtL._SY879_.jpg" alt="">
+        <div class="card-body">
+          <h4 class="card-title">ISIS</h4>
+          <p class="text">UNITONE 4 Reveal gel </p>
+          <hr>
+          <p class="prix">149 DH</p>
+        </div>
+        <button mat-raised-button color="primary"><i class="fa fa-shopping-cart"></i> panier</button>
       </div>
     </div>
 
   </div>
-
-</ng-container> -->
-
- 
-<mat-form-field class="example-full-width" style="float: right;">
-  <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
-</mat-form-field>
-
-<div style="float: left;">
-  <app-menu [IsRowSelected]="IsRowSelected" [addAction]="add" [editAction]="edit" [deleteAction]="delete"
-    [IsMultple]="IsMultple" [isNew]="isNew"></app-menu>
 </div>
-
-
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-  <ng-container matColumnDef="select">
-    <th mat-header-cell *matHeaderCellDef>
-      <mat-checkbox (change)="$event ? masterToggle() : null; onrowselect()"
-        [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()"
-        [aria-label]="checkboxLabel()">
-      </mat-checkbox>
-    </th>
-    <td mat-cell *matCellDef="let row">
-      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null; onrowselect()"
-        [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)" (click)="onrowselect()">
-      </mat-checkbox>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> id </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="quantityPerUnit">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> quantityPerUnit </th>
-    <td mat-cell *matCellDef="let element"> {{element.quantityPerUnit}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="unitPrice">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> unitPrice </th>
-    <td mat-cell *matCellDef="let element"> {{element.unitPrice}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="unitsInStock">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> unitsInStock </th>
-    <td mat-cell *matCellDef="let element"> {{element.unitsInStock}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="unitsOnOrder">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> unitsOnOrder </th>
-    <td mat-cell *matCellDef="let element"> {{element.unitsOnOrder}} </td>
-  </ng-container>
-  <ng-container matColumnDef="reorderLevel">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> reorderLevel </th>
-    <td mat-cell *matCellDef="let element"> {{element.reorderLevel}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="discontinued">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> discontinued </th>
-    <td mat-cell *matCellDef="let element"> {{element.discontinued}} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row);"
-    (click)="onrowselect(row)"></tr>
-
-
-</table>
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
