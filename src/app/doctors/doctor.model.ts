@@ -7,5 +7,6 @@ export class Doctor extends GeneratedId {
     firstName: string;
     lastName: string;
     sexe: string;
+    doctorCategoryId:string;
     contactModel:Contact;
 }

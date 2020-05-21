@@ -21,6 +21,12 @@
       </select>
     </div>
 
+    <div class="input-group form-group ">
+      <select formControlName="doctorCategoryId" placeholder="City" class="custom-select" id="inputGroupSelect02">
+        <option *ngFor="let item of _listCatetory" selected value="{{item.id}}">{{item.remark}}</option>
+      </select>
+  </div> 
+
   </form>
   <app-contact [contactForm]="contactForm"></app-contact>
   <button type="submit" class="btn btn-success btn-block" (click)="reserve()">Submit</button><br>

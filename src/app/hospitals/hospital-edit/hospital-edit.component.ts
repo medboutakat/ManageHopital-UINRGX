@@ -30,7 +30,7 @@ export class HospitalEditComponent implements OnInit {
  _currentObject: Hospital; 
   title:any; 
 
-  listhopitalCatValues: unknown[];
+  _listCatetory: unknown[];
   contactForm: FormGroup;
 
  _currentContactObject: Contact; 
@@ -40,8 +40,8 @@ export class HospitalEditComponent implements OnInit {
     
     this.store.dispatch(new ActionsFile.Load());
     this.store.subscribe(data => {
-      this.listhopitalCatValues = Object.values(data.HospitalCat.entities)
-      console.log(" this.listhopitalCatValues=> ", this.listhopitalCatValues)
+      this._listCatetory = Object.values(data.HospitalCat.entities)
+      console.log(" this._listCatehory=> ", this._listCatetory)
     });
 
     this._currentObject=  data._currentObject;
@@ -85,8 +85,9 @@ export class HospitalEditComponent implements OnInit {
   }
 
   reserve() {
-    var newApp = <Hospital>this.HospitalForm.value    
-    newApp.contactModel.cityId=+ newApp.contactModel.cityId;
+    var newApp = <Hospital>this.HospitalForm.value   
+
+      newApp.contactModel.cityId=+ newApp.contactModel.cityId;
       console.log("HospitalForm Valid",this.HospitalForm.valid)
       console.log("contactModel Valid",this.contactForm.valid)
 

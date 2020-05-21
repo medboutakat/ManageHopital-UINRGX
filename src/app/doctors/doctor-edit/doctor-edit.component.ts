@@ -7,7 +7,7 @@ import { Doctor } from '../doctor.model';
 import { ContactHelper } from 'src/app/contacts/contact.helper';
 import { Contact } from 'src/app/contacts/contact.model';
 import { environment } from 'src/environments/environment';
-
+import * as ActionsFile from 'src/app/DoctorCategorie/Store/Action' 
 
 @Component({
   selector: 'app-doctor-edit',
@@ -25,8 +25,16 @@ export class DoctorEditComponent implements OnInit {
   doctorForm: FormGroup;
   contactForm: FormGroup;
   _currentContactObject: Contact;
+  _listCatetory;
 
   constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) data, private store: Store, private dialog: MatDialog) {
+
+    this.store.dispatch(new ActionsFile.Load());
+    this.store.subscribe(data => {
+      this._listCatetory = Object.values(data.DoctorCat.entities)
+      console.log(" this.listhopitalCatValues=> ", this._listCatetory)
+    });
+
 
     this._currentObject = data._currentObject;
     if (this._currentObject == null)
@@ -46,8 +54,9 @@ export class DoctorEditComponent implements OnInit {
       id: new FormControl(this._currentObject.id, Validators.required),
       firstName: new FormControl(this._currentObject.firstName, Validators.required),
       lastName: new FormControl(this._currentObject.lastName, Validators.required),
-      sexe: new FormControl(this._currentObject.sexe, Validators.required),
-      contactForm: this.contactForm
+      sexe: new FormControl(this._currentObject.sexe, Validators.required), 
+      doctorCategoryId: [this._currentObject.doctorCategoryId, Validators.required],
+      contactModel:this.contactForm
     });
 
 
@@ -56,14 +65,15 @@ export class DoctorEditComponent implements OnInit {
 
   reserve() {
 
-    console.log("docForm", this.doctorForm.value);// use this "Added by Mohamed"
+    console.log("docForm", this.doctorForm.value);
     var newApp = this.doctorForm.value
+    newApp.contactModel.cityId=+ newApp.contactModel.cityId;
 
-    console.log("objet contact", newApp)
+    console.log("objet docForm", newApp)
     if (newApp.id == environment.EmptyGuid) {
       console.log("Add")
       this.store.dispatch(new DoctorActions.CreateDoctor(newApp));
-      console.log("contact", newApp)
+      console.log("docForm", newApp)
 
     }
     else {
@@ -71,8 +81,7 @@ export class DoctorEditComponent implements OnInit {
       console.log("id new app", newApp.id)
       this.store.dispatch(new DoctorActions.UpdateDoctor(newApp));
     }
-    this.doctorForm.reset();
-    console.log("success")
+    this.doctorForm.reset(); 
     this.dialog.closeAll();
   }
 
