@@ -5,9 +5,9 @@
      
 
 <mat-horizontal-stepper labelPosition="bottom" #stepper>
-    <mat-step [stepControl]="HospitalForm"> 
+    <mat-step [stepControl]="mainForm"> 
 
-    <form [formGroup]="HospitalForm">
+    <form [formGroup]="mainForm">
       <div class="form-row">
         <input type="hidden" formControlName="id">
         <div class="form-group col-md-6">
@@ -48,7 +48,7 @@
 
      <br> 
 
-   <button type="submit" class="btn btn-success btn-block" [disabled]='!(this.HospitalForm.valid && this.contactForm.valid)' mat-button matStepperNext (click)="reserve()">Reserve</button><br>
+   <button type="submit" class="btn btn-success btn-block" [disabled]='!(this.mainForm.valid && this.contactForm.valid)' mat-button matStepperNext (click)="reserve()">Reserve</button><br>
 
     <div>
           <!-- <button mat-button matStepperNext disabled="true" >Next</button> -->

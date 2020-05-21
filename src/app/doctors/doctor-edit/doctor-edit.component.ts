@@ -14,15 +14,13 @@ import * as ActionsFile from 'src/app/DoctorCategorie/Store/Action'
   templateUrl: './doctor-edit.component.html',
   styleUrls: ['./doctor-edit.component.scss', "../../app-edit.component.scss"]
 })
-export class DoctorEditComponent implements OnInit {
-
-
+export class DoctorEditComponent implements OnInit { 
 
   cities
   _currentObject: Doctor;
   title: any;
   dialogref;
-  doctorForm: FormGroup;
+  mainForm: FormGroup;
   contactForm: FormGroup;
   _currentContactObject: Contact;
   _listCatetory;
@@ -37,20 +35,23 @@ export class DoctorEditComponent implements OnInit {
 
 
     this._currentObject = data._currentObject;
+
     if (this._currentObject == null)
       this._currentObject = new Doctor();
 
     this._currentContactObject = this._currentObject.contactModel == null ? new Contact() : this._currentContactObject;
 
     this.title = data.title;
+    
     console.log("current Object: ", this._currentObject);
+    this.reserve=this.reserve.bind(this); 
   }
 
   ngOnInit() {
 
     this.contactForm = ContactHelper.getFormBuilder(this.fb, this._currentContactObject);
 
-    this.doctorForm = this.fb.group({
+    this.mainForm = this.fb.group({
       id: new FormControl(this._currentObject.id, Validators.required),
       firstName: new FormControl(this._currentObject.firstName, Validators.required),
       lastName: new FormControl(this._currentObject.lastName, Validators.required),
@@ -65,8 +66,8 @@ export class DoctorEditComponent implements OnInit {
 
   reserve() {
 
-    console.log("docForm", this.doctorForm.value);
-    var newApp = this.doctorForm.value
+    console.log("mainForm", this.mainForm.value);
+    var newApp = this.mainForm.value
     newApp.contactModel.cityId=+ newApp.contactModel.cityId;
 
     console.log("objet docForm", newApp)
@@ -81,7 +82,7 @@ export class DoctorEditComponent implements OnInit {
       console.log("id new app", newApp.id)
       this.store.dispatch(new DoctorActions.UpdateDoctor(newApp));
     }
-    this.doctorForm.reset(); 
+    this.mainForm.reset(); 
     this.dialog.closeAll();
   }
 
