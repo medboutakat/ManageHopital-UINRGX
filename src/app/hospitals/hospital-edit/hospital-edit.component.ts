@@ -85,7 +85,7 @@ export class HospitalEditComponent implements OnInit {
   }
 
   reserve() {
-    var newApp = <Hospital>this.mainForm.value   
+     var newApp = <Hospital>this.mainForm.value   
 
       newApp.contactModel.cityId=+ newApp.contactModel.cityId;
       console.log("mainForm Valid",this.mainForm.valid)
@@ -98,7 +98,7 @@ export class HospitalEditComponent implements OnInit {
       
       this.store.dispatch(new ActionsFiles.UpdateHospital(newApp));
     }
-    this.HospitalForm.reset(); 
+    this.mainForm.reset(); 
   } 
 
 }

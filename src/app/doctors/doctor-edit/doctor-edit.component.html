@@ -30,7 +30,7 @@
   </form>
   <app-contact [contactForm]="contactForm"></app-contact>
 
-  <button type="submit" class="btn btn-success btn-block" [disabled]='!(this.mainForm.valid && this.contactForm.valid)' mat-button matStepperNext (click)="reserve()">Reserve</button><br>
+  <button type="submit" class="btn btn-success btn-block" [disabled]='!(this.mainForm.valid && this.contactForm.valid)'    (click)="reserve()">Reserve</button><br>
 
    
 </div>

@@ -30,7 +30,7 @@ export class DoctorEditComponent implements OnInit {
     this.store.dispatch(new ActionsFile.Load());
     this.store.subscribe(data => {
       this._listCatetory = Object.values(data.DoctorCat.entities)
-      console.log(" this.listhopitalCatValues=> ", this._listCatetory)
+      console.log(" this._listCatetory=> ", this._listCatetory)
     });
 
 
@@ -67,19 +67,14 @@ export class DoctorEditComponent implements OnInit {
   reserve() {
 
     console.log("mainForm", this.mainForm.value);
-    var newApp = this.mainForm.value
+    var newApp = <Doctor>this.mainForm.value
     newApp.contactModel.cityId=+ newApp.contactModel.cityId;
 
     console.log("objet docForm", newApp)
-    if (newApp.id == environment.EmptyGuid) {
-      console.log("Add")
-      this.store.dispatch(new DoctorActions.CreateDoctor(newApp));
-      console.log("docForm", newApp)
-
+    if (newApp.id == environment.EmptyGuid) { 
+      this.store.dispatch(new DoctorActions.CreateDoctor(newApp)); 
     }
-    else {
-      console.log("Update")
-      console.log("id new app", newApp.id)
+    else { 
       this.store.dispatch(new DoctorActions.UpdateDoctor(newApp));
     }
     this.mainForm.reset(); 
