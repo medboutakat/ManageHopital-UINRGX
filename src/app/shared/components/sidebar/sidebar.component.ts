@@ -39,6 +39,7 @@ export class SidebarComponent implements OnInit {
         {txt:'Operations',url:'operation'},
         {txt:'Products',url:'products'},
         {txt:'material',url:'material'},
+        {txt:'Tax',url:'tax'},
         {txt:'material edit',url:'materialedit'},
         {txt:'Payment',url:'payment'},
       ]

@@ -61,6 +61,8 @@ import { ProductimageComponent } from './productimages/productimage/productimage
 import { OurTeamComponent } from './our-team/our-team.component';
 import { AuthInterceptor, ErrorInterceptor, TokenInterceptor } from './app.interceptors';
 import { UploadFileComponent } from './upload-file/upload-file/upload-file.component';
+import { TaxComponent } from './Tax/tax/tax.component';
+import { TaxEditComponent } from './Tax/tax-edit/tax-edit.component';
 
 
 const config = {
@@ -111,6 +113,8 @@ const config = {
     ProductEditCatComponent,
     ProductComponent,
     ProductEditComponent,
+    TaxComponent,
+    TaxEditComponent,
     AutoCompleteComponent,
     ProductimageComponent,
     OurTeamComponent,
@@ -123,7 +127,9 @@ const config = {
     HospitalCatEditComponent,
     MenuComponent,
     DoctorEditComponent,
-    DoctorEditCatComponent,
+    DoctorEditCatComponent, 
+    TaxComponent,
+    TaxEditComponent,
     PaymentComponent,
     ProductEditCatComponent,
     ProductEditComponent,

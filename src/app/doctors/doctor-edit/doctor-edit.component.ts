@@ -25,11 +25,11 @@ export class DoctorEditComponent implements OnInit {
   _currentContactObject: Contact;
   _listCatetory;
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) data, private store: Store, private dialog: MatDialog) {
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) data, private store: Store<any>, private dialog: MatDialog) {
 
     this.store.dispatch(new ActionsFile.Load());
-    this.store.subscribe(data => {
-      this._listCatetory = Object.values(data.DoctorCat.entities)
+    this.store.subscribe(d => {
+      this._listCatetory = Object.values(d.DoctorCat.entities)
       console.log(" this._listCatetory=> ", this._listCatetory)
     });
 
