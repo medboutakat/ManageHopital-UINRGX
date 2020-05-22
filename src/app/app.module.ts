@@ -61,6 +61,7 @@ import { ProductimageComponent } from './productimages/productimage/productimage
 import { OurTeamComponent } from './our-team/our-team.component';
 import { AuthInterceptor, ErrorInterceptor, TokenInterceptor } from './app.interceptors';
 import { UploadFileComponent } from './upload-file/upload-file/upload-file.component';
+import { ProductStoreComponent } from './product-store/product-store.component';
 
 
 const config = {
@@ -114,7 +115,8 @@ const config = {
     AutoCompleteComponent,
     ProductimageComponent,
     OurTeamComponent,
-    UploadFileComponent
+    UploadFileComponent,
+    ProductStoreComponent
   ],
   entryComponents: [
     HospitalEditComponent,
