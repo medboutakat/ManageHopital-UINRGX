@@ -8,28 +8,66 @@ import * as ActionsFile from 'src/app/Tax/Store/Action'
 import { CategoryHelper } from 'src/app/category/category.helper';
 import { CategoryBaseComponent } from 'src/app/category/category-base.component';
 import { Title } from '@angular/platform-browser';
+import { SettingEdiBaseComponent } from 'src/app/setting-edit-forms/setting-edit-base.component';
+import { SettingEditHelper } from 'src/app/setting-edit-forms/setting-edit-base.helper';
 
 @Component({
   selector: 'app-tax-edit',
   templateUrl: './tax-edit.component.html',
   styleUrls: ['./tax-edit.component.scss']
 }) 
-export class TaxEditComponent extends CategoryBaseComponent<Tax>   { 
+export class TaxEditComponent extends SettingEdiBaseComponent<Tax>   { 
+
+   
+
+
 
   constructor(protected fb: FormBuilder,
     protected store: Store<fromTax.TaxState>,
      @Inject(MAT_DIALOG_DATA) data,
      protected dialog:MatDialog,
-     private titleService: Title
+     private titleService: Title 
      )
    {
-      super(fb,store,data,dialog);              
+     
+      super(fb,store,data,dialog);    
+      this._formTemplate= this.getTemplate();
+      this._settingForm = SettingEditHelper.getFormBuilder(this.fb,this._formTemplate, this._currentObject);  
+      
       this.titleService.setTitle('Hospital category'+this._currentObject.name);          
       this.reserve=this.reserve.bind(this);
+
+
    }
 
+
+   getTemplate(){
+
+    return  [ 
+      {
+        "type":"hidden",//number
+        "label":"id"
+      },
+      {
+        "type":"textBox",//number
+        "label":"name"
+      },
+      {
+        "type":"textBox",//number
+        "label":"value" 
+      }
+
+      // {
+      //   "type":"select",
+      //   "label":"value",
+      //   "options":[2,5,15]
+      // }
+    ];
+
+   } 
+
   ngOnInit() {    
-    this._categoryForm = CategoryHelper.getFormBuilder(this.fb,this._currentObject);  
+ 
   }
 
   reserve() {   
@@ -38,4 +76,7 @@ export class TaxEditComponent extends CategoryBaseComponent<Tax>   {
     this.store.dispatch(new ActionsFile[actionName](formValue));
     this.end();
   }
+
+
+
 }

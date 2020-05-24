@@ -5,8 +5,10 @@ import { Store } from '@ngrx/store';
 import { SettingEditHelper } from './setting-edit-base.helper';
 
  export class SettingEdiBaseComponent<T> implements OnInit{
-   
-    _categoryForm: FormGroup; 
+  
+  
+    _formTemplate: any;   
+    _settingForm: FormGroup; 
     _currentObject: T; 
     _title : string;    
      
@@ -21,22 +23,24 @@ import { SettingEditHelper } from './setting-edit-base.helper';
      
     }
     ngOnInit() {
-      this._categoryForm = SettingEditHelper.getFormBuilder(this.fb,this._currentObject);
+      this._settingForm = SettingEditHelper.getFormBuilder(this.fb,this._formTemplate ,this._currentObject);
     };
 
     getFormValue(){
-     return this._categoryForm.value as T; 
+     return this._settingForm.value as T; 
     }
 
 
     getActionName(){
       var newApp = this.getFormValue();
+
+      console.log("form",newApp)
       var actionName=SettingEditHelper.getActionName(newApp); 
       return actionName;
     }
 
     end(){
-      this._categoryForm.reset();
+      this._settingForm.reset();
       this.dialog.closeAll();
     } 
  }

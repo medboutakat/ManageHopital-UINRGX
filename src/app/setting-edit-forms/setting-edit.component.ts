@@ -1,5 +1,5 @@
 import { Component, OnInit, forwardRef, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormGroup } from '@angular/forms'; 
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl, FormGroup, FormBuilder } from '@angular/forms'; 
 
 @Component({
   selector: 'app-setting-edit',
@@ -9,16 +9,27 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormGroup } from '@angular/for
 })
 export class SettingEditComponent implements ControlValueAccessor {
 
-  @Input()  categoryForm: FormGroup;   
+  
+  @Input()  formTemplate: any;   
+  @Input()  myFormGroup: FormGroup;   
   @Input() reserveAction: any ; 
 
   onChange: any = () => {}
   onTouch: any = () => {}
   val= "" // this is the updated value that the class accesses
 
-  constructor() {
-    console.log("--->>>",this.categoryForm.value); 
-   }
+ 
+
+  constructor(private fb: FormBuilder) {
+ 
+  }   
+ 
+  ngOnInit() {
+   
+  }
+
+
+  
   set value(val){ 
     // this value is updated by programmatic changes 
     console.log("val",val)
