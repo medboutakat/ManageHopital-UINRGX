@@ -64,6 +64,8 @@ import { UploadFileComponent } from './upload-file/upload-file/upload-file.compo
 import { TaxComponent } from './Tax/tax/tax.component';
 import { TaxEditComponent } from './Tax/tax-edit/tax-edit.component'; 
 import { SettingEditComponent } from './setting-edit-forms/setting-edit.component';
+import { CatEditComponent as CustomerCatEditComponent} from './CustomerCategorie/customer-cat-edit/edit-cat.component';
+import { CatComponent  as CustomerCatComponent} from './CustomerCategorie/customer-cat/cat.component';
 
 const config = {
   issuer: 'https://okta.okta.com/oauth2/default',
@@ -106,6 +108,8 @@ const config = {
     SigninComponent,
     InvoiceComponent,
     HospitalCatEditComponent,
+    CustomerCatEditComponent,
+    CustomerCatComponent,
     MaterialComponent,
     MaterialEditComponent,
     DoctorEditCatComponent,

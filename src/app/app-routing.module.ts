@@ -26,6 +26,7 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
 import { SignupComponent } from './Auth/signup/signup.component';
 import { AuthGuard } from './Auth/auth-guard';
 import { TaxComponent } from './Tax/tax/tax.component';
+import { CatComponent as CustomerCatComponent } from './CustomerCategorie/customer-cat/cat.component';
 
 
 
@@ -41,6 +42,7 @@ const routes: Routes = [
       { path: 'posts', component: PostsComponent  , canActivate: [AuthGuard]},
       { path: 'appointement', component: AppointementComponent  , canActivate: [AuthGuard]},
       { path: 'hospitals', component: HopitalComponent , pathMatch: 'full' , canActivate: [AuthGuard]},
+      { path: 'customercat', component: CustomerCatComponent , pathMatch: 'full' , canActivate: [AuthGuard]},
       { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
       { path: 'doctors', component: DoctorComponent  , canActivate: [AuthGuard]},
       { path: 'editdoctor', component: DoctorEditComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
