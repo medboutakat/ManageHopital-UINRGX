@@ -1,0 +1,52 @@
+<!-- <form [formGroup]="categoryForm">
+    <div class="form">
+      <input type="hidden" formControlName="id" required>
+      <div class="form-group">
+        <input  type="text" class="form-control" minlength="3" formControlName="name" placeholder="NAME" required>
+          <div *ngIf="categoryForm.controls['name'].invalid && (categoryForm.controls['name'].dirty || categoryForm.controls['name'].touched) "
+          class="alert alert-danger">
+          <div *ngIf="categoryForm.controls['name'].errors.required">
+            <p class="p1">Name is required</p>
+          </div>
+          <div *ngIf="categoryForm.controls['name'].errors.minlength">
+            <p class="p2">Name must be at least 3 characters long.</p>
+          </div>
+        </div> 
+      </div>  
+
+      <div class="form-group"> 
+          <textarea name="remark" id="remark" cols="30" rows="10"  class="form-control" formControlName="remark"   placeholder="REMARK"></textarea>
+      </div> 
+    </div>
+    <button type="submit" class="btn btn-success btn-block" [disabled]='!(categoryForm.valid)' (click)="reserve()">Reserve</button><br>
+  </form>
+ -->
+
+
+  <form [formGroup]="myFormGroup" (ngSubmit)="reserve()">
+     
+    <div *ngFor="let form_elem of formTemplate">
+      <div class="form-group"> 
+    <div [ngSwitch]="form_elem.type">
+      <div *ngSwitchCase="'hidden'">
+        <input type="hidden"class="form-control" formControlName="{{form_elem.label}}"/>
+      </div>
+      <div *ngSwitchCase="'textBox'">
+        <input type="text"class="form-control" placeholder="{{form_elem.label}}" formControlName="{{form_elem.label}}"/>
+      </div>
+      <div *ngSwitchCase="'number'">
+        <input type="number" class="form-control" placeholder="{{form_elem.label}}" formControlName="{{form_elem.label}}"/>
+      </div>
+      <div *ngSwitchCase="'select'" class="form-control" >
+        <select formControlName="{{form_elem.label}}">
+          <option *ngFor="let opt of form_elem.options">
+            {{opt}}
+          </option>
+        </select>
+      </div>
+    </div>  
+  </div> 
+</div> 
+
+    <button type="submit" class="btn btn-success btn-block" [disabled]='!(myFormGroup.valid)' >Save</button><br>
+  </form>

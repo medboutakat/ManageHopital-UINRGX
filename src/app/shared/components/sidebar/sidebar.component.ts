@@ -18,30 +18,33 @@ export class SidebarComponent implements OnInit {
   links;
 
   constructor(
-
+ 
   ) {
 
+ 
 
-    let menulinks = localStorage.getItem("links");
-    if (menulinks == null) {
-      var defaultMenu = [
-        { txt: 'home', url: 'home' },
-        { txt: 'Dashboard', url: '' },
-        { txt: 'Appointements', url: 'appointement' },
-        { txt: 'Articles', url: 'articles' },
-        { txt: 'Hospital', url: '/hospitals' },
-        { txt: 'Hospital category', url: 'hospitalcat' },
-        { txt: 'DoctorCategory', url: 'doctorCategory' },
-        { txt: 'ProductCategory', url: 'productCategory' },
-        { txt: 'Doctors', url: 'doctors' },
-        { txt: 'Invoices', url: 'invoices' },
-        { txt: 'Invoice', url: 'invoice' },
-        { txt: 'Operations', url: 'operation' },
-        { txt: 'Products', url: 'products' },
-        { txt: 'material', url: 'material' },
-        { txt: 'material edit', url: 'materialedit' },
-        { txt: 'Payment', url: 'payment' },
-        { txt: 'Store', url: 'ProductStore' },
+    let menulinks = localStorage.getItem("links"); 
+    if(menulinks==null){
+     var defaultMenu = [
+        {txt:'home',url:'home'},
+        {txt:'Dashboard',url:''},
+        {txt:'Appointements',url:'appointement'},
+        {txt:'Articles',url:'articles'},
+        {txt:'Customer category',url:'customercat'}, 
+        {txt:'Hospital',url:'hospitals'},
+        {txt:'Hospital category',url:'hospitalcat'},
+        {txt:'DoctorCategory',url:'doctorCategory'},
+        {txt:'ProductCategory',url:'productCategory'},
+        {txt:'Doctors',url:'doctors'},
+        {txt:'Invoices',url:'invoices'},
+        {txt:'Invoice',url:'invoice'},
+        {txt:'Operations',url:'operation'},
+        {txt:'Products',url:'products'},
+        {txt:'material',url:'material'},
+        {txt:'Tax',url:'tax'},
+        {txt:'material edit',url:'materialedit'},
+        {txt:'Payment',url:'payment'},       
+        {txt: 'Store', url: 'ProductStore' }, 
       ]
 
       localStorage.setItem("links", JSON.stringify(defaultMenu));

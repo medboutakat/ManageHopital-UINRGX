@@ -89,7 +89,9 @@ export class CreateDoctorFail implements Action {
 
 export class UpdateDoctor implements Action {
     readonly type = DoctorActionTypes.UPDATE_DOCTOR;
-    constructor(public payload: Doctor) { }
+    constructor(public payload: Doctor) { 
+        console.log("UpdateDoctor",payload)
+    }
 }
 
 export class UpdateDoctorSuccess implements Action {
