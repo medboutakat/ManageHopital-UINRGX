@@ -128,6 +128,8 @@ export class InvoiceEditComponent implements OnInit {
   product$:Product[]
   options: string[] = [];
   filteredOptions: Observable<string[]>;
+  CustomerOptions:string[]=["Abdelwahed","Rajaa","Mohamed","Imane"];
+  CustomerfilteredOptions: Observable<string[]>;
 
   constructor(
     private store: Store<fromInvoice.AppState>,
@@ -196,13 +198,18 @@ export class InvoiceEditComponent implements OnInit {
       livraison: new FormControl(this.invoice.livraison),
       remise: new FormControl(this.invoice.remise),
       totalAmont: new FormControl(this.invoice.totalAmont),
-      productForm:this.fb.array(arr)  
+      productForm:this.fb.array(arr),
+      customer:new FormControl(this.invoice.customer)
     });
     console.log("Invoice form : ",this.invoiceForm.value)
     //autocomplite code
+    this.CustomerfilteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value,this.CustomerOptions))
+    );
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value))
+      map(value => this._filter(value,this.options))
     );
     this.ManageNameControl(0);
   }
@@ -212,16 +219,16 @@ export class InvoiceEditComponent implements OnInit {
     return invoiceDetails ? invoiceDetails : undefined;
   }
   //filter methode 1
-  private _filter(name: string) {
+  private _filter(name: string,optionsList) {
     console.log("VALUE=",name)
     const filterValue = name.toLowerCase();
-    return this.options.filter(option =>option.toLowerCase().indexOf(filterValue) === 0);
+    return optionsList.filter(option =>option.toLowerCase().indexOf(filterValue) === 0);
   }
 
   //filter methode 2 (you can chose what you want 1 or 2)
-  // private _filter(value: string): string[] {
+  // private _filter(value: string,optionsList): string[] {
   //   const filterValue = this._normalizeValue(value);
-  //   return this.options.filter(street => this._normalizeValue(street).includes(filterValue));
+  //   return optionsList.filter(street => this._normalizeValue(street).includes(filterValue));
   // }
 
   // private _normalizeValue(value: string): string {
@@ -234,7 +241,7 @@ export class InvoiceEditComponent implements OnInit {
       .pipe(
       startWith<string | InvoiceDetail>(''),
       map(value => typeof value === 'string' ? value : value.product),
-      map(name => name ? this._filter(name) : this.options.slice())
+      map(name => name ? this._filter(name,this.options) : this.options.slice())
       );
   }
 

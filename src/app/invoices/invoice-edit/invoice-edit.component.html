@@ -18,12 +18,13 @@
                           </td>
                           <td>
                             <input class="form-control col-11" type="text" #productInput 
-                            formControlName="product" [matAutocomplete]="auto">
-                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                                {{option}}
-                            </mat-option>
-                        </mat-autocomplete>
+                            formControlName="customer" [matAutocomplete]="autoC">
+                            <!-- </mat-form-field> -->
+                                <mat-autocomplete autoActiveFirstOption #autoC="matAutocomplete">
+                                    <mat-option *ngFor="let option of CustomerfilteredOptions | async" [value]="option">
+                                    {{option}}
+                                    </mat-option>
+                                </mat-autocomplete>
                           </td>
                       </tr>
                   </table>

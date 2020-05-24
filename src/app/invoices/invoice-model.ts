@@ -7,7 +7,8 @@ export class Invoice extends GeneratedId {
   expedition: number;
   livraison: number;
   remise: number;
-  invoiceDetails: InvoiceDetail[];   
+  invoiceDetails: InvoiceDetail[];
+  customer?:string;
   /**
    *
    */
@@ -23,7 +24,7 @@ export class Invoice extends GeneratedId {
     detail.price=0;
     detail.qte=0;
     detail.tax=0;
-    detail.total=0;     
+    detail.total=0;
     return detail;
   }
   firstEmptyRow():void{      

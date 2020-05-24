@@ -61,6 +61,8 @@ import { ProductimageComponent } from './productimages/productimage/productimage
 import { OurTeamComponent } from './our-team/our-team.component';
 import { AuthInterceptor, ErrorInterceptor, TokenInterceptor } from './app.interceptors';
 import { UploadFileComponent } from './upload-file/upload-file/upload-file.component';
+import { CustomerCatComponent } from './customerCategorie/customer-cat/customer-cat.component';
+import { CustomerEditCatComponent } from './customerCategorie/customer-edit-cat/customer-edit-cat.component';
 
 
 const config = {
@@ -127,7 +129,9 @@ const config = {
     PaymentComponent,
     ProductEditCatComponent,
     ProductEditComponent,
-    UploadFileComponent
+    UploadFileComponent,
+    CustomerCatComponent,
+    CustomerEditCatComponent
   ],
 
 
