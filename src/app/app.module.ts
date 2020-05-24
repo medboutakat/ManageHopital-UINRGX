@@ -63,6 +63,8 @@ import { AuthInterceptor, ErrorInterceptor, TokenInterceptor } from './app.inter
 import { UploadFileComponent } from './upload-file/upload-file/upload-file.component';
 import { CustomerCatComponent } from './customerCategorie/customer-cat/customer-cat.component';
 import { CustomerEditCatComponent } from './customerCategorie/customer-edit-cat/customer-edit-cat.component';
+import { TaxComponent } from './Tax/tax/tax.component';
+import { TaxEditComponent } from './Tax/tax-edit/tax-edit.component';
 
 
 const config = {
@@ -113,10 +115,14 @@ const config = {
     ProductEditCatComponent,
     ProductComponent,
     ProductEditComponent,
+    TaxComponent,
+    TaxEditComponent,
     AutoCompleteComponent,
     ProductimageComponent,
     OurTeamComponent,
-    UploadFileComponent
+    UploadFileComponent,
+    CustomerCatComponent,
+    CustomerEditCatComponent
   ],
   entryComponents: [
     HospitalEditComponent,
@@ -125,12 +131,13 @@ const config = {
     HospitalCatEditComponent,
     MenuComponent,
     DoctorEditComponent,
-    DoctorEditCatComponent,
+    DoctorEditCatComponent, 
+    TaxComponent,
+    TaxEditComponent,
     PaymentComponent,
     ProductEditCatComponent,
     ProductEditComponent,
     UploadFileComponent,
-    CustomerCatComponent,
     CustomerEditCatComponent
   ],
 

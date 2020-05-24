@@ -26,6 +26,7 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
 import { SignupComponent } from './Auth/signup/signup.component';
 import { AuthGuard } from './Auth/auth-guard';
 import { CustomerCatComponent } from './customerCategorie/customer-cat/customer-cat.component';
+import { TaxComponent } from './Tax/tax/tax.component';
 
 
 
@@ -55,6 +56,7 @@ const routes: Routes = [
       { path: 'operation', component: OperationComponent, pathMatch: 'full'  , canActivate: [AuthGuard]},
       { path: 'Category', component: CategoryComponent, pathMatch: 'full'  , canActivate: [AuthGuard]},
       { path: 'material', component: MaterialComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
+      { path: 'tax', component: TaxComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
       { path: 'materialedit', component: MaterialEditComponent, pathMatch: 'full' , canActivate: [AuthGuard] },
       { path: 'payment', component: PaymentComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
       { path: 'chat', component: ContactComponent, pathMatch: 'full'  , canActivate: [AuthGuard]},
