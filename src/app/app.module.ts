@@ -60,12 +60,14 @@ import { AuthGuard } from './Auth/auth-guard';
 import { ProductimageComponent } from './productimages/productimage/productimage.component';
 import { OurTeamComponent } from './our-team/our-team.component';
 import { AuthInterceptor, ErrorInterceptor, TokenInterceptor } from './app.interceptors';
-import { UploadFileComponent } from './upload-file/upload-file/upload-file.component';
+import { UploadFileComponent } from './upload-file/upload-file/upload-file.component'; 
+import { ProductStoreComponent } from './product-store/product-store.component'; 
 import { TaxComponent } from './Tax/tax/tax.component';
 import { TaxEditComponent } from './Tax/tax-edit/tax-edit.component'; 
 import { SettingEditComponent } from './setting-edit-forms/setting-edit.component';
 import { CatEditComponent as CustomerCatEditComponent} from './CustomerCategorie/customer-cat-edit/edit-cat.component';
 import { CatComponent  as CustomerCatComponent} from './CustomerCategorie/customer-cat/cat.component';
+ 
 
 const config = {
   issuer: 'https://okta.okta.com/oauth2/default',
@@ -123,7 +125,8 @@ const config = {
     AutoCompleteComponent,
     ProductimageComponent,
     OurTeamComponent,
-    UploadFileComponent
+    UploadFileComponent,
+    ProductStoreComponent
   ],
   entryComponents: [
     HospitalEditComponent,
