@@ -3,12 +3,14 @@ import { ICrudService } from '../icrud-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RootURLS } from '../root-urls';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
-import { environment } from 'src/environments/environment'; 
+import { environment } from 'src/environments/environment';
+import { Store,Action } from '@ngrx/store';
+import { MatDialog } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryHelper {
+export class SettingEditHelper {
 
   static getFormBuilder(fb: FormBuilder, currentObject: any) {
     

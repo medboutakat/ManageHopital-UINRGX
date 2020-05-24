@@ -62,8 +62,8 @@ import { OurTeamComponent } from './our-team/our-team.component';
 import { AuthInterceptor, ErrorInterceptor, TokenInterceptor } from './app.interceptors';
 import { UploadFileComponent } from './upload-file/upload-file/upload-file.component';
 import { TaxComponent } from './Tax/tax/tax.component';
-import { TaxEditComponent } from './Tax/tax-edit/tax-edit.component';
-
+import { TaxEditComponent } from './Tax/tax-edit/tax-edit.component'; 
+import { SettingEditComponent } from './setting-edit-forms/setting-edit.component';
 
 const config = {
   issuer: 'https://okta.okta.com/oauth2/default',
@@ -92,6 +92,7 @@ const config = {
     ContactComponent,
     DoctorCatComponent,
     CategoryComponent,
+    SettingEditComponent,
     ContactComponent,
     SigninComponent,
     SignupComponent,
