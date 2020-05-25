@@ -1,45 +1,41 @@
-import * as ActionsFile from "src/app/CustomerCategorie/Store/Action";
-import * as fromRoot from "src/app/CustomerCategorie/Store/app-state";
-import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { CustomerCat } from "../customer-cat.model";
-import { EntityAdapter, createEntityAdapter, EntityState } from "@ngrx/entity";
+import * as ActionsFile from 'src/app/customerCategorie/Store/Action'
+import * as fromRoot from 'src/app/customerCategorie/Store/app-state'
+import { createFeatureSelector, createSelector } from "@ngrx/store"; 
+
+import { EntityAdapter, createEntityAdapter, EntityState } from '@ngrx/entity'; 
+import { CustomerCat } from '../customer-cat.model';
 
 export interface CustomerCatState extends EntityState<CustomerCat> {
-  selectById: string | null;
-  loading: boolean;
-  loaded: boolean;
-  error: string;
+  selectedcustomerbyId: string | null,
+  loading: boolean,
+  loaded: boolean,
+  error: string
 }
 
 export interface AppState extends fromRoot.AppState {
-  CustomerCats: CustomerCatState;
+  customerCats: CustomerCatState
 }
+export const customerCatAdapter: EntityAdapter<CustomerCat> = createEntityAdapter<CustomerCat>();
 
-export const CustomerCatAdapter: EntityAdapter<CustomerCat> = createEntityAdapter<
-  CustomerCat
->();
-export const DefaulttCustomerCat: CustomerCatState = {
+export const DefaultCustomerCat: CustomerCatState = {
   ids: [],
   entities: {},
-  selectById: null,
+  selectedcustomerbyId: null,
   loading: false,
   loaded: false,
-  error: " ",
-};
-export const initialState = CustomerCatAdapter.getInitialState(
-  DefaulttCustomerCat
-);
+  error: ' ',
+} 
 
-export function CustomerCatReducer(
-  state = initialState,
-  action: ActionsFile.CustomerCatAction
-): CustomerCatState {
+export const initialState = customerCatAdapter.getInitialState(DefaultCustomerCat)
+
+export function CustomerCatReducer(state = initialState, action: ActionsFile.CustomerCatction): CustomerCatState {
   switch (action.type) {
     case ActionsFile.CustomerCatActionType.LOAD_SUCCESS: {
-      return CustomerCatAdapter.addAll(action.payload, {
+      return customerCatAdapter.addAll(action.payload, {
         ...state,
         loading: false,
         loaded: true,
+
       });
     }
     case ActionsFile.CustomerCatActionType.LOAD_FAIL: {
@@ -48,11 +44,11 @@ export function CustomerCatReducer(
         loading: false,
         entities: {},
         loaded: false,
-        error: action.payload,
-      };
+        error: action.payload
+      }
     }
     case ActionsFile.CustomerCatActionType.CREATE_SUCCESS: {
-      return CustomerCatAdapter.addOne(action.payload, state);
+      return customerCatAdapter.addOne(action.payload, state);
     }
     case ActionsFile.CustomerCatActionType.CREATE_FAIL: {
       return {
@@ -60,11 +56,12 @@ export function CustomerCatReducer(
         error: action.payload,
       };
     }
-    case ActionsFile.CustomerCatActionType.UPDATE_SUCCESS: { 
+
+    case ActionsFile.CustomerCatActionType.UPDATE_SUCCESS: {
       const changes = action.payload;
       const id = changes.id;
       console.log("updateOne:hello: ", changes)
-      return CustomerCatAdapter.updateOne({ id,changes } , state);
+      return customerCatAdapter.updateOne({ id, changes }, state);
     }
     case ActionsFile.CustomerCatActionType.UPDATE_FAIL: {
       return {
@@ -72,8 +69,9 @@ export function CustomerCatReducer(
         error: action.payload,
       };
     }
+
     case ActionsFile.CustomerCatActionType.DELETE_SUCCESS: {
-      return CustomerCatAdapter.removeOne(action.payload, state);
+      return customerCatAdapter.removeOne(action.payload, state);
     }
     case ActionsFile.CustomerCatActionType.DELETE_FAIL: {
       return {
@@ -86,33 +84,33 @@ export function CustomerCatReducer(
     }
   }
 }
-
-const getCustomerCatsFeatursState = createFeatureSelector<CustomerCatState>(
+const getcustomerlCatsFeatursState = createFeatureSelector<CustomerCatState>(
   "CustomerCats"
-);
+)
+export const getHospitalCats = createSelector(
+  getcustomerlCatsFeatursState,
+  //    (state : CustomerCatState)=>state.customerCats
+  customerCatAdapter.getSelectors().selectAll
 
-export const getCustomerCats = createSelector(
-  getCustomerCatsFeatursState,
-  CustomerCatAdapter.getSelectors().selectAll
-);
-export const getCustomerCatsLoading = createSelector(
-  getCustomerCatsFeatursState,
+)
+export const getHospitalCatsLoading = createSelector(
+  getcustomerlCatsFeatursState,
   (state: CustomerCatState) => state.loading
-);
-export const getCustomerCatsLoaded = createSelector(
-  getCustomerCatsFeatursState,
+)
+export const getHospitalCatsLoaded = createSelector(
+  getcustomerlCatsFeatursState,
   (state: CustomerCatState) => state.loaded
-);
-export const getCustomerCatsError = createSelector(
-  getCustomerCatsFeatursState,
+)
+export const getHospitalCatsError = createSelector(
+  getcustomerlCatsFeatursState,
   (state: CustomerCatState) => state.error
-);
+)
 export const getCustomerCatsbyid = createSelector(
-  getCustomerCatsFeatursState,
-  (state: CustomerCatState) => state.selectById
+  getcustomerlCatsFeatursState,
+  (state: CustomerCatState) => state.selectedcustomerbyId
 );
 export const getcurrenthospital = createSelector(
-  getCustomerCatsFeatursState,
+  getcustomerlCatsFeatursState,
   getCustomerCatsbyid,
-  (state) => state.entities[state.selectById]
+  state => state.entities[state.selectedcustomerbyId]
 );
