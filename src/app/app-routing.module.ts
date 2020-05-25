@@ -23,9 +23,11 @@ import { PaymentComponent } from './payment/payment/payment.component';
 import { ProductCatComponent } from './productCategorie/product-cat/product-cat.component';
 import { ProductComponent } from './products/product/product.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
-import { SignupComponent } from './Auth/signup/signup.component';
+import { SignupComponent } from './Auth/signup/signup.component'; 
+import { AuthGuard } from './Auth/auth-guard';
+import { CustomerCatComponent } from './customerCategorie/customer-cat/customer-cat.component'; 
 import { AuthGuard } from './Auth/auth-guard'; 
-import { ProductStoreComponent } from './product-store/product-store.component'; 
+import { ProductStoreComponent } from './product-store/product-store.component';  
 import { TaxComponent } from './Tax/tax/tax.component';
 import { CatComponent as CustomerCatComponent } from './CustomerCategorie/customer-cat/cat.component'; 
 
@@ -60,8 +62,9 @@ const routes: Routes = [
       { path: 'tax', component: TaxComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
       { path: 'materialedit', component: MaterialEditComponent, pathMatch: 'full' , canActivate: [AuthGuard] },
       { path: 'payment', component: PaymentComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
-      { path: 'chat', component: ContactComponent, pathMatch: 'full'  , canActivate: [AuthGuard]},
-      { path: 'ProductStore', component: ProductStoreComponent, pathMatch: 'full', canActivate: [AuthGuard] }
+      { path: 'chat', component: ContactComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
+      { path: 'customerCategory', component: CustomerCatComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
+      { path: 'ProductStore', component: ProductStoreComponent, pathMatch: 'full', canActivate: [AuthGuard] } 
     ]
 
   },

@@ -30,6 +30,8 @@ import { reducers } from './Auth/store/app.state';
 import { reducerRegister } from './Auth/store/auth.reducer'; 
 import { featureReducer } from './upload-file/store/reducer';
 import { UploadFileEffects } from './upload-file/store/effect'; 
+import { CustomerCatReducer } from './customerCategorie/Store/reducer';
+import { CustomerCatEffect } from './customerCategorie/Store/Effect';
 import { TaxReducer } from './Tax/Store/reducer';
 import { TaxEffect } from './Tax/Store/Effect';
 import { CustomerCatEffect } from './CustomerCategorie/Store/Effect';
@@ -43,8 +45,7 @@ import { CustomerCatReducer } from './CustomerCategorie/Store/reducer';
     StoreModule.forRoot({}),
     StoreModule.forRoot({ router: routerReducer }),
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
-    EffectsModule.forRoot([]),
- 
+    EffectsModule.forRoot([]), 
     StoreModule.forFeature("Tax", TaxReducer),
     StoreModule.forFeature("HospitalCat", HospitalCatReducer),
     StoreModule.forFeature("Hospital", HospitalReducer),
@@ -58,13 +59,14 @@ import { CustomerCatReducer } from './CustomerCategorie/Store/reducer';
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
     StoreModule.forFeature("cities", CityReducer),
     StoreModule.forFeature("products", ProductReducer), 
-    StoreModule.forRoot(reducers, {}), 
+    StoreModule.forRoot(reducers, {}),  
+    StoreModule.forFeature('customerCat', CustomerCatReducer),   
     StoreModule.forFeature('uploadFile', featureReducer),   
     EffectsModule.forRoot([UploadFileEffects,AuthEffects,CityEffect, HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect, OperationCatEffect,ProductCatEffect,ProductEffect
     , TaxEffect,CustomerCatEffect
     ]),
  
-
+ 
   ]
 })
 export class AppStoreModule { }

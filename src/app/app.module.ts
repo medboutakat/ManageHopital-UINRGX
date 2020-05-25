@@ -59,9 +59,11 @@ import { AuthService } from './Auth/auth.service';
 import { AuthGuard } from './Auth/auth-guard';
 import { ProductimageComponent } from './productimages/productimage/productimage.component';
 import { OurTeamComponent } from './our-team/our-team.component';
-import { AuthInterceptor, ErrorInterceptor, TokenInterceptor } from './app.interceptors';
-import { UploadFileComponent } from './upload-file/upload-file/upload-file.component'; 
-import { ProductStoreComponent } from './product-store/product-store.component'; 
+import { AuthInterceptor, ErrorInterceptor, TokenInterceptor } from './app.interceptors'; 
+import { UploadFileComponent } from './upload-file/upload-file/upload-file.component';
+import { CustomerCatComponent } from './customerCategorie/customer-cat/customer-cat.component';
+import { CustomerEditCatComponent } from './customerCategorie/customer-edit-cat/customer-edit-cat.component'; 
+import { ProductStoreComponent } from './product-store/product-store.component';  
 import { TaxComponent } from './Tax/tax/tax.component';
 import { TaxEditComponent } from './Tax/tax-edit/tax-edit.component'; 
 import { SettingEditComponent } from './setting-edit-forms/setting-edit.component';
@@ -125,8 +127,10 @@ const config = {
     AutoCompleteComponent,
     ProductimageComponent,
     OurTeamComponent,
-    UploadFileComponent,
-    ProductStoreComponent
+    UploadFileComponent, 
+    CustomerCatComponent,
+    CustomerEditCatComponent 
+    ProductStoreComponent 
   ],
   entryComponents: [
     HospitalEditComponent,
@@ -141,7 +145,8 @@ const config = {
     PaymentComponent,
     ProductEditCatComponent,
     ProductEditComponent,
-    UploadFileComponent
+    UploadFileComponent,
+    CustomerEditCatComponent
   ],
 
 
