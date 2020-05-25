@@ -129,7 +129,7 @@ const config = {
     OurTeamComponent,
     UploadFileComponent, 
     CustomerCatComponent,
-    CustomerEditCatComponent 
+    CustomerEditCatComponent ,
     ProductStoreComponent 
   ],
   entryComponents: [
