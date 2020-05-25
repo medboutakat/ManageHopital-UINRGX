@@ -1,10 +1,10 @@
 <mat-toolbar>
-  <mat-toolbar-row>
-    <button mat-icon-button (click)="toggleSideBar()" style="display: displayMenu;">
+  <mat-toolbar-row> 
+
+    <button *ngIf="displayMenu" mat-icon-button (click)="toggleSideBar()"  >
       <mat-icon>menu</mat-icon>
-    </button>
- 
-      <a routerLink='/' style="color: white; text-decoration: none; ">        
+    </button> 
+      <a routerLink='/' style="color: white ; text-decoration: none;">        
         <span>
           MANAGE-HOSTPITAL 
         </span>   
@@ -13,6 +13,8 @@
 
     <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
       <ul fxLayout="row" fxLayoutGap="20px">
+        
+
         <li>
           <button mat-icon-button>
             <mat-icon>settings</mat-icon>
@@ -32,6 +34,14 @@
               <mat-icon>exit_to_app</mat-icon>
               <a routerLink='/signin' (click)="logout()">Sign out</a>
             </button>
+
+            <button  mat-menu-item>
+              <mat-icon>store</mat-icon> 
+              <a [routerLink]="displayMenu?'/store':'/'">  
+                {{ displayMenu? ' switch to the store' : 'switch to the application'}}    
+             </a>
+          </button>
+
           </mat-menu>
 
         </li>
@@ -39,3 +49,9 @@
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
+
+
+<div class="header">
+title 
+
+</div>

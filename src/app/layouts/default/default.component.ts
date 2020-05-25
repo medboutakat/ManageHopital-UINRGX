@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-default',
@@ -9,13 +10,20 @@ export class DefaultComponent implements OnInit {
 
   sideBarOpen = true;
 
-  constructor() { }
+  constructor(  private route: ActivatedRoute) { 
 
-  ngOnInit() { }
+  }
+
+  ngOnInit() { 
+
+  //  let smapShout = this.route.snapshot;
+
+  //   console.log("smapShout",smapShout)
+  }
 
 
   sideBarToggler($event) {
-    this.sideBarOpen = !this.sideBarOpen;
+    this.sideBarOpen = !this.sideBarOpen; 
   }
 
 }
