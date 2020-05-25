@@ -50,7 +50,7 @@ export class TaxComponent extends AppListViewBaseComponent<Tax>  implements OnIn
       _currentObject: new Tax(),
       title: "Add ",
     }
-
+ 
     this.dialog.open(TaxEditComponent, dialogConfig);
     this.reload();
   }

@@ -23,11 +23,13 @@ import { PaymentComponent } from './payment/payment/payment.component';
 import { ProductCatComponent } from './productCategorie/product-cat/product-cat.component';
 import { ProductComponent } from './products/product/product.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
-import { SignupComponent } from './Auth/signup/signup.component';
+import { SignupComponent } from './Auth/signup/signup.component'; 
 import { AuthGuard } from './Auth/auth-guard';
-import { CustomerCatComponent } from './customerCategorie/customer-cat/customer-cat.component';
+import { CustomerCatComponent } from './customerCategorie/customer-cat/customer-cat.component'; 
+import { AuthGuard } from './Auth/auth-guard'; 
+import { ProductStoreComponent } from './product-store/product-store.component';  
 import { TaxComponent } from './Tax/tax/tax.component';
-
+import { CatComponent as CustomerCatComponent } from './CustomerCategorie/customer-cat/cat.component'; 
 
 
 const routes: Routes = [
@@ -36,12 +38,13 @@ const routes: Routes = [
     path: '',
     component: DefaultComponent,
 
-    children: [
+    children: [ 
       { path: '', component: DashboardComponent  , canActivate: [AuthGuard]},
       { path: 'home', component: HomeComponent  , canActivate: [AuthGuard]},
       { path: 'posts', component: PostsComponent  , canActivate: [AuthGuard]},
       { path: 'appointement', component: AppointementComponent  , canActivate: [AuthGuard]},
       { path: 'hospitals', component: HopitalComponent , pathMatch: 'full' , canActivate: [AuthGuard]},
+      { path: 'customercat', component: CustomerCatComponent , pathMatch: 'full' , canActivate: [AuthGuard]},
       { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
       { path: 'doctors', component: DoctorComponent  , canActivate: [AuthGuard]},
       { path: 'editdoctor', component: DoctorEditComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
@@ -59,13 +62,14 @@ const routes: Routes = [
       { path: 'tax', component: TaxComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
       { path: 'materialedit', component: MaterialEditComponent, pathMatch: 'full' , canActivate: [AuthGuard] },
       { path: 'payment', component: PaymentComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
-      { path: 'chat', component: ContactComponent, pathMatch: 'full'  , canActivate: [AuthGuard]},
-      { path: 'customerCategory', component: CustomerCatComponent, pathMatch: 'full'  , canActivate: [AuthGuard]},
+      { path: 'chat', component: ContactComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
+      { path: 'customerCategory', component: CustomerCatComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
+      { path: 'ProductStore', component: ProductStoreComponent, pathMatch: 'full', canActivate: [AuthGuard] } 
     ]
-   
+
   },
   { path: 'signin', component: SigninComponent },
-  { path: 'signup', component: SignupComponent }, 
+  { path: 'signup', component: SignupComponent },
 
   // { path: 'material', loadChildren: () => import('./material/material/material.module').then(m => m.MaterialModule) } 
 ];

@@ -34,6 +34,8 @@ import { CustomerCatReducer } from './customerCategorie/Store/reducer';
 import { CustomerCatEffect } from './customerCategorie/Store/Effect';
 import { TaxReducer } from './Tax/Store/reducer';
 import { TaxEffect } from './Tax/Store/Effect';
+import { CustomerCatEffect } from './CustomerCategorie/Store/Effect';
+import { CustomerCatReducer } from './CustomerCategorie/Store/reducer';
 
 
 @NgModule({
@@ -43,13 +45,13 @@ import { TaxEffect } from './Tax/Store/Effect';
     StoreModule.forRoot({}),
     StoreModule.forRoot({ router: routerReducer }),
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
-    EffectsModule.forRoot([]),
- 
+    EffectsModule.forRoot([]), 
     StoreModule.forFeature("Tax", TaxReducer),
     StoreModule.forFeature("HospitalCat", HospitalCatReducer),
     StoreModule.forFeature("Hospital", HospitalReducer),
     StoreModule.forFeature("DoctorCat", DoctorCatReducer),
     StoreModule.forFeature("ProductCat", ProductCatReducer),
+    StoreModule.forFeature("CustomerCat", CustomerCatReducer),
     StoreModule.forFeature("doctors", doctorReducer),
     StoreModule.forFeature("appointements", AppointementReducer),
     StoreModule.forRoot({ "invoices": InvoiceReducer }),
@@ -57,10 +59,14 @@ import { TaxEffect } from './Tax/Store/Effect';
     StoreModule.forFeature("operationsCat", OperationCategoryReducer),
     StoreModule.forFeature("cities", CityReducer),
     StoreModule.forFeature("products", ProductReducer), 
-    StoreModule.forRoot(reducers, {}), 
-    StoreModule.forFeature('uploadFile', featureReducer),
-    StoreModule.forFeature('customerCat', CustomerCatReducer),
-    EffectsModule.forRoot([UploadFileEffects,AuthEffects,CityEffect, HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect, OperationCatEffect,ProductCatEffect,ProductEffect,TaxEffect,CustomerCatEffect]),
+    StoreModule.forRoot(reducers, {}),  
+    StoreModule.forFeature('customerCat', CustomerCatReducer),   
+    StoreModule.forFeature('uploadFile', featureReducer),   
+    EffectsModule.forRoot([UploadFileEffects,AuthEffects,CityEffect, HospitalEffect, AppointementEffect, DoctorsEffect, HospitalCatEffect, DoctorCatEffect, OpEffect, AppointementEffect, InvoiceEffect, OperationCatEffect,ProductCatEffect,ProductEffect
+    , TaxEffect,CustomerCatEffect
+    ]),
+ 
+ 
   ]
 })
 export class AppStoreModule { }
