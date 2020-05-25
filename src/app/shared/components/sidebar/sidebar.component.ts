@@ -44,7 +44,7 @@ export class SidebarComponent implements OnInit {
         {txt:'Tax',url:'tax'},
         {txt:'material edit',url:'materialedit'},
         {txt:'Payment',url:'payment'},       
-        {txt: 'Store', url: 'ProductStore' }, 
+        {txt: 'Store', url: 'store' }, 
       ]
 
       localStorage.setItem("links", JSON.stringify(defaultMenu));

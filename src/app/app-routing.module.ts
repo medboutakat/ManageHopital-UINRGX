@@ -28,6 +28,7 @@ import { AuthGuard } from './Auth/auth-guard';
 import { CustomerCatComponent } from './customerCategorie/customer-cat/customer-cat.component';   
 import { ProductStoreComponent } from './product-store/product-store.component';  
 import { TaxComponent } from './Tax/tax/tax.component'; 
+import { StoreComponent } from './layouts/store/store.component';
 
 
 const routes: Routes = [
@@ -35,7 +36,6 @@ const routes: Routes = [
   {
     path: '',
     component: DefaultComponent,
-
     children: [ 
       { path: '', component: DashboardComponent  , canActivate: [AuthGuard]},
       { path: 'home', component: HomeComponent  , canActivate: [AuthGuard]},
@@ -62,9 +62,15 @@ const routes: Routes = [
       { path: 'payment', component: PaymentComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
       { path: 'chat', component: ContactComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
       { path: 'customerCategory', component: CustomerCatComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
-      { path: 'ProductStore', component: ProductStoreComponent, pathMatch: 'full', canActivate: [AuthGuard] } 
+      { path: 'store', component: ProductStoreComponent, pathMatch: 'full', canActivate: [AuthGuard] } 
     ]
-
+  },
+  { 
+    path: 'store', component: StoreComponent,
+    children : [
+      { path: '', component: ProductStoreComponent    }
+    ]
+    
   },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
