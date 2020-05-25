@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/doctors/doctor-store/app-state';
@@ -13,10 +13,11 @@ export class HeaderComponent implements OnInit {
 
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
   getState: Observable<any>;
+  @Input() displayMenu: string;
   constructor( 
     private store: Store<AppState>
   ) {
-     
+     console.log("displayMenu",this.displayMenu)
   }
 
   ngOnInit() { }
@@ -32,5 +33,5 @@ export class HeaderComponent implements OnInit {
   logout() { 
     this.store.dispatch(new LogOut())
   }
-
+ 
 }

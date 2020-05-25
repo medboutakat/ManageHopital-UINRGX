@@ -28,8 +28,7 @@ export class SidebarComponent implements OnInit {
      var defaultMenu = [
         {txt:'home',url:'home'},
         {txt:'Dashboard',url:''},
-        {txt:'Appointements',url:'appointement'},
-        {txt:'Articles',url:'articles'},
+        {txt:'Appointements',url:'appointement'}, 
         {txt:'Customer category',url:'customercat'}, 
         {txt:'Hospital',url:'hospitals'},
         {txt:'Hospital category',url:'hospitalcat'},

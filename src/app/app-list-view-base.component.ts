@@ -71,11 +71,5 @@ export class AppListViewBaseComponent<T> {
     return `${this.selection.isSelected(row) ? "deselect" : "select"} row ${
       row["id"] + 1
     }`;
-  }
-
-  // add() {}
-
-  // edit() {}
-
-  // delete() {}
+  } 
 }
