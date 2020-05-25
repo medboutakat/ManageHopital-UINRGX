@@ -4,9 +4,9 @@ import { map ,mergeMap,catchError, tap} from 'rxjs/operators';
 import {of , Observable} from'rxjs'
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import {Action} from '@ngrx/store'
-import * as ActionsFile from 'src/app/customerCategorie/Store/Action'
-import { customerCat } from '../customerCat.Module';
-import { CustomerCatService } from '../customerCat.service';
+import * as ActionsFile from 'src/app/customerCategorie/Store/Action' 
+import { CustomerCatService } from '../customer-cat.service';
+import { CustomerCat } from '../customer-cat.model';
 
 
 @Injectable()
@@ -25,7 +25,7 @@ export class CustomerCatEffect {
        mergeMap((Actions : ActionsFile.Load)=>
        this.CustomerCatServ.getAll().pipe(
            map(
-               (CustomerCats : customerCat[])=>
+               (CustomerCats : CustomerCat[])=>
                new ActionsFile.LoadSuccess(CustomerCats)
            ),
            catchError(err =>of(new ActionsFile.LoadFail(err)))
@@ -33,19 +33,17 @@ export class CustomerCatEffect {
        )
    )
  
-
-     //Create Customer Category
-
+ 
      @Effect()
    CreateCustomerCat$: Observable<Action> = this.actions$.pipe(
        ofType<ActionsFile.Create>(
            ActionsFile.CustomerCatActionType.CREATE
        ),
        map((Actions : ActionsFile.Create)=>Actions.payload),
-       mergeMap((CustomerCateg : customerCat )=>
+       mergeMap((CustomerCateg : CustomerCat )=>
        this.CustomerCatServ.add(CustomerCateg ).pipe(
            map(
-               (NewCustomerCats : customerCat)=>
+               (NewCustomerCats : CustomerCat)=>
                new ActionsFile.CreateSuccess(NewCustomerCats)
            ),
            catchError(err =>of(new ActionsFile.CreateFail(err)))
@@ -59,10 +57,10 @@ export class CustomerCatEffect {
            ActionsFile.CustomerCatActionType.UPDATE
        ),
        map((Actions : ActionsFile.Update)=>Actions.payload),
-       mergeMap((payload : customerCat )=>
+       mergeMap((payload : CustomerCat )=>
        this.CustomerCatServ.update(payload).pipe(
            map(
-               (payloadResult : customerCat)=>new ActionsFile.UpdateSuccess(payload)
+               (payloadResult : CustomerCat)=>new ActionsFile.UpdateSuccess(payload)
            ), 
            tap((data) => {
                     console.log(data);

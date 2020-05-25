@@ -1,6 +1,6 @@
 
 import { Store, Action } from '@ngrx/store'
-import { customerCat as Model } from '../customerCat.Module';
+import { CustomerCat as Model } from '../customer-cat.model';
  
 export enum CustomerCatActionType {
     LOAD = "[Model] load CustomerCat",

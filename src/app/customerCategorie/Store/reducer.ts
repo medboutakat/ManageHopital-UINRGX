@@ -1,10 +1,11 @@
 import * as ActionsFile from 'src/app/customerCategorie/Store/Action'
 import * as fromRoot from 'src/app/customerCategorie/Store/app-state'
-import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { customerCat } from '../customerCat.Module';
-import { EntityAdapter, createEntityAdapter, EntityState } from '@ngrx/entity'; 
+import { createFeatureSelector, createSelector } from "@ngrx/store"; 
 
-export interface CustomerCatState extends EntityState<customerCat> {
+import { EntityAdapter, createEntityAdapter, EntityState } from '@ngrx/entity'; 
+import { CustomerCat } from '../customer-cat.model';
+
+export interface CustomerCatState extends EntityState<CustomerCat> {
   selectedcustomerbyId: string | null,
   loading: boolean,
   loaded: boolean,
@@ -14,7 +15,7 @@ export interface CustomerCatState extends EntityState<customerCat> {
 export interface AppState extends fromRoot.AppState {
   customerCats: CustomerCatState
 }
-export const customerCatAdapter: EntityAdapter<customerCat> = createEntityAdapter<customerCat>();
+export const customerCatAdapter: EntityAdapter<CustomerCat> = createEntityAdapter<CustomerCat>();
 
 export const DefaultCustomerCat: CustomerCatState = {
   ids: [],
@@ -23,13 +24,8 @@ export const DefaultCustomerCat: CustomerCatState = {
   loading: false,
   loaded: false,
   error: ' ',
-}
-// export const initialState : CustomerCatState ={
-//     customerCats :[],
-//     loading: false,
-//     loaded : false,
-//     error : ' ',
-// }
+} 
+
 export const initialState = customerCatAdapter.getInitialState(DefaultCustomerCat)
 
 export function CustomerCatReducer(state = initialState, action: ActionsFile.CustomerCatction): CustomerCatState {

@@ -1,22 +1,22 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import * as ActionsFile from 'src/app/customerCategorie/Store/Action'
-import { Observable } from 'rxjs';
-import { customerCat } from '../customerCat.module';
+import { Observable } from 'rxjs'; 
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections'; 
 import { CustomerEditCatComponent } from '../customer-edit-cat/customer-edit-cat.component';
 import { AppListViewBaseComponent } from 'src/app/app-list-view-base.component';
+import { CustomerCat } from '../customer-cat.model';
 
 @Component({
   selector: 'app-customer-cat',
   templateUrl: './customer-cat.component.html',
   styleUrls: ['./customer-cat.component.scss']
 })
-export class CustomerCatComponent extends AppListViewBaseComponent<customerCat>  implements OnInit {
-  objlist: Observable<customerCat[]>;
+export class CustomerCatComponent extends AppListViewBaseComponent<CustomerCat>  implements OnInit {
+  objlist: Observable<CustomerCat[]>;
   dataavailbale: Boolean = false; 
-  tempemp: customerCat; 
+  tempemp: CustomerCat; 
   listCustomerCat :any;   
   exist: boolean = false;
 
@@ -48,7 +48,7 @@ export class CustomerCatComponent extends AppListViewBaseComponent<customerCat> 
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      _currentObject: new customerCat(),
+      _currentObject: new CustomerCat(),
       title: "Add ",
     }
 
@@ -62,7 +62,7 @@ export class CustomerCatComponent extends AppListViewBaseComponent<customerCat> 
 
   edit() {
     console.log("edit");
-    var cat = <customerCat>this.selection.selected[0];
+    var cat = <CustomerCat>this.selection.selected[0];
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.data = {
@@ -76,7 +76,7 @@ export class CustomerCatComponent extends AppListViewBaseComponent<customerCat> 
 
   delete() { 
     if (confirm("Are You Sure You want to Delete the User?")) {
-      var cat = <customerCat>this.selection.selected[0];
+      var cat = <CustomerCat>this.selection.selected[0];
       console.log("cat => ", cat);
       this.store.dispatch(new ActionsFile.Delete(cat.id));
       this.remplir()

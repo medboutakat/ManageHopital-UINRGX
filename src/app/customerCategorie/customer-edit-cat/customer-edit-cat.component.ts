@@ -2,20 +2,19 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { Store } from '@ngrx/store';
-import * as fromCustomerCat from "src/app/customerCategorie/Store/reducer";
-import { customerCat } from '../customerCat.module';
+import * as fromCustomerCat from "src/app/customerCategorie/Store/reducer";  
 import * as ActionsFile from 'src/app/customerCategorie/Store/Action'
-import { environment } from 'src/environments/environment';
 import { CategoryHelper } from 'src/app/category/category.helper';
 import { CategoryBaseComponent } from 'src/app/category/category-base.component';
 import { Title } from '@angular/platform-browser';
+import { CustomerCat } from '../customer-cat.model';
 
 @Component({
-  selector: 'doctor-edit-cat',
-  templateUrl: './doctor-edit-cat.component.html',
-  styleUrls: ['./doctor-edit-cat.component.scss']
+  selector: 'customer-edit-cat',
+  templateUrl: './customer-edit-cat.component.html',
+  styleUrls: ['./customer-edit-cat.component.scss']
 }) 
-export class CustomerEditCatComponent extends CategoryBaseComponent<customerCat>   { 
+export class CustomerEditCatComponent extends CategoryBaseComponent<CustomerCat>   { 
 
   constructor(protected fb: FormBuilder,
     protected store: Store<fromCustomerCat.CustomerCatState>,
@@ -25,7 +24,7 @@ export class CustomerEditCatComponent extends CategoryBaseComponent<customerCat>
      )
    {
       super(fb,store,data,dialog);              
-      this.titleService.setTitle('Hospital category'+this._currentObject.name);          
+      this.titleService.setTitle('Customer category'+this._currentObject.name);          
       this.reserve=this.reserve.bind(this);
    }
 

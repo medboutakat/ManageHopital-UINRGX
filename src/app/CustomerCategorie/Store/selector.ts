@@ -1,9 +1,9 @@
 import {IAppState} from 'src/app/customerCategorie/Store/app-state';
 import {createSelector} from '@ngrx/store'; 
 
-import { customerCat } from '../customerCat.module';
+import {CustomerCat } from '../customer-cat.model';
 
-const _selectAll = (state: IAppState<customerCat>) => state.all; 
+const _selectAll = (state: IAppState<CustomerCat>) => state.all; 
 
 export const selectAll = createSelector(_selectAll, (state) => state.all);
 export const selectFilter = createSelector(_selectAll, (state,props) =>

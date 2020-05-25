@@ -60,15 +60,14 @@ import { AuthGuard } from './Auth/auth-guard';
 import { ProductimageComponent } from './productimages/productimage/productimage.component';
 import { OurTeamComponent } from './our-team/our-team.component';
 import { AuthInterceptor, ErrorInterceptor, TokenInterceptor } from './app.interceptors'; 
-import { UploadFileComponent } from './upload-file/upload-file/upload-file.component';
-import { CustomerCatComponent } from './customerCategorie/customer-cat/customer-cat.component';
+import { UploadFileComponent } from './upload-file/upload-file/upload-file.component'; 
 import { CustomerEditCatComponent } from './customerCategorie/customer-edit-cat/customer-edit-cat.component'; 
 import { ProductStoreComponent } from './product-store/product-store.component';  
 import { TaxComponent } from './Tax/tax/tax.component';
 import { TaxEditComponent } from './Tax/tax-edit/tax-edit.component'; 
-import { SettingEditComponent } from './setting-edit-forms/setting-edit.component';
-import { CatEditComponent as CustomerCatEditComponent} from './CustomerCategorie/customer-cat-edit/edit-cat.component';
-import { CatComponent  as CustomerCatComponent} from './CustomerCategorie/customer-cat/cat.component';
+import { SettingEditComponent } from './setting-edit-forms/setting-edit.component'; 
+import { CustomerCatComponent } from './CustomerCategorie/customer-cat/customer-cat.component';
+ 
  
 
 const config = {
@@ -111,9 +110,7 @@ const config = {
     MenuComponent,
     SigninComponent,
     InvoiceComponent,
-    HospitalCatEditComponent,
-    CustomerCatEditComponent,
-    CustomerCatComponent,
+    HospitalCatEditComponent, 
     MaterialComponent,
     MaterialEditComponent,
     DoctorEditCatComponent,

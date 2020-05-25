@@ -25,11 +25,9 @@ import { ProductComponent } from './products/product/product.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { SignupComponent } from './Auth/signup/signup.component'; 
 import { AuthGuard } from './Auth/auth-guard';
-import { CustomerCatComponent } from './customerCategorie/customer-cat/customer-cat.component'; 
-import { AuthGuard } from './Auth/auth-guard'; 
+import { CustomerCatComponent } from './customerCategorie/customer-cat/customer-cat.component';   
 import { ProductStoreComponent } from './product-store/product-store.component';  
-import { TaxComponent } from './Tax/tax/tax.component';
-import { CatComponent as CustomerCatComponent } from './CustomerCategorie/customer-cat/cat.component'; 
+import { TaxComponent } from './Tax/tax/tax.component'; 
 
 
 const routes: Routes = [

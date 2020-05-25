@@ -33,10 +33,7 @@ import { UploadFileEffects } from './upload-file/store/effect';
 import { CustomerCatReducer } from './customerCategorie/Store/reducer';
 import { CustomerCatEffect } from './customerCategorie/Store/Effect';
 import { TaxReducer } from './Tax/Store/reducer';
-import { TaxEffect } from './Tax/Store/Effect';
-import { CustomerCatEffect } from './CustomerCategorie/Store/Effect';
-import { CustomerCatReducer } from './CustomerCategorie/Store/reducer';
-
+import { TaxEffect } from './Tax/Store/Effect'; 
 
 @NgModule({
   declarations: [],
