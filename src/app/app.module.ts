@@ -12,8 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { SelectComponent } from './select/select.component';
 
 import { ContactComponent } from './contacts/contact/contact.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatBottomSheetModule, MatTooltipModule, MatCellDef, MatAutocompleteModule } from '@angular/material'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 
 import { CategoryComponent } from './category/category.component';
 
@@ -61,12 +60,12 @@ import { ProductimageComponent } from './productimages/productimage/productimage
 import { OurTeamComponent } from './our-team/our-team.component';
 import { AuthInterceptor, ErrorInterceptor, TokenInterceptor } from './app.interceptors'; 
 import { UploadFileComponent } from './upload-file/upload-file/upload-file.component'; 
-import { CustomerEditCatComponent } from './customerCategorie/customer-edit-cat/customer-edit-cat.component'; 
 import { ProductStoreComponent } from './product-store/product-store.component';  
 import { TaxComponent } from './Tax/tax/tax.component';
 import { TaxEditComponent } from './Tax/tax-edit/tax-edit.component'; 
-import { SettingEditComponent } from './setting-edit-forms/setting-edit.component'; 
-import { CustomerCatComponent } from './CustomerCategorie/customer-cat/customer-cat.component';
+import { SettingEditComponent } from './setting-edit-forms/setting-edit.component';  
+import { CustomerEditCatComponent } from './customerCategorie/customer-edit-cat/customer-edit-cat.component'; 
+import { CustomerCatComponent } from './customerCategorie/customer-cat/customer-cat.component';
  
  
 
@@ -124,8 +123,8 @@ const config = {
     AutoCompleteComponent,
     ProductimageComponent,
     OurTeamComponent,
-    UploadFileComponent, 
-    CustomerCatComponent,
+    UploadFileComponent,  
+    CustomerCatComponent ,
     CustomerEditCatComponent ,
     ProductStoreComponent 
   ],
@@ -142,6 +141,8 @@ const config = {
     PaymentComponent,
     ProductEditCatComponent,
     ProductEditComponent,
+    CustomerCatComponent ,
+    CustomerEditCatComponent ,
     UploadFileComponent,
     CustomerEditCatComponent
   ],
