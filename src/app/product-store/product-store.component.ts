@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store'; 
+import * as ActionsFile from "src/app/ProductCategorie/Store/Action";
+import { productCat } from '../ProductCategorie/productCat.Module';
 
 @Component({
   selector: 'product-store',
@@ -6,8 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-store.component.scss']
 })
 export class ProductStoreComponent implements OnInit {
+  navLinks
+  constructor(private store: Store<any>) {
+    this.store.dispatch(new ActionsFile.Load());
 
-  constructor() { }
+    this.store.subscribe((data) => {
+    this.navLinks = Object.values(data.ProductCat.entities);  
+    }); 
+
+   }
+
 
   ngOnInit() {
   }

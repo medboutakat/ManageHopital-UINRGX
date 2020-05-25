@@ -4,22 +4,29 @@
       <li class="breadcrumb-item"><a href=""> <i class="fa fa-home"></i> Home</a></li>
       <li class="breadcrumb-item active" aria-current="page"><a href="ProductStore"> <i class="fa fa-store"></i>
           Store</a></li>
-    </ol>
+    </ol> 
   </nav>
+
+
+
   <h4>NOUVEAUX
     <hr class="ab">
-  </h4>
+  </h4> 
+
   <div class="alert alert-light" role="alert">
     <div class="row">
-      <p> sort by : </p>
+   
+      
+  <nav mat-tab-nav-bar>
+    <a mat-tab-link
+       *ngFor="let link of navLinks"
+       [routerLink]="link.id"
+       routerLinkActive #rla="routerLinkActive"
+       [active]="rla.isActive">
+      {{link.name}}
+    </a>
+  </nav>
 
-      <div class="input-group-sm col" placeholder="choose Category">
-        <select placeholder="choose Category" class="custom-select">
-          <option> Choose Category</option>
-          <option> cat1</option>
-          <option> cat1</option>
-        </select>
-      </div>
     </div>
 
 

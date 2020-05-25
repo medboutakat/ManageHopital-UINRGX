@@ -14,7 +14,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule, MatCellDef } from '@angular/material/table';
-import { MatPaginatorModule, MatSortModule, MatCheckbox, MatCheckboxModule, MatProgressSpinnerModule, MatAutocompleteModule, MatTooltip, MatTooltipModule } from '@angular/material';
+import { MatPaginatorModule, MatSortModule, MatCheckbox, MatCheckboxModule, MatProgressSpinnerModule, MatAutocompleteModule, MatTooltip, MatTooltipModule, MatTabsModule } from '@angular/material';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatStepperModule } from '@angular/material/stepper';
 const Materiallist = [
@@ -52,7 +52,8 @@ const Materiallist = [
   MatSortModule,
   MatCheckboxModule,
   MatTooltipModule,
-  MatBottomSheetModule
+  MatBottomSheetModule,
+  MatTabsModule,
 ]
 
 @NgModule({
