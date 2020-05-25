@@ -71,7 +71,7 @@ const config = {
     SigninComponent,
     SignupComponent,
     SavePdfComponent,
-    MenuComponent,
+  
     SigninComponent,
     OurTeamComponent,
     AutoCompleteComponent,
@@ -90,8 +90,7 @@ const config = {
     // ProductEditCatComponent,
     // ProductEditComponent,
     // CustomerCatComponent ,
-    // CustomerEditCatComponent ,
-    MenuComponent,
+    // CustomerEditCatComponent , 
     UploadFileComponent, 
   ],
 

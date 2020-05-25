@@ -41,6 +41,7 @@ import { HopitalComponent } from 'src/app/hospitals/hopital/hopital.component';
 import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser'; 
+import { MenuComponent } from 'src/app/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { BrowserModule } from '@angular/platform-browser';
     TaxEditComponent,
     ProductimageComponent,
     CustomerCatComponent ,
-    CustomerEditCatComponent , 
+    CustomerEditCatComponent ,
+    MenuComponent, 
   ],
   entryComponents: [
     HospitalEditComponent,
@@ -91,7 +93,8 @@ import { BrowserModule } from '@angular/platform-browser';
     ProductEditComponent,
     CustomerCatComponent ,
     CustomerEditCatComponent , 
-    CustomerEditCatComponent
+    CustomerEditCatComponent, 
+     MenuComponent,
   ],
   imports: [
     BrowserModule,

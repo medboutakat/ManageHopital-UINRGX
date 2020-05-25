@@ -10,13 +10,15 @@ import { productCat } from '../ProductCategorie/productCat.Module';
 })
 export class ProductStoreComponent implements OnInit {
   navLinks
+  listProducts: unknown[];
   constructor(private store: Store<any>) {
     this.store.dispatch(new ActionsFile.Load());
 
     this.store.subscribe((data) => {
-    this.navLinks = Object.values(data.ProductCat.entities);  
+    this.navLinks = Object.values(data.ProductCat.entities);      
+    this.listProducts = Object.values(data.products.entities);
     }); 
-
+ 
    }
 
 
