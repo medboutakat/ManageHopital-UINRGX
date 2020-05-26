@@ -1,7 +1,7 @@
 import { NavItem } from "./shared/components/sidebar/nav-item.model";
 
-export class SiteMap {
-  public menu: NavItem[] = [
+export  class  SiteMap {
+  public static menu: NavItem[] = [
     { displayName: "Dashboard", route: "/" },
     { displayName: "home", iconName: "home", route: "/home" },
     { displayName: "Store", iconName: "store", route: "/store" },
@@ -63,8 +63,10 @@ export class SiteMap {
     },
   ];
 
-  public GetTitle(root: string) {
+  public static GetTitle(root: string) :string{
         
+
+    console.log("root",root)
       this.menu.forEach(x=>{
         if (x.route==root) 
            return x.displayName;
@@ -74,5 +76,7 @@ export class SiteMap {
              return x[indexmenu].displayName;
         }   
       }) ;
+     
+      return "";
     }
 }

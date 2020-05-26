@@ -26,7 +26,7 @@ export class SidebarComponent implements OnInit {
     let menulinks=null;
     if (menulinks == null) {
 
-     let defaultMenu=  new SiteMap().menu;
+     let defaultMenu=  SiteMap.menu;
       localStorage.setItem("links", JSON.stringify(defaultMenu));
     }
   }

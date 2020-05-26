@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationError, NavigationEnd, NavigationStart } from '@angular/router';
+import { SiteMap } from 'src/app/app-site-map';
 
 @Component({
   selector: 'app-default',
@@ -9,16 +10,38 @@ import { ActivatedRoute } from '@angular/router';
 export class DefaultComponent implements OnInit {
 
   sideBarOpen = true;
+  title: string="";
 
-  constructor(  private route: ActivatedRoute) { 
+  constructor(private route: ActivatedRoute) {
+  
+    
+  //   this.router.events.subscribe((event) => {
+ 
+  //     if (event instanceof NavigationStart) {
+  //       console.log("roout event",event.url)
+  //       this.title=event.url;SiteMap.GetTitle(event.url);
+  //     }
 
-  }
+  //     if (event instanceof NavigationEnd) {
+  //       console.log("roout event",event.url)
+  //       this.title=event.url;SiteMap.GetTitle(event.url);
+  //     }
 
+  //     if (event instanceof NavigationError) {
+  //         // Hide loading indicator
+  //         console.log("roout event",event.url)
+  //         this.title=event.url;SiteMap.GetTitle(event.url);
+  //         // Present error to user
+  //         console.log(event.error);
+  //     }
+  // });
+
+
+  //  console.log( this.router.url)
+      
+};
   ngOnInit() { 
-
-  //  let smapShout = this.route.snapshot;
-
-  //   console.log("smapShout",smapShout)
+ 
   }
 
 
