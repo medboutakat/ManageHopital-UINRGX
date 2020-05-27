@@ -49,11 +49,11 @@ export class TaxEditComponent extends SettingEdiBaseComponent<Tax>   {
         "label":"id"
       },
       {
-        "type":"textBox",//number
+        "type":"textBox",//textBox
         "label":"name"
       },
       {
-        "type":"textBox",//number
+        "type":"textBox",//textBox
         "label":"value" 
       }
 
