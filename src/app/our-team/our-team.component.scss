@@ -7,7 +7,7 @@
 .team-section{
     overflow: hidden;
     text-align: center;
-    background: #34495e;
+    background: #2482a9;
     padding: 60px;
 }
 .team-section h1 {
@@ -21,7 +21,7 @@
     margin: auto;
     width: 160px;
     height: 3px;
-    background: #3498db;
+    background: #21618C ;
     margin-bottom: 40px;
 }
 
@@ -60,6 +60,18 @@ p{
     font-size: 20px;
     color: white;
     
+}
+.p11{
+    display: none;
+}
+.p22{
+    display: none;
+}
+.p33{
+    display: none;
+}
+.p44{
+    display: none;
 }
 .section  :target{
     height: auto;
