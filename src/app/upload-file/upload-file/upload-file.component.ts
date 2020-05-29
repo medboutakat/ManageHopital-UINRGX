@@ -61,11 +61,11 @@ export class UploadFileComponent implements OnInit {
     };
     console.log("Component : uploadFile", payload);
 
-    if(payload.productId==environment.EmptyGuid){   
+   
       this.store$.dispatch(
     new fromFileUploadActions.UploadRequestAction(payload)
       )
-    }
+    
     // clear the input form
     event.srcElement.value = null;
   }
