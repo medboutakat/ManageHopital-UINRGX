@@ -1,0 +1,93 @@
+body {
+  padding-top: 54px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+
+.navbar-brand {
+  margin: right;
+  padding-left: 1%;
+}
+
+h4 {
+  color: #126186;
+  font-family: 'Century Gothic';
+  font-weight: bold;
+}
+
+.text {
+  color: #7e963a;
+  font-size: 14px;
+  font-weight: normal;
+  //margin-top: -8%;
+  font-family: 'Century Gothic';
+}
+
+.prix {
+  color: #126186;
+  font-family: 'Century Gothic';
+  font-weight: bold;
+  // margin-top: -%;
+  font-size: 25px;
+}
+
+.card-title {
+  color: #126186;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.card {
+  height: 91%;
+}
+
+.ab {
+  width: 700px;
+  margin-top: -1%;
+  margin-left: 15%;
+}
+
+img {
+  width: 5rem;
+  margin-left: 30%;
+}
+
+.lead {
+  color: aliceblue;
+}
+
+.display-3 {
+  color: aliceblue;
+}
+
+.navb {
+  background-color: #f3f5f9;
+}
+
+.navb ol li a {
+  color: black;
+  font-size: 11px;
+}
+
+.navb ol li a i {
+  font-size: 11px;
+}
+
+
+
+.dropdown-toggle {
+  outline: none;
+}
+
+
+
+.mat-tab-group {
+  margin-bottom: 48px;
+}
+
+ 

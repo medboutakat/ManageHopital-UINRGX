@@ -1,0 +1,27 @@
+<div class="container">
+  <h3>{{this.title}}</h3>
+  <p style="font-weight: lighter;color: gray;font-size: 14px;" class="card-text">to reserve, please fill this
+    informations</p>
+  <form [formGroup]="customerForm">
+    <div class="form-row">
+      <input type="hidden" formControlName="id">
+      <div class="form-group col-md-6">
+        <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="firstName"
+          placeholder="firstName" required>
+      </div>
+      <div class="form-group col-md-6">
+        <input style="text-align: center;font-size: 14px;" type="text" class="form-control" formControlName="lastName"
+          placeholder="lastName" required>
+      </div>
+    </div>
+    <div class="input-group form-group ">
+      <select formControlName="sexe" placeholder="choose Sexe" class="custom-select" required>
+        <option style="text-align: center;font-size: 14px;" value="Female">Female</option>
+        <option style="text-align: center;font-size: 14px;" value="Male">Male</option>
+      </select>
+    </div>
+
+  </form>
+  <app-contact [contactForm]="contactForm"></app-contact>
+  <button type="submit" class="btn btn-success btn-block" (click)="reserve()">Submit</button><br>
+</div>

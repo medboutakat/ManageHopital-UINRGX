@@ -25,12 +25,12 @@ import { Observable } from 'rxjs';
 export class HospitalEditComponent implements OnInit {
   fileToUpload=null;  
   imageUrl:string="";
-  HospitalForm: FormGroup;
+  mainForm: FormGroup;
   listhopitalValues: any; 
  _currentObject: Hospital; 
   title:any; 
 
-  listhopitalCatValues: unknown[];
+  _listCatetory: unknown[];
   contactForm: FormGroup;
 
  _currentContactObject: Contact; 
@@ -41,8 +41,8 @@ export class HospitalEditComponent implements OnInit {
     
     this.store.dispatch(new ActionsFile.Load());
     this.store.subscribe(data => {
-      this.listhopitalCatValues = Object.values(data.HospitalCat.entities)
-      console.log(" this.listhopitalCatValues=> ", this.listhopitalCatValues)
+      this._listCatetory = Object.values(data.HospitalCat.entities)
+      console.log(" this._listCatehory=> ", this._listCatetory)
     });
 
     this._currentObject=  data._currentObject;
@@ -63,7 +63,7 @@ export class HospitalEditComponent implements OnInit {
  
     this.contactForm =  ContactHelper.getFormBuilder(this.fb, this._currentContactObject);
         
-    this.HospitalForm = this.fb.group({
+    this.mainForm = this.fb.group({
       id: [this._currentObject.id, Validators.required],
       countryHealthId:  [this._currentObject.countryHealthId, Validators.required],
       name: [this._currentObject.name, Validators.required],
@@ -86,9 +86,10 @@ export class HospitalEditComponent implements OnInit {
   }
 
   reserve() {
-    var newApp = <Hospital>this.HospitalForm.value    
-    newApp.contactModel.cityId=+ newApp.contactModel.cityId;
-      console.log("HospitalForm Valid",this.HospitalForm.valid)
+     var newApp = <Hospital>this.mainForm.value   
+
+      newApp.contactModel.cityId=+ newApp.contactModel.cityId;
+      console.log("mainForm Valid",this.mainForm.valid)
       console.log("contactModel Valid",this.contactForm.valid)
 
     if(newApp.id==environment.EmptyGuid){   
@@ -98,7 +99,7 @@ export class HospitalEditComponent implements OnInit {
       
       this.store.dispatch(new ActionsFiles.UpdateHospital(newApp));
     }
-    this.HospitalForm.reset(); 
+    this.mainForm.reset(); 
   } 
 
   }

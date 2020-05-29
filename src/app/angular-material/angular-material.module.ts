@@ -14,46 +14,96 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule, MatCellDef } from '@angular/material/table';
-import { MatPaginatorModule, MatSortModule, MatCheckbox, MatCheckboxModule, MatProgressSpinnerModule, MatAutocompleteModule, MatTooltip, MatTooltipModule } from '@angular/material';
+import { MatPaginatorModule, MatSortModule, MatCheckbox, MatCheckboxModule, MatProgressSpinnerModule, MatAutocompleteModule, MatTooltip, MatTooltipModule, MatTabsModule, MatBadgeModule, MatButtonToggleModule, MatDividerModule, MatChipsModule, MatListModule, MatNativeDateModule, MatMenuModule, MatRadioModule, MatTreeModule, MatSlideToggleModule, MatSliderModule, MatSidenavModule, MatRippleModule } from '@angular/material';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatStepperModule } from '@angular/material/stepper';
-const Materiallist = [
-  MatButtonModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatDatepickerModule,
-  MatSelectModule,
-  MatSnackBarModule,
-  MatGridListModule,
-  BrowserAnimationsModule,
-  MatToolbarModule,
+
+
+
+
+import {A11yModule} from '@angular/cdk/a11y';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {PortalModule} from '@angular/cdk/portal';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {CdkStepperModule} from '@angular/cdk/stepper';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';  
+
+
+const Materiallist = [    
+  BrowserAnimationsModule,   
+  MatFormFieldModule,  
   MatExpansionModule,
-  MatProgressBarModule,
-  MatCardModule,
+  MatGridListModule,
   MatIconModule,
-  MatDialogModule,
-  MatTableModule,
-  MatPaginatorModule,
-  MatSortModule,
-  MatCheckboxModule,
-  MatStepperModule,
-  MatProgressSpinnerModule,
-  MatFormFieldModule,
   MatInputModule,
-  MatAutocompleteModule,
-  MatToolbarModule,
-  MatIconModule,
-  MatTableModule,
-  MatIconModule,
-  MatTableModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
   MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,  
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatTreeModule,
+  A11yModule,
+  CdkStepperModule,
+  CdkTableModule,
+  CdkTreeModule,
+  DragDropModule,
+  MatAutocompleteModule,
+  MatBadgeModule,
+  MatBottomSheetModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatStepperModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
   MatSortModule,
   MatTableModule,
-  MatSortModule,
-  MatCheckboxModule,
+  MatTabsModule,
+  MatToolbarModule,
   MatTooltipModule,
-  MatBottomSheetModule
+  MatTreeModule,
+  PortalModule,
+  ScrollingModule,
 ]
+
+
+  
+
+
 
 @NgModule({
   declarations: [

@@ -61,10 +61,10 @@ const routes: Routes = [
       {path : 'ourteam',component:OurTeamComponent, pathMatch:'full'},
 
     ]
-   
+    
   },
   { path: 'signin', component: SigninComponent },
-  { path: 'signup', component: SignupComponent }, 
+  { path: 'signup', component: SignupComponent },
 
   // { path: 'material', loadChildren: () => import('./material/material/material.module').then(m => m.MaterialModule) } 
 ];

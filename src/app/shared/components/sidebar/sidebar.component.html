@@ -1,33 +1,71 @@
-<mat-nav-list>
-  <div class="profile-card"> 
-    <a routerLink="/home">
-      <img src="assets/img/testnouveau.png" alt="Manage Hospital">
-    </a>
-  </div>
+ 
+    <mat-nav-list>
 
+      <div class="profile-card"> 
+        <a routerLink="/home">
+          <img src="assets/img/testnouveau.png" alt="Manage Hospital">
+        </a>
+      </div>
+    
 
   <mat-divider></mat-divider>
-
-
-  <h2 matSubheader>Pages</h2>
-
-  <table cdkDropList (cdkDropListDropped)="drop($event)">
-    <tr *ngFor="let l of links" cdkDrag>
-      <td>
-        <a mat-list-item routerLinkActive="list-item-active" [routerLink]="'/'+l.url" >{{l.txt}}</a>
-      </td>
-      <td>
-        <span mat-list-item class="material-icons" id="move-span"  >
-          unfold_more
-        </span>
-      </td>
-    </tr>
-  </table>
+<span cdkDropList (cdkDropListDropped)="dropMenu($event)">
   
+      <span *ngFor="let item of menu" cdkDrag>
+        <span *ngIf="item.children && item.children.length > 0">
+          <mat-accordion>
+            <mat-expansion-panel cdkDropList (cdkDropListDropped)="dropChildren($event,item)">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <!-- Cabeceras del submenu -->
+                  <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-icon>{{item.iconName}}</mat-icon>
+                    {{item.displayName}}
+                  </div>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <span *ngFor="let child of item.children" cdkDrag>
+                <mat-list-item [routerLink]="child.route">
+                  <!-- Entradas de cada submenú  -->
+                  <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-icon>{{child.iconName}}</mat-icon>
+                    {{child.displayName}}
+                  </div>
+                </mat-list-item>
+              </span>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </span>
+        <span *ngIf="!item.children || item.children.length === 0">
+          <mat-list-item [routerLink]="item.route"  >
+            <!-- Entradas principales -->
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-icon>{{item.iconName}}</mat-icon>
+              {{item.displayName}}
+            </div>
+          </mat-list-item>
+        </span>
+      </span>
 
+    </span>
+
+
+      
   <mat-divider></mat-divider>
 
   <h2 matSubheader>Tools</h2>
+ 
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/misexpedientes">
+    <mat-icon>how_to_reg</mat-icon>
+    Búsqueda Perfil
+  </a>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/todos">
+    <mat-icon>waves</mat-icon>
+    Todo
+  </a>
+  
+
   <a mat-list-item routerLinkActive="list-item-active" routerLink="/chat">
     <mat-icon>Chat</mat-icon>
     Chat
@@ -43,5 +81,64 @@
     Leads
   </a>
 
+    </mat-nav-list> 
 
-</mat-nav-list>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <mat-nav-list>
+  <div class="profile-card"> 
+    <a routerLink="/home">
+      <img src="assets/img/testnouveau.png" alt="Manage Hospital">
+    </a>
+  </div>
+
+
+
+ 
+
+  <mat-divider></mat-divider>
+
+
+  <h2 matSubheader>Pages</h2>
+
+  <table cdkDropList (cdkDropListDropped)="drop($event)">
+    <tr *ngFor="let l of menu" cdkDrag>
+      <td>
+        <a mat-list-item routerLinkActive="list-item-active" [routerLink]="'/'+l.url" >{{l.txt}}</a>
+      </td>
+      <td>
+        <span mat-list-item class="material-icons" id="move-span"  >
+          unfold_more
+        </span>
+      </td>
+    </tr>
+  </table>
+  
+
+  <mat-divider></mat-divider>
+
+  
+
+
+</mat-nav-list> -->
