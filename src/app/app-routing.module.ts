@@ -29,6 +29,7 @@ import { CustomerCatComponent } from './customerCategorie/customer-cat/customer-
 import { ProductStoreComponent } from './product-store/product-store.component';  
 import { TaxComponent } from './Tax/tax/tax.component'; 
 import { StoreComponent } from './layouts/store/store.component';
+import { CustomerComponent } from './customer/customers/customer/customer.component';
 
 
 const routes: Routes = [
@@ -62,7 +63,7 @@ const routes: Routes = [
       { path: 'payment', component: PaymentComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
       { path: 'chat', component: ContactComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
       { path: 'customerCategory', component: CustomerCatComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
-      { path: 'customerCategory', component: CustomerCatComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
+      { path: 'customers', component: CustomerComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
     ]
   },
   { 

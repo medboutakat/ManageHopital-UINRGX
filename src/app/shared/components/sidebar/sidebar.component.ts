@@ -34,6 +34,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     let result = localStorage.getItem("links");
     this.menu = JSON.parse(result);
+    console.log("sidebar menu=> ",this.menu)
   }
 
   dropMenu(event: CdkDragDrop<string[]>) {    

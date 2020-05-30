@@ -1,6 +1,6 @@
 
-import { GeneratedId } from '../generatedId';
-import { Contact } from '../contacts/contact.model';
+import { GeneratedId } from 'src/app/generatedId';
+import { Contact } from 'src/app/contacts/contact.model';
 
 export class Customer extends GeneratedId {
     id: string;
