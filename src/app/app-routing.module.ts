@@ -23,14 +23,14 @@ import { PaymentComponent } from './payment/payment/payment.component';
 import { ProductCatComponent } from './productCategorie/product-cat/product-cat.component';
 import { ProductComponent } from './products/product/product.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
-import { SignupComponent } from './Auth/signup/signup.component'; 
+import { SignupComponent } from './Auth/signup/signup.component';
+import { OurTeamComponent } from './our-team/our-team.component'; 
 import { AuthGuard } from './Auth/auth-guard';
 import { CustomerCatComponent } from './customerCategorie/customer-cat/customer-cat.component';   
 import { ProductStoreComponent } from './product-store/product-store.component';  
 import { TaxComponent } from './Tax/tax/tax.component'; 
 import { StoreComponent } from './layouts/store/store.component';
 import { CustomerComponent } from './customer/customers/customer/customer.component';
-
 
 const routes: Routes = [
 
@@ -66,16 +66,17 @@ const routes: Routes = [
       { path: 'customers', component: CustomerComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
     ]
   },
-  { 
+  {
     path: 'store', component: StoreComponent,
-    children : [
-      { path: '', component: ProductStoreComponent    }
+    children: [
+      { path: '', component: ProductStoreComponent } 
     ]
-    
+
   },
+  { path: 'store/:id', component: ProductStoreComponent},
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
-
+  {path : 'ourteam',component:OurTeamComponent, pathMatch:'full'},
   // { path: 'material', loadChildren: () => import('./material/material/material.module').then(m => m.MaterialModule) } 
 ];
 @NgModule({

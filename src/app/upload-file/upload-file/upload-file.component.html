@@ -1,7 +1,12 @@
-<div class="message" *ngIf="(isReady$ | async) || (hasFailed$ | async)">
+<!-- <div class="message" *ngIf="(isReady$ | async) || (hasFailed$ | async)">
   <input #file type="file" multiple (change)="uploadFile($event)" />
-</div>
-
+</div> -->
+<div class="input-group" class="message" *ngIf="(isReady$ | async) || (hasFailed$ | async)">
+  <span class="input-group-btn" style="margin-top: -45px; ">
+    <span class="btn btn-primary" onclick="$(this).parent().find('input[type=file]').click();">Browse</span>
+    <input type="file" name="uploaded_file" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file"
+     #file type="file" multiple (change)="uploadFile($event)">
+  </span>
 <div class="message" *ngIf="(isInProgress$ | async)">
   <div style="margin-bottom: 14px;">Uploading... {{ progress$ | async }}%</div>
 </div>

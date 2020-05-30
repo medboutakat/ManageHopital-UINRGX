@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import * as fromFileUploadState from "../store/state";
 import * as fromFileUploadActions from "../store/Action";
 import * as fromFileUploadSelectors from "../store/selector";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: "app-upload-file",
@@ -60,14 +61,15 @@ export class UploadFileComponent implements OnInit {
     };
     console.log("Component : uploadFile", payload);
 
-    this.store$.dispatch(
-      new fromFileUploadActions.UploadRequestAction(payload)
-    );
-
+   
+      this.store$.dispatch(
+    new fromFileUploadActions.UploadRequestAction(payload)
+      )
+    
     // clear the input form
     event.srcElement.value = null;
   }
-
+ 
   resetUpload() {
     this.store$.dispatch(new fromFileUploadActions.UploadResetAction());
   }

@@ -60,8 +60,13 @@
     <mat-step [stepControl]="updatePuctureImage" optional>
       <form [formGroup]="updatePuctureImage">
         <ng-template matStepLabel>Fill out your images</ng-template> 
-
-        
+       
+        <div class="card">   
+          <app-upload-file [objectId]="this._currentObject.id" [fileName]="'ImageProfileForm'"></app-upload-file> 
+        </div>
+        <div class="card">   
+          <app-upload-file [objectId]="this._currentObject.id" [fileName]="'ImageCoverForm'"></app-upload-file> 
+        </div>
   
 
         <div>
