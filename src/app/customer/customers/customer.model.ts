@@ -1,5 +1,3 @@
-
-
 import { GeneratedId } from 'src/app/generatedId';
 import { Contact } from 'src/app/contacts/contact.model';
 
