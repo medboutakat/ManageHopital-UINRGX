@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-customer-edit',
   templateUrl: './customer-edit.component.html',
-  styleUrls: ['./customer-edit.component.scss', "../../app-edit.component.scss"]
+  styleUrls: ['./customer-edit.component.scss']//"../../app-edit.component.scss"
 })
 export class CustomerEditComponent implements OnInit {
 
