@@ -23,11 +23,11 @@ import { PaymentComponent } from './payment/payment/payment.component';
 import { ProductCatComponent } from './productCategorie/product-cat/product-cat.component';
 import { ProductComponent } from './products/product/product.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
-import { SignupComponent } from './Auth/signup/signup.component'; 
+import { SignupComponent } from './Auth/signup/signup.component';
 import { AuthGuard } from './Auth/auth-guard';
-import { CustomerCatComponent } from './customerCategorie/customer-cat/customer-cat.component';   
-import { ProductStoreComponent } from './product-store/product-store.component';  
-import { TaxComponent } from './Tax/tax/tax.component'; 
+import { CustomerCatComponent } from './customerCategorie/customer-cat/customer-cat.component';
+import { ProductStoreComponent } from './product-store/product-store.component';
+import { TaxComponent } from './Tax/tax/tax.component';
 import { StoreComponent } from './layouts/store/store.component';
 
 
@@ -36,41 +36,44 @@ const routes: Routes = [
   {
     path: '',
     component: DefaultComponent,
-    children: [ 
-      { path: '', component: DashboardComponent  , canActivate: [AuthGuard]},
-      { path: 'home', component: HomeComponent  , canActivate: [AuthGuard]},
-      { path: 'posts', component: PostsComponent  , canActivate: [AuthGuard]},
-      { path: 'appointement', component: AppointementComponent  , canActivate: [AuthGuard]},
-      { path: 'hospitals', component: HopitalComponent , pathMatch: 'full' , canActivate: [AuthGuard]},
-      { path: 'customercat', component: CustomerCatComponent , pathMatch: 'full' , canActivate: [AuthGuard]},
-      { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
-      { path: 'doctors', component: DoctorComponent  , canActivate: [AuthGuard]},
-      { path: 'editdoctor', component: DoctorEditComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
-      { path: 'doctorCategory', component: DoctorCatComponent, pathMatch: 'full' , canActivate: [AuthGuard] },
-      { path: 'dashboard', component: NavbarComponent, pathMatch: 'full' , canActivate: [AuthGuard] },    
-      { path: 'products', component: ProductComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
-      { path: 'productedit', component: ProductEditComponent, pathMatch: 'full'  , canActivate: [AuthGuard]},
-      { path: 'productCategory', component: ProductCatComponent, pathMatch: 'full' , canActivate: [AuthGuard] },
-      { path: 'invoicewithId/:id', component: InvoiceEditComponent, pathMatch: 'full'  , canActivate: [AuthGuard]},
-      { path: 'invoices', component: InvoiceComponent, pathMatch: 'full'  , canActivate: [AuthGuard]},
-      { path: 'invoice', component: InvoiceEditComponent, pathMatch: 'full' , canActivate: [AuthGuard] },
-      { path: 'operation', component: OperationComponent, pathMatch: 'full'  , canActivate: [AuthGuard]},
-      { path: 'Category', component: CategoryComponent, pathMatch: 'full'  , canActivate: [AuthGuard]},
-      { path: 'material', component: MaterialComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
-      { path: 'tax', component: TaxComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
-      { path: 'materialedit', component: MaterialEditComponent, pathMatch: 'full' , canActivate: [AuthGuard] },
-      { path: 'payment', component: PaymentComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
-      { path: 'chat', component: ContactComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
-      { path: 'customerCategory', component: CustomerCatComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
-      { path: 'customerCategory', component: CustomerCatComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
+    children: [
+      { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
+      { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+      { path: 'posts', component: PostsComponent, canActivate: [AuthGuard] },
+      { path: 'appointement', component: AppointementComponent, canActivate: [AuthGuard] },
+      { path: 'hospitals', component: HopitalComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'customercat', component: CustomerCatComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'hospitalcat', component: HospitalCatComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'doctors', component: DoctorComponent, canActivate: [AuthGuard] },
+      { path: 'editdoctor', component: DoctorEditComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'doctorCategory', component: DoctorCatComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'dashboard', component: NavbarComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'products', component: ProductComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'productedit', component: ProductEditComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'productCategory', component: ProductCatComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'invoicewithId/:id', component: InvoiceEditComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'invoices', component: InvoiceComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'invoice', component: InvoiceEditComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'operation', component: OperationComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'Category', component: CategoryComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'material', component: MaterialComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'tax', component: TaxComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'materialedit', component: MaterialEditComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'payment', component: PaymentComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'chat', component: ContactComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'customerCategory', component: CustomerCatComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'customerCategory', component: CustomerCatComponent, pathMatch: 'full', canActivate: [AuthGuard] },
     ]
   },
-  { 
+  {
     path: 'store', component: StoreComponent,
-    children : [
-      { path: '', component: ProductStoreComponent    }
+    children: [
+      { path: '', component: ProductStoreComponent }
     ]
-    
+
+  },
+  {
+    path: 'store/:id', component: ProductStoreComponent
   },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
