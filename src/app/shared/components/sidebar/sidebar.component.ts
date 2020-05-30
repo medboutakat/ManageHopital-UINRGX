@@ -18,9 +18,11 @@ export class SidebarComponent implements OnInit {
 
   menu: NavItem[] ; 
 
-  constructor() {
+  links: Link[];
 
+  constructor()
 
+{
 
     // let menulinks = localStorage.getItem("links");
     let menulinks=null;

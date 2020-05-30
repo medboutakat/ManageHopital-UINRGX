@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Customer } from './customer.model';
-import { ICrudService } from '../icrud-service';
-import { RootURLS } from '../root-urls';
 import { Observable } from 'rxjs';
+import { ICrudService } from 'src/app/icrud-service';
+import { RootURLS } from 'src/app/root-urls';
 
 @Injectable({
   providedIn: 'root'

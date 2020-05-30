@@ -23,6 +23,7 @@ export class UploadCancelAction implements Action {
 
 export class UploadResetAction implements Action {
   readonly type = ActionTypes.UPLOAD_RESET;
+
 }
 
 export class UploadStartedAction implements Action {
