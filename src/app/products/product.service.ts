@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs"; 
+import { Observable } from "rxjs";
 import { ICrudService } from '../icrud-service';
 import { RootURLS } from '../root-urls';
 import { Product } from './product.Module';
@@ -15,7 +15,7 @@ export class ProductService implements ICrudService<Product>{
   RepByDm: Product[];
 
   constructor(private http: HttpClient) {
-    this.ReponseUrl=RootURLS.getUrl("Product");
+    this.ReponseUrl = RootURLS.getUrl("Product");
   }
 
   getAll(): Observable<Product[]> {
@@ -23,12 +23,15 @@ export class ProductService implements ICrudService<Product>{
   }
 
   getById(payload: string): Observable<Product> {
-    return this.http.get<Product>(this.ReponseUrl+'/'+payload);
+    return this.http.get<Product>(this.ReponseUrl + '/' + payload);
+  }
+  getByCategoryId(payload: string): Observable<Product> {
+    return this.http.get<Product>(this.ReponseUrl + '/' + payload);
   }
 
   getByName(payload: string): Observable<Product> {
-    console.log("URL : ",this.ReponseUrl+'/name/'+payload)
-    return this.http.get<Product>(this.ReponseUrl+'/name/'+payload);
+    console.log("URL : ", this.ReponseUrl + '/name/' + payload)
+    return this.http.get<Product>(this.ReponseUrl + '/name/' + payload);
   }
 
   add(payload: Product): Observable<Product> {
@@ -36,9 +39,9 @@ export class ProductService implements ICrudService<Product>{
   }
 
   update(payload: Product) {
-     console.log('payload from service : ',payload)
+    console.log('payload from service : ', payload)
 
-    const params = new HttpParams().set('ID', payload.id+'');
+    const params = new HttpParams().set('ID', payload.id + '');
     const headers = new HttpHeaders().set('content-type', 'application/json');
     // var body = {
     //   product: payload.product, description: payload.description, qte: payload.qte, price: payload.price,
@@ -49,5 +52,5 @@ export class ProductService implements ICrudService<Product>{
 
   delete(payload: string) {
     return this.http.delete(`${this.ReponseUrl}/${payload}`);
-  } 
+  }
 }
