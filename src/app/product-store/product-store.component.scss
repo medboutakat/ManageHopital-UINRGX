@@ -27,6 +27,7 @@ h4 {
   font-family: 'Century Gothic';
 }
 
+
 .prix {
   color: #126186;
   font-family: 'Century Gothic';
@@ -87,4 +88,58 @@ img {
 
 .mat-tab-group {
   margin-bottom: 48px;
+}
+
+.side {
+  height: auto;
+}
+
+.catalogue {
+  background-color: white;
+  height: auto;
+
+}
+
+.img1 {
+  margin-left: 10%;
+}
+
+.text1 {
+  color: #7e963a;
+  font-size: 11px;
+  font-weight: bold;
+  font-family: 'Century Gothic';
+  text-align: center;
+  margin-top: 10%;
+}
+
+.prix1 {
+  color: #126186;
+  font-family: 'Century Gothic';
+  font-weight: bold;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: -10%;
+
+}
+
+.cat1 {
+
+  background-color: #126186;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 13px;
+}
+
+
+
+.form-check-input {
+  font-size: 11px;
+
+}
+
+.form-check-label {
+  font-size: 11px;
 }
