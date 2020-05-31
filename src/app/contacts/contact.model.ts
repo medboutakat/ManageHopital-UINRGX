@@ -1,4 +1,4 @@
-import { GeneratedId } from '../generatedId';
+import { GeneratedId } from 'src/app/generatedId';
 
 export class Contact extends GeneratedId{
   

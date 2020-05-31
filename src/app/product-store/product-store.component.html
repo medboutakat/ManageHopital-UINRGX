@@ -6,34 +6,143 @@
           Store</a></li>
     </ol>
   </nav>
-  <h4>NOUVEAUX
-    <hr class="ab">
-  </h4>
-  <div class="alert alert-light" role="alert">
+  <div class="container">
     <div class="row">
-      <nav mat-tab-nav-bar>
-        <a mat-tab-link [active]="rla.isActive" href="store" routerLinkActive #rla="routerLinkActive">All</a>
-        <a mat-tab-link *ngFor="let link of navLinks" href="store/{{link.id}}" routerLinkActive #rla="routerLinkActive"
-          [active]="rla.isActive">
-          {{link.name}}
-        </a>
-      </nav>
-    </div>
-  </div>
-
-
-  <div class="row text-center container">
-    <div class="card-group " *ngFor="let p of list2">
-      <div class="card ">
-        <img class="card-img-top container img-responsive" src="assets/img/51WCCdSLJtL._SY879_.jpg" alt="">
-        <div class="card-body">
-          <h4 class="card-title">{{p.name}}</h4>
-          <p class="text">UNITONE 4 Reveal gel </p>
-          <hr>
-          <p class="prix">{{p.unitPrice}} DH</p>
+      <nav class="container col-3 side">
+        <div class="catalogue">
+          <div class="cat1 ">Catalog</div>
+          <div class="container">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                ACM
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+              <label class="form-check-label" for="defaultCheck2">
+                AVENUE
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+              <label class="form-check-label" for="defaultCheck3">
+                AVENT
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+              <label class="form-check-label" for="defaultCheck4">
+                BIODERMA
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+              <label class="form-check-label" for="defaultCheck4">
+                BIORGA
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+              <label class="form-check-label" for="defaultCheck4">
+                Avenue
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+              <label class="form-check-label" for="defaultCheck4">
+                CATTIER
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+              <label class="form-check-label" for="defaultCheck4">
+                CEBELIA
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+              <label class="form-check-label" for="defaultCheck4">
+                COVERMARK
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+              <label class="form-check-label" for="defaultCheck4">
+                DERMAGOR
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+              <label class="form-check-label" for="defaultCheck4">
+                EUCERIN
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+              <label class="form-check-label" for="defaultCheck4">
+                FILORGA
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+              <label class="form-check-label" for="defaultCheck4">
+                IDENOV
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+              <label class="form-check-label" for="defaultCheck4">
+                KALINE
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+              <label class="form-check-label" for="defaultCheck4">
+                NOREVA
+              </label>
+            </div>
+          </div>
         </div>
-        <button mat-raised-button color="primary"><i class="fa fa-shopping-cart"></i> panier</button>
+        <div class="catalogue">
+          <div class="cat1">Promotion</div>
+          <img class="img1 container img-responsive" src="assets/img/51WCCdSLJtL._SY879_.jpg" alt="">
+          <p class="text1">UNITONE 4 Reveal gel </p>
+          <p class="prix1">150 DH</p>
+        </div>
+      </nav>
+      <div class="col-9">
+        <h4>NOUVEAUX
+          <hr class="ab">
+        </h4>
+        <div class="alert alert-light" role="alert">
+          <div class="row">
+            <nav mat-tab-nav-bar>
+              <a mat-tab-link [active]="rla.isActive" href="store" routerLinkActive #rla="routerLinkActive">All</a>
+              <a mat-tab-link *ngFor="let link of navLinks" href="store/{{link.id}}" routerLinkActive
+                #rla="routerLinkActive" [active]="rla.isActive">
+                {{link.name}}
+              </a>
+            </nav>
+          </div>
+        </div>
+        <div class="row text-center container">
+          <div class="card-group " *ngFor="let p of list2">
+            <div class="card ">
+              <img class="card-img-top container img-responsive" src="assets/img/51WCCdSLJtL._SY879_.jpg" alt="">
+              <div class="card-body">
+                <h4 class="card-title">{{p.name}}</h4>
+                <p class="text">UNITONE 4 Reveal gel </p>
+                <hr>
+                <p class="prix">{{p.unitPrice}} DH</p>
+              </div>
+              <button mat-raised-button color="primary"><i class="fa fa-shopping-cart"></i> panier</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+
 </div>
