@@ -75,7 +75,4 @@ export class CustomerEditComponent implements OnInit {
     console.log("success")
     this.dialog.closeAll();
   }
-
-
-
 }

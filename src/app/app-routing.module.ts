@@ -64,6 +64,9 @@ const routes: Routes = [
       { path: 'chat', component: ContactComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
       { path: 'customerCategory', component: CustomerCatComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
       { path: 'customers', component: CustomerComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
+      { path: 'ourteam', component: OurTeamComponent, pathMatch: 'full'  , canActivate: [AuthGuard]}, 
+
+      
     ]
   },
   {
